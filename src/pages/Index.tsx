@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
+import { useScrollToHash } from "@/hooks/useScrollToHash";
 import { Link } from "react-router-dom";
 import {
   ArrowRight, Building2, Layers3, ScanLine, Cpu, BarChart3, Cog,

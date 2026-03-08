@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useScrollToHash } from "@/hooks/useScrollToHash";
 import { Link } from "react-router-dom";
 import { Target, Eye, Heart, Award, Users, Globe, Plus } from "lucide-react";
 import Layout from "@/components/Layout";

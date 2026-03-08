@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useScrollToHash } from "@/hooks/useScrollToHash";
 import { Link } from "react-router-dom";
 import {
   Building2, Layers3, ScanLine, Cpu, BarChart3, Cog,
