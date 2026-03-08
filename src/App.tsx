@@ -9,6 +9,7 @@ import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
+import BIMInsights from "./pages/BIMInsights";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
