@@ -65,11 +65,40 @@ export default function CareersPage() {
     linkedIn: "", portfolio: "", expectedSalary: "", noticePeriod: "",
     coverLetter: "", skills: "", education: "", referral: "",
   });
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) validateAndSetFile(file);
+  };
+
+  const validateAndSetFile = (file: File) => {
+    const allowed = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+    if (!allowed.includes(file.type)) {
+      toast({ title: "Invalid file type", description: "Please upload a PDF, DOC, or DOCX file.", variant: "destructive" });
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast({ title: "File too large", description: "Maximum file size is 5MB.", variant: "destructive" });
+      return;
+    }
+    setResumeFile(file);
+    toast({ title: "Resume attached", description: file.name });
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) validateAndSetFile(file);
+  };
 
   const handleApply = (jobTitle: string) => {
     setApplyingFor(jobTitle);
     setSubmitted(false);
+    setResumeFile(null);
     setFormData({ fullName: "", email: "", phone: "", currentRole: "", experience: "", linkedIn: "", portfolio: "", expectedSalary: "", noticePeriod: "", coverLetter: "", skills: "", education: "", referral: "" });
     setTimeout(() => {
       document.getElementById("application-form")?.scrollIntoView({ behavior: "smooth" });
@@ -304,6 +333,60 @@ export default function CareersPage() {
                     <label className="text-sm font-medium text-foreground mb-1.5 block">Portfolio / Website</label>
                     <Input placeholder="https://yourportfolio.com" value={formData.portfolio} onChange={e => setFormData({ ...formData, portfolio: e.target.value })} />
                   </div>
+                </div>
+              </div>
+
+              {/* Resume / CV Upload */}
+              <div>
+                <h3 className="text-lg font-display font-semibold text-foreground mb-4 flex items-center gap-2">
+                  <Upload size={18} className="text-primary" /> Resume / CV *
+                </h3>
+                <div
+                  onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+                  onDragLeave={() => setIsDragging(false)}
+                  onDrop={handleDrop}
+                  className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all cursor-pointer ${
+                    isDragging
+                      ? "border-primary bg-primary/5"
+                      : resumeFile
+                      ? "border-primary/40 bg-primary/5"
+                      : "border-border hover:border-primary/40 hover:bg-accent/30"
+                  }`}
+                  onClick={() => document.getElementById("resume-input")?.click()}
+                >
+                  <input
+                    id="resume-input"
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    onChange={handleFileChange}
+                    className="hidden"
+                  />
+                  {resumeFile ? (
+                    <div className="flex flex-col items-center gap-2">
+                      <CheckCircle size={32} className="text-primary" />
+                      <p className="text-sm font-medium text-foreground">{resumeFile.name}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {(resumeFile.size / 1024 / 1024).toFixed(2)} MB
+                      </p>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={(e) => { e.stopPropagation(); setResumeFile(null); }}
+                        className="mt-1"
+                      >
+                        Remove & Re-upload
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center gap-2">
+                      <Upload size={32} className="text-muted-foreground" />
+                      <p className="text-sm font-medium text-foreground">
+                        Drag & drop your resume here, or <span className="text-primary underline">browse</span>
+                      </p>
+                      <p className="text-xs text-muted-foreground">PDF, DOC, or DOCX — Max 5MB</p>
+                    </div>
+                  )}
                 </div>
               </div>
 
