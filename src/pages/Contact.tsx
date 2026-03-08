@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, Globe } from "lucide-react";
 import Layout from "@/components/Layout";
 import { toast } from "sonner";
 
@@ -168,6 +168,65 @@ export default function ContactPage() {
                 </button>
               </form>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== OFFICE MAPS ===== */}
+      <section className="pb-20">
+        <div className="container mx-auto px-4 md:px-8">
+          <motion.div {...fadeUp} className="mb-8 text-center">
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4">
+              <Globe size={12} className="inline mr-1 -mt-0.5" /> Our Locations
+            </span>
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground">Global Office Locations</h2>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                city: "Nagpur, India",
+                flag: "🇮🇳",
+                label: "Headquarters",
+                src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d238132.555723356!2d78.9382!3d21.1458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0a5a31faf13%3A0x19b37d06d0bb3e2b!2sNagpur%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sin!4v1700000000000",
+              },
+              {
+                city: "Dubai, UAE",
+                flag: "🇦🇪",
+                label: "Regional Office",
+                src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462560.3039567256!2d54.9474!3d25.0757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1700000000000",
+              },
+              {
+                city: "Riyadh, KSA",
+                flag: "🇸🇦",
+                label: "Regional Office",
+                src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d463220.0507720655!2d46.5423!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d489399%3A0xba974d1c98e79fd5!2sRiyadh%20Saudi%20Arabia!5e0!3m2!1sen!2sin!4v1700000000000",
+              },
+            ].map((office, i) => (
+              <motion.div
+                key={i}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: i * 0.15 }}
+                className="glass rounded-xl overflow-hidden group"
+              >
+                <div className="aspect-[4/3] w-full">
+                  <iframe
+                    src={office.src}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={`${office.city} Office Map`}
+                    className="grayscale group-hover:grayscale-0 transition-all duration-500"
+                  />
+                </div>
+                <div className="p-4 text-center">
+                  <p className="font-display font-semibold text-foreground text-sm">{office.flag} {office.city}</p>
+                  <p className="text-xs text-muted-foreground">{office.label}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
