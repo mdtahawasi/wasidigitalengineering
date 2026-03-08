@@ -45,13 +45,6 @@ const growthPaths = [
   { icon: Globe, title: "Global Mobility", desc: "Opportunities to work across our offices in Dubai, Riyadh, London, Cairo, and more. International project exposure guaranteed." },
 ];
 
-  { title: "Structural BIM Engineer", dept: "Engineering", location: "Dubai, UAE", type: "Full-time", experience: "3+ years", salary: "$50K–$70K", desc: "Develop structural BIM models in Revit/Tekla, perform quantity takeoffs, and coordinate with architects and MEP engineers." },
-  { title: "MEP BIM Lead", dept: "MEP", location: "Abu Dhabi, UAE", type: "Full-time", experience: "6+ years", salary: "$70K–$95K", desc: "Lead MEP modeling team, ensure systems coordination, and deliver fabrication-ready models for HVAC, plumbing, and electrical systems." },
-  { title: "AI/ML Engineer - BIM Automation", dept: "Technology", location: "Remote", type: "Full-time", experience: "3+ years", salary: "$80K–$120K", desc: "Develop AI-powered tools for automated clash detection, design optimization, and predictive project analytics using Python and TensorFlow." },
-  { title: "Scan to BIM Specialist", dept: "Production", location: "Doha, Qatar", type: "Contract", experience: "2+ years", salary: "$45K–$60K", desc: "Process point cloud data from 3D laser scans, create accurate as-built BIM models, and ensure quality control of deliverables." },
-  { title: "BIM Consultant", dept: "Consulting", location: "London, UK", type: "Full-time", experience: "7+ years", salary: "$90K–$130K", desc: "Advise enterprise clients on BIM strategy, develop execution plans, and guide digital transformation initiatives across large portfolios." },
-  { title: "Junior Revit Technician", dept: "Production", location: "Cairo, Egypt", type: "Full-time", experience: "0-2 years", salary: "$20K–$35K", desc: "Support senior modelers with Revit production work, learn BIM best practices, and grow into a specialist role with mentorship support." },
-];
 
 export default function CareersPage() {
   const { t } = useLanguage();
