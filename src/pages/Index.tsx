@@ -137,17 +137,23 @@ export default function HomePage() {
               className="mt-12 pt-8 border-t border-border/30"
             >
               <p className="text-xs text-muted-foreground uppercase tracking-widest mb-3">{t("hero.trustedBy")}</p>
-              <div className="flex flex-wrap gap-6 items-center">
-                {["AECOM", "Turner", "Arup", "Skanska", "Bechtel"].map((name, i) => (
-                  <motion.span
-                    key={name}
+              <div className="flex flex-wrap gap-4 items-center">
+                {[
+                  { icon: Building2, label: "50+ Global Firms" },
+                  { icon: Globe, label: "12 Countries" },
+                  { icon: Award, label: "100% Satisfaction" },
+                  { icon: Shield, label: "ISO Certified" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.label}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.4 + i * 0.1, duration: 0.4 }}
-                    className="text-sm font-display font-medium text-muted-foreground/50 hover:text-primary/60 transition-colors"
+                    className="flex items-center gap-1.5 text-muted-foreground/60 hover:text-primary/70 transition-colors"
                   >
-                    {name}
-                  </motion.span>
+                    <item.icon size={14} />
+                    <span className="text-xs font-medium">{item.label}</span>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
