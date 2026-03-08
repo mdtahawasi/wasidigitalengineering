@@ -234,96 +234,95 @@ export default function ContactPage() {
 
           <WorldMap />
 
-            {/* Region stats below map */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          {/* Region stats below map */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            {[
+              {
+                region: "🇮🇳 India",
+                projects: "15+",
+                cities: "Nagpur, Mumbai, Delhi, Pune, Hyderabad",
+                sectors: "Commercial, Residential, Infrastructure, Healthcare",
+                bimNote: "BIM mandate for govt. projects >₹100Cr since 2024",
+                highlight: true,
+              },
+              {
+                region: "🇦🇪 Middle East",
+                projects: "12+",
+                cities: "Dubai, Abu Dhabi, Riyadh, Doha, Muscat",
+                sectors: "Commercial Towers, Hospitality, Mixed-Use, Mega Projects",
+                bimNote: "Dubai mandates BIM for all buildings >40 floors",
+                highlight: false,
+              },
+              {
+                region: "🇬🇧 Western Markets",
+                projects: "5+",
+                cities: "London, Berlin, Paris, Amsterdam, Stockholm",
+                sectors: "Residential, Retrofit, Data Centers, Industrial",
+                bimNote: "UK Level 2 BIM mandatory for all public projects",
+                highlight: false,
+              },
+            ].map((r, i) => (
+              <motion.div
+                key={i}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: i * 0.12 }}
+                className={`rounded-xl p-5 border transition-all duration-300 ${
+                  r.highlight
+                    ? "border-primary/40 bg-primary/5"
+                    : "border-border/50 bg-card/30"
+                }`}
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="font-display font-bold text-foreground text-base">{r.region}</h4>
+                  <span className="text-sm font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full">{r.projects}</span>
+                </div>
+                <p className="text-xs text-muted-foreground mb-1"><span className="text-foreground font-medium">Cities:</span> {r.cities}</p>
+                <p className="text-xs text-muted-foreground mb-1"><span className="text-foreground font-medium">Sectors:</span> {r.sectors}</p>
+                <p className="text-[10px] text-primary/70 italic mt-2 border-t border-border/30 pt-2">📋 {r.bimNote}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Top BIM Cities Worldwide */}
+          <motion.div {...fadeUp} className="mt-8">
+            <h3 className="font-display font-bold text-foreground text-sm mb-4 text-center">🌍 Top BIM-Adopted Cities Worldwide</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
               {[
-                {
-                  region: "🇮🇳 India",
-                  projects: "15+",
-                  cities: "Nagpur, Mumbai, Delhi, Pune, Hyderabad",
-                  sectors: "Commercial, Residential, Infrastructure, Healthcare",
-                  bimNote: "BIM mandate for govt. projects >₹100Cr since 2024",
-                  highlight: true,
-                },
-                {
-                  region: "🇦🇪 Middle East",
-                  projects: "12+",
-                  cities: "Dubai, Abu Dhabi, Riyadh, Doha, Muscat",
-                  sectors: "Commercial Towers, Hospitality, Mixed-Use, Mega Projects",
-                  bimNote: "Dubai mandates BIM for all buildings >40 floors",
-                  highlight: false,
-                },
-                {
-                  region: "🇬🇧 Western Markets",
-                  projects: "5+",
-                  cities: "London, Berlin, Paris, Amsterdam, Stockholm",
-                  sectors: "Residential, Retrofit, Data Centers, Industrial",
-                  bimNote: "UK Level 2 BIM mandatory for all public projects",
-                  highlight: false,
-                },
-              ].map((r, i) => (
+                { city: "London", country: "UK", adoption: "92%", mandate: "Level 2 BIM" },
+                { city: "Singapore", country: "SG", adoption: "89%", mandate: "BCA BIM" },
+                { city: "Dubai", country: "UAE", adoption: "85%", mandate: "BIM Mandate" },
+                { city: "New York", country: "US", adoption: "82%", mandate: "NYC DDC" },
+                { city: "Stockholm", country: "SE", adoption: "80%", mandate: "OpenBIM" },
+                { city: "Hong Kong", country: "HK", adoption: "78%", mandate: "CIC BIM" },
+                { city: "Berlin", country: "DE", adoption: "76%", mandate: "BIM.DE" },
+                { city: "Tokyo", country: "JP", adoption: "74%", mandate: "MLIT BIM" },
+                { city: "Sydney", country: "AU", adoption: "72%", mandate: "NatBIM" },
+                { city: "Seoul", country: "KR", adoption: "70%", mandate: "KBIMS" },
+              ].map((c, i) => (
                 <motion.div
                   key={i}
-                  {...fadeUp}
-                  transition={{ ...fadeUp.transition, delay: i * 0.12 }}
-                  className={`rounded-xl p-5 border transition-all duration-300 ${
-                    r.highlight
-                      ? "border-primary/40 bg-primary/5"
-                      : "border-border/50 bg-card/30"
-                  }`}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05, duration: 0.3 }}
+                  className="rounded-lg border border-border/50 bg-card/30 p-3 text-center hover:border-primary/30 transition-all group"
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-display font-bold text-foreground text-base">{r.region}</h4>
-                    <span className="text-sm font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full">{r.projects}</span>
+                  <p className="font-display font-bold text-foreground text-sm group-hover:text-primary transition-colors">{c.city}</p>
+                  <p className="text-[10px] text-muted-foreground">{c.country}</p>
+                  <div className="mt-2 w-full bg-muted rounded-full h-1.5 overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: c.adoption }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 + i * 0.05, duration: 0.8 }}
+                      className="h-full bg-gradient-to-r from-primary/60 to-primary rounded-full"
+                    />
                   </div>
-                  <p className="text-xs text-muted-foreground mb-1"><span className="text-foreground font-medium">Cities:</span> {r.cities}</p>
-                  <p className="text-xs text-muted-foreground mb-1"><span className="text-foreground font-medium">Sectors:</span> {r.sectors}</p>
-                  <p className="text-[10px] text-primary/70 italic mt-2 border-t border-border/30 pt-2">📋 {r.bimNote}</p>
+                  <p className="text-xs font-bold text-primary mt-1">{c.adoption}</p>
+                  <p className="text-[9px] text-muted-foreground">{c.mandate}</p>
                 </motion.div>
               ))}
             </div>
-
-            {/* Top BIM Cities Worldwide */}
-            <motion.div {...fadeUp} className="mt-8">
-              <h3 className="font-display font-bold text-foreground text-sm mb-4 text-center">🌍 Top BIM-Adopted Cities Worldwide</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-                {[
-                  { city: "London", country: "UK", adoption: "92%", mandate: "Level 2 BIM" },
-                  { city: "Singapore", country: "SG", adoption: "89%", mandate: "BCA BIM" },
-                  { city: "Dubai", country: "UAE", adoption: "85%", mandate: "BIM Mandate" },
-                  { city: "New York", country: "US", adoption: "82%", mandate: "NYC DDC" },
-                  { city: "Stockholm", country: "SE", adoption: "80%", mandate: "OpenBIM" },
-                  { city: "Hong Kong", country: "HK", adoption: "78%", mandate: "CIC BIM" },
-                  { city: "Berlin", country: "DE", adoption: "76%", mandate: "BIM.DE" },
-                  { city: "Tokyo", country: "JP", adoption: "74%", mandate: "MLIT BIM" },
-                  { city: "Sydney", country: "AU", adoption: "72%", mandate: "NatBIM" },
-                  { city: "Seoul", country: "KR", adoption: "70%", mandate: "KBIMS" },
-                ].map((c, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05, duration: 0.3 }}
-                    className="rounded-lg border border-border/50 bg-card/30 p-3 text-center hover:border-primary/30 transition-all group"
-                  >
-                    <p className="font-display font-bold text-foreground text-sm group-hover:text-primary transition-colors">{c.city}</p>
-                    <p className="text-[10px] text-muted-foreground">{c.country}</p>
-                    <div className="mt-2 w-full bg-muted rounded-full h-1.5 overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: c.adoption }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 + i * 0.05, duration: 0.8 }}
-                        className="h-full bg-gradient-to-r from-primary/60 to-primary rounded-full"
-                      />
-                    </div>
-                    <p className="text-xs font-bold text-primary mt-1">{c.adoption}</p>
-                    <p className="text-[9px] text-muted-foreground">{c.mandate}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
