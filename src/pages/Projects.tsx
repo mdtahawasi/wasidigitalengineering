@@ -184,20 +184,20 @@ export default function ProjectsPage() {
                     <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase bg-primary/90 text-primary-foreground">{getCategoryTranslation(project.category)}</span>
                   </div>
                 </div>
-                <div className="p-5">
-                  <h3 className="font-display font-semibold text-foreground text-base mb-1">{project.title}</h3>
-                  <p className="flex items-center gap-1 text-xs text-muted-foreground mb-2">
-                    <MapPin size={12} /> {project.location}
+                <div className="p-5 space-y-2">
+                  <h3 className="font-display font-semibold text-foreground text-sm leading-snug line-clamp-2">{project.title}</h3>
+                  <p className="flex items-center gap-1 text-xs text-muted-foreground">
+                    <MapPin size={12} className="shrink-0" /> {project.location}
                   </p>
-                  <p className="text-xs text-muted-foreground mb-2">{project.scope}</p>
-                  <div className="mt-3 pt-3 border-t border-border/50 space-y-1 text-xs">
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">GFA</span>
-                      <span className="font-semibold text-primary">{project.gfa}</span>
+                  <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{project.scope}</p>
+                  <div className="pt-3 border-t border-border/50 space-y-1.5 text-xs">
+                    <div className="flex justify-between items-center gap-2">
+                      <span className="text-muted-foreground shrink-0">GFA</span>
+                      <span className="font-semibold text-primary text-right">{project.gfa}</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Configuration</span>
-                      <span className="font-semibold text-foreground">{project.config}</span>
+                    <div className="flex justify-between items-start gap-2">
+                      <span className="text-muted-foreground shrink-0">Config</span>
+                      <span className="font-semibold text-foreground text-right text-[11px] leading-snug">{project.config}</span>
                     </div>
                   </div>
                 </div>
