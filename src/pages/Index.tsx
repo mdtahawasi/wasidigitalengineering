@@ -1,10 +1,12 @@
+import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Building2, Layers3, ScanLine, Cpu, BarChart3, Cog, CheckCircle2, ChevronRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
-import heroBg from "@/assets/hero-bg.jpg";
+
+const ConstructionScene = lazy(() => import("@/components/ConstructionScene"));
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
