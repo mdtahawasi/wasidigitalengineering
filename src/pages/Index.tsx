@@ -1,7 +1,11 @@
 import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Building2, Layers3, ScanLine, Cpu, BarChart3, Cog, CheckCircle2, ChevronRight } from "lucide-react";
+import {
+  ArrowRight, Building2, Layers3, ScanLine, Cpu, BarChart3, Cog,
+  CheckCircle2, ChevronRight, Globe, Zap, Shield, Brain, Monitor,
+  Workflow, Users, Award, TrendingUp
+} from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
@@ -17,6 +21,13 @@ const fadeUp = {
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-80px" },
   transition: { duration: 0.6 },
+};
+
+const fadeIn = {
+  initial: { opacity: 0 },
+  whileInView: { opacity: 1 },
+  viewport: { once: true },
+  transition: { duration: 0.8 },
 };
 
 const services = [
@@ -48,6 +59,39 @@ const testimonials = [
   { quote: "The digital twin solution they built gives us unparalleled insight into building operations.", author: "James Mitchell", role: "VP Operations, Emaar Properties" },
 ];
 
+const softwareTools = [
+  { name: "Autodesk Revit", category: "BIM Authoring" },
+  { name: "Navisworks", category: "Coordination" },
+  { name: "Tekla Structures", category: "Structural" },
+  { name: "AutoCAD", category: "Drafting" },
+  { name: "Dynamo", category: "Automation" },
+  { name: "Solibri", category: "QA/QC" },
+  { name: "BIM 360", category: "Collaboration" },
+  { name: "Enscape", category: "Visualization" },
+  { name: "Synchro Pro", category: "4D Planning" },
+  { name: "ACC", category: "Cloud Platform" },
+  { name: "Power BI", category: "Analytics" },
+  { name: "Rhino + Grasshopper", category: "Parametric" },
+];
+
+const processSteps = [
+  { step: "01", title: "Discovery", desc: "Understand project scope, standards, and deliverables", icon: Brain },
+  { step: "02", title: "BIM Setup", desc: "Templates, families, BEP, and collaboration setup", icon: Monitor },
+  { step: "03", title: "Modeling", desc: "Multi-discipline BIM modeling across all LODs", icon: Building2 },
+  { step: "04", title: "Coordination", desc: "Clash detection, resolution, and interdisciplinary review", icon: Workflow },
+  { step: "05", title: "Delivery", desc: "Final QA/QC, documentation, and handover", icon: Award },
+  { step: "06", title: "Support", desc: "Ongoing facility management and model maintenance", icon: Shield },
+];
+
+const industries = [
+  { name: "Commercial", count: "12+ Projects" },
+  { name: "Residential", count: "8+ Projects" },
+  { name: "Healthcare", count: "4+ Projects" },
+  { name: "Infrastructure", count: "3+ Projects" },
+  { name: "Industrial", count: "2+ Projects" },
+  { name: "Education", count: "2+ Projects" },
+];
+
 export default function HomePage() {
   return (
     <Layout>
@@ -64,9 +108,14 @@ export default function HomePage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-3xl"
           >
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-6">
+            <motion.span
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-6"
+            >
               Engineering & BIM Consultancy
-            </span>
+            </motion.span>
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold leading-[1.1] text-foreground mb-6">
               Building the Future with{" "}
               <span className="text-gradient">Digital Intelligence</span>
@@ -77,17 +126,34 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/services"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity glow-primary"
+                className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-all glow-primary"
               >
-                Explore Services <ArrowRight size={16} />
+                Explore Services <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 to="/projects"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg border border-border text-foreground font-semibold text-sm hover:bg-muted/50 transition-all"
+                className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg border border-border text-foreground font-semibold text-sm hover:bg-muted/50 hover:border-primary/30 transition-all"
               >
-                View Projects <ChevronRight size={16} />
+                View Projects <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
+
+            {/* Trusted by ticker */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="mt-12 pt-8 border-t border-border/30"
+            >
+              <p className="text-xs text-muted-foreground uppercase tracking-widest mb-3">Trusted by industry leaders</p>
+              <div className="flex flex-wrap gap-6 items-center">
+                {["AECOM", "Turner", "Arup", "Skanska", "Bechtel"].map((name) => (
+                  <span key={name} className="text-sm font-display font-medium text-muted-foreground/50 hover:text-primary/60 transition-colors">
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -122,13 +188,16 @@ export default function HomePage() {
                 key={i}
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: i * 0.1 }}
-                className="group glass rounded-xl p-6 hover:border-primary/30 transition-all duration-500"
+                className="group glass rounded-xl p-6 hover:border-primary/30 transition-all duration-500 relative overflow-hidden"
               >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-gradient-primary group-hover:text-primary-foreground transition-all duration-500">
-                  <service.icon size={24} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
+                <div className="relative">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-gradient-primary group-hover:text-primary-foreground transition-all duration-500">
+                    <service.icon size={24} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <h3 className="font-display font-semibold text-lg text-foreground mb-2">{service.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{service.desc}</p>
                 </div>
-                <h3 className="font-display font-semibold text-lg text-foreground mb-2">{service.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{service.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -140,8 +209,42 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ===== PROCESS ===== */}
+      <section className="section-padding bg-card/30 overflow-hidden">
+        <div className="container mx-auto px-4 md:px-8">
+          <SectionHeading
+            label="Our Process"
+            title="From Concept to Completion"
+            description="A proven 6-step methodology ensuring precision, compliance, and excellence at every stage."
+          />
+          <div className="relative">
+            {/* Connecting line */}
+            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent -translate-y-1/2" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+              {processSteps.map((step, i) => (
+                <motion.div
+                  key={i}
+                  {...fadeUp}
+                  transition={{ ...fadeUp.transition, delay: i * 0.12 }}
+                  className="glass rounded-xl p-5 text-center relative group hover:border-primary/30 transition-all duration-500"
+                >
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-gradient-primary text-primary-foreground text-xs font-bold">
+                    {step.step}
+                  </div>
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mt-3 mb-3 group-hover:bg-gradient-primary transition-all duration-500">
+                    <step.icon size={20} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <h4 className="font-display font-semibold text-foreground text-sm mb-1">{step.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{step.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ===== PROJECTS ===== */}
-      <section className="section-padding bg-card/30">
+      <section className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading
             label="Featured Projects"
@@ -174,26 +277,89 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== WHY WASI ===== */}
+      {/* ===== INDUSTRIES ===== */}
+      <section className="section-padding bg-card/30">
+        <div className="container mx-auto px-4 md:px-8">
+          <SectionHeading
+            label="Industries We Serve"
+            title="Cross-Sector BIM Excellence"
+            description="Delivering precision BIM services across every major AEC sector."
+          />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {industries.map((ind, i) => (
+              <motion.div
+                key={i}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: i * 0.08 }}
+                className="glass rounded-xl p-5 text-center group hover:border-primary/30 transition-all duration-500 cursor-default"
+              >
+                <h4 className="font-display font-semibold text-foreground text-sm mb-1 group-hover:text-primary transition-colors">{ind.name}</h4>
+                <p className="text-xs text-muted-foreground">{ind.count}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SOFTWARE ECOSYSTEM ===== */}
       <section className="section-padding">
+        <div className="container mx-auto px-4 md:px-8">
+          <SectionHeading
+            label="Technology Stack"
+            title="Software Ecosystem"
+            description="Industry-leading tools and platforms powering our BIM workflows."
+          />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {softwareTools.map((tool, i) => (
+              <motion.div
+                key={i}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: i * 0.05 }}
+                className="glass rounded-lg p-4 flex items-center gap-3 group hover:border-primary/30 transition-all duration-300"
+              >
+                <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-gradient-primary transition-all duration-300">
+                  <Monitor size={16} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground leading-tight">{tool.name}</p>
+                  <p className="text-xs text-muted-foreground">{tool.category}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== WHY WASI ===== */}
+      <section className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading
             label="Why WASI"
             title="Your Trusted BIM Partner"
             description="We combine deep AEC expertise with cutting-edge technology to deliver measurable results."
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              "ISO 19650 compliant BIM workflows",
-              "AI-driven clash detection & resolution",
-              "Certified Autodesk & Bentley professionals",
-              "24/7 global project delivery capability",
-              "Agile methodology with weekly milestones",
-              "Integrated QA/QC at every LOD stage",
+              { icon: Shield, text: "ISO 19650 compliant BIM workflows" },
+              { icon: Brain, text: "AI-driven clash detection & resolution" },
+              { icon: Award, text: "Certified Autodesk & Bentley professionals" },
+              { icon: Globe, text: "24/7 global project delivery capability" },
+              { icon: Zap, text: "Agile methodology with weekly milestones" },
+              { icon: TrendingUp, text: "Integrated QA/QC at every LOD stage" },
+              { icon: Users, text: "Dedicated project managers for every engagement" },
+              { icon: Workflow, text: "Seamless CDE & collaboration workflows" },
+              { icon: Cpu, text: "AI & automation for repetitive BIM tasks" },
             ].map((item, i) => (
-              <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.08 }} className="flex items-start gap-3">
-                <CheckCircle2 size={20} className="text-primary mt-0.5 shrink-0" />
-                <span className="text-foreground text-sm md:text-base">{item}</span>
+              <motion.div
+                key={i}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: i * 0.08 }}
+                className="flex items-start gap-3 glass rounded-lg p-4 hover:border-primary/30 transition-all duration-300"
+              >
+                <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center shrink-0">
+                  <item.icon size={16} className="text-primary" />
+                </div>
+                <span className="text-foreground text-sm">{item.text}</span>
               </motion.div>
             ))}
           </div>
@@ -201,16 +367,22 @@ export default function HomePage() {
       </section>
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="section-padding bg-card/30">
+      <section className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label="Testimonials" title="What Our Clients Say" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
-              <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.15 }} className="glass rounded-xl p-6">
-                <p className="text-muted-foreground text-sm leading-relaxed italic mb-6">"{t.quote}"</p>
-                <div>
-                  <p className="font-display font-semibold text-foreground text-sm">{t.author}</p>
-                  <p className="text-xs text-muted-foreground">{t.role}</p>
+              <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.15 }} className="glass rounded-xl p-6 relative">
+                <div className="absolute top-4 right-4 text-4xl text-primary/10 font-display font-bold">"</div>
+                <p className="text-muted-foreground text-sm leading-relaxed italic mb-6 relative z-10">"{t.quote}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
+                    {t.author.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-display font-semibold text-foreground text-sm">{t.author}</p>
+                    <p className="text-xs text-muted-foreground">{t.role}</p>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -233,12 +405,20 @@ export default function HomePage() {
               <p className="text-primary-foreground/80 max-w-lg mx-auto mb-8">
                 Let's discuss how our BIM solutions can reduce costs, eliminate rework, and accelerate delivery.
               </p>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-primary-foreground text-primary font-semibold text-sm hover:opacity-90 transition-opacity"
-              >
-                Start a Conversation <ArrowRight size={16} />
-              </Link>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link
+                  to="/contact"
+                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-primary-foreground text-primary font-semibold text-sm hover:opacity-90 transition-opacity"
+                >
+                  Start a Conversation <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  to="/careers"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-lg border border-primary-foreground/30 text-primary-foreground font-semibold text-sm hover:bg-primary-foreground/10 transition-all"
+                >
+                  Join Our Team
+                </Link>
+              </div>
             </div>
           </motion.div>
         </div>
