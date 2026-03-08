@@ -290,8 +290,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <span className="text-xs text-primary font-semibold uppercase tracking-wider">{t(project.categoryKey)}</span>
-                  <h3 className="font-display font-bold text-xl text-foreground mt-1">{project.title}</h3>
-                  <p className="text-sm text-muted-foreground">{project.location}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{project.location}</p>
                 </div>
               </motion.div>
             ))}
