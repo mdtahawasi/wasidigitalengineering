@@ -159,7 +159,7 @@ export default function SoftwareShowcase() {
         />
 
         {/* Summary stats */}
-        <motion.div {...fadeUp} className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto">
+        <motion.div {...scaleIn} className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto">
           {[
             { icon: Globe, label: "Software Platforms", value: "16+" },
             { icon: TrendingUp, label: "Certified Experts", value: "25+" },
