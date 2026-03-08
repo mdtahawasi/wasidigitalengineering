@@ -49,7 +49,15 @@ export default function Navbar() {
         </Link>
 
         {/* Right side: Language + Hamburger */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
+          <button
+            onClick={cycleTheme}
+            className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+            aria-label={`Theme: ${theme}`}
+            title={`Theme: ${theme}`}
+          >
+            <ThemeIcon size={20} />
+          </button>
           <LanguageSwitcher />
           <button
             onClick={() => setOpen(!open)}
