@@ -9,6 +9,7 @@ import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
+import BIMInsights from "./pages/BIMInsights";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/projects" element={<Projects />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/bim-insights" element={<BIMInsights />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
