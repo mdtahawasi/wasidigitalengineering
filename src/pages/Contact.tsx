@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, Send, Globe, Building2 } from "lucide-react";
 import Layout from "@/components/Layout";
+import WorldMap from "@/components/WorldMap";
 import { toast } from "sonner";
 
 const fadeUp = {
