@@ -33,7 +33,7 @@ const stats = [
   { value: 30, suffix: "+", labelKey: "stat.projectsDelivered" },
   { value: 6, suffix: "+", labelKey: "stat.yearsExperience" },
   { value: 10, suffix: "+", labelKey: "stat.disciplinesCovered" },
-  { value: 98, suffix: "%", labelKey: "stat.clientSatisfaction" },
+  { value: 100, suffix: "%", labelKey: "stat.clientSatisfaction" },
 ];
 
 const projects = [
