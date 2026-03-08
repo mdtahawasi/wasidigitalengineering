@@ -192,7 +192,17 @@ export default function AboutPage() {
                 </div>
                 <h3 className="font-display font-semibold text-foreground">{person.name}</h3>
                 <p className="text-sm text-primary mb-1">{person.role}</p>
-                {person.qualifications && <p className="text-xs text-muted-foreground">{person.qualifications}</p>}
+                {person.qualifications && <p className="text-xs text-muted-foreground mb-2">{person.qualifications}</p>}
+                {person.email && (
+                  <a href={`mailto:${person.email}`} className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors">
+                    <Mail size={12} /> {person.email}
+                  </a>
+                )}
+                {person.phone && (
+                  <a href={`tel:${person.phone.replace(/\s/g, '')}`} className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors mt-1">
+                    <Phone size={12} /> {person.phone}
+                  </a>
+                )}
               </motion.div>
             ))}
             <motion.div
