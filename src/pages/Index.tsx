@@ -9,6 +9,7 @@ import {
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import SoftwareShowcase from "@/components/SoftwareShowcase";
 
 const ConstructionScene = lazy(() => import("@/components/ConstructionScene"));
 import project1 from "@/assets/project-1.jpg";
@@ -59,20 +60,6 @@ const testimonials = [
   { quote: "The digital twin solution they built gives us unparalleled insight into building operations.", author: "James Mitchell", role: "VP Operations, Emaar Properties" },
 ];
 
-const softwareTools = [
-  { name: "Autodesk Revit", category: "BIM Authoring" },
-  { name: "Navisworks", category: "Coordination" },
-  { name: "Tekla Structures", category: "Structural" },
-  { name: "AutoCAD", category: "Drafting" },
-  { name: "Dynamo", category: "Automation" },
-  { name: "Solibri", category: "QA/QC" },
-  { name: "BIM 360", category: "Collaboration" },
-  { name: "Enscape", category: "Visualization" },
-  { name: "Synchro Pro", category: "4D Planning" },
-  { name: "ACC", category: "Cloud Platform" },
-  { name: "Power BI", category: "Analytics" },
-  { name: "Rhino + Grasshopper", category: "Parametric" },
-];
 
 const processSteps = [
   { step: "01", title: "Discovery", desc: "Understand project scope, standards, and deliverables", icon: Brain },
@@ -302,33 +289,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== SOFTWARE ECOSYSTEM ===== */}
-      <section className="section-padding">
-        <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading
-            label="Technology Stack"
-            title="Software Ecosystem"
-            description="Industry-leading tools and platforms powering our BIM workflows."
-          />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {softwareTools.map((tool, i) => (
-              <motion.div
-                key={i}
-                {...fadeUp}
-                transition={{ ...fadeUp.transition, delay: i * 0.05 }}
-                className="glass rounded-lg p-4 flex items-center gap-3 group hover:border-primary/30 transition-all duration-300"
-              >
-                <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-gradient-primary transition-all duration-300">
-                  <Monitor size={16} className="text-primary group-hover:text-primary-foreground transition-colors" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground leading-tight">{tool.name}</p>
-                  <p className="text-xs text-muted-foreground">{tool.category}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <SoftwareShowcase />
 
       {/* ===== WHY WASI ===== */}
       <section className="section-padding bg-card/30">
