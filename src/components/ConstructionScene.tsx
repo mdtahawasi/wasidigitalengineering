@@ -91,7 +91,7 @@ function Building({ position, maxHeight, width, depth, delay, color, shape = "bo
   const meshRef = useRef<THREE.Mesh>(null);
   const wireRef = useRef<THREE.LineSegments>(null);
   const craneRef = useRef<THREE.Group>(null);
-  const scaffoldRef = useRef<THREE.Group>(null);
+  const scaffoldRef = useRef<THREE.LineSegments>(null);
   const glowRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
