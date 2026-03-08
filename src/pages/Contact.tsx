@@ -77,11 +77,6 @@ export default function ContactPage() {
                     <p className="text-xs text-muted-foreground">Regional Office — GCC Business Development</p>
                     <p className="text-xs text-muted-foreground">Mon–Sat: 9:00 AM – 6:00 PM GST</p>
                   </div>
-                  <div className="border-l-2 border-primary/50 pl-3">
-                    <p className="text-foreground text-sm font-semibold">🇸🇦 Riyadh, KSA</p>
-                    <p className="text-xs text-muted-foreground">Regional Office — Saudi Vision 2030 Projects</p>
-                    <p className="text-xs text-muted-foreground">Mon–Sat: 9:00 AM – 6:00 PM AST</p>
-                  </div>
                 </div>
               </div>
             </motion.div>
