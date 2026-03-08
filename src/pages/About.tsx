@@ -5,6 +5,7 @@ import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import OrgChart from "@/components/OrgChart";
+import { useLanguage } from "@/contexts/LanguageContext";
 import aboutTeam from "@/assets/about-team.jpg";
 
 const fadeUp = {
@@ -14,11 +15,11 @@ const fadeUp = {
   transition: { duration: 0.6 },
 };
 
-const values = [
-  { icon: Target, title: "Precision", desc: "Every model we deliver is dimensionally accurate and meets international BIM standards." },
-  { icon: Eye, title: "Innovation", desc: "We leverage AI, machine learning, and automation to push the boundaries of digital construction." },
-  { icon: Heart, title: "Integrity", desc: "Transparent communication, honest timelines, and ethical business practices define our work." },
-  { icon: Award, title: "Excellence", desc: "ISO 19650 certified processes ensure consistent quality across every deliverable." },
+const valueKeys = [
+  { icon: Target, titleKey: "value.precision", descKey: "value.precisionDesc" },
+  { icon: Eye, titleKey: "value.innovation", descKey: "value.innovationDesc" },
+  { icon: Heart, titleKey: "value.integrity", descKey: "value.integrityDesc" },
+  { icon: Award, titleKey: "value.excellence", descKey: "value.excellenceDesc" },
 ];
 
 const timeline = [
@@ -31,26 +32,13 @@ const timeline = [
   { year: "2025", event: "AI-integrated BIM workflows, Digital Twin & FM solutions launched" },
 ];
 
-// ===== LEADERSHIP TEAM =====
-// Easy to add: just add a new object to this array with name, role, qualifications, and initials
 const leadershipTeam = [
-  {
-    name: "Md Taha Wasi",
-    role: "Founder & CEO",
-    qualifications: "Masters in Construction & Project Management | MBA",
-    initials: "TW",
-  },
-  // ADD MORE TEAM MEMBERS HERE — just copy the object above and change the values
-  // Example:
-  // {
-  //   name: "John Doe",
-  //   role: "BIM Director",
-  //   qualifications: "B.Arch, Certified BIM Professional",
-  //   initials: "JD",
-  // },
+  { name: "Md Taha Wasi", role: "Founder & CEO", qualifications: "Masters in Construction & Project Management | MBA", initials: "TW" },
 ];
 
 export default function AboutPage() {
+  const { t } = useLanguage();
+
   return (
     <Layout>
       {/* Hero */}
@@ -59,13 +47,13 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-8 relative">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4">
-              About Us
+              {t("about.badge")}
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-3xl">
-              Engineering the <span className="text-gradient">Digital Future</span> of Construction
+              {t("about.title")} <span className="text-gradient">{t("about.titleHighlight")}</span> {t("about.titleEnd")}
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              WASI Digital Engineering is a leading BIM and digital engineering consultancy transforming the AEC industry through technology, expertise, and innovation.
+              {t("about.desc")}
             </p>
           </motion.div>
         </div>
@@ -79,7 +67,7 @@ export default function AboutPage() {
               <img src={aboutTeam} alt="WASI Digital Engineering team" className="w-full h-auto object-cover rounded-2xl" />
             </motion.div>
             <motion.div {...fadeUp} transition={{ delay: 0.2, duration: 0.6 }}>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-4">Our Story</h2>
+              <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-4">{t("about.ourStory")}</h2>
               <div className="space-y-4 text-muted-foreground text-sm leading-relaxed">
                 <p>Founded in 2019 in India by Md Taha Wasi, WASI Digital Engineering began with a clear mission: to bridge the gap between traditional construction methods and the digital future. What started as a small team of BIM enthusiasts has grown into a consultancy serving ambitious projects across the AEC industry.</p>
                 <p>Today, we've successfully delivered 30+ projects across residential, commercial, and industrial sectors. Our team combines deep domain expertise in Architecture, Structural (RCC, Steel & Composite), MEP, Interior Fit Out, Facade, Landscape, Infrastructure, and Civil engineering with cutting-edge technologies like AI, IoT, and digital twin platforms.</p>
@@ -95,16 +83,16 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: 6, suffix: "+", label: "Years Experience" },
-              { value: 30, suffix: "+", label: "Projects Delivered" },
-              { value: 3, suffix: "", label: "Industry Sectors" },
-              { value: 2, suffix: "", label: "Countries" },
+              { value: 6, suffix: "+", labelKey: "stat.yearsExperience" },
+              { value: 30, suffix: "+", labelKey: "stat.projectsDelivered" },
+              { value: 3, suffix: "", labelKey: "stat.industrySectors" },
+              { value: 2, suffix: "", labelKey: "stat.countries" },
             ].map((s, i) => (
               <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1, duration: 0.6 }}>
                 <div className="text-3xl md:text-4xl font-display font-bold text-gradient">
                   <AnimatedCounter target={s.value} suffix={s.suffix} />
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
+                <p className="text-sm text-muted-foreground mt-1">{t(s.labelKey)}</p>
               </motion.div>
             ))}
           </div>
@@ -114,15 +102,15 @@ export default function AboutPage() {
       {/* Values */}
       <section className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label="Our Values" title="What Drives Us" />
+          <SectionHeading label={t("about.valuesLabel")} title={t("about.valuesTitle")} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((v, i) => (
+            {valueKeys.map((v, i) => (
               <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1, duration: 0.6 }} className="glass rounded-xl p-6 text-center">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <v.icon size={24} className="text-primary" />
                 </div>
-                <h3 className="font-display font-semibold text-foreground mb-2">{v.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
+                <h3 className="font-display font-semibold text-foreground mb-2">{t(v.titleKey)}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t(v.descKey)}</p>
               </motion.div>
             ))}
           </div>
@@ -132,7 +120,7 @@ export default function AboutPage() {
       {/* Timeline */}
       <section className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label="Our Journey" title="Milestones" />
+          <SectionHeading label={t("about.journeyLabel")} title={t("about.journeyTitle")} />
           <div className="max-w-2xl mx-auto space-y-0">
             {timeline.map((item, i) => (
               <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1, duration: 0.5 }} className="flex gap-6 relative">
@@ -153,7 +141,7 @@ export default function AboutPage() {
       {/* Leadership */}
       <section className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label="Leadership" title="Meet Our Team" />
+          <SectionHeading label={t("about.leadershipLabel")} title={t("about.leadershipTitle")} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {leadershipTeam.map((person, i) => (
               <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.15, duration: 0.6 }} className="glass rounded-xl p-6 text-center">
@@ -162,17 +150,14 @@ export default function AboutPage() {
                 </div>
                 <h3 className="font-display font-semibold text-foreground">{person.name}</h3>
                 <p className="text-sm text-primary mb-1">{person.role}</p>
-                {person.qualifications && (
-                  <p className="text-xs text-muted-foreground">{person.qualifications}</p>
-                )}
+                {person.qualifications && <p className="text-xs text-muted-foreground">{person.qualifications}</p>}
               </motion.div>
             ))}
-            {/* Placeholder card to add more members */}
             <motion.div {...fadeUp} transition={{ delay: leadershipTeam.length * 0.15, duration: 0.6 }} className="glass rounded-xl p-6 text-center border-dashed border-2 border-border/50 flex flex-col items-center justify-center opacity-50">
               <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
                 <Plus size={24} className="text-muted-foreground" />
               </div>
-              <p className="text-sm text-muted-foreground">More team members coming soon</p>
+              <p className="text-sm text-muted-foreground">{t("about.moreTeam")}</p>
             </motion.div>
           </div>
         </div>
@@ -181,62 +166,10 @@ export default function AboutPage() {
       {/* Organization Charts */}
       <section className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label="Organization" title="Our Team Structure" description="Our specialized BIM and Design teams ensure quality delivery across all disciplines." />
+          <SectionHeading label={t("about.orgLabel")} title={t("about.orgTitle")} description={t("about.orgDesc")} />
           <div className="space-y-16">
-            <OrgChart
-              title="BIM Team"
-              chart={{
-                name: "Md Taha Wasi",
-                role: "CEO & BIM Director",
-                children: [
-                  {
-                    name: "BIM Manager",
-                    role: "Overall BIM Coordination",
-                    children: [
-                      { name: "Architectural BIM Lead", role: "LOD 100-500 Models" },
-                      { name: "Structural BIM Lead", role: "RCC, Steel & Composite" },
-                      { name: "MEP BIM Lead", role: "HVAC, Plumbing, Electrical, FP" },
-                      { name: "Coordination Lead", role: "Clash Detection & Resolution" },
-                    ],
-                  },
-                  {
-                    name: "Information Manager",
-                    role: "CDE & Data Standards",
-                    children: [
-                      { name: "COBie Specialist", role: "Asset Data & FM Handover" },
-                      { name: "QA/QC Engineer", role: "Model Auditing & Standards" },
-                    ],
-                  },
-                ],
-              }}
-            />
-            <OrgChart
-              title="Design Team"
-              chart={{
-                name: "Md Taha Wasi",
-                role: "CEO & Design Director",
-                children: [
-                  {
-                    name: "Architecture Lead",
-                    role: "Design & Documentation",
-                    children: [
-                      { name: "Interior Fit Out Designer", role: "Interior BIM & Design" },
-                      { name: "Facade Consultant", role: "Facade Engineering" },
-                      { name: "Landscape Designer", role: "Landscape Architecture" },
-                    ],
-                  },
-                  {
-                    name: "Engineering Lead",
-                    role: "Structural & Infrastructure",
-                    children: [
-                      { name: "Structural Engineer", role: "RCC, Steel & Composite" },
-                      { name: "Infrastructure Engineer", role: "Roads, Bridges, Utilities" },
-                      { name: "MEPF Engineer", role: "Mechanical, Electrical, Plumbing, Fire" },
-                    ],
-                  },
-                ],
-              }}
-            />
+            <OrgChart title="BIM Team" chart={{ name: "Md Taha Wasi", role: "CEO & BIM Director", children: [{ name: "BIM Manager", role: "Overall BIM Coordination", children: [{ name: "Architectural BIM Lead", role: "LOD 100-500 Models" }, { name: "Structural BIM Lead", role: "RCC, Steel & Composite" }, { name: "MEP BIM Lead", role: "HVAC, Plumbing, Electrical, FP" }, { name: "Coordination Lead", role: "Clash Detection & Resolution" }] }, { name: "Information Manager", role: "CDE & Data Standards", children: [{ name: "COBie Specialist", role: "Asset Data & FM Handover" }, { name: "QA/QC Engineer", role: "Model Auditing & Standards" }] }] }} />
+            <OrgChart title="Design Team" chart={{ name: "Md Taha Wasi", role: "CEO & Design Director", children: [{ name: "Architecture Lead", role: "Design & Documentation", children: [{ name: "Interior Fit Out Designer", role: "Interior BIM & Design" }, { name: "Facade Consultant", role: "Facade Engineering" }, { name: "Landscape Designer", role: "Landscape Architecture" }] }, { name: "Engineering Lead", role: "Structural & Infrastructure", children: [{ name: "Structural Engineer", role: "RCC, Steel & Composite" }, { name: "Infrastructure Engineer", role: "Roads, Bridges, Utilities" }, { name: "MEPF Engineer", role: "Mechanical, Electrical, Plumbing, Fire" }] }] }} />
           </div>
         </div>
       </section>
