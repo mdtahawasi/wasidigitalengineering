@@ -1,4 +1,4 @@
-import { useRef, useMemo, useCallback } from "react";
+import { useRef, useMemo, useCallback, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Stars, Text } from "@react-three/drei";
 import * as THREE from "three";
@@ -214,7 +214,7 @@ function GroundPlane() {
 
 // Construction particles with varying sizes
 function ConstructionParticles() {
-  const count = 350;
+  const count = 200;
   const ref = useRef<THREE.Points>(null);
 
   const [positions, sizes] = useMemo(() => {
@@ -295,7 +295,7 @@ function CameraRig() {
 
 // Connecting beams between buildings
 function ConnectionBeams() {
-  const ref = useRef<THREE.Group>(null);
+  const materialsRef = useRef<THREE.LineBasicMaterial[]>([]);
   const connections = useMemo(() => [
     { from: [0, 6, 0], to: [3, 4.5, -1] },
     { from: [0, 6, 0], to: [-3, 7.5, 1] },
@@ -305,32 +305,39 @@ function ConnectionBeams() {
     { from: [-5, 5.2, -2], to: [-1.5, 6.8, -4] },
   ], []);
 
+  const geometries = useMemo(() =>
+    connections.map((conn) => {
+      const points = [
+        new THREE.Vector3(...conn.from as [number, number, number]),
+        new THREE.Vector3(...conn.to as [number, number, number]),
+      ];
+      return new THREE.BufferGeometry().setFromPoints(points);
+    }), [connections]);
+
+  const materials = useMemo(() =>
+    connections.map(() => new THREE.LineBasicMaterial({
+      color: "#14b8a6", transparent: true, opacity: 0.1, blending: THREE.AdditiveBlending,
+    })), [connections]);
+
+  useEffect(() => { materialsRef.current = materials; }, [materials]);
+
   useFrame((state) => {
-    if (ref.current) {
-      const t = state.clock.getElapsedTime();
-      ref.current.children.forEach((child, i) => {
-        (child as THREE.Line).material = new THREE.LineBasicMaterial({
-          color: "#14b8a6",
-          transparent: true,
-          opacity: 0.08 + Math.sin(t * 2 + i) * 0.05,
-          blending: THREE.AdditiveBlending,
-        });
-      });
-    }
+    const t = state.clock.getElapsedTime();
+    materialsRef.current.forEach((mat, i) => {
+      mat.opacity = 0.08 + Math.sin(t * 2 + i) * 0.05;
+    });
   });
 
+  const lines = useMemo(() =>
+    geometries.map((geo, i) => new THREE.Line(geo, materials[i])),
+    [geometries, materials]
+  );
+
   return (
-    <group ref={ref}>
-      {connections.map((conn, i) => {
-        const points = [
-          new THREE.Vector3(...conn.from as [number, number, number]),
-          new THREE.Vector3(...conn.to as [number, number, number]),
-        ];
-        const geo = new THREE.BufferGeometry().setFromPoints(points);
-        return (
-          <primitive key={i} object={new THREE.Line(geo, new THREE.LineBasicMaterial({ color: "#14b8a6", transparent: true, opacity: 0.1, blending: THREE.AdditiveBlending }))} />
-        );
-      })}
+    <group>
+      {lines.map((lineObj, i) => (
+        <primitive key={i} object={lineObj} />
+      ))}
     </group>
   );
 }
@@ -362,8 +369,9 @@ export default function ConstructionScene() {
       <Canvas
         camera={{ position: [18, 6, 0], fov: 42, near: 0.1, far: 120 }}
         dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
         style={{ background: "transparent" }}
+        performance={{ min: 0.5 }}
       >
         {/* Enhanced lighting */}
         <ambientLight intensity={0.25} />
