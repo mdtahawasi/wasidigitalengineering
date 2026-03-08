@@ -33,7 +33,7 @@ const stats = [
   { value: 30, suffix: "+", labelKey: "stat.projectsDelivered" },
   { value: 6, suffix: "+", labelKey: "stat.yearsExperience" },
   { value: 10, suffix: "+", labelKey: "stat.disciplinesCovered" },
-  { value: 98, suffix: "%", labelKey: "stat.clientSatisfaction" },
+  { value: 100, suffix: "%", labelKey: "stat.clientSatisfaction" },
 ];
 
 const projects = [
@@ -59,12 +59,12 @@ const processStepKeys = [
 ];
 
 const industries = [
-  { nameKey: "projects.commercial", count: "12+ Projects" },
-  { nameKey: "projects.residential", count: "8+ Projects" },
-  { nameKey: "projects.healthcare", count: "4+ Projects" },
-  { nameKey: "projects.infrastructure", count: "3+ Projects" },
-  { name: "Industrial", count: "2+ Projects" },
-  { nameKey: "projects.education", count: "2+ Projects" },
+  { icon: Building2, nameKey: "projects.commercial", count: "12+", desc: "Offices, malls, mixed-use towers — full MEP & structural BIM coordination", color: "from-blue-500/20 to-blue-600/5" },
+  { icon: Users, nameKey: "projects.residential", count: "8+", desc: "High-rise apartments, villas & gated communities with detailed LOD 400 models", color: "from-emerald-500/20 to-emerald-600/5" },
+  { icon: HeartHandshake, nameKey: "projects.healthcare", count: "4+", desc: "Hospitals & clinics with complex MEP routing, medical gas & cleanroom specs", color: "from-rose-500/20 to-rose-600/5" },
+  { icon: Globe, nameKey: "projects.infrastructure", count: "3+", desc: "Roads, bridges, metro stations & utilities with civil 3D integration", color: "from-amber-500/20 to-amber-600/5" },
+  { icon: Cog, name: "Industrial", count: "2+", desc: "Factories, warehouses & data centers with heavy MEP & structural steel detailing", color: "from-violet-500/20 to-violet-600/5" },
+  { icon: Award, nameKey: "projects.education", count: "2+", desc: "Schools, universities & research labs with sustainable design & energy modeling", color: "from-cyan-500/20 to-cyan-600/5" },
 ];
 
 export default function HomePage() {
@@ -137,17 +137,23 @@ export default function HomePage() {
               className="mt-12 pt-8 border-t border-border/30"
             >
               <p className="text-xs text-muted-foreground uppercase tracking-widest mb-3">{t("hero.trustedBy")}</p>
-              <div className="flex flex-wrap gap-6 items-center">
-                {["AECOM", "Turner", "Arup", "Skanska", "Bechtel"].map((name, i) => (
-                  <motion.span
-                    key={name}
+              <div className="flex flex-wrap gap-4 items-center">
+                {[
+                  { icon: Building2, label: "50+ Global Firms" },
+                  { icon: Globe, label: "12 Countries" },
+                  { icon: Award, label: "100% Satisfaction" },
+                  { icon: Shield, label: "ISO Certified" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.label}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.4 + i * 0.1, duration: 0.4 }}
-                    className="text-sm font-display font-medium text-muted-foreground/50 hover:text-primary/60 transition-colors"
+                    className="flex items-center gap-1.5 text-muted-foreground/60 hover:text-primary/70 transition-colors"
                   >
-                    {name}
-                  </motion.span>
+                    <item.icon size={14} />
+                    <span className="text-xs font-medium">{item.label}</span>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -308,16 +314,37 @@ export default function HomePage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {industries.map((ind, i) => (
               <motion.div
                 key={i}
-                variants={staggerItemScale}
-                className="glass rounded-xl p-5 text-center group hover:border-primary/30 transition-all duration-500 cursor-default"
+                variants={staggerItem}
+                className="glass rounded-xl p-6 group hover:border-primary/30 transition-all duration-500 cursor-default relative overflow-hidden"
               >
-                <h4 className="font-display font-semibold text-foreground text-sm mb-1 group-hover:text-primary transition-colors">{ind.nameKey ? t(ind.nameKey) : ind.name}</h4>
-                <p className="text-xs text-muted-foreground">{ind.count}</p>
+                <div className={`absolute inset-0 bg-gradient-to-br ${ind.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <div className="relative">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-gradient-primary transition-all duration-500">
+                      <ind.icon size={24} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                    </div>
+                    <span className="text-2xl font-display font-bold text-gradient">{ind.count}</span>
+                  </div>
+                  <h4 className="font-display font-semibold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">
+                    {ind.nameKey ? t(ind.nameKey) : ind.name}
+                  </h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{ind.desc}</p>
+                  <div className="mt-4 h-1.5 rounded-full bg-muted overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${Math.min(100, parseInt(ind.count) * 8 + 20)}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.2, delay: 0.3 + i * 0.1, ease: "easeOut" }}
+                      className="h-full rounded-full bg-gradient-primary"
+                    />
+                  </div>
+                  <p className="text-[10px] text-muted-foreground mt-1">{ind.count} projects completed</p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -346,7 +373,7 @@ export default function HomePage() {
           >
             {[
               { icon: Lock, title: "Client Data Security", text: "Your intellectual property is sacred. We enforce enterprise-grade encryption (AES-256), NDA-backed access controls, ISO 27001 security protocols, and SOC 2-compliant data handling. Zero breaches since inception.", stat: "0 Breaches", priority: "🔒 #1 Priority" },
-              { icon: HeartHandshake, title: "Client Satisfaction", text: "98% client satisfaction rate backed by structured feedback loops, dedicated account managers, and a 'no-surprise' policy. We treat every project as a partnership — your success is our KPI.", stat: "98% Satisfaction", priority: "⭐ Core Value" },
+              { icon: HeartHandshake, title: "Client Satisfaction", text: "100% client satisfaction rate backed by structured feedback loops, dedicated account managers, and a 'no-surprise' policy. We treat every project as a partnership — your success is our KPI.", stat: "100% Satisfaction", priority: "⭐ Core Value" },
               { icon: Clock, title: "On-Time Delivery", text: "We deliver 98% of milestones on or before deadline using agile sprints, buffer planning, and real-time progress dashboards. Late delivery costs money — we respect your timeline like our own.", stat: "98% On-Time", priority: "⏱️ Guaranteed" },
               { icon: Star, title: "Best-in-Class Quality", text: "Every model passes our rigorous 5-stage QA/QC pipeline: automated rule checks, peer reviews, discipline coordination, client validation, and final audit. We don't ship anything less than excellent.", stat: "5-Stage QA", priority: "✅ Zero Defect" },
             ].map((item, i) => (
