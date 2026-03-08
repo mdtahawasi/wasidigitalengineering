@@ -48,7 +48,7 @@ const growthPaths = [
 
 export default function CareersPage() {
   const { t } = useLanguage();
-  const [expandedJob, setExpandedJob] = useState<number | null>(null);
+  
   const [applyingFor, setApplyingFor] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     fullName: "", email: "", phone: "", currentRole: "", experience: "",
