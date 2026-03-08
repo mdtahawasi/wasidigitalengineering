@@ -328,10 +328,15 @@ function ConnectionBeams() {
     });
   });
 
+  const lines = useMemo(() =>
+    geometries.map((geo, i) => new THREE.Line(geo, materials[i])),
+    [geometries, materials]
+  );
+
   return (
     <group>
-      {geometries.map((geo, i) => (
-        <line key={i} geometry={geo} material={materials[i]} />
+      {lines.map((lineObj, i) => (
+        <primitive key={i} object={lineObj} />
       ))}
     </group>
   );
