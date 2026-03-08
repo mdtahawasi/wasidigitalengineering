@@ -79,7 +79,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Discipline-Specific Services */}
-      <section className="pb-20">
+      <section id="disciplines" className="pb-20">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("services.disciplinesLabel")} title={t("services.disciplinesTitle")} description={t("services.disciplinesDesc")} />
           <div className="space-y-6">
