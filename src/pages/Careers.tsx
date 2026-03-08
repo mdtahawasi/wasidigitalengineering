@@ -2,9 +2,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
-  MapPin, Clock, ArrowRight, Briefcase, GraduationCap, Heart, Zap,
+  ArrowRight, Briefcase, GraduationCap, Heart, Zap,
   Shield, Users, Target, Globe, Award, BookOpen, Lightbulb, Scale,
-  Upload, Send, CheckCircle, ChevronDown, ChevronUp
+  Upload, Send, CheckCircle
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
