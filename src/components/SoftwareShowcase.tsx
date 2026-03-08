@@ -5,12 +5,8 @@ import {
 } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 
-const fadeUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-  transition: { duration: 0.6 },
-};
+import { fadeUp, staggerContainer, staggerItem, scaleIn } from "@/lib/animations";
+
 
 interface SoftwareItem {
   name: string;
@@ -163,7 +159,7 @@ export default function SoftwareShowcase() {
         />
 
         {/* Summary stats */}
-        <motion.div {...fadeUp} className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto">
+        <motion.div {...scaleIn} className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto">
           {[
             { icon: Globe, label: "Software Platforms", value: "16+" },
             { icon: TrendingUp, label: "Certified Experts", value: "25+" },
@@ -179,12 +175,17 @@ export default function SoftwareShowcase() {
         </motion.div>
 
         {/* Software grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-5"
+        >
           {softwareData.map((sw, i) => (
             <motion.div
               key={i}
-              {...fadeUp}
-              transition={{ delay: i * 0.04, duration: 0.6 }}
+              variants={staggerItem}
               className="glass rounded-xl p-5 md:p-6 hover:border-primary/30 transition-all duration-500 group"
             >
               <div className="flex items-start gap-4">
@@ -237,7 +238,7 @@ export default function SoftwareShowcase() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

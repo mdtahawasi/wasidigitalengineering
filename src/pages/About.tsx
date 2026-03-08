@@ -6,14 +6,8 @@ import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import OrgChart from "@/components/OrgChart";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 import aboutTeam from "@/assets/about-team.jpg";
-
-const fadeUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-  transition: { duration: 0.6 },
-};
 
 const valueKeys = [
   { icon: Target, titleKey: "value.precision", descKey: "value.precisionDesc" },
@@ -46,15 +40,30 @@ export default function AboutPage() {
         <div className="absolute inset-0 grid-pattern opacity-10" />
         <div className="container mx-auto px-4 md:px-8 relative">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4">
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4"
+            >
               {t("about.badge")}
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-3xl">
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-3xl"
+            >
               {t("about.title")} <span className="text-gradient">{t("about.titleHighlight")}</span> {t("about.titleEnd")}
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
+            >
               {t("about.desc")}
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </section>
@@ -63,10 +72,10 @@ export default function AboutPage() {
       <section className="pb-20">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div {...fadeUp} className="rounded-2xl overflow-hidden">
+            <motion.div {...fadeLeft} className="rounded-2xl overflow-hidden">
               <img src={aboutTeam} alt="WASI Digital Engineering team" className="w-full h-auto object-cover rounded-2xl" />
             </motion.div>
-            <motion.div {...fadeUp} transition={{ delay: 0.2, duration: 0.6 }}>
+            <motion.div {...fadeRight} transition={{ delay: 0.2, duration: 0.6 }}>
               <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-4">{t("about.ourStory")}</h2>
               <div className="space-y-4 text-muted-foreground text-sm leading-relaxed">
                 <p>Founded in 2019 in India by Md Taha Wasi, WASI Digital Engineering began with a clear mission: to bridge the gap between traditional construction methods and the digital future. What started as a small team of BIM enthusiasts has grown into a consultancy serving ambitious projects across the AEC industry.</p>
@@ -81,21 +90,27 @@ export default function AboutPage() {
       {/* Stats */}
       <section className="py-16 bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+          >
             {[
               { value: 6, suffix: "+", labelKey: "stat.yearsExperience" },
               { value: 30, suffix: "+", labelKey: "stat.projectsDelivered" },
               { value: 3, suffix: "", labelKey: "stat.industrySectors" },
               { value: 2, suffix: "", labelKey: "stat.countries" },
             ].map((s, i) => (
-              <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1, duration: 0.6 }}>
+              <motion.div key={i} variants={staggerItemScale}>
                 <div className="text-3xl md:text-4xl font-display font-bold text-gradient">
                   <AnimatedCounter target={s.value} suffix={s.suffix} />
                 </div>
                 <p className="text-sm text-muted-foreground mt-1">{t(s.labelKey)}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -103,9 +118,15 @@ export default function AboutPage() {
       <section className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("about.valuesLabel")} title={t("about.valuesTitle")} />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
             {valueKeys.map((v, i) => (
-              <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1, duration: 0.6 }} className="glass rounded-xl p-6 text-center">
+              <motion.div key={i} variants={staggerItem} className="glass rounded-xl p-6 text-center">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <v.icon size={24} className="text-primary" />
                 </div>
@@ -113,7 +134,7 @@ export default function AboutPage() {
                 <p className="text-sm text-muted-foreground leading-relaxed">{t(v.descKey)}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -123,9 +144,22 @@ export default function AboutPage() {
           <SectionHeading label={t("about.journeyLabel")} title={t("about.journeyTitle")} />
           <div className="max-w-2xl mx-auto space-y-0">
             {timeline.map((item, i) => (
-              <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1, duration: 0.5 }} className="flex gap-6 relative">
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -25 : 25 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+                className="flex gap-6 relative"
+              >
                 <div className="flex flex-col items-center">
-                  <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 + 0.2, duration: 0.3, type: "spring" }}
+                    className="w-3 h-3 rounded-full bg-primary shrink-0"
+                  />
                   {i < timeline.length - 1 && <div className="w-px flex-1 bg-border" />}
                 </div>
                 <div className="pb-8">
@@ -144,7 +178,12 @@ export default function AboutPage() {
           <SectionHeading label={t("about.leadershipLabel")} title={t("about.leadershipTitle")} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {leadershipTeam.map((person, i) => (
-              <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.15, duration: 0.6 }} className="glass rounded-xl p-6 text-center">
+              <motion.div
+                key={i}
+                {...scaleIn}
+                transition={{ delay: i * 0.15, duration: 0.6 }}
+                className="glass rounded-xl p-6 text-center"
+              >
                 <div className="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center mx-auto mb-4">
                   <span className="font-display font-bold text-xl text-primary-foreground">{person.initials}</span>
                 </div>
@@ -153,7 +192,11 @@ export default function AboutPage() {
                 {person.qualifications && <p className="text-xs text-muted-foreground">{person.qualifications}</p>}
               </motion.div>
             ))}
-            <motion.div {...fadeUp} transition={{ delay: leadershipTeam.length * 0.15, duration: 0.6 }} className="glass rounded-xl p-6 text-center border-dashed border-2 border-border/50 flex flex-col items-center justify-center opacity-50">
+            <motion.div
+              {...scaleIn}
+              transition={{ delay: leadershipTeam.length * 0.15, duration: 0.6 }}
+              className="glass rounded-xl p-6 text-center border-dashed border-2 border-border/50 flex flex-col items-center justify-center opacity-50"
+            >
               <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
                 <Plus size={24} className="text-muted-foreground" />
               </div>
@@ -167,10 +210,16 @@ export default function AboutPage() {
       <section className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("about.orgLabel")} title={t("about.orgTitle")} description={t("about.orgDesc")} />
-          <div className="space-y-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7 }}
+            className="space-y-16"
+          >
             <OrgChart title="BIM Team" chart={{ name: "Md Taha Wasi", role: "CEO & BIM Director", children: [{ name: "BIM Manager", role: "Overall BIM Coordination", children: [{ name: "Architectural BIM Lead", role: "LOD 100-500 Models" }, { name: "Structural BIM Lead", role: "RCC, Steel & Composite" }, { name: "MEP BIM Lead", role: "HVAC, Plumbing, Electrical, FP" }, { name: "Coordination Lead", role: "Clash Detection & Resolution" }] }, { name: "Information Manager", role: "CDE & Data Standards", children: [{ name: "COBie Specialist", role: "Asset Data & FM Handover" }, { name: "QA/QC Engineer", role: "Model Auditing & Standards" }] }] }} />
             <OrgChart title="Design Team" chart={{ name: "Md Taha Wasi", role: "CEO & Design Director", children: [{ name: "Architecture Lead", role: "Design & Documentation", children: [{ name: "Interior Fit Out Designer", role: "Interior BIM & Design" }, { name: "Facade Consultant", role: "Facade Engineering" }, { name: "Landscape Designer", role: "Landscape Architecture" }] }, { name: "Engineering Lead", role: "Structural & Infrastructure", children: [{ name: "Structural Engineer", role: "RCC, Steel & Composite" }, { name: "Infrastructure Engineer", role: "Roads, Bridges, Utilities" }, { name: "MEPF Engineer", role: "Mechanical, Electrical, Plumbing, Fire" }] }] }} />
-          </div>
+          </motion.div>
         </div>
       </section>
     </Layout>
