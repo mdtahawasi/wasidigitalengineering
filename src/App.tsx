@@ -12,6 +12,7 @@ import Contact from "./pages/Contact";
 import BIMInsights from "./pages/BIMInsights";
 import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 const queryClient = new QueryClient();
 
