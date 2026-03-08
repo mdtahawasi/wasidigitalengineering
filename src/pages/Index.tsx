@@ -9,6 +9,7 @@ import {
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import SoftwareShowcase from "@/components/SoftwareShowcase";
 
 const ConstructionScene = lazy(() => import("@/components/ConstructionScene"));
 import project1 from "@/assets/project-1.jpg";
