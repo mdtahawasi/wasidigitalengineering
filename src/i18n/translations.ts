@@ -158,10 +158,7 @@ const translations: Translations = {
   "projects.commercial": { en: "Commercial", hi: "वाणिज्यिक", ar: "تجاري", fr: "Commercial", de: "Gewerbe", es: "Comercial", zh: "商业", ja: "商業" },
   "projects.residential": { en: "Residential", hi: "आवासीय", ar: "سكني", fr: "Résidentiel", de: "Wohnbau", es: "Residencial", zh: "住宅", ja: "住宅" },
   "projects.infrastructure": { en: "Infrastructure", hi: "बुनियादी ढांचा", ar: "البنية التحتية", fr: "Infrastructure", de: "Infrastruktur", es: "Infraestructura", zh: "基础设施", ja: "インフラ" },
-  "projects.healthcare": { en: "Healthcare", hi: "स्वास्थ्य", ar: "الرعاية الصحية", fr: "Santé", de: "Gesundheitswesen", es: "Salud", zh: "医疗", ja: "ヘルスケア" },
-  "projects.hospitality": { en: "Hospitality", hi: "आतिथ्य", ar: "الضيافة", fr: "Hôtellerie", de: "Gastgewerbe", es: "Hostelería", zh: "酒店", ja: "ホスピタリティ" },
-  "projects.education": { en: "Education", hi: "शिक्षा", ar: "التعليم", fr: "Éducation", de: "Bildung", es: "Educación", zh: "教育", ja: "教育" },
-  "projects.projectValue": { en: "Project Value", hi: "परियोजना मूल्य", ar: "قيمة المشروع", fr: "Valeur du projet", de: "Projektwert", es: "Valor del proyecto", zh: "项目价值", ja: "プロジェクト価値" },
+  "projects.industrial": { en: "Industrial", hi: "औद्योगिक", ar: "صناعي", fr: "Industriel", de: "Industrie", es: "Industrial", zh: "工业", ja: "産業" },
 
   // ==================== CAREERS PAGE ====================
   "careers.badge": { en: "Careers", hi: "करियर", ar: "الوظائف", fr: "Carrières", de: "Karriere", es: "Carreras", zh: "职业", ja: "採用情報" },
