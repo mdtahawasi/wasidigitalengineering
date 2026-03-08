@@ -371,11 +371,86 @@ export default function ContactPage() {
                 <text x="469" y="126" textAnchor="middle" fill="hsl(var(--foreground))" fontSize="10" fontWeight="800">🇬🇧 WESTERN EUROPE</text>
                 <text x="469" y="142" textAnchor="middle" fill="hsl(var(--primary))" fontSize="10" fontWeight="700">5+ Projects</text>
 
+                {/* ===== GLOBAL BIM HOTSPOT CITIES (small dots) ===== */}
+                {/* New York */}
+                <circle cx="215" cy="145" r="3" fill="hsl(var(--muted-foreground))" opacity="0.5" />
+                <text x="215" y="138" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6.5" opacity="0.6">New York</text>
+                {/* Chicago */}
+                <circle cx="185" cy="135" r="2.5" fill="hsl(var(--muted-foreground))" opacity="0.4" />
+                <text x="185" y="128" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6" opacity="0.5">Chicago</text>
+                {/* Los Angeles */}
+                <circle cx="110" cy="168" r="2.5" fill="hsl(var(--muted-foreground))" opacity="0.4" />
+                <text x="110" y="162" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6" opacity="0.5">LA</text>
+                {/* London */}
+                <circle cx="430" cy="75" r="3.5" fill="hsl(var(--accent-foreground))" opacity="0.6" />
+                <text x="430" y="68" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6.5" opacity="0.7">London</text>
+                {/* Berlin */}
+                <circle cx="498" cy="72" r="2.5" fill="hsl(var(--accent-foreground))" opacity="0.5" />
+                <text x="498" y="65" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6" opacity="0.6">Berlin</text>
+                {/* Paris */}
+                <circle cx="458" cy="88" r="2.5" fill="hsl(var(--accent-foreground))" opacity="0.5" />
+                <text x="458" y="82" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6" opacity="0.6">Paris</text>
+                {/* Singapore */}
+                <circle cx="790" cy="278" r="3" fill="hsl(var(--muted-foreground))" opacity="0.5" />
+                <text x="790" y="272" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6.5" opacity="0.6">Singapore</text>
+                {/* Hong Kong */}
+                <circle cx="818" cy="195" r="2.5" fill="hsl(var(--muted-foreground))" opacity="0.45" />
+                <text x="818" y="188" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6" opacity="0.5">Hong Kong</text>
+                {/* Tokyo */}
+                <circle cx="892" cy="112" r="2.5" fill="hsl(var(--muted-foreground))" opacity="0.45" />
+                <text x="892" y="105" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6" opacity="0.5">Tokyo</text>
+                {/* Sydney */}
+                <circle cx="928" cy="408" r="2.5" fill="hsl(var(--muted-foreground))" opacity="0.45" />
+                <text x="928" y="422" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6" opacity="0.5">Sydney</text>
+                {/* Dubai */}
+                <circle cx="618" cy="195" r="3" fill="hsl(var(--primary))" opacity="0.6" />
+                <text x="632" y="193" textAnchor="start" fill="hsl(var(--muted-foreground))" fontSize="6.5" opacity="0.7">Dubai</text>
+                {/* Riyadh */}
+                <circle cx="598" cy="212" r="2.5" fill="hsl(var(--primary))" opacity="0.5" />
+                <text x="584" y="222" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6" opacity="0.6">Riyadh</text>
+                {/* Doha */}
+                <circle cx="622" cy="215" r="2" fill="hsl(var(--primary))" opacity="0.45" />
+                <text x="636" y="218" textAnchor="start" fill="hsl(var(--muted-foreground))" fontSize="5.5" opacity="0.5">Doha</text>
+                {/* Mumbai */}
+                <circle cx="680" cy="235" r="3" fill="hsl(var(--primary))" opacity="0.6" />
+                <text x="668" y="245" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6.5" opacity="0.7">Mumbai</text>
+                {/* Delhi */}
+                <circle cx="698" cy="175" r="2.5" fill="hsl(var(--primary))" opacity="0.55" />
+                <text x="698" y="168" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6" opacity="0.6">Delhi</text>
+                {/* Pune */}
+                <circle cx="688" cy="242" r="2" fill="hsl(var(--primary))" opacity="0.45" />
+                <text x="688" y="252" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="5.5" opacity="0.5">Pune</text>
+                {/* Toronto */}
+                <circle cx="200" cy="120" r="2.5" fill="hsl(var(--muted-foreground))" opacity="0.4" />
+                <text x="200" y="114" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6" opacity="0.5">Toronto</text>
+                {/* Seoul */}
+                <circle cx="862" cy="128" r="2.5" fill="hsl(var(--muted-foreground))" opacity="0.4" />
+                <text x="862" y="122" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="6" opacity="0.5">Seoul</text>
+                {/* Stockholm */}
+                <circle cx="492" cy="42" r="2" fill="hsl(var(--accent-foreground))" opacity="0.4" />
+                <text x="492" y="36" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="5.5" opacity="0.5">Stockholm</text>
+                {/* Amsterdam */}
+                <circle cx="462" cy="75" r="2" fill="hsl(var(--accent-foreground))" opacity="0.45" />
+                <text x="475" y="74" textAnchor="start" fill="hsl(var(--muted-foreground))" fontSize="5.5" opacity="0.5">Amsterdam</text>
+
                 {/* Equator line */}
                 <line x1="0" y1="333" x2="1010" y2="333" stroke="hsl(var(--border))" strokeWidth="0.3" strokeDasharray="4,8" opacity="0.3" />
                 <text x="20" y="340" fill="hsl(var(--muted-foreground))" fontSize="7" opacity="0.3">Equator</text>
               </svg>
             </div>
+
+            {/* BIM Adoption Legend */}
+            <motion.div {...fadeUp} className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground">
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-primary opacity-80" /> WASI Active Regions
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-muted-foreground opacity-50" /> Global BIM Hotspots
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-primary opacity-40 animate-pulse" /> Expanding Markets
+              </div>
+            </motion.div>
 
             {/* Region stats below map */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
@@ -385,6 +460,7 @@ export default function ContactPage() {
                   projects: "15+",
                   cities: "Nagpur, Mumbai, Delhi, Pune, Hyderabad",
                   sectors: "Commercial, Residential, Infrastructure, Healthcare",
+                  bimNote: "BIM mandate for govt. projects >₹100Cr since 2024",
                   highlight: true,
                 },
                 {
@@ -392,13 +468,15 @@ export default function ContactPage() {
                   projects: "12+",
                   cities: "Dubai, Abu Dhabi, Riyadh, Doha, Muscat",
                   sectors: "Commercial Towers, Hospitality, Mixed-Use, Mega Projects",
+                  bimNote: "Dubai mandates BIM for all buildings >40 floors",
                   highlight: false,
                 },
                 {
                   region: "🇬🇧 Western Markets",
                   projects: "5+",
-                  cities: "London, Berlin, Paris, Amsterdam",
+                  cities: "London, Berlin, Paris, Amsterdam, Stockholm",
                   sectors: "Residential, Retrofit, Data Centers, Industrial",
+                  bimNote: "UK Level 2 BIM mandatory for all public projects",
                   highlight: false,
                 },
               ].map((r, i) => (
@@ -417,10 +495,53 @@ export default function ContactPage() {
                     <span className="text-sm font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full">{r.projects}</span>
                   </div>
                   <p className="text-xs text-muted-foreground mb-1"><span className="text-foreground font-medium">Cities:</span> {r.cities}</p>
-                  <p className="text-xs text-muted-foreground"><span className="text-foreground font-medium">Sectors:</span> {r.sectors}</p>
+                  <p className="text-xs text-muted-foreground mb-1"><span className="text-foreground font-medium">Sectors:</span> {r.sectors}</p>
+                  <p className="text-[10px] text-primary/70 italic mt-2 border-t border-border/30 pt-2">📋 {r.bimNote}</p>
                 </motion.div>
               ))}
             </div>
+
+            {/* Top BIM Cities Worldwide */}
+            <motion.div {...fadeUp} className="mt-8">
+              <h3 className="font-display font-bold text-foreground text-sm mb-4 text-center">🌍 Top BIM-Adopted Cities Worldwide</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                {[
+                  { city: "London", country: "UK", adoption: "92%", mandate: "Level 2 BIM" },
+                  { city: "Singapore", country: "SG", adoption: "89%", mandate: "BCA BIM" },
+                  { city: "Dubai", country: "UAE", adoption: "85%", mandate: "BIM Mandate" },
+                  { city: "New York", country: "US", adoption: "82%", mandate: "NYC DDC" },
+                  { city: "Stockholm", country: "SE", adoption: "80%", mandate: "OpenBIM" },
+                  { city: "Hong Kong", country: "HK", adoption: "78%", mandate: "CIC BIM" },
+                  { city: "Berlin", country: "DE", adoption: "76%", mandate: "BIM.DE" },
+                  { city: "Tokyo", country: "JP", adoption: "74%", mandate: "MLIT BIM" },
+                  { city: "Sydney", country: "AU", adoption: "72%", mandate: "NatBIM" },
+                  { city: "Seoul", country: "KR", adoption: "70%", mandate: "KBIMS" },
+                ].map((c, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.05, duration: 0.3 }}
+                    className="rounded-lg border border-border/50 bg-card/30 p-3 text-center hover:border-primary/30 transition-all group"
+                  >
+                    <p className="font-display font-bold text-foreground text-sm group-hover:text-primary transition-colors">{c.city}</p>
+                    <p className="text-[10px] text-muted-foreground">{c.country}</p>
+                    <div className="mt-2 w-full bg-muted rounded-full h-1.5 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: c.adoption }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 + i * 0.05, duration: 0.8 }}
+                        className="h-full bg-gradient-to-r from-primary/60 to-primary rounded-full"
+                      />
+                    </div>
+                    <p className="text-xs font-bold text-primary mt-1">{c.adoption}</p>
+                    <p className="text-[9px] text-muted-foreground">{c.mandate}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
