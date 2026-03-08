@@ -191,7 +191,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== SERVICES ===== */}
-      <section className="section-padding">
+      <section id="services" className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading
             label={t("index.servicesLabel")}
