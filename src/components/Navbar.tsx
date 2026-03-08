@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon, Monitor } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const navLinks = [
   { labelKey: "nav.home", href: "/" },
@@ -19,6 +20,14 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const { t } = useLanguage();
+  const { theme, setTheme } = useTheme();
+
+  const cycleTheme = () => {
+    const next = theme === "system" ? "light" : theme === "light" ? "dark" : "system";
+    setTheme(next);
+  };
+
+  const ThemeIcon = theme === "dark" ? Moon : theme === "light" ? Sun : Monitor;
 
   return (
     <motion.header
@@ -40,7 +49,15 @@ export default function Navbar() {
         </Link>
 
         {/* Right side: Language + Hamburger */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
+          <button
+            onClick={cycleTheme}
+            className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+            aria-label={`Theme: ${theme}`}
+            title={`Theme: ${theme}`}
+          >
+            <ThemeIcon size={20} />
+          </button>
           <LanguageSwitcher />
           <button
             onClick={() => setOpen(!open)}

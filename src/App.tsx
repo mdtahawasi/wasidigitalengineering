@@ -12,12 +12,14 @@ import Contact from "./pages/Contact";
 import BIMInsights from "./pages/BIMInsights";
 import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
+    <ThemeProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -34,6 +36,7 @@ const App = () => (
         </Routes>
         </BrowserRouter>
       </TooltipProvider>
+    </ThemeProvider>
     </LanguageProvider>
   </QueryClientProvider>
 );
