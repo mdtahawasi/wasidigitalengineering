@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useScrollToHash } from "@/hooks/useScrollToHash";
 import { Link } from "react-router-dom";
-import { Target, Eye, Heart, Award, Users, Globe, Plus } from "lucide-react";
+import { Target, Eye, Heart, Award, Users, Globe, Plus, Mail, Phone } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
@@ -28,7 +28,7 @@ const timeline = [
 ];
 
 const leadershipTeam = [
-  { name: "Md Taha Wasi", role: "Founder & CEO", qualifications: "Masters in Construction & Project Management | MBA", initials: "TW" },
+  { name: "Md Taha Wasi", role: "Founder & CEO", qualifications: "Masters in Construction & Project Management | MBA", initials: "TW", email: "bimengineer11@gmail.com", phone: "+91 81779 97522" },
 ];
 
 export default function AboutPage() {
@@ -192,7 +192,17 @@ export default function AboutPage() {
                 </div>
                 <h3 className="font-display font-semibold text-foreground">{person.name}</h3>
                 <p className="text-sm text-primary mb-1">{person.role}</p>
-                {person.qualifications && <p className="text-xs text-muted-foreground">{person.qualifications}</p>}
+                {person.qualifications && <p className="text-xs text-muted-foreground mb-2">{person.qualifications}</p>}
+                {person.email && (
+                  <a href={`mailto:${person.email}`} className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors">
+                    <Mail size={12} /> {person.email}
+                  </a>
+                )}
+                {person.phone && (
+                  <a href={`tel:${person.phone.replace(/\s/g, '')}`} className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors mt-1">
+                    <Phone size={12} /> {person.phone}
+                  </a>
+                )}
               </motion.div>
             ))}
             <motion.div
