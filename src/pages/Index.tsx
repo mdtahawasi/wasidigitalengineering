@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   ArrowRight, Building2, Layers3, ScanLine, Cpu, BarChart3, Cog,
-  CheckCircle2, ChevronRight, Globe, Zap, Shield, Brain,
+  CheckCircle2, ChevronRight, Globe, Zap, Shield, Brain, Monitor,
   Workflow, Users, Award, TrendingUp
 } from "lucide-react";
 import Layout from "@/components/Layout";
