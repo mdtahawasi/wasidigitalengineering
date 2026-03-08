@@ -65,7 +65,35 @@ export default function CareersPage() {
     linkedIn: "", portfolio: "", expectedSalary: "", noticePeriod: "",
     coverLetter: "", skills: "", education: "", referral: "",
   });
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) validateAndSetFile(file);
+  };
+
+  const validateAndSetFile = (file: File) => {
+    const allowed = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+    if (!allowed.includes(file.type)) {
+      toast({ title: "Invalid file type", description: "Please upload a PDF, DOC, or DOCX file.", variant: "destructive" });
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast({ title: "File too large", description: "Maximum file size is 5MB.", variant: "destructive" });
+      return;
+    }
+    setResumeFile(file);
+    toast({ title: "Resume attached", description: file.name });
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) validateAndSetFile(file);
+  };
 
   const handleApply = (jobTitle: string) => {
     setApplyingFor(jobTitle);
