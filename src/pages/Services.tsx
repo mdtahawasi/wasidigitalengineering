@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useScrollToHash } from "@/hooks/useScrollToHash";
 import { Link } from "react-router-dom";
 import {
   Building2, Layers3, ScanLine, Cpu, BarChart3, Cog,
@@ -40,10 +41,12 @@ const software = [
 export default function ServicesPage() {
   const { t } = useLanguage();
 
+  useScrollToHash();
+
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative section-padding overflow-hidden">
+      <section id="services-hero" className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-10" />
         <div className="container mx-auto px-4 md:px-8 relative">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -76,7 +79,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Discipline-Specific Services */}
-      <section className="pb-20">
+      <section id="disciplines" className="pb-20">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("services.disciplinesLabel")} title={t("services.disciplinesTitle")} description={t("services.disciplinesDesc")} />
           <div className="space-y-6">
@@ -119,7 +122,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Additional Services */}
-      <section className="section-padding bg-card/30">
+      <section id="additional-services" className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("services.additionalLabel")} title={t("services.additionalTitle")} description={t("services.additionalDesc")} />
           <motion.div
@@ -154,7 +157,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Industry Sectors */}
-      <section className="section-padding">
+      <section id="industry-sectors" className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("services.industriesLabel")} title={t("services.industriesTitle")} description={t("services.industriesDesc")} />
           <motion.div
@@ -174,7 +177,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Software */}
-      <section className="section-padding bg-card/30">
+      <section id="software-stack" className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("services.techLabel")} title={t("services.techTitle")} description={t("services.techDesc")} />
           <motion.div

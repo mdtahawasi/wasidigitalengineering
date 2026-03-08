@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
+import { useScrollToHash } from "@/hooks/useScrollToHash";
 import { Link } from "react-router-dom";
 import {
   ArrowRight, Building2, Layers3, ScanLine, Cpu, BarChart3, Cog,
@@ -70,10 +71,12 @@ const industries = [
 export default function HomePage() {
   const { t } = useLanguage();
 
+  useScrollToHash();
+
   return (
     <Layout>
       {/* ===== HERO ===== */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden">
         <Suspense fallback={<div className="absolute inset-0 bg-background" />}>
           <ConstructionScene />
         </Suspense>
@@ -188,7 +191,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== SERVICES ===== */}
-      <section className="section-padding">
+      <section id="services" className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading
             label={t("index.servicesLabel")}
@@ -228,7 +231,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== PROCESS ===== */}
-      <section className="section-padding bg-card/30 overflow-hidden">
+      <section id="process" className="section-padding bg-card/30 overflow-hidden">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading
             label={t("index.processLabel")}
@@ -266,7 +269,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== PROJECTS ===== */}
-      <section className="section-padding">
+      <section id="projects" className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading
             label={t("index.projectsLabel")}
@@ -302,7 +305,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== INDUSTRIES ===== */}
-      <section className="section-padding bg-card/30">
+      <section id="industries" className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading
             label={t("index.industriesLabel")}

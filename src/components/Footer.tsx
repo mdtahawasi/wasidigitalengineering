@@ -7,22 +7,22 @@ export default function Footer() {
 
   const footerLinks = {
     [t("footer.company")]: [
-      { label: t("footer.aboutUs"), href: "/about" },
-      { label: t("footer.ourTeam"), href: "/about" },
+      { label: t("footer.aboutUs"), href: "/about#our-story" },
+      { label: t("footer.ourTeam"), href: "/about#leadership" },
       { label: t("footer.careers"), href: "/careers" },
       { label: t("footer.contact"), href: "/contact" },
     ],
     [t("footer.services")]: [
-      { label: t("footer.bimModeling"), href: "/services" },
-      { label: t("footer.clashDetection"), href: "/services" },
-      { label: t("footer.4d5dSim"), href: "/services" },
-      { label: t("footer.scanToBim"), href: "/services" },
+      { label: t("footer.bimModeling"), href: "/services#disciplines" },
+      { label: t("footer.clashDetection"), href: "/services#disciplines" },
+      { label: t("footer.4d5dSim"), href: "/services#additional-services" },
+      { label: t("footer.scanToBim"), href: "/services#additional-services" },
     ],
     [t("footer.industries")]: [
-      { label: t("footer.commercial"), href: "/projects" },
-      { label: t("footer.residential"), href: "/projects" },
-      { label: t("footer.infrastructure"), href: "/projects" },
-      { label: t("footer.healthcare"), href: "/projects" },
+      { label: t("footer.commercial"), href: "/services#industry-sectors" },
+      { label: t("footer.residential"), href: "/services#industry-sectors" },
+      { label: t("footer.infrastructure"), href: "/services#industry-sectors" },
+      { label: t("footer.healthcare"), href: "/services#industry-sectors" },
     ],
   };
 

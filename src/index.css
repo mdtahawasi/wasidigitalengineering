@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+[id] {
+  scroll-margin-top: 5rem;
+}
+
 @layer base {
   :root {
     --background: 220 20% 4%;

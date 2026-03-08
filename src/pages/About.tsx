@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useScrollToHash } from "@/hooks/useScrollToHash";
 import { Link } from "react-router-dom";
 import { Target, Eye, Heart, Award, Users, Globe, Plus } from "lucide-react";
 import Layout from "@/components/Layout";
@@ -33,10 +34,12 @@ const leadershipTeam = [
 export default function AboutPage() {
   const { t } = useLanguage();
 
+  useScrollToHash();
+
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative section-padding overflow-hidden">
+      <section id="about-hero" className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-10" />
         <div className="container mx-auto px-4 md:px-8 relative">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -69,7 +72,7 @@ export default function AboutPage() {
       </section>
 
       {/* Image + Story */}
-      <section className="pb-20">
+      <section id="our-story" className="pb-20">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeLeft} className="rounded-2xl overflow-hidden">
@@ -115,7 +118,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section-padding">
+      <section id="values" className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("about.valuesLabel")} title={t("about.valuesTitle")} />
           <motion.div
@@ -139,7 +142,7 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="section-padding bg-card/30">
+      <section id="journey" className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("about.journeyLabel")} title={t("about.journeyTitle")} />
           <div className="max-w-2xl mx-auto space-y-0">
@@ -173,7 +176,7 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership */}
-      <section className="section-padding">
+      <section id="leadership" className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("about.leadershipLabel")} title={t("about.leadershipTitle")} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -207,7 +210,7 @@ export default function AboutPage() {
       </section>
 
       {/* Organization Charts */}
-      <section className="section-padding bg-card/30">
+      <section id="organization" className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("about.orgLabel")} title={t("about.orgTitle")} description={t("about.orgDesc")} />
           <motion.div
