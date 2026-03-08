@@ -214,7 +214,7 @@ function GroundPlane() {
 
 // Construction particles with varying sizes
 function ConstructionParticles() {
-  const count = 350;
+  const count = 200;
   const ref = useRef<THREE.Points>(null);
 
   const [positions, sizes] = useMemo(() => {
