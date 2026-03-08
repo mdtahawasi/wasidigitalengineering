@@ -32,8 +32,9 @@ const App = () => (
           <Route path="/bim-insights" element={<BIMInsights />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+        </BrowserRouter>
+      </TooltipProvider>
+    </LanguageProvider>
   </QueryClientProvider>
 );
 

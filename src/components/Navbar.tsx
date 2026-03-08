@@ -2,15 +2,17 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Projects", href: "/projects" },
-  { label: "BIM Insights", href: "/bim-insights" },
-  { label: "Careers", href: "/careers" },
-  { label: "Contact", href: "/contact" },
+  { labelKey: "nav.home", href: "/" },
+  { labelKey: "nav.about", href: "/about" },
+  { labelKey: "nav.services", href: "/services" },
+  { labelKey: "nav.projects", href: "/projects" },
+  { labelKey: "nav.bimInsights", href: "/bim-insights" },
+  { labelKey: "nav.careers", href: "/careers" },
+  { labelKey: "nav.contact", href: "/contact" },
 ];
 
 export default function Navbar() {
