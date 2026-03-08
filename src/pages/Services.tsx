@@ -157,7 +157,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Industry Sectors */}
-      <section className="section-padding">
+      <section id="industry-sectors" className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("services.industriesLabel")} title={t("services.industriesTitle")} description={t("services.industriesDesc")} />
           <motion.div
