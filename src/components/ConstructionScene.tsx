@@ -364,8 +364,9 @@ export default function ConstructionScene() {
       <Canvas
         camera={{ position: [18, 6, 0], fov: 42, near: 0.1, far: 120 }}
         dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
         style={{ background: "transparent" }}
+        performance={{ min: 0.5 }}
       >
         {/* Enhanced lighting */}
         <ambientLight intensity={0.25} />
