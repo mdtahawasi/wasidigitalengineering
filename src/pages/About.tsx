@@ -28,7 +28,7 @@ const timeline = [
 ];
 
 const leadershipTeam = [
-  { name: "Md Taha Wasi", role: "Founder & CEO", qualifications: "Masters in Construction & Project Management | MBA", initials: "TW" },
+  { name: "Md Taha Wasi", role: "Founder & CEO", qualifications: "Masters in Construction & Project Management | MBA", initials: "TW", email: "bimengineer11@gmail.com", phone: "+91 81779 97522" },
 ];
 
 export default function AboutPage() {
