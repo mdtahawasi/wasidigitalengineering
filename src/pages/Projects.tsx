@@ -5,30 +5,96 @@ import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { staggerContainer, staggerItem } from "@/lib/animations";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import project4 from "@/assets/project-4.jpg";
+import projectHGR from "@/assets/project-hgr.jpg";
+import projectLimeGarden from "@/assets/project-lime-garden.jpg";
+import projectParkField from "@/assets/project-park-field.jpg";
+import projectGodrej from "@/assets/project-godrej.jpg";
+import projectMayfair from "@/assets/project-mayfair.jpg";
+import projectKGA from "@/assets/project-kga.jpg";
+import projectNupco from "@/assets/project-nupco.jpg";
+import projectPearlCentre from "@/assets/project-pearl-centre.jpg";
 
 const categoryKeys = [
   { key: "All", tKey: "projects.all" },
-  { key: "Commercial", tKey: "projects.commercial" },
   { key: "Residential", tKey: "projects.residential" },
+  { key: "Commercial", tKey: "projects.commercial" },
+  { key: "Industrial", tKey: "projects.industrial" },
   { key: "Infrastructure", tKey: "projects.infrastructure" },
-  { key: "Healthcare", tKey: "projects.healthcare" },
-  { key: "Hospitality", tKey: "projects.hospitality" },
-  { key: "Education", tKey: "projects.education" },
 ];
 
 const projects = [
-  { img: project1, title: "Al Maktoum Commercial Tower", category: "Commercial", location: "Dubai, UAE", scope: "Architectural, Structural & MEP BIM", value: "$120M" },
-  { img: project2, title: "Marina Residences", category: "Residential", location: "Abu Dhabi, UAE", scope: "Full BIM Coordination", value: "$85M" },
-  { img: project3, title: "Metro Line Extension", category: "Infrastructure", location: "Riyadh, KSA", scope: "Civil & Structural BIM", value: "$2.1B" },
-  { img: project4, title: "King Faisal Medical City", category: "Healthcare", location: "Jeddah, KSA", scope: "MEP BIM & Digital Twin", value: "$450M" },
-  { img: project1, title: "The Palm Resort & Spa", category: "Hospitality", location: "Dubai, UAE", scope: "Architectural BIM & Visualization", value: "$200M" },
-  { img: project2, title: "Knowledge Hub University", category: "Education", location: "Doha, Qatar", scope: "Full BIM & FM Handover", value: "$95M" },
-  { img: project3, title: "Riyadh Business District", category: "Commercial", location: "Riyadh, KSA", scope: "Multi-discipline BIM", value: "$1.8B" },
-  { img: project4, title: "Smart Housing Complex", category: "Residential", location: "Cairo, Egypt", scope: "BIM & IoT Integration", value: "$150M" },
+  {
+    img: projectHGR,
+    title: "Al Habtoor Grand Residency (HGR)",
+    category: "Residential",
+    location: "Dubai, UAE",
+    scope: "Architecture, Structure (Composite), Facade, Landscape, MEPF – LOD 300-500",
+    gfa: "72,292 SQ.M",
+    config: "2B+G+6P+2MEP+47 Residential Floors+Roof",
+  },
+  {
+    img: projectLimeGarden,
+    title: "Lime Garden",
+    category: "Residential",
+    location: "Dubai, UAE",
+    scope: "Architecture, Structure (RCC), Façade, ID, Landscape, MEPF – LOD 300-500",
+    gfa: "9,400 SQ.M",
+    config: "1B+G+Podium+23 Residential Floors+Roof+Rooftop",
+  },
+  {
+    img: projectParkField,
+    title: "Park Field",
+    category: "Residential",
+    location: "Dubai, UAE",
+    scope: "Architecture, Structure (RCC), Façade, Landscape, MEPF – LOD 300-500",
+    gfa: "8,900 SQ.M",
+    config: "1B+G+1P | Tower 1: 10F+R | Tower 2: 19F+R",
+  },
+  {
+    img: projectPearlCentre,
+    title: "Pearl Centre – Dalma Island",
+    category: "Commercial",
+    location: "Abu Dhabi, UAE",
+    scope: "Architecture, Structure, MEP, Interiors, Landscape – LOD 100-500 (ISO 19650)",
+    gfa: "1,004 SQ.M + Ancillary Blocks",
+    config: "Main Building + Staff Blocks A/B/C + MEP Block + Ancillary",
+  },
+  {
+    img: projectGodrej,
+    title: "Godrej & Boyce Industrial Campus",
+    category: "Industrial",
+    location: "India",
+    scope: "Architecture, Structure (RCC & Steel), Façade, Infrastructure, MEPF, Landscape – LOD 300-500",
+    gfa: "34,000 SQ.M",
+    config: "Aerospace & PES Factory Zones + Offices + Substations",
+  },
+  {
+    img: projectMayfair,
+    title: "Mayfair Friendship",
+    category: "Residential",
+    location: "Mumbai, India",
+    scope: "Architecture, Structure (RCC), Façade, MEPF – LOD 300-350",
+    gfa: "—",
+    config: "G+14 Residential Floors+Roof",
+  },
+  {
+    img: projectKGA,
+    title: "KGA Mall",
+    category: "Commercial",
+    location: "Kottayam, Kerala, India",
+    scope: "Architecture, Structure, Façade, MEPF – LOD 300-500",
+    gfa: "3,500 SQ.M",
+    config: "2B+LG+G+1 Service+6 Commercial Floors+Roof",
+  },
+  {
+    img: projectNupco,
+    title: "NUPCO Warehouse",
+    category: "Infrastructure",
+    location: "Saudi Arabia",
+    scope: "Infrastructure, Landscape, MEP Coordination – LOD 300-500",
+    gfa: "Large-Scale Industrial",
+    config: "Warehousing + Road Networks + Utilities",
+  },
 ];
 
 export default function ProjectsPage() {
