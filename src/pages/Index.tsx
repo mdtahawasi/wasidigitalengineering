@@ -297,33 +297,104 @@ export default function HomePage() {
           <SectionHeading
             label="Why WASI"
             title="Your Trusted BIM Partner"
-            description="We combine deep AEC expertise with cutting-edge technology to deliver measurable results."
+            description="We combine deep AEC domain expertise with cutting-edge technology to deliver measurable results across every phase of your project lifecycle."
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
+          {/* Key differentiators grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[
-              { icon: Shield, text: "ISO 19650 compliant BIM workflows" },
-              { icon: Brain, text: "AI-driven clash detection & resolution" },
-              { icon: Award, text: "Certified Autodesk & Bentley professionals" },
-              { icon: Globe, text: "24/7 global project delivery capability" },
-              { icon: Zap, text: "Agile methodology with weekly milestones" },
-              { icon: TrendingUp, text: "Integrated QA/QC at every LOD stage" },
-              { icon: Users, text: "Dedicated project managers for every engagement" },
-              { icon: Workflow, text: "Seamless CDE & collaboration workflows" },
-              { icon: Cpu, text: "AI & automation for repetitive BIM tasks" },
+              {
+                icon: Shield,
+                title: "ISO 19650 Compliance",
+                text: "Every project follows ISO 19650 information management standards. We ensure proper BIM execution plans, naming conventions, and data security protocols are in place from day one.",
+                stat: "100% Compliant",
+              },
+              {
+                icon: Brain,
+                title: "AI-Driven Clash Detection",
+                text: "Our proprietary AI algorithms analyze multi-discipline models to detect and classify clashes by severity, reducing manual review time by 70% and eliminating costly on-site rework.",
+                stat: "70% Faster",
+              },
+              {
+                icon: Award,
+                title: "Certified Professionals",
+                text: "Our team holds 50+ certifications across Autodesk, Bentley, Trimble, and buildingSMART platforms. We invest in continuous training to stay ahead of industry evolution.",
+                stat: "50+ Certifications",
+              },
+              {
+                icon: Globe,
+                title: "24/7 Global Delivery",
+                text: "With teams across India, UAE, and KSA, we operate around the clock. Our follow-the-sun model ensures your project progresses even while you sleep — faster turnarounds, zero downtime.",
+                stat: "3 Time Zones",
+              },
+              {
+                icon: Zap,
+                title: "Agile BIM Methodology",
+                text: "We use sprint-based delivery with weekly milestones, daily standups, and transparent progress tracking. You get predictable delivery timelines and the flexibility to adapt scope in real-time.",
+                stat: "Weekly Sprints",
+              },
+              {
+                icon: TrendingUp,
+                title: "QA/QC at Every LOD",
+                text: "Our 5-stage quality gate process validates model accuracy, data integrity, and standard compliance at LOD 100 through LOD 500 — catching errors before they become expensive problems.",
+                stat: "5-Stage QA",
+              },
+              {
+                icon: Users,
+                title: "Dedicated Project Managers",
+                text: "Every engagement gets a dedicated BIM Manager who serves as your single point of contact. They coordinate across disciplines, manage timelines, and ensure deliverables exceed expectations.",
+                stat: "1:1 Support",
+              },
+              {
+                icon: Workflow,
+                title: "CDE & Collaboration",
+                text: "We set up and manage Common Data Environments on platforms like ACC, Aconex, and SharePoint. Seamless model sharing, version control, and approval workflows keep everyone aligned.",
+                stat: "Real-Time Sync",
+              },
+              {
+                icon: Cpu,
+                title: "Automation & Scripting",
+                text: "We build custom Dynamo scripts, Revit plugins, and Python automations that eliminate repetitive tasks — from batch parameter updates to automated drawing sheet generation, saving 40%+ hours.",
+                stat: "40% Time Saved",
+              },
             ].map((item, i) => (
               <motion.div
                 key={i}
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: i * 0.08 }}
-                className="flex items-start gap-3 glass rounded-lg p-4 hover:border-primary/30 transition-all duration-300"
+                className="glass rounded-xl p-6 hover:border-primary/30 transition-all duration-500 group relative overflow-hidden"
               >
-                <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center shrink-0">
-                  <item.icon size={16} className="text-primary" />
+                <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-gradient-primary transition-all duration-500">
+                      <item.icon size={22} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                    </div>
+                    <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">{item.stat}</span>
+                  </div>
+                  <h4 className="font-display font-semibold text-foreground text-base mb-2 group-hover:text-primary transition-colors">{item.title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
                 </div>
-                <span className="text-foreground text-sm">{item.text}</span>
               </motion.div>
             ))}
           </div>
+
+          {/* Trust badges */}
+          <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.5 }} className="mt-12 glass rounded-2xl p-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              {[
+                { value: "98%", label: "On-Time Delivery Rate" },
+                { value: "35%", label: "Avg. Cost Reduction" },
+                { value: "500K+", label: "Clashes Resolved" },
+                { value: "0", label: "Data Security Breaches" },
+              ].map((badge, i) => (
+                <div key={i} className="space-y-1">
+                  <p className="text-2xl md:text-3xl font-display font-bold text-gradient">{badge.value}</p>
+                  <p className="text-xs text-muted-foreground">{badge.label}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
