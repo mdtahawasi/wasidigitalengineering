@@ -177,7 +177,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Software */}
-      <section className="section-padding bg-card/30">
+      <section id="software-stack" className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("services.techLabel")} title={t("services.techTitle")} description={t("services.techDesc")} />
           <motion.div

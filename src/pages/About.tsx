@@ -210,7 +210,7 @@ export default function AboutPage() {
       </section>
 
       {/* Organization Charts */}
-      <section className="section-padding bg-card/30">
+      <section id="organization" className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("about.orgLabel")} title={t("about.orgTitle")} description={t("about.orgDesc")} />
           <motion.div
