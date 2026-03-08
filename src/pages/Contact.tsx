@@ -234,94 +234,146 @@ export default function ContactPage() {
           <motion.div {...fadeUp} className="glass rounded-2xl p-6 md:p-10 relative overflow-hidden">
             {/* SVG World Map */}
             <div className="relative w-full max-w-5xl mx-auto">
-              <svg viewBox="0 0 1000 500" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-                {/* Background grid */}
+              <svg viewBox="0 0 1010 666" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-                    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="hsl(var(--border))" strokeWidth="0.3" opacity="0.3" />
+                  <pattern id="mapGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <circle cx="20" cy="20" r="0.5" fill="hsl(var(--muted-foreground))" opacity="0.15" />
                   </pattern>
-                  <radialGradient id="pulseGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.6" />
-                    <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
-                  </radialGradient>
                   <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                   </filter>
+                  <filter id="regionGlow">
+                    <feGaussianBlur stdDeviation="8" result="blur" />
+                    <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                  </filter>
+                  <linearGradient id="connectionGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.1" />
+                    <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.6" />
+                    <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.1" />
+                  </linearGradient>
                 </defs>
-                <rect width="1000" height="500" fill="url(#grid)" />
+                <rect width="1010" height="666" fill="url(#mapGrid)" rx="12" />
 
-                {/* Simplified continent outlines */}
+                {/* ===== REALISTIC CONTINENTS ===== */}
                 {/* North America */}
-                <path d="M 80 80 Q 120 60 180 70 L 220 90 Q 250 100 260 130 L 270 170 Q 240 200 200 210 L 160 200 Q 130 180 110 150 L 90 120 Z" 
-                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.5" />
+                <path d="M 48,78 L 65,68 82,58 105,52 128,48 148,50 168,56 185,62 198,55 215,50 235,52 250,60 258,72 262,85 270,98 280,108 285,118 278,128 270,140 265,155 260,168 252,178 242,185 235,195 225,210 218,222 212,235 205,245 195,250 188,258 182,270 175,278 168,268 160,255 152,248 145,242 138,238 130,235 125,228 120,218 115,208 112,198 108,188 105,178 100,168 95,158 88,148 82,138 78,128 72,118 68,108 62,98 55,88 Z"
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.4" />
+                {/* Central America */}
+                <path d="M 182,270 L 188,278 195,288 198,298 202,308 208,315 215,320 218,328 215,335 208,338 202,342 198,348 L 192,345 188,338 185,330 182,322 180,312 178,302 176,292 178,282 Z"
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.6" opacity="0.35" />
                 {/* South America */}
-                <path d="M 200 260 Q 230 240 250 260 L 270 310 Q 280 350 260 390 L 240 420 Q 220 430 210 410 L 190 360 Q 180 310 190 280 Z" 
-                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.5" />
-                {/* Europe - highlighted */}
-                <path d="M 440 70 Q 470 55 510 60 L 540 75 Q 555 90 550 110 L 530 130 Q 510 140 480 135 L 455 120 Q 435 100 440 80 Z" 
-                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="1" opacity="0.25" />
-                {/* UK */}
-                <path d="M 425 70 Q 435 60 440 70 L 442 85 Q 438 95 430 90 L 425 80 Z" 
-                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="1" opacity="0.3" />
+                <path d="M 198,348 L 208,345 220,348 232,355 245,365 255,378 262,392 268,408 272,425 275,442 272,460 268,478 262,495 255,508 248,518 240,528 232,535 225,540 218,542 212,538 205,530 200,518 195,505 192,490 190,475 188,458 185,442 182,425 180,408 178,392 180,378 185,365 190,355 Z"
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.4" />
+
+                {/* Europe — HIGHLIGHTED */}
+                <path d="M 442,62 L 455,55 468,52 482,50 498,52 512,58 525,65 535,72 542,82 545,92 548,105 545,118 540,128 532,135 525,142 515,148 508,152 498,155 488,152 478,148 468,142 458,135 450,128 445,118 442,108 440,98 438,88 440,75 Z"
+                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="1" opacity="0.2" filter="url(#regionGlow)" />
+                {/* Scandinavia */}
+                <path d="M 480,30 L 490,25 502,28 510,35 515,45 512,55 505,58 498,52 492,48 485,42 482,35 Z"
+                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="0.8" opacity="0.15" />
+                {/* UK & Ireland */}
+                <path d="M 420,65 L 428,58 435,62 438,72 436,82 430,88 424,85 420,78 Z"
+                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="0.8" opacity="0.2" />
+                <path d="M 412,72 L 418,68 420,75 418,82 414,80 Z"
+                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="0.5" opacity="0.18" />
+
                 {/* Africa */}
-                <path d="M 460 160 Q 500 150 540 160 L 560 210 Q 570 270 550 330 L 520 380 Q 490 400 470 370 L 450 310 Q 440 250 445 200 Z" 
-                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.5" />
-                {/* Middle East - highlighted */}
-                <path d="M 560 120 Q 590 105 630 110 L 660 130 Q 680 150 670 180 L 640 200 Q 610 210 580 195 L 555 170 Q 545 145 555 125 Z" 
-                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="1.5" opacity="0.35" />
-                {/* India - highlighted */}
-                <path d="M 670 140 Q 710 120 750 130 L 770 160 Q 780 200 760 240 L 730 270 Q 700 280 680 260 L 660 220 Q 650 180 660 150 Z" 
-                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="1.5" opacity="0.4" />
-                {/* East Asia */}
-                <path d="M 780 90 Q 830 70 880 80 L 910 110 Q 920 140 900 170 L 860 190 Q 820 195 790 175 L 770 140 Q 765 110 775 95 Z" 
-                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.5" />
+                <path d="M 462,195 L 478,188 498,185 518,188 535,195 548,205 558,218 565,235 568,255 570,278 568,298 565,318 560,338 555,358 548,378 540,395 530,408 518,418 505,425 492,428 478,425 465,418 455,408 448,395 442,378 438,358 435,338 432,318 430,298 432,278 435,255 438,235 442,218 448,205 Z"
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.4" />
+
+                {/* Middle East / Arabian Peninsula — HIGHLIGHTED */}
+                <path d="M 558,155 L 575,148 592,145 610,148 625,155 638,165 648,178 655,192 658,208 655,222 648,232 640,238 630,242 618,245 608,248 598,252 590,248 582,242 575,232 568,222 565,208 562,195 558,178 Z"
+                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="1.5" opacity="0.3" filter="url(#regionGlow)" />
+
+                {/* India subcontinent — HIGHLIGHTED */}
+                <path d="M 668,148 L 685,138 702,135 718,138 730,145 738,155 742,168 745,182 748,198 748,215 745,232 740,248 732,262 722,275 712,285 700,292 690,288 680,278 672,265 665,250 660,235 658,218 655,202 655,185 658,168 662,158 Z"
+                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="1.5" opacity="0.35" filter="url(#regionGlow)" />
+                {/* Sri Lanka */}
+                <circle cx="710" cy="298" r="5" fill="hsl(var(--primary))" opacity="0.2" />
+
+                {/* Central/East Asia */}
+                <path d="M 660,55 L 690,48 720,42 750,40 780,42 808,48 832,55 852,65 865,78 872,92 878,108 882,125 878,140 872,152 862,162 848,168 832,172 812,175 790,172 770,168 752,162 738,155 730,145 718,138 708,130 700,118 695,105 688,92 680,78 672,65 Z"
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.35" />
+                {/* Southeast Asia */}
+                <path d="M 802,195 L 818,188 835,192 848,202 855,215 852,228 842,235 828,238 815,232 808,222 802,210 Z"
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.6" opacity="0.3" />
+                {/* Japan */}
+                <path d="M 878,95 L 888,88 895,95 898,108 895,118 888,122 882,118 878,108 Z"
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.5" opacity="0.3" />
+
+                {/* Indonesia */}
+                <path d="M 795,285 L 812,280 830,282 848,285 865,288 878,292 888,298 882,305 868,308 848,308 828,305 812,302 800,298 Z"
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.5" opacity="0.3" />
+
                 {/* Australia */}
-                <path d="M 820 330 Q 860 310 910 320 L 930 350 Q 935 380 910 400 L 870 410 Q 840 405 825 385 L 815 360 Z" 
-                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.5" />
+                <path d="M 825,378 L 848,365 872,358 898,355 922,358 942,368 955,382 960,398 958,418 952,435 942,448 928,458 912,462 895,462 878,458 862,448 848,435 838,418 832,402 828,388 Z"
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.4" />
+                {/* New Zealand */}
+                <path d="M 965,438 L 972,432 978,438 978,452 972,458 965,452 Z"
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.5" opacity="0.3" />
 
-                {/* Connection lines between regions */}
-                <line x1="720" y1="200" x2="620" y2="160" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="6,4" opacity="0.4" />
-                <line x1="720" y1="200" x2="490" y2="100" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="6,4" opacity="0.3" />
-                <line x1="620" y1="160" x2="490" y2="100" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="6,4" opacity="0.3" />
+                {/* Greenland */}
+                <path d="M 295,20 L 318,15 340,18 355,28 358,42 352,55 340,60 325,58 312,50 302,40 295,30 Z"
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.5" opacity="0.3" />
 
-                {/* India pin - HQ */}
+                {/* ===== CONNECTION ARCS ===== */}
+                {/* India to Middle East */}
+                <path d="M 705,210 Q 665,165 615,200" fill="none" stroke="url(#connectionGrad)" strokeWidth="2" strokeDasharray="8,5" opacity="0.7">
+                  <animate attributeName="stroke-dashoffset" values="0;-26" dur="2s" repeatCount="indefinite" />
+                </path>
+                {/* India to Europe */}
+                <path d="M 690,175 Q 600,80 490,108" fill="none" stroke="url(#connectionGrad)" strokeWidth="1.5" strokeDasharray="8,5" opacity="0.5">
+                  <animate attributeName="stroke-dashoffset" values="0;-26" dur="3s" repeatCount="indefinite" />
+                </path>
+                {/* Middle East to Europe */}
+                <path d="M 590,170 Q 540,120 510,128" fill="none" stroke="url(#connectionGrad)" strokeWidth="1.5" strokeDasharray="8,5" opacity="0.5">
+                  <animate attributeName="stroke-dashoffset" values="0;-26" dur="2.5s" repeatCount="indefinite" />
+                </path>
+
+                {/* ===== LOCATION PINS ===== */}
+                {/* India HQ — Nagpur area */}
                 <g filter="url(#glow)">
-                  <circle cx="720" cy="200" r="8" fill="hsl(var(--primary))" opacity="0.9">
-                    <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.9;0.5;0.9" dur="2s" repeatCount="indefinite" />
+                  <circle cx="705" cy="215" r="10" fill="hsl(var(--primary))" opacity="0.3">
+                    <animate attributeName="r" values="10;18;10" dur="2.5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.3;0.08;0.3" dur="2.5s" repeatCount="indefinite" />
                   </circle>
-                  <circle cx="720" cy="200" r="4" fill="hsl(var(--primary-foreground))" />
+                  <circle cx="705" cy="215" r="7" fill="hsl(var(--primary))" opacity="0.8" />
+                  <circle cx="705" cy="215" r="3.5" fill="hsl(var(--primary-foreground))" />
                 </g>
-                <text x="720" y="230" textAnchor="middle" fill="hsl(var(--foreground))" fontSize="11" fontWeight="700" fontFamily="inherit">India (HQ)</text>
-                <text x="720" y="244" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="9">15+ Projects</text>
+                <rect x="660" y="238" width="92" height="42" rx="6" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="0.8" opacity="0.9" />
+                <text x="706" y="254" textAnchor="middle" fill="hsl(var(--foreground))" fontSize="10" fontWeight="800">🇮🇳 INDIA (HQ)</text>
+                <text x="706" y="270" textAnchor="middle" fill="hsl(var(--primary))" fontSize="10" fontWeight="700">15+ Projects</text>
 
-                {/* Middle East pin */}
+                {/* Dubai / Middle East */}
                 <g filter="url(#glow)">
-                  <circle cx="620" cy="160" r="7" fill="hsl(var(--primary))" opacity="0.8">
-                    <animate attributeName="r" values="7;10;7" dur="2.5s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2.5s" repeatCount="indefinite" />
+                  <circle cx="610" cy="200" r="9" fill="hsl(var(--primary))" opacity="0.3">
+                    <animate attributeName="r" values="9;16;9" dur="3s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.3;0.08;0.3" dur="3s" repeatCount="indefinite" />
                   </circle>
-                  <circle cx="620" cy="160" r="3.5" fill="hsl(var(--primary-foreground))" />
+                  <circle cx="610" cy="200" r="6" fill="hsl(var(--primary))" opacity="0.75" />
+                  <circle cx="610" cy="200" r="3" fill="hsl(var(--primary-foreground))" />
                 </g>
-                <text x="620" y="145" textAnchor="middle" fill="hsl(var(--foreground))" fontSize="11" fontWeight="700">Middle East</text>
-                <text x="620" y="139" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="9">UAE • KSA • Qatar</text>
-                <text x="620" y="125" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="9">12+ Projects</text>
+                <rect x="555" y="258" width="110" height="42" rx="6" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="0.8" opacity="0.9" />
+                <text x="610" y="274" textAnchor="middle" fill="hsl(var(--foreground))" fontSize="10" fontWeight="800">🇦🇪 MIDDLE EAST</text>
+                <text x="610" y="290" textAnchor="middle" fill="hsl(var(--primary))" fontSize="10" fontWeight="700">12+ Projects</text>
 
-                {/* Western pin */}
+                {/* Western Europe */}
                 <g filter="url(#glow)">
-                  <circle cx="490" cy="100" r="6" fill="hsl(var(--primary))" opacity="0.7">
-                    <animate attributeName="r" values="6;9;6" dur="3s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="3s" repeatCount="indefinite" />
+                  <circle cx="468" cy="98" r="8" fill="hsl(var(--primary))" opacity="0.3">
+                    <animate attributeName="r" values="8;14;8" dur="3.5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.3;0.08;0.3" dur="3.5s" repeatCount="indefinite" />
                   </circle>
-                  <circle cx="490" cy="100" r="3" fill="hsl(var(--primary-foreground))" />
+                  <circle cx="468" cy="98" r="5.5" fill="hsl(var(--primary))" opacity="0.7" />
+                  <circle cx="468" cy="98" r="2.8" fill="hsl(var(--primary-foreground))" />
                 </g>
-                <text x="490" y="68" textAnchor="middle" fill="hsl(var(--foreground))" fontSize="11" fontWeight="700">Western Europe</text>
-                <text x="490" y="56" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="9">UK • Germany • France</text>
-                <text x="490" y="82" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="9">5+ Projects</text>
+                <rect x="395" y="110" width="148" height="42" rx="6" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="0.8" opacity="0.9" />
+                <text x="469" y="126" textAnchor="middle" fill="hsl(var(--foreground))" fontSize="10" fontWeight="800">🇬🇧 WESTERN EUROPE</text>
+                <text x="469" y="142" textAnchor="middle" fill="hsl(var(--primary))" fontSize="10" fontWeight="700">5+ Projects</text>
+
+                {/* Equator line */}
+                <line x1="0" y1="333" x2="1010" y2="333" stroke="hsl(var(--border))" strokeWidth="0.3" strokeDasharray="4,8" opacity="0.3" />
+                <text x="20" y="340" fill="hsl(var(--muted-foreground))" fontSize="7" opacity="0.3">Equator</text>
               </svg>
             </div>
 
