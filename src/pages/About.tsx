@@ -72,7 +72,7 @@ export default function AboutPage() {
       </section>
 
       {/* Image + Story */}
-      <section className="pb-20">
+      <section id="our-story" className="pb-20">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeLeft} className="rounded-2xl overflow-hidden">
