@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Clock, Send, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, Globe, Building2 } from "lucide-react";
 import Layout from "@/components/Layout";
 import { toast } from "sonner";
 
@@ -217,6 +217,159 @@ export default function ContactPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ===== GLOBAL PROJECT MAP ===== */}
+      <section className="pb-20">
+        <div className="container mx-auto px-4 md:px-8">
+          <motion.div {...fadeUp} className="mb-10 text-center">
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4">
+              <Building2 size={12} className="inline mr-1 -mt-0.5" /> Global Reach
+            </span>
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground">Projects Delivered Worldwide</h2>
+            <p className="text-muted-foreground mt-2 text-sm max-w-xl mx-auto">Delivering BIM excellence across 3 major regions — India, Middle East, and Western markets.</p>
+          </motion.div>
+
+          <motion.div {...fadeUp} className="glass rounded-2xl p-6 md:p-10 relative overflow-hidden">
+            {/* SVG World Map */}
+            <div className="relative w-full max-w-5xl mx-auto">
+              <svg viewBox="0 0 1000 500" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+                {/* Background grid */}
+                <defs>
+                  <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="hsl(var(--border))" strokeWidth="0.3" opacity="0.3" />
+                  </pattern>
+                  <radialGradient id="pulseGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.6" />
+                    <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+                  </radialGradient>
+                  <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                <rect width="1000" height="500" fill="url(#grid)" />
+
+                {/* Simplified continent outlines */}
+                {/* North America */}
+                <path d="M 80 80 Q 120 60 180 70 L 220 90 Q 250 100 260 130 L 270 170 Q 240 200 200 210 L 160 200 Q 130 180 110 150 L 90 120 Z" 
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.5" />
+                {/* South America */}
+                <path d="M 200 260 Q 230 240 250 260 L 270 310 Q 280 350 260 390 L 240 420 Q 220 430 210 410 L 190 360 Q 180 310 190 280 Z" 
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.5" />
+                {/* Europe - highlighted */}
+                <path d="M 440 70 Q 470 55 510 60 L 540 75 Q 555 90 550 110 L 530 130 Q 510 140 480 135 L 455 120 Q 435 100 440 80 Z" 
+                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="1" opacity="0.25" />
+                {/* UK */}
+                <path d="M 425 70 Q 435 60 440 70 L 442 85 Q 438 95 430 90 L 425 80 Z" 
+                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="1" opacity="0.3" />
+                {/* Africa */}
+                <path d="M 460 160 Q 500 150 540 160 L 560 210 Q 570 270 550 330 L 520 380 Q 490 400 470 370 L 450 310 Q 440 250 445 200 Z" 
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.5" />
+                {/* Middle East - highlighted */}
+                <path d="M 560 120 Q 590 105 630 110 L 660 130 Q 680 150 670 180 L 640 200 Q 610 210 580 195 L 555 170 Q 545 145 555 125 Z" 
+                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="1.5" opacity="0.35" />
+                {/* India - highlighted */}
+                <path d="M 670 140 Q 710 120 750 130 L 770 160 Q 780 200 760 240 L 730 270 Q 700 280 680 260 L 660 220 Q 650 180 660 150 Z" 
+                  fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="1.5" opacity="0.4" />
+                {/* East Asia */}
+                <path d="M 780 90 Q 830 70 880 80 L 910 110 Q 920 140 900 170 L 860 190 Q 820 195 790 175 L 770 140 Q 765 110 775 95 Z" 
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.5" />
+                {/* Australia */}
+                <path d="M 820 330 Q 860 310 910 320 L 930 350 Q 935 380 910 400 L 870 410 Q 840 405 825 385 L 815 360 Z" 
+                  fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="0.8" opacity="0.5" />
+
+                {/* Connection lines between regions */}
+                <line x1="720" y1="200" x2="620" y2="160" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="6,4" opacity="0.4" />
+                <line x1="720" y1="200" x2="490" y2="100" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="6,4" opacity="0.3" />
+                <line x1="620" y1="160" x2="490" y2="100" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="6,4" opacity="0.3" />
+
+                {/* India pin - HQ */}
+                <g filter="url(#glow)">
+                  <circle cx="720" cy="200" r="8" fill="hsl(var(--primary))" opacity="0.9">
+                    <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.9;0.5;0.9" dur="2s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="720" cy="200" r="4" fill="hsl(var(--primary-foreground))" />
+                </g>
+                <text x="720" y="230" textAnchor="middle" fill="hsl(var(--foreground))" fontSize="11" fontWeight="700" fontFamily="inherit">India (HQ)</text>
+                <text x="720" y="244" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="9">15+ Projects</text>
+
+                {/* Middle East pin */}
+                <g filter="url(#glow)">
+                  <circle cx="620" cy="160" r="7" fill="hsl(var(--primary))" opacity="0.8">
+                    <animate attributeName="r" values="7;10;7" dur="2.5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2.5s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="620" cy="160" r="3.5" fill="hsl(var(--primary-foreground))" />
+                </g>
+                <text x="620" y="145" textAnchor="middle" fill="hsl(var(--foreground))" fontSize="11" fontWeight="700">Middle East</text>
+                <text x="620" y="139" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="9">UAE • KSA • Qatar</text>
+                <text x="620" y="125" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="9">12+ Projects</text>
+
+                {/* Western pin */}
+                <g filter="url(#glow)">
+                  <circle cx="490" cy="100" r="6" fill="hsl(var(--primary))" opacity="0.7">
+                    <animate attributeName="r" values="6;9;6" dur="3s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="3s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="490" cy="100" r="3" fill="hsl(var(--primary-foreground))" />
+                </g>
+                <text x="490" y="68" textAnchor="middle" fill="hsl(var(--foreground))" fontSize="11" fontWeight="700">Western Europe</text>
+                <text x="490" y="56" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="9">UK • Germany • France</text>
+                <text x="490" y="82" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="9">5+ Projects</text>
+              </svg>
+            </div>
+
+            {/* Region stats below map */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+              {[
+                {
+                  region: "🇮🇳 India",
+                  projects: "15+",
+                  cities: "Nagpur, Mumbai, Delhi, Pune, Hyderabad",
+                  sectors: "Commercial, Residential, Infrastructure, Healthcare",
+                  highlight: true,
+                },
+                {
+                  region: "🇦🇪 Middle East",
+                  projects: "12+",
+                  cities: "Dubai, Abu Dhabi, Riyadh, Doha, Muscat",
+                  sectors: "Commercial Towers, Hospitality, Mixed-Use, Mega Projects",
+                  highlight: false,
+                },
+                {
+                  region: "🇬🇧 Western Markets",
+                  projects: "5+",
+                  cities: "London, Berlin, Paris, Amsterdam",
+                  sectors: "Residential, Retrofit, Data Centers, Industrial",
+                  highlight: false,
+                },
+              ].map((r, i) => (
+                <motion.div
+                  key={i}
+                  {...fadeUp}
+                  transition={{ ...fadeUp.transition, delay: i * 0.12 }}
+                  className={`rounded-xl p-5 border transition-all duration-300 ${
+                    r.highlight
+                      ? "border-primary/40 bg-primary/5"
+                      : "border-border/50 bg-card/30"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-display font-bold text-foreground text-base">{r.region}</h4>
+                    <span className="text-sm font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full">{r.projects}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mb-1"><span className="text-foreground font-medium">Cities:</span> {r.cities}</p>
+                  <p className="text-xs text-muted-foreground"><span className="text-foreground font-medium">Sectors:</span> {r.sectors}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
     </Layout>
