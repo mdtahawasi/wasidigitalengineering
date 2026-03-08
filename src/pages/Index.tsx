@@ -16,10 +16,10 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, fadeIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 
 const ConstructionScene = lazy(() => import("@/components/ConstructionScene"));
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import project4 from "@/assets/project-4.jpg";
+import projectHGR from "@/assets/project-hgr.jpg";
+import projectLimeGarden from "@/assets/project-lime-garden.jpg";
+import projectGodrej from "@/assets/project-godrej.jpg";
+import projectPearlCentre from "@/assets/project-pearl-centre.jpg";
 
 const serviceKeys = [
   { icon: Building2, titleKey: "svc.bimModeling", descKey: "svc.bimModelingDesc" },
