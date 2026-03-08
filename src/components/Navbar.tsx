@@ -77,7 +77,7 @@ export default function Navbar() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute right-4 md:right-8 top-14 md:top-18 w-56 glass rounded-xl border border-border/50 shadow-xl overflow-hidden"
+            className="absolute right-4 md:right-8 top-14 md:top-18 w-56 bg-card rounded-xl border border-border shadow-xl overflow-hidden"
           >
             <div className="py-2 flex flex-col">
               {navLinks.map((link) => (
