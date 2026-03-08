@@ -314,16 +314,37 @@ export default function HomePage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {industries.map((ind, i) => (
               <motion.div
                 key={i}
-                variants={staggerItemScale}
-                className="glass rounded-xl p-5 text-center group hover:border-primary/30 transition-all duration-500 cursor-default"
+                variants={staggerItem}
+                className="glass rounded-xl p-6 group hover:border-primary/30 transition-all duration-500 cursor-default relative overflow-hidden"
               >
-                <h4 className="font-display font-semibold text-foreground text-sm mb-1 group-hover:text-primary transition-colors">{ind.nameKey ? t(ind.nameKey) : ind.name}</h4>
-                <p className="text-xs text-muted-foreground">{ind.count}</p>
+                <div className={`absolute inset-0 bg-gradient-to-br ${ind.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <div className="relative">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-gradient-primary transition-all duration-500">
+                      <ind.icon size={24} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                    </div>
+                    <span className="text-2xl font-display font-bold text-gradient">{ind.count}</span>
+                  </div>
+                  <h4 className="font-display font-semibold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">
+                    {ind.nameKey ? t(ind.nameKey) : ind.name}
+                  </h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{ind.desc}</p>
+                  <div className="mt-4 h-1.5 rounded-full bg-muted overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${Math.min(100, parseInt(ind.count) * 8 + 20)}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.2, delay: 0.3 + i * 0.1, ease: "easeOut" }}
+                      className="h-full rounded-full bg-gradient-primary"
+                    />
+                  </div>
+                  <p className="text-[10px] text-muted-foreground mt-1">{ind.count} projects completed</p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
