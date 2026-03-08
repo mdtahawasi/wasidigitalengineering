@@ -40,13 +40,7 @@ export default function Navbar() {
       <nav className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4 md:px-8">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded bg-gradient-primary flex items-center justify-center font-display font-bold text-primary-foreground text-sm">
-            W
-          </div>
-          <div className="flex flex-col leading-none">
-            <span className="font-display font-bold text-foreground text-base tracking-tight">WASI</span>
-            <span className="text-[10px] text-muted-foreground tracking-widest uppercase">Digital Engineering</span>
-          </div>
+          <img src={logo} alt="WASI Digital Engineering" className="h-10 md:h-12 w-auto" />
         </Link>
 
         {/* Right side: Language + Hamburger */}
