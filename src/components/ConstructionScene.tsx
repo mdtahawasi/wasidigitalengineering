@@ -328,9 +328,7 @@ function ConnectionBeams() {
         ];
         const geo = new THREE.BufferGeometry().setFromPoints(points);
         return (
-          <line key={i} geometry={geo}>
-            <lineBasicMaterial color="#14b8a6" transparent opacity={0.1} blending={THREE.AdditiveBlending} />
-          </line>
+          <primitive key={i} object={new THREE.Line(geo, new THREE.LineBasicMaterial({ color: "#14b8a6", transparent: true, opacity: 0.1, blending: THREE.AdditiveBlending }))} />
         );
       })}
     </group>
