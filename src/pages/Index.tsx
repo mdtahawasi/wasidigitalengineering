@@ -16,10 +16,10 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, fadeIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 
 const ConstructionScene = lazy(() => import("@/components/ConstructionScene"));
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import project4 from "@/assets/project-4.jpg";
+import projectHGR from "@/assets/project-hgr.jpg";
+import projectLimeGarden from "@/assets/project-lime-garden.jpg";
+import projectGodrej from "@/assets/project-godrej.jpg";
+import projectPearlCentre from "@/assets/project-pearl-centre.jpg";
 
 const serviceKeys = [
   { icon: Building2, titleKey: "svc.bimModeling", descKey: "svc.bimModelingDesc" },
@@ -38,10 +38,10 @@ const stats = [
 ];
 
 const projects = [
-  { img: project1, title: "Al Maktoum Commercial Tower", categoryKey: "projects.commercial", location: "Dubai, UAE" },
-  { img: project2, title: "Marina Residences", categoryKey: "projects.residential", location: "Abu Dhabi, UAE" },
-  { img: project3, title: "Metro Line Extension", categoryKey: "projects.infrastructure", location: "Riyadh, KSA" },
-  { img: project4, title: "King Faisal Medical City", categoryKey: "projects.healthcare", location: "Jeddah, KSA" },
+  { img: projectHGR, title: "Al Habtoor Grand Residency (HGR)", categoryKey: "projects.residential", location: "Dubai, UAE" },
+  { img: projectPearlCentre, title: "Pearl Centre – Dalma Island", categoryKey: "projects.commercial", location: "Abu Dhabi, UAE" },
+  { img: projectGodrej, title: "Godrej & Boyce Industrial Campus", categoryKey: "projects.industrial", location: "India" },
+  { img: projectLimeGarden, title: "Lime Garden", categoryKey: "projects.residential", location: "Dubai, UAE" },
 ];
 
 const testimonials = [
