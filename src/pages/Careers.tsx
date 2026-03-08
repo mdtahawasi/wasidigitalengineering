@@ -199,56 +199,6 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* Open Positions */}
-      <section className="section-padding bg-card/30">
-        <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label={t("careers.openPositionsLabel")} title={t("careers.openPositionsTitle")} description={t("careers.openPositionsDesc")} />
-          <div className="max-w-4xl mx-auto space-y-4">
-            {openings.map((job, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ delay: i * 0.06, duration: 0.5 }}
-                className="glass rounded-xl overflow-hidden hover:border-primary/30 transition-all"
-              >
-                <div className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer" onClick={() => setExpandedJob(expandedJob === i ? null : i)}>
-                  <div className="flex-1">
-                    <h3 className="font-display font-semibold text-foreground">{job.title}</h3>
-                    <div className="flex flex-wrap gap-3 mt-1 text-xs text-muted-foreground">
-                      <span className="flex items-center gap-1"><Briefcase size={12} /> {job.dept}</span>
-                      <span className="flex items-center gap-1"><MapPin size={12} /> {job.location}</span>
-                      <span className="flex items-center gap-1"><Clock size={12} /> {job.type}</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">{job.salary}</span>
-                    {expandedJob === i ? <ChevronUp size={18} className="text-muted-foreground" /> : <ChevronDown size={18} className="text-muted-foreground" />}
-                  </div>
-                </div>
-                {expandedJob === i && (
-                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} transition={{ duration: 0.3 }} className="px-5 pb-5 border-t border-border/50">
-                    <div className="pt-4 space-y-3">
-                      <p className="text-sm text-muted-foreground leading-relaxed">{job.desc}</p>
-                      <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
-                        <span><strong className="text-foreground">Experience:</strong> {job.experience}</span>
-                        <span><strong className="text-foreground">Salary Range:</strong> {job.salary}</span>
-                        <span><strong className="text-foreground">Type:</strong> {job.type}</span>
-                        <span><strong className="text-foreground">Location:</strong> {job.location}</span>
-                      </div>
-                      <Button onClick={() => handleApply(job.title)} className="mt-2 bg-gradient-primary text-primary-foreground glow-primary">
-                        Apply for this Position <ArrowRight size={14} />
-                      </Button>
-                    </div>
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Application Form */}
       <section id="application-form" className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
