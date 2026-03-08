@@ -142,7 +142,7 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="section-padding bg-card/30">
+      <section id="journey" className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("about.journeyLabel")} title={t("about.journeyTitle")} />
           <div className="max-w-2xl mx-auto space-y-0">
