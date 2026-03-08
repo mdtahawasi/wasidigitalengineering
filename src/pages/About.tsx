@@ -118,7 +118,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section-padding">
+      <section id="values" className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("about.valuesLabel")} title={t("about.valuesTitle")} />
           <motion.div
