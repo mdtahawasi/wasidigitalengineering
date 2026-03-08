@@ -373,7 +373,7 @@ export default function HomePage() {
           >
             {[
               { icon: Lock, title: "Client Data Security", text: "Your intellectual property is sacred. We enforce enterprise-grade encryption (AES-256), NDA-backed access controls, ISO 27001 security protocols, and SOC 2-compliant data handling. Zero breaches since inception.", stat: "0 Breaches", priority: "🔒 #1 Priority" },
-              { icon: HeartHandshake, title: "Client Satisfaction", text: "98% client satisfaction rate backed by structured feedback loops, dedicated account managers, and a 'no-surprise' policy. We treat every project as a partnership — your success is our KPI.", stat: "98% Satisfaction", priority: "⭐ Core Value" },
+              { icon: HeartHandshake, title: "Client Satisfaction", text: "100% client satisfaction rate backed by structured feedback loops, dedicated account managers, and a 'no-surprise' policy. We treat every project as a partnership — your success is our KPI.", stat: "100% Satisfaction", priority: "⭐ Core Value" },
               { icon: Clock, title: "On-Time Delivery", text: "We deliver 98% of milestones on or before deadline using agile sprints, buffer planning, and real-time progress dashboards. Late delivery costs money — we respect your timeline like our own.", stat: "98% On-Time", priority: "⏱️ Guaranteed" },
               { icon: Star, title: "Best-in-Class Quality", text: "Every model passes our rigorous 5-stage QA/QC pipeline: automated rule checks, peer reviews, discipline coordination, client validation, and final audit. We don't ship anything less than excellent.", stat: "5-Stage QA", priority: "✅ Zero Defect" },
             ].map((item, i) => (
