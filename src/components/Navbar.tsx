@@ -18,6 +18,7 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
 
   return (
     <motion.header
@@ -44,31 +45,35 @@ export default function Navbar() {
             <Link
               key={link.href}
               to={link.href}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
                 location.pathname === link.href
                   ? "text-primary bg-primary/10"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
               }`}
             >
-              {link.label}
+              {t(link.labelKey)}
             </Link>
           ))}
+          <LanguageSwitcher />
           <Link
             to="/contact"
-            className="ml-4 px-5 py-2.5 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity glow-primary"
+            className="ml-2 px-5 py-2.5 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity glow-primary"
           >
-            Get a Quote
+            {t("nav.getQuote")}
           </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden p-2 text-foreground"
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex md:hidden items-center gap-2">
+          <LanguageSwitcher />
+          <button
+            onClick={() => setOpen(!open)}
+            className="p-2 text-foreground"
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
@@ -92,7 +97,7 @@ export default function Navbar() {
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </Link>
               ))}
               <Link
@@ -100,7 +105,7 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 className="mt-2 px-5 py-3 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm text-center"
               >
-                Get a Quote
+                {t("nav.getQuote")}
               </Link>
             </div>
           </motion.div>
