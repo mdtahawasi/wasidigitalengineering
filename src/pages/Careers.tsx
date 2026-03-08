@@ -98,6 +98,7 @@ export default function CareersPage() {
   const handleApply = (jobTitle: string) => {
     setApplyingFor(jobTitle);
     setSubmitted(false);
+    setResumeFile(null);
     setFormData({ fullName: "", email: "", phone: "", currentRole: "", experience: "", linkedIn: "", portfolio: "", expectedSalary: "", noticePeriod: "", coverLetter: "", skills: "", education: "", referral: "" });
     setTimeout(() => {
       document.getElementById("application-form")?.scrollIntoView({ behavior: "smooth" });
