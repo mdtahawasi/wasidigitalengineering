@@ -176,7 +176,7 @@ export default function ContactPage() {
             </span>
             <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground">Global Office Locations</h2>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {[
               {
                 city: "Nagpur, India",
