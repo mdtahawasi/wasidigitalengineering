@@ -14,8 +14,8 @@ const fadeUp = {
 const contactInfo = [
   { icon: Mail, label: "Email", value: "info@wasidigital.com" },
   { icon: Phone, label: "Phone", value: "+971 569327490" },
-  { icon: MapPin, label: "Address", value: "Business Bay, Dubai, UAE" },
-  { icon: Clock, label: "Working Hours", value: "Sun–Thu: 9 AM – 6 PM (GST)" },
+  { icon: MapPin, label: "Head Office", value: "Nagpur, Maharashtra, India" },
+  { icon: Clock, label: "Working Hours", value: "Mon–Sat: 9:00 AM – 6:00 PM" },
 ];
 
 export default function ContactPage() {
