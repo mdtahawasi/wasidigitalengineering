@@ -231,7 +231,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== PROCESS ===== */}
-      <section className="section-padding bg-card/30 overflow-hidden">
+      <section id="process" className="section-padding bg-card/30 overflow-hidden">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading
             label={t("index.processLabel")}
