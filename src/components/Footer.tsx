@@ -1,28 +1,31 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Instagram } from "lucide-react";
-
-const footerLinks = {
-  Company: [
-    { label: "About Us", href: "/about" },
-    { label: "Our Team", href: "/about" },
-    { label: "Careers", href: "/careers" },
-    { label: "Contact", href: "/contact" },
-  ],
-  Services: [
-    { label: "BIM Modeling", href: "/services" },
-    { label: "Clash Detection", href: "/services" },
-    { label: "4D/5D Simulation", href: "/services" },
-    { label: "Scan to BIM", href: "/services" },
-  ],
-  Industries: [
-    { label: "Commercial", href: "/projects" },
-    { label: "Residential", href: "/projects" },
-    { label: "Infrastructure", href: "/projects" },
-    { label: "Healthcare", href: "/projects" },
-  ],
-};
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
+  const footerLinks = {
+    [t("footer.company")]: [
+      { label: t("footer.aboutUs"), href: "/about" },
+      { label: t("footer.ourTeam"), href: "/about" },
+      { label: t("footer.careers"), href: "/careers" },
+      { label: t("footer.contact"), href: "/contact" },
+    ],
+    [t("footer.services")]: [
+      { label: t("footer.bimModeling"), href: "/services" },
+      { label: t("footer.clashDetection"), href: "/services" },
+      { label: t("footer.4d5dSim"), href: "/services" },
+      { label: t("footer.scanToBim"), href: "/services" },
+    ],
+    [t("footer.industries")]: [
+      { label: t("footer.commercial"), href: "/projects" },
+      { label: t("footer.residential"), href: "/projects" },
+      { label: t("footer.infrastructure"), href: "/projects" },
+      { label: t("footer.healthcare"), href: "/projects" },
+    ],
+  };
+
   return (
     <footer className="border-t border-border/50 bg-card/50">
       <div className="container mx-auto px-4 md:px-8 py-16">
@@ -39,7 +42,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
-              Pioneering BIM and digital engineering solutions for the AEC industry. Transforming how the world designs, builds, and operates built environments.
+              {t("footer.description")}
             </p>
             <div className="flex gap-3">
               {[Linkedin, Twitter, Instagram].map((Icon, i) => (
@@ -75,7 +78,7 @@ export default function Footer() {
             <span className="flex items-center gap-2"><MapPin size={14} className="text-primary" /> Dubai, UAE</span>
           </div>
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} WASI Digital Engineering. All rights reserved.
+            © {new Date().getFullYear()} WASI Digital Engineering. {t("footer.rights")}
           </p>
         </div>
       </div>
