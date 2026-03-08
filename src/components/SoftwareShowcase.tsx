@@ -5,12 +5,8 @@ import {
 } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 
-const fadeUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-  transition: { duration: 0.6 },
-};
+import { fadeUp, staggerContainer, staggerItem, scaleIn } from "@/lib/animations";
+
 
 interface SoftwareItem {
   name: string;
