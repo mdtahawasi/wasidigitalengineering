@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight, Building2, Layers3, ScanLine, Cpu, BarChart3, Cog,
   CheckCircle2, ChevronRight, Globe, Zap, Shield, Brain, Monitor,
-  Workflow, Users, Award, TrendingUp
+  Workflow, Users, Award, TrendingUp, Lock, Clock, Star, HeartHandshake,
+  BadgeCheck, Target, Sparkles, DollarSign, FileCheck, Handshake
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
