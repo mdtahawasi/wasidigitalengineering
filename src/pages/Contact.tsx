@@ -63,15 +63,25 @@ export default function ContactPage() {
                 </div>
               ))}
 
-              {/* Offices */}
+              {/* Global Offices */}
               <div className="glass rounded-xl p-5">
-                <h3 className="font-display font-semibold text-foreground text-sm mb-3">Global Offices</h3>
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>🇦🇪 Dubai, UAE (HQ)</p>
-                  <p>🇸🇦 Riyadh, KSA</p>
-                  <p>🇶🇦 Doha, Qatar</p>
-                  <p>🇬🇧 London, UK</p>
-                  <p>🇪🇬 Cairo, Egypt</p>
+                <h3 className="font-display font-semibold text-foreground text-sm mb-4">Global Offices</h3>
+                <div className="space-y-4">
+                  <div className="border-l-2 border-primary pl-3">
+                    <p className="text-foreground text-sm font-semibold">🇮🇳 Nagpur, India (HQ)</p>
+                    <p className="text-xs text-muted-foreground">Main Office — Operations & Delivery Center</p>
+                    <p className="text-xs text-muted-foreground">Mon–Sat: 9:00 AM – 6:00 PM IST</p>
+                  </div>
+                  <div className="border-l-2 border-primary/50 pl-3">
+                    <p className="text-foreground text-sm font-semibold">🇦🇪 Dubai, UAE</p>
+                    <p className="text-xs text-muted-foreground">Regional Office — GCC Business Development</p>
+                    <p className="text-xs text-muted-foreground">Mon–Sat: 9:00 AM – 6:00 PM GST</p>
+                  </div>
+                  <div className="border-l-2 border-primary/50 pl-3">
+                    <p className="text-foreground text-sm font-semibold">🇸🇦 Riyadh, KSA</p>
+                    <p className="text-xs text-muted-foreground">Regional Office — Saudi Vision 2030 Projects</p>
+                    <p className="text-xs text-muted-foreground">Mon–Sat: 9:00 AM – 6:00 PM AST</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
