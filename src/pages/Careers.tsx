@@ -45,9 +45,6 @@ const growthPaths = [
   { icon: Globe, title: "Global Mobility", desc: "Opportunities to work across our offices in Dubai, Riyadh, London, Cairo, and more. International project exposure guaranteed." },
 ];
 
-const openings = [
-  { title: "Senior BIM Modeler (Revit)", dept: "Production", location: "Dubai, UAE", type: "Full-time", experience: "5+ years", salary: "$60K–$85K", desc: "Lead complex architectural and structural Revit models for mega-projects. Collaborate with coordination teams and ensure LOD 300-400 deliverables." },
-  { title: "BIM Coordinator", dept: "Coordination", location: "Riyadh, KSA", type: "Full-time", experience: "4+ years", salary: "$55K–$75K", desc: "Manage multi-discipline BIM coordination, run clash detection using Navisworks, and facilitate resolution meetings with design teams." },
   { title: "Structural BIM Engineer", dept: "Engineering", location: "Dubai, UAE", type: "Full-time", experience: "3+ years", salary: "$50K–$70K", desc: "Develop structural BIM models in Revit/Tekla, perform quantity takeoffs, and coordinate with architects and MEP engineers." },
   { title: "MEP BIM Lead", dept: "MEP", location: "Abu Dhabi, UAE", type: "Full-time", experience: "6+ years", salary: "$70K–$95K", desc: "Lead MEP modeling team, ensure systems coordination, and deliver fabrication-ready models for HVAC, plumbing, and electrical systems." },
   { title: "AI/ML Engineer - BIM Automation", dept: "Technology", location: "Remote", type: "Full-time", experience: "3+ years", salary: "$80K–$120K", desc: "Develop AI-powered tools for automated clash detection, design optimization, and predictive project analytics using Python and TensorFlow." },
