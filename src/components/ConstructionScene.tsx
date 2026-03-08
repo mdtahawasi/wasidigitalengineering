@@ -295,7 +295,7 @@ function CameraRig() {
 
 // Connecting beams between buildings
 function ConnectionBeams() {
-  const ref = useRef<THREE.Group>(null);
+  const materialsRef = useRef<THREE.LineBasicMaterial[]>([]);
   const connections = useMemo(() => [
     { from: [0, 6, 0], to: [3, 4.5, -1] },
     { from: [0, 6, 0], to: [-3, 7.5, 1] },
@@ -305,32 +305,34 @@ function ConnectionBeams() {
     { from: [-5, 5.2, -2], to: [-1.5, 6.8, -4] },
   ], []);
 
+  const geometries = useMemo(() =>
+    connections.map((conn) => {
+      const points = [
+        new THREE.Vector3(...conn.from as [number, number, number]),
+        new THREE.Vector3(...conn.to as [number, number, number]),
+      ];
+      return new THREE.BufferGeometry().setFromPoints(points);
+    }), [connections]);
+
+  const materials = useMemo(() =>
+    connections.map(() => new THREE.LineBasicMaterial({
+      color: "#14b8a6", transparent: true, opacity: 0.1, blending: THREE.AdditiveBlending,
+    })), [connections]);
+
+  useEffect(() => { materialsRef.current = materials; }, [materials]);
+
   useFrame((state) => {
-    if (ref.current) {
-      const t = state.clock.getElapsedTime();
-      ref.current.children.forEach((child, i) => {
-        (child as THREE.Line).material = new THREE.LineBasicMaterial({
-          color: "#14b8a6",
-          transparent: true,
-          opacity: 0.08 + Math.sin(t * 2 + i) * 0.05,
-          blending: THREE.AdditiveBlending,
-        });
-      });
-    }
+    const t = state.clock.getElapsedTime();
+    materialsRef.current.forEach((mat, i) => {
+      mat.opacity = 0.08 + Math.sin(t * 2 + i) * 0.05;
+    });
   });
 
   return (
-    <group ref={ref}>
-      {connections.map((conn, i) => {
-        const points = [
-          new THREE.Vector3(...conn.from as [number, number, number]),
-          new THREE.Vector3(...conn.to as [number, number, number]),
-        ];
-        const geo = new THREE.BufferGeometry().setFromPoints(points);
-        return (
-          <primitive key={i} object={new THREE.Line(geo, new THREE.LineBasicMaterial({ color: "#14b8a6", transparent: true, opacity: 0.1, blending: THREE.AdditiveBlending }))} />
-        );
-      })}
+    <group>
+      {geometries.map((geo, i) => (
+        <line key={i} geometry={geo} material={materials[i]} />
+      ))}
     </group>
   );
 }
