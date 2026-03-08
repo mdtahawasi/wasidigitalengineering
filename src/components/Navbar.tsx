@@ -52,37 +52,40 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Dropdown Menu */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="glass border-t border-border/50 overflow-hidden"
+            initial={{ opacity: 0, scale: 0.95, y: -8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -8 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute right-4 md:right-8 top-14 md:top-18 w-56 glass rounded-xl border border-border/50 shadow-xl overflow-hidden"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
+            <div className="py-2 flex flex-col">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
                   onClick={() => setOpen(false)}
-                  className={`px-4 py-3 rounded-md text-sm font-medium transition-all ${
+                  className={`px-5 py-2.5 text-sm font-medium transition-all ${
                     location.pathname === link.href
                       ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                   }`}
                 >
                   {t(link.labelKey)}
                 </Link>
               ))}
-              <Link
-                to="/contact"
-                onClick={() => setOpen(false)}
-                className="mt-2 px-5 py-3 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm text-center"
-              >
-                {t("nav.getQuote")}
-              </Link>
+              <div className="px-3 pt-2 pb-1">
+                <Link
+                  to="/contact"
+                  onClick={() => setOpen(false)}
+                  className="block px-4 py-2.5 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm text-center"
+                >
+                  {t("nav.getQuote")}
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
