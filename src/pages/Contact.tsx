@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Clock, Send, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, Globe, Building2 } from "lucide-react";
 import Layout from "@/components/Layout";
 import { toast } from "sonner";
 
