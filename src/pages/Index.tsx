@@ -71,10 +71,12 @@ const industries = [
 export default function HomePage() {
   const { t } = useLanguage();
 
+  useScrollToHash();
+
   return (
     <Layout>
       {/* ===== HERO ===== */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden">
         <Suspense fallback={<div className="absolute inset-0 bg-background" />}>
           <ConstructionScene />
         </Suspense>
