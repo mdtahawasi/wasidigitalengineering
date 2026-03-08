@@ -2,9 +2,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
-  MapPin, Clock, ArrowRight, Briefcase, GraduationCap, Heart, Zap,
+  ArrowRight, Briefcase, GraduationCap, Heart, Zap,
   Shield, Users, Target, Globe, Award, BookOpen, Lightbulb, Scale,
-  Upload, Send, CheckCircle, ChevronDown, ChevronUp
+  Upload, Send, CheckCircle
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
@@ -45,20 +45,10 @@ const growthPaths = [
   { icon: Globe, title: "Global Mobility", desc: "Opportunities to work across our offices in Dubai, Riyadh, London, Cairo, and more. International project exposure guaranteed." },
 ];
 
-const openings = [
-  { title: "Senior BIM Modeler (Revit)", dept: "Production", location: "Dubai, UAE", type: "Full-time", experience: "5+ years", salary: "$60K–$85K", desc: "Lead complex architectural and structural Revit models for mega-projects. Collaborate with coordination teams and ensure LOD 300-400 deliverables." },
-  { title: "BIM Coordinator", dept: "Coordination", location: "Riyadh, KSA", type: "Full-time", experience: "4+ years", salary: "$55K–$75K", desc: "Manage multi-discipline BIM coordination, run clash detection using Navisworks, and facilitate resolution meetings with design teams." },
-  { title: "Structural BIM Engineer", dept: "Engineering", location: "Dubai, UAE", type: "Full-time", experience: "3+ years", salary: "$50K–$70K", desc: "Develop structural BIM models in Revit/Tekla, perform quantity takeoffs, and coordinate with architects and MEP engineers." },
-  { title: "MEP BIM Lead", dept: "MEP", location: "Abu Dhabi, UAE", type: "Full-time", experience: "6+ years", salary: "$70K–$95K", desc: "Lead MEP modeling team, ensure systems coordination, and deliver fabrication-ready models for HVAC, plumbing, and electrical systems." },
-  { title: "AI/ML Engineer - BIM Automation", dept: "Technology", location: "Remote", type: "Full-time", experience: "3+ years", salary: "$80K–$120K", desc: "Develop AI-powered tools for automated clash detection, design optimization, and predictive project analytics using Python and TensorFlow." },
-  { title: "Scan to BIM Specialist", dept: "Production", location: "Doha, Qatar", type: "Contract", experience: "2+ years", salary: "$45K–$60K", desc: "Process point cloud data from 3D laser scans, create accurate as-built BIM models, and ensure quality control of deliverables." },
-  { title: "BIM Consultant", dept: "Consulting", location: "London, UK", type: "Full-time", experience: "7+ years", salary: "$90K–$130K", desc: "Advise enterprise clients on BIM strategy, develop execution plans, and guide digital transformation initiatives across large portfolios." },
-  { title: "Junior Revit Technician", dept: "Production", location: "Cairo, Egypt", type: "Full-time", experience: "0-2 years", salary: "$20K–$35K", desc: "Support senior modelers with Revit production work, learn BIM best practices, and grow into a specialist role with mentorship support." },
-];
 
 export default function CareersPage() {
   const { t } = useLanguage();
-  const [expandedJob, setExpandedJob] = useState<number | null>(null);
+  
   const [applyingFor, setApplyingFor] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     fullName: "", email: "", phone: "", currentRole: "", experience: "",
@@ -206,56 +196,6 @@ export default function CareersPage() {
               </motion.div>
             ))}
           </motion.div>
-        </div>
-      </section>
-
-      {/* Open Positions */}
-      <section className="section-padding bg-card/30">
-        <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label={t("careers.openPositionsLabel")} title={t("careers.openPositionsTitle")} description={t("careers.openPositionsDesc")} />
-          <div className="max-w-4xl mx-auto space-y-4">
-            {openings.map((job, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ delay: i * 0.06, duration: 0.5 }}
-                className="glass rounded-xl overflow-hidden hover:border-primary/30 transition-all"
-              >
-                <div className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer" onClick={() => setExpandedJob(expandedJob === i ? null : i)}>
-                  <div className="flex-1">
-                    <h3 className="font-display font-semibold text-foreground">{job.title}</h3>
-                    <div className="flex flex-wrap gap-3 mt-1 text-xs text-muted-foreground">
-                      <span className="flex items-center gap-1"><Briefcase size={12} /> {job.dept}</span>
-                      <span className="flex items-center gap-1"><MapPin size={12} /> {job.location}</span>
-                      <span className="flex items-center gap-1"><Clock size={12} /> {job.type}</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">{job.salary}</span>
-                    {expandedJob === i ? <ChevronUp size={18} className="text-muted-foreground" /> : <ChevronDown size={18} className="text-muted-foreground" />}
-                  </div>
-                </div>
-                {expandedJob === i && (
-                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} transition={{ duration: 0.3 }} className="px-5 pb-5 border-t border-border/50">
-                    <div className="pt-4 space-y-3">
-                      <p className="text-sm text-muted-foreground leading-relaxed">{job.desc}</p>
-                      <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
-                        <span><strong className="text-foreground">Experience:</strong> {job.experience}</span>
-                        <span><strong className="text-foreground">Salary Range:</strong> {job.salary}</span>
-                        <span><strong className="text-foreground">Type:</strong> {job.type}</span>
-                        <span><strong className="text-foreground">Location:</strong> {job.location}</span>
-                      </div>
-                      <Button onClick={() => handleApply(job.title)} className="mt-2 bg-gradient-primary text-primary-foreground glow-primary">
-                        Apply for this Position <ArrowRight size={14} />
-                      </Button>
-                    </div>
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
