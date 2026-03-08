@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useScrollToHash } from "@/hooks/useScrollToHash";
 import { Link } from "react-router-dom";
-import { Target, Eye, Heart, Award, Users, Globe, Plus } from "lucide-react";
+import { Target, Eye, Heart, Award, Users, Globe, Plus, Mail, Phone } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
