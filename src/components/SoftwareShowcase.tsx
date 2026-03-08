@@ -175,12 +175,17 @@ export default function SoftwareShowcase() {
         </motion.div>
 
         {/* Software grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-5"
+        >
           {softwareData.map((sw, i) => (
             <motion.div
               key={i}
-              {...fadeUp}
-              transition={{ delay: i * 0.04, duration: 0.6 }}
+              variants={staggerItem}
               className="glass rounded-xl p-5 md:p-6 hover:border-primary/30 transition-all duration-500 group"
             >
               <div className="flex items-start gap-4">
