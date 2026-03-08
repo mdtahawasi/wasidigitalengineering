@@ -60,20 +60,6 @@ const testimonials = [
   { quote: "The digital twin solution they built gives us unparalleled insight into building operations.", author: "James Mitchell", role: "VP Operations, Emaar Properties" },
 ];
 
-const softwareTools = [
-  { name: "Autodesk Revit", category: "BIM Authoring" },
-  { name: "Navisworks", category: "Coordination" },
-  { name: "Tekla Structures", category: "Structural" },
-  { name: "AutoCAD", category: "Drafting" },
-  { name: "Dynamo", category: "Automation" },
-  { name: "Solibri", category: "QA/QC" },
-  { name: "BIM 360", category: "Collaboration" },
-  { name: "Enscape", category: "Visualization" },
-  { name: "Synchro Pro", category: "4D Planning" },
-  { name: "ACC", category: "Cloud Platform" },
-  { name: "Power BI", category: "Analytics" },
-  { name: "Rhino + Grasshopper", category: "Parametric" },
-];
 
 const processSteps = [
   { step: "01", title: "Discovery", desc: "Understand project scope, standards, and deliverables", icon: Brain },
