@@ -41,10 +41,12 @@ const software = [
 export default function ServicesPage() {
   const { t } = useLanguage();
 
+  useScrollToHash();
+
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative section-padding overflow-hidden">
+      <section id="services-hero" className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-10" />
         <div className="container mx-auto px-4 md:px-8 relative">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
