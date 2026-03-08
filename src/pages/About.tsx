@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Target, Eye, Heart, Award, Users, Globe } from "lucide-react";
+import { Target, Eye, Heart, Award, Users, Globe, Plus } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import OrgChart from "@/components/OrgChart";
 import aboutTeam from "@/assets/about-team.jpg";
 
 const fadeUp = {
@@ -21,12 +22,32 @@ const values = [
 ];
 
 const timeline = [
-  { year: "2015", event: "Founded in Dubai as a BIM consulting startup" },
-  { year: "2017", event: "Expanded to 50+ professionals, opened KSA office" },
-  { year: "2019", event: "Launched AI-powered clash detection platform" },
-  { year: "2021", event: "Achieved ISO 19650 certification, entered European market" },
-  { year: "2023", event: "Digital Twin solutions deployed for 10+ mega projects" },
-  { year: "2025", event: "150+ professionals serving 25+ countries globally" },
+  { year: "2019", event: "Founded in India as a BIM consulting startup by Md Taha Wasi" },
+  { year: "2020", event: "Expanded services to Architecture, Structure & MEP BIM modeling" },
+  { year: "2021", event: "Completed first 10 projects across residential & commercial sectors" },
+  { year: "2022", event: "Launched coordination & clash detection services, grew to 15+ professionals" },
+  { year: "2023", event: "Entered UAE market, expanded to industrial & infrastructure projects" },
+  { year: "2024", event: "30+ projects completed across all AEC industry sectors" },
+  { year: "2025", event: "AI-integrated BIM workflows, Digital Twin & FM solutions launched" },
+];
+
+// ===== LEADERSHIP TEAM =====
+// Easy to add: just add a new object to this array with name, role, qualifications, and initials
+const leadershipTeam = [
+  {
+    name: "Md Taha Wasi",
+    role: "Founder & CEO",
+    qualifications: "Masters in Construction & Project Management | MBA",
+    initials: "TW",
+  },
+  // ADD MORE TEAM MEMBERS HERE — just copy the object above and change the values
+  // Example:
+  // {
+  //   name: "John Doe",
+  //   role: "BIM Director",
+  //   qualifications: "B.Arch, Certified BIM Professional",
+  //   initials: "JD",
+  // },
 ];
 
 export default function AboutPage() {
@@ -60,9 +81,9 @@ export default function AboutPage() {
             <motion.div {...fadeUp} transition={{ delay: 0.2, duration: 0.6 }}>
               <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-4">Our Story</h2>
               <div className="space-y-4 text-muted-foreground text-sm leading-relaxed">
-                <p>Founded in 2015 in Dubai, WASI Digital Engineering began with a clear mission: to bridge the gap between traditional construction methods and the digital future. What started as a small team of BIM enthusiasts has grown into a global consultancy serving some of the most ambitious projects in the AEC industry.</p>
-                <p>Today, we're a team of 150+ architects, engineers, and BIM specialists working across 25+ countries. We combine deep domain expertise in Architecture, Structural, MEP, and Civil engineering with cutting-edge technologies like AI, IoT, and digital twin platforms.</p>
-                <p>Our commitment to ISO 19650 standards, continuous innovation, and client-centric delivery has earned us the trust of developers, contractors, and consultants worldwide.</p>
+                <p>Founded in 2019 in India by Md Taha Wasi, WASI Digital Engineering began with a clear mission: to bridge the gap between traditional construction methods and the digital future. What started as a small team of BIM enthusiasts has grown into a consultancy serving ambitious projects across the AEC industry.</p>
+                <p>Today, we've successfully delivered 30+ projects across residential, commercial, and industrial sectors. Our team combines deep domain expertise in Architecture, Structural (RCC, Steel & Composite), MEP, Interior Fit Out, Facade, Landscape, Infrastructure, and Civil engineering with cutting-edge technologies like AI, IoT, and digital twin platforms.</p>
+                <p>Our commitment to ISO 19650 standards, continuous innovation, and client-centric delivery has earned us the trust of developers, contractors, and consultants across India and the UAE.</p>
               </div>
             </motion.div>
           </div>
@@ -74,10 +95,10 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: 10, suffix: "+", label: "Years Experience" },
-              { value: 150, suffix: "+", label: "Team Members" },
-              { value: 500, suffix: "+", label: "Projects Delivered" },
-              { value: 25, suffix: "+", label: "Countries" },
+              { value: 6, suffix: "+", label: "Years Experience" },
+              { value: 30, suffix: "+", label: "Projects Delivered" },
+              { value: 3, suffix: "", label: "Industry Sectors" },
+              { value: 2, suffix: "", label: "Countries" },
             ].map((s, i) => (
               <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1, duration: 0.6 }}>
                 <div className="text-3xl md:text-4xl font-display font-bold text-gradient">
@@ -133,20 +154,89 @@ export default function AboutPage() {
       <section className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label="Leadership" title="Meet Our Team" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {[
-              { name: "Waseem Al-Rashid", role: "Founder & CEO", initials: "WA" },
-              { name: "Dr. Fatima Hassan", role: "CTO", initials: "FH" },
-              { name: "David Morrison", role: "VP Operations", initials: "DM" },
-            ].map((person, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {leadershipTeam.map((person, i) => (
               <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.15, duration: 0.6 }} className="glass rounded-xl p-6 text-center">
                 <div className="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center mx-auto mb-4">
                   <span className="font-display font-bold text-xl text-primary-foreground">{person.initials}</span>
                 </div>
                 <h3 className="font-display font-semibold text-foreground">{person.name}</h3>
-                <p className="text-sm text-muted-foreground">{person.role}</p>
+                <p className="text-sm text-primary mb-1">{person.role}</p>
+                {person.qualifications && (
+                  <p className="text-xs text-muted-foreground">{person.qualifications}</p>
+                )}
               </motion.div>
             ))}
+            {/* Placeholder card to add more members */}
+            <motion.div {...fadeUp} transition={{ delay: leadershipTeam.length * 0.15, duration: 0.6 }} className="glass rounded-xl p-6 text-center border-dashed border-2 border-border/50 flex flex-col items-center justify-center opacity-50">
+              <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
+                <Plus size={24} className="text-muted-foreground" />
+              </div>
+              <p className="text-sm text-muted-foreground">More team members coming soon</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Organization Charts */}
+      <section className="section-padding bg-card/30">
+        <div className="container mx-auto px-4 md:px-8">
+          <SectionHeading label="Organization" title="Our Team Structure" description="Our specialized BIM and Design teams ensure quality delivery across all disciplines." />
+          <div className="space-y-16">
+            <OrgChart
+              title="BIM Team"
+              chart={{
+                name: "Md Taha Wasi",
+                role: "CEO & BIM Director",
+                children: [
+                  {
+                    name: "BIM Manager",
+                    role: "Overall BIM Coordination",
+                    children: [
+                      { name: "Architectural BIM Lead", role: "LOD 100-500 Models" },
+                      { name: "Structural BIM Lead", role: "RCC, Steel & Composite" },
+                      { name: "MEP BIM Lead", role: "HVAC, Plumbing, Electrical, FP" },
+                      { name: "Coordination Lead", role: "Clash Detection & Resolution" },
+                    ],
+                  },
+                  {
+                    name: "Information Manager",
+                    role: "CDE & Data Standards",
+                    children: [
+                      { name: "COBie Specialist", role: "Asset Data & FM Handover" },
+                      { name: "QA/QC Engineer", role: "Model Auditing & Standards" },
+                    ],
+                  },
+                ],
+              }}
+            />
+            <OrgChart
+              title="Design Team"
+              chart={{
+                name: "Md Taha Wasi",
+                role: "CEO & Design Director",
+                children: [
+                  {
+                    name: "Architecture Lead",
+                    role: "Design & Documentation",
+                    children: [
+                      { name: "Interior Fit Out Designer", role: "Interior BIM & Design" },
+                      { name: "Facade Consultant", role: "Facade Engineering" },
+                      { name: "Landscape Designer", role: "Landscape Architecture" },
+                    ],
+                  },
+                  {
+                    name: "Engineering Lead",
+                    role: "Structural & Infrastructure",
+                    children: [
+                      { name: "Structural Engineer", role: "RCC, Steel & Composite" },
+                      { name: "Infrastructure Engineer", role: "Roads, Bridges, Utilities" },
+                      { name: "MEPF Engineer", role: "Mechanical, Electrical, Plumbing, Fire" },
+                    ],
+                  },
+                ],
+              }}
+            />
           </div>
         </div>
       </section>

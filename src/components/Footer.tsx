@@ -71,7 +71,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-border/50 flex flex-col md:flex-row gap-6 md:items-center justify-between">
           <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
             <span className="flex items-center gap-2"><Mail size={14} className="text-primary" /> info@wasidigital.com</span>
-            <span className="flex items-center gap-2"><Phone size={14} className="text-primary" /> +971 50 123 4567</span>
+            <span className="flex items-center gap-2"><Phone size={14} className="text-primary" /> +971 569327490</span>
             <span className="flex items-center gap-2"><MapPin size={14} className="text-primary" /> Dubai, UAE</span>
           </div>
           <p className="text-xs text-muted-foreground">

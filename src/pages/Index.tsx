@@ -27,9 +27,9 @@ const services = [
 ];
 
 const stats = [
-  { value: 500, suffix: "+", label: "Projects Delivered" },
-  { value: 150, suffix: "+", label: "AEC Professionals" },
-  { value: 25, suffix: "+", label: "Countries Served" },
+  { value: 30, suffix: "+", label: "Projects Delivered" },
+  { value: 6, suffix: "+", label: "Years Experience" },
+  { value: 10, suffix: "+", label: "Disciplines Covered" },
   { value: 98, suffix: "%", label: "Client Satisfaction" },
 ];
 
