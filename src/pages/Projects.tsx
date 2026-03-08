@@ -189,10 +189,16 @@ export default function ProjectsPage() {
                   <p className="flex items-center gap-1 text-xs text-muted-foreground mb-2">
                     <MapPin size={12} /> {project.location}
                   </p>
-                  <p className="text-xs text-muted-foreground">{project.scope}</p>
-                  <div className="mt-3 pt-3 border-t border-border/50 flex justify-between text-xs">
-                    <span className="text-muted-foreground">{t("projects.projectValue")}</span>
-                    <span className="font-semibold text-primary">{project.value}</span>
+                  <p className="text-xs text-muted-foreground mb-2">{project.scope}</p>
+                  <div className="mt-3 pt-3 border-t border-border/50 space-y-1 text-xs">
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">GFA</span>
+                      <span className="font-semibold text-primary">{project.gfa}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Configuration</span>
+                      <span className="font-semibold text-foreground">{project.config}</span>
+                    </div>
                   </div>
                 </div>
               </motion.div>
