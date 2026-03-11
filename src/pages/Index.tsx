@@ -382,15 +382,15 @@ export default function HomePage() {
               <motion.div key={i} variants={staggerItem} className="glass rounded-xl p-6 hover:border-primary/30 transition-all duration-500 group relative overflow-hidden border-t-2 border-t-primary/40">
                 <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
                 <div className="relative">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 block">{item.priority}</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 block">{t(item.priorityKey)}</span>
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-gradient-primary transition-all duration-500">
                       <item.icon size={24} className="text-primary group-hover:text-primary-foreground transition-colors" />
                     </div>
-                    <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">{item.stat}</span>
+                    <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">{t(item.statKey)}</span>
                   </div>
-                  <h4 className="font-display font-bold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+                  <h4 className="font-display font-bold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">{t(item.titleKey)}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{t(item.textKey)}</p>
                 </div>
               </motion.div>
             ))}
