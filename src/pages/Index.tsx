@@ -45,9 +45,9 @@ const projects = [
 ];
 
 const testimonials = [
-  { quote: "WASI transformed our design workflow with their BIM expertise. Project delivery time reduced by 35%.", author: "Ahmad Al-Rashid", role: "Director, Al Futtaim Engineering" },
-  { quote: "Their clash detection services saved us millions in rework costs. Exceptional attention to detail.", author: "Sarah Chen", role: "Project Manager, Consolidated Contractors" },
-  { quote: "The digital twin solution they built gives us unparalleled insight into building operations.", author: "James Mitchell", role: "VP Operations, Emaar Properties" },
+  { quoteKey: "testimonial.1.quote", author: "Ahmad Al-Rashid", role: "Director, Al Futtaim Engineering" },
+  { quoteKey: "testimonial.2.quote", author: "Sarah Chen", role: "Project Manager, Consolidated Contractors" },
+  { quoteKey: "testimonial.3.quote", author: "James Mitchell", role: "VP Operations, Emaar Properties" },
 ];
 
 const processStepKeys = [
@@ -60,12 +60,12 @@ const processStepKeys = [
 ];
 
 const industries = [
-  { icon: Building2, nameKey: "projects.commercial", count: "12+", desc: "Offices, malls, mixed-use towers — full MEP & structural BIM coordination", color: "from-blue-500/20 to-blue-600/5" },
-  { icon: Users, nameKey: "projects.residential", count: "8+", desc: "High-rise apartments, villas & gated communities with detailed LOD 400 models", color: "from-emerald-500/20 to-emerald-600/5" },
-  { icon: HeartHandshake, nameKey: "projects.healthcare", count: "4+", desc: "Hospitals & clinics with complex MEP routing, medical gas & cleanroom specs", color: "from-rose-500/20 to-rose-600/5" },
-  { icon: Globe, nameKey: "projects.infrastructure", count: "3+", desc: "Roads, bridges, metro stations & utilities with civil 3D integration", color: "from-amber-500/20 to-amber-600/5" },
-  { icon: Cog, name: "Industrial", count: "2+", desc: "Factories, warehouses & data centers with heavy MEP & structural steel detailing", color: "from-violet-500/20 to-violet-600/5" },
-  { icon: Award, nameKey: "projects.education", count: "2+", desc: "Schools, universities & research labs with sustainable design & energy modeling", color: "from-cyan-500/20 to-cyan-600/5" },
+  { icon: Building2, nameKey: "projects.commercial", count: "12+", descKey: "industry.commercialDesc", color: "from-blue-500/20 to-blue-600/5" },
+  { icon: Users, nameKey: "projects.residential", count: "8+", descKey: "industry.residentialDesc", color: "from-emerald-500/20 to-emerald-600/5" },
+  { icon: HeartHandshake, nameKey: "projects.healthcare", count: "4+", descKey: "industry.healthcareDesc", color: "from-rose-500/20 to-rose-600/5" },
+  { icon: Globe, nameKey: "projects.infrastructure", count: "3+", descKey: "industry.infrastructureDesc", color: "from-amber-500/20 to-amber-600/5" },
+  { icon: Cog, nameKey: "industry.industrial", count: "2+", descKey: "industry.industrialDesc", color: "from-violet-500/20 to-violet-600/5" },
+  { icon: Award, nameKey: "projects.education", count: "2+", descKey: "industry.educationDesc", color: "from-cyan-500/20 to-cyan-600/5" },
 ];
 
 export default function HomePage() {
@@ -142,10 +142,10 @@ export default function HomePage() {
               <p className="text-xs text-muted-foreground uppercase tracking-widest mb-3">{t("hero.trustedBy")}</p>
               <div className="flex flex-wrap gap-4 items-center">
                 {[
-                  { icon: Building2, label: "50+ Global Firms" },
-                  { icon: Globe, label: "12 Countries" },
-                  { icon: Award, label: "100% Satisfaction" },
-                  { icon: Shield, label: "ISO Certified" },
+                  { icon: Building2, labelKey: "hero.globalFirms" },
+                  { icon: Globe, labelKey: "hero.countries" },
+                  { icon: Award, labelKey: "hero.satisfaction" },
+                  { icon: Shield, labelKey: "hero.isoCertified" },
                 ].map((item, i) => (
                   <motion.div
                     key={item.label}
@@ -155,7 +155,7 @@ export default function HomePage() {
                     className="flex items-center gap-1.5 text-muted-foreground/60 hover:text-primary/70 transition-colors"
                   >
                     <item.icon size={14} />
-                    <span className="text-xs font-medium">{item.label}</span>
+                    <span className="text-xs font-medium">{t(item.labelKey)}</span>
                   </motion.div>
                 ))}
               </div>
@@ -335,7 +335,7 @@ export default function HomePage() {
                   <h4 className="font-display font-semibold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">
                     {ind.nameKey ? t(ind.nameKey) : ind.name}
                   </h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{ind.desc}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{ind.descKey ? t(ind.descKey) : ""}</p>
                   <div className="mt-4 h-1.5 rounded-full bg-muted overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
@@ -345,7 +345,7 @@ export default function HomePage() {
                       className="h-full rounded-full bg-gradient-primary"
                     />
                   </div>
-                  <p className="text-[10px] text-muted-foreground mt-1">{ind.count} projects completed</p>
+                  <p className="text-[10px] text-muted-foreground mt-1">{ind.count} {t("index.projectsCompleted")}</p>
                 </div>
               </motion.div>
             ))}
@@ -374,23 +374,23 @@ export default function HomePage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-10"
           >
             {[
-              { icon: Lock, title: "Client Data Security", text: "Your intellectual property is sacred. We enforce enterprise-grade encryption (AES-256), NDA-backed access controls, ISO 27001 security protocols, and SOC 2-compliant data handling. Zero breaches since inception.", stat: "0 Breaches", priority: "🔒 #1 Priority" },
-              { icon: HeartHandshake, title: "Client Satisfaction", text: "100% client satisfaction rate backed by structured feedback loops, dedicated account managers, and a 'no-surprise' policy. We treat every project as a partnership — your success is our KPI.", stat: "100% Satisfaction", priority: "⭐ Core Value" },
-              { icon: Clock, title: "On-Time Delivery", text: "We deliver 98% of milestones on or before deadline using agile sprints, buffer planning, and real-time progress dashboards. Late delivery costs money — we respect your timeline like our own.", stat: "98% On-Time", priority: "⏱️ Guaranteed" },
-              { icon: Star, title: "Best-in-Class Quality", text: "Every model passes our rigorous 5-stage QA/QC pipeline: automated rule checks, peer reviews, discipline coordination, client validation, and final audit. We don't ship anything less than excellent.", stat: "5-Stage QA", priority: "✅ Zero Defect" },
+              { icon: Lock, titleKey: "why.securityTitle", textKey: "why.securityText", statKey: "why.securityStat", priorityKey: "why.securityPriority" },
+              { icon: HeartHandshake, titleKey: "why.satisfactionTitle", textKey: "why.satisfactionText", statKey: "why.satisfactionStat", priorityKey: "why.satisfactionValue" },
+              { icon: Clock, titleKey: "why.deliveryTitle", textKey: "why.deliveryText", statKey: "why.deliveryStat", priorityKey: "why.deliveryGuaranteed" },
+              { icon: Star, titleKey: "why.qualityTitle", textKey: "why.qualityText", statKey: "why.qualityStat", priorityKey: "why.qualityZeroDefect" },
             ].map((item, i) => (
               <motion.div key={i} variants={staggerItem} className="glass rounded-xl p-6 hover:border-primary/30 transition-all duration-500 group relative overflow-hidden border-t-2 border-t-primary/40">
                 <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
                 <div className="relative">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 block">{item.priority}</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 block">{t(item.priorityKey)}</span>
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-gradient-primary transition-all duration-500">
                       <item.icon size={24} className="text-primary group-hover:text-primary-foreground transition-colors" />
                     </div>
-                    <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">{item.stat}</span>
+                    <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">{t(item.statKey)}</span>
                   </div>
-                  <h4 className="font-display font-bold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+                  <h4 className="font-display font-bold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">{t(item.titleKey)}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{t(item.textKey)}</p>
                 </div>
               </motion.div>
             ))}
@@ -405,18 +405,18 @@ export default function HomePage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
           >
             {[
-              { icon: Shield, title: "ISO 19650 Compliance", text: "Full compliance with international BIM information management standards — proper BEPs, naming conventions, and audit trails from day one.", stat: "100% Compliant" },
-              { icon: Brain, title: "AI-Driven Clash Detection", text: "Proprietary AI classifies clashes by severity, reducing manual review by 70% and eliminating costly on-site rework before construction begins.", stat: "70% Faster" },
-              { icon: Award, title: "Certified Professionals", text: "50+ certifications across Autodesk, Bentley, Trimble, and buildingSMART. Continuous training keeps us ahead of industry evolution.", stat: "50+ Certs" },
-              { icon: Globe, title: "24/7 Global Delivery", text: "Follow-the-sun model across India, UAE, and KSA. Your project progresses around the clock — faster turnarounds, zero downtime.", stat: "3 Time Zones" },
-              { icon: Zap, title: "Agile BIM Methodology", text: "Sprint-based delivery with weekly milestones, daily standups, and real-time progress tracking. Predictable timelines with flexibility to adapt.", stat: "Weekly Sprints" },
-              { icon: Cpu, title: "Automation & Scripting", text: "Custom Dynamo scripts, Revit plugins, and Python automations eliminate repetitive tasks — saving 40%+ engineering hours per project.", stat: "40% Time Saved" },
-              { icon: DollarSign, title: "Cost-Effective Solutions", text: "Our offshore delivery model provides top-tier BIM talent at 40-60% lower cost than in-house teams — without compromising quality or timelines.", stat: "60% Cost Savings" },
-              { icon: Target, title: "Scalable Team On-Demand", text: "Need 5 modelers this week and 20 next month? Our elastic workforce scales instantly to match project demands — no hiring delays or overhead.", stat: "Instant Scaling" },
-              { icon: Workflow, title: "CDE & Collaboration", text: "We manage Common Data Environments on ACC, Aconex, and SharePoint with seamless model sharing, version control, and approval workflows.", stat: "Real-Time Sync" },
-              { icon: FileCheck, title: "Transparent Reporting", text: "Weekly progress reports, model audit logs, clash resolution matrices, and live dashboards — you always know exactly where your project stands.", stat: "Full Visibility" },
-              { icon: Handshake, title: "Long-Term Partnerships", text: "85% of our clients are repeat customers. We invest in understanding your standards, templates, and workflows for seamless ongoing collaboration.", stat: "85% Retention" },
-              { icon: Sparkles, title: "Innovation-First Culture", text: "We actively invest in R&D — from generative design experiments to digital twin integrations — ensuring you always have access to next-gen BIM capabilities.", stat: "R&D Focused" },
+              { icon: Shield, titleKey: "why.isoTitle", textKey: "why.isoText", statKey: "why.isoStat" },
+              { icon: Brain, titleKey: "why.aiClashTitle", textKey: "why.aiClashText", statKey: "why.aiClashStat" },
+              { icon: Award, titleKey: "why.certifiedTitle", textKey: "why.certifiedText", statKey: "why.certifiedStat" },
+              { icon: Globe, titleKey: "why.globalTitle", textKey: "why.globalText", statKey: "why.globalStat" },
+              { icon: Zap, titleKey: "why.agileTitle", textKey: "why.agileText", statKey: "why.agileStat" },
+              { icon: Cpu, titleKey: "why.automationTitle", textKey: "why.automationText", statKey: "why.automationStat" },
+              { icon: DollarSign, titleKey: "why.costTitle", textKey: "why.costText", statKey: "why.costStat" },
+              { icon: Target, titleKey: "why.scalableTitle", textKey: "why.scalableText", statKey: "why.scalableStat" },
+              { icon: Workflow, titleKey: "why.cdeTitle", textKey: "why.cdeText", statKey: "why.cdeStat" },
+              { icon: FileCheck, titleKey: "why.reportingTitle", textKey: "why.reportingText", statKey: "why.reportingStat" },
+              { icon: Handshake, titleKey: "why.partnershipsTitle", textKey: "why.partnershipsText", statKey: "why.partnershipsStat" },
+              { icon: Sparkles, titleKey: "why.innovationTitle", textKey: "why.innovationText", statKey: "why.innovationStat" },
             ].map((item, i) => (
               <motion.div key={i} variants={staggerItem} className="glass rounded-xl p-6 hover:border-primary/30 transition-all duration-500 group relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
@@ -425,10 +425,10 @@ export default function HomePage() {
                     <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-gradient-primary transition-all duration-500">
                       <item.icon size={22} className="text-primary group-hover:text-primary-foreground transition-colors" />
                     </div>
-                    <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">{item.stat}</span>
+                    <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">{t(item.statKey)}</span>
                   </div>
-                  <h4 className="font-display font-semibold text-foreground text-base mb-2 group-hover:text-primary transition-colors">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+                  <h4 className="font-display font-semibold text-foreground text-base mb-2 group-hover:text-primary transition-colors">{t(item.titleKey)}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{t(item.textKey)}</p>
                 </div>
               </motion.div>
             ))}
@@ -442,10 +442,10 @@ export default function HomePage() {
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               {[
-                { value: "98%", label: "On-Time Delivery Rate" },
-                { value: "35%", label: "Avg. Cost Reduction" },
-                { value: "500K+", label: "Clashes Resolved" },
-                { value: "0", label: "Data Security Breaches" },
+                { value: "98%", labelKey: "trust.onTimeRate" },
+                { value: "35%", labelKey: "trust.costReduction" },
+                { value: "500K+", labelKey: "trust.clashesResolved" },
+                { value: "0", labelKey: "trust.securityBreaches" },
               ].map((badge, i) => (
                 <motion.div
                   key={i}
@@ -456,7 +456,7 @@ export default function HomePage() {
                   className="space-y-1"
                 >
                   <p className="text-2xl md:text-3xl font-display font-bold text-gradient">{badge.value}</p>
-                  <p className="text-xs text-muted-foreground">{badge.label}</p>
+                  <p className="text-xs text-muted-foreground">{t(badge.labelKey)}</p>
                 </motion.div>
               ))}
             </div>
@@ -479,7 +479,7 @@ export default function HomePage() {
                 className="glass rounded-xl p-6 relative"
               >
                 <div className="absolute top-4 right-4 text-4xl text-primary/10 font-display font-bold">"</div>
-                <p className="text-muted-foreground text-sm leading-relaxed italic mb-6 relative z-10">"{item.quote}"</p>
+                <p className="text-muted-foreground text-sm leading-relaxed italic mb-6 relative z-10">"{t(item.quoteKey)}"</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
                     {item.author.charAt(0)}
