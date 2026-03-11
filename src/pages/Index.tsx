@@ -45,9 +45,9 @@ const projects = [
 ];
 
 const testimonials = [
-  { quote: "WASI transformed our design workflow with their BIM expertise. Project delivery time reduced by 35%.", author: "Ahmad Al-Rashid", role: "Director, Al Futtaim Engineering" },
-  { quote: "Their clash detection services saved us millions in rework costs. Exceptional attention to detail.", author: "Sarah Chen", role: "Project Manager, Consolidated Contractors" },
-  { quote: "The digital twin solution they built gives us unparalleled insight into building operations.", author: "James Mitchell", role: "VP Operations, Emaar Properties" },
+  { quoteKey: "testimonial.1.quote", author: "Ahmad Al-Rashid", role: "Director, Al Futtaim Engineering" },
+  { quoteKey: "testimonial.2.quote", author: "Sarah Chen", role: "Project Manager, Consolidated Contractors" },
+  { quoteKey: "testimonial.3.quote", author: "James Mitchell", role: "VP Operations, Emaar Properties" },
 ];
 
 const processStepKeys = [
