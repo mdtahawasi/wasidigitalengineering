@@ -335,7 +335,7 @@ export default function HomePage() {
                   <h4 className="font-display font-semibold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">
                     {ind.nameKey ? t(ind.nameKey) : ind.name}
                   </h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{ind.desc}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{ind.descKey ? t(ind.descKey) : ""}</p>
                   <div className="mt-4 h-1.5 rounded-full bg-muted overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
