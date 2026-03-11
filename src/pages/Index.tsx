@@ -155,7 +155,7 @@ export default function HomePage() {
                     className="flex items-center gap-1.5 text-muted-foreground/60 hover:text-primary/70 transition-colors"
                   >
                     <item.icon size={14} />
-                    <span className="text-xs font-medium">{item.label}</span>
+                    <span className="text-xs font-medium">{t(item.labelKey)}</span>
                   </motion.div>
                 ))}
               </div>
