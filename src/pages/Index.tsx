@@ -456,7 +456,7 @@ export default function HomePage() {
                   className="space-y-1"
                 >
                   <p className="text-2xl md:text-3xl font-display font-bold text-gradient">{badge.value}</p>
-                  <p className="text-xs text-muted-foreground">{badge.label}</p>
+                  <p className="text-xs text-muted-foreground">{t(badge.labelKey)}</p>
                 </motion.div>
               ))}
             </div>
