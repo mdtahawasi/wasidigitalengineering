@@ -60,10 +60,10 @@ const processStepKeys = [
 ];
 
 const industries = [
-  { icon: Building2, nameKey: "projects.commercial", count: "12+", desc: "Offices, malls, mixed-use towers — full MEP & structural BIM coordination", color: "from-blue-500/20 to-blue-600/5" },
-  { icon: Users, nameKey: "projects.residential", count: "8+", desc: "High-rise apartments, villas & gated communities with detailed LOD 400 models", color: "from-emerald-500/20 to-emerald-600/5" },
-  { icon: HeartHandshake, nameKey: "projects.healthcare", count: "4+", desc: "Hospitals & clinics with complex MEP routing, medical gas & cleanroom specs", color: "from-rose-500/20 to-rose-600/5" },
-  { icon: Globe, nameKey: "projects.infrastructure", count: "3+", desc: "Roads, bridges, metro stations & utilities with civil 3D integration", color: "from-amber-500/20 to-amber-600/5" },
+  { icon: Building2, nameKey: "projects.commercial", count: "12+", descKey: "industry.commercialDesc", color: "from-blue-500/20 to-blue-600/5" },
+  { icon: Users, nameKey: "projects.residential", count: "8+", descKey: "industry.residentialDesc", color: "from-emerald-500/20 to-emerald-600/5" },
+  { icon: HeartHandshake, nameKey: "projects.healthcare", count: "4+", descKey: "industry.healthcareDesc", color: "from-rose-500/20 to-rose-600/5" },
+  { icon: Globe, nameKey: "projects.infrastructure", count: "3+", descKey: "industry.infrastructureDesc", color: "from-amber-500/20 to-amber-600/5" },
   { icon: Cog, nameKey: "industry.industrial", count: "2+", descKey: "industry.industrialDesc", color: "from-violet-500/20 to-violet-600/5" },
   { icon: Award, nameKey: "projects.education", count: "2+", desc: "Schools, universities & research labs with sustainable design & energy modeling", color: "from-cyan-500/20 to-cyan-600/5" },
 ];
