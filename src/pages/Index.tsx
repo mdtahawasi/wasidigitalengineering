@@ -65,7 +65,7 @@ const industries = [
   { icon: HeartHandshake, nameKey: "projects.healthcare", count: "4+", descKey: "industry.healthcareDesc", color: "from-rose-500/20 to-rose-600/5" },
   { icon: Globe, nameKey: "projects.infrastructure", count: "3+", descKey: "industry.infrastructureDesc", color: "from-amber-500/20 to-amber-600/5" },
   { icon: Cog, nameKey: "industry.industrial", count: "2+", descKey: "industry.industrialDesc", color: "from-violet-500/20 to-violet-600/5" },
-  { icon: Award, nameKey: "projects.education", count: "2+", desc: "Schools, universities & research labs with sustainable design & energy modeling", color: "from-cyan-500/20 to-cyan-600/5" },
+  { icon: Award, nameKey: "projects.education", count: "2+", descKey: "industry.educationDesc", color: "from-cyan-500/20 to-cyan-600/5" },
 ];
 
 export default function HomePage() {
