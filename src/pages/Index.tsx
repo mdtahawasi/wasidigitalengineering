@@ -374,10 +374,10 @@ export default function HomePage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-10"
           >
             {[
-              { icon: Lock, title: "Client Data Security", text: "Your intellectual property is sacred. We enforce enterprise-grade encryption (AES-256), NDA-backed access controls, ISO 27001 security protocols, and SOC 2-compliant data handling. Zero breaches since inception.", stat: "0 Breaches", priority: "🔒 #1 Priority" },
-              { icon: HeartHandshake, title: "Client Satisfaction", text: "100% client satisfaction rate backed by structured feedback loops, dedicated account managers, and a 'no-surprise' policy. We treat every project as a partnership — your success is our KPI.", stat: "100% Satisfaction", priority: "⭐ Core Value" },
-              { icon: Clock, title: "On-Time Delivery", text: "We deliver 98% of milestones on or before deadline using agile sprints, buffer planning, and real-time progress dashboards. Late delivery costs money — we respect your timeline like our own.", stat: "98% On-Time", priority: "⏱️ Guaranteed" },
-              { icon: Star, title: "Best-in-Class Quality", text: "Every model passes our rigorous 5-stage QA/QC pipeline: automated rule checks, peer reviews, discipline coordination, client validation, and final audit. We don't ship anything less than excellent.", stat: "5-Stage QA", priority: "✅ Zero Defect" },
+              { icon: Lock, titleKey: "why.securityTitle", textKey: "why.securityText", statKey: "why.securityStat", priorityKey: "why.securityPriority" },
+              { icon: HeartHandshake, titleKey: "why.satisfactionTitle", textKey: "why.satisfactionText", statKey: "why.satisfactionStat", priorityKey: "why.satisfactionValue" },
+              { icon: Clock, titleKey: "why.deliveryTitle", textKey: "why.deliveryText", statKey: "why.deliveryStat", priorityKey: "why.deliveryGuaranteed" },
+              { icon: Star, titleKey: "why.qualityTitle", textKey: "why.qualityText", statKey: "why.qualityStat", priorityKey: "why.qualityZeroDefect" },
             ].map((item, i) => (
               <motion.div key={i} variants={staggerItem} className="glass rounded-xl p-6 hover:border-primary/30 transition-all duration-500 group relative overflow-hidden border-t-2 border-t-primary/40">
                 <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
