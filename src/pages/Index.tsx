@@ -142,10 +142,10 @@ export default function HomePage() {
               <p className="text-xs text-muted-foreground uppercase tracking-widest mb-3">{t("hero.trustedBy")}</p>
               <div className="flex flex-wrap gap-4 items-center">
                 {[
-                  { icon: Building2, label: "50+ Global Firms" },
-                  { icon: Globe, label: "12 Countries" },
-                  { icon: Award, label: "100% Satisfaction" },
-                  { icon: Shield, label: "ISO Certified" },
+                  { icon: Building2, labelKey: "hero.globalFirms" },
+                  { icon: Globe, labelKey: "hero.countries" },
+                  { icon: Award, labelKey: "hero.satisfaction" },
+                  { icon: Shield, labelKey: "hero.isoCertified" },
                 ].map((item, i) => (
                   <motion.div
                     key={item.label}
