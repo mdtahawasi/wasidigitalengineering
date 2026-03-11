@@ -442,10 +442,10 @@ export default function HomePage() {
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               {[
-                { value: "98%", label: "On-Time Delivery Rate" },
-                { value: "35%", label: "Avg. Cost Reduction" },
-                { value: "500K+", label: "Clashes Resolved" },
-                { value: "0", label: "Data Security Breaches" },
+                { value: "98%", labelKey: "trust.onTimeRate" },
+                { value: "35%", labelKey: "trust.costReduction" },
+                { value: "500K+", labelKey: "trust.clashesResolved" },
+                { value: "0", labelKey: "trust.securityBreaches" },
               ].map((badge, i) => (
                 <motion.div
                   key={i}
