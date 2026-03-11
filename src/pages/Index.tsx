@@ -345,7 +345,7 @@ export default function HomePage() {
                       className="h-full rounded-full bg-gradient-primary"
                     />
                   </div>
-                  <p className="text-[10px] text-muted-foreground mt-1">{ind.count} projects completed</p>
+                  <p className="text-[10px] text-muted-foreground mt-1">{ind.count} {t("index.projectsCompleted")}</p>
                 </div>
               </motion.div>
             ))}
