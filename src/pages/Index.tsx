@@ -64,7 +64,7 @@ const industries = [
   { icon: Users, nameKey: "projects.residential", count: "8+", desc: "High-rise apartments, villas & gated communities with detailed LOD 400 models", color: "from-emerald-500/20 to-emerald-600/5" },
   { icon: HeartHandshake, nameKey: "projects.healthcare", count: "4+", desc: "Hospitals & clinics with complex MEP routing, medical gas & cleanroom specs", color: "from-rose-500/20 to-rose-600/5" },
   { icon: Globe, nameKey: "projects.infrastructure", count: "3+", desc: "Roads, bridges, metro stations & utilities with civil 3D integration", color: "from-amber-500/20 to-amber-600/5" },
-  { icon: Cog, name: "Industrial", count: "2+", desc: "Factories, warehouses & data centers with heavy MEP & structural steel detailing", color: "from-violet-500/20 to-violet-600/5" },
+  { icon: Cog, nameKey: "industry.industrial", count: "2+", descKey: "industry.industrialDesc", color: "from-violet-500/20 to-violet-600/5" },
   { icon: Award, nameKey: "projects.education", count: "2+", desc: "Schools, universities & research labs with sustainable design & energy modeling", color: "from-cyan-500/20 to-cyan-600/5" },
 ];
 
