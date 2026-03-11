@@ -405,18 +405,18 @@ export default function HomePage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
           >
             {[
-              { icon: Shield, title: "ISO 19650 Compliance", text: "Full compliance with international BIM information management standards — proper BEPs, naming conventions, and audit trails from day one.", stat: "100% Compliant" },
-              { icon: Brain, title: "AI-Driven Clash Detection", text: "Proprietary AI classifies clashes by severity, reducing manual review by 70% and eliminating costly on-site rework before construction begins.", stat: "70% Faster" },
-              { icon: Award, title: "Certified Professionals", text: "50+ certifications across Autodesk, Bentley, Trimble, and buildingSMART. Continuous training keeps us ahead of industry evolution.", stat: "50+ Certs" },
-              { icon: Globe, title: "24/7 Global Delivery", text: "Follow-the-sun model across India, UAE, and KSA. Your project progresses around the clock — faster turnarounds, zero downtime.", stat: "3 Time Zones" },
-              { icon: Zap, title: "Agile BIM Methodology", text: "Sprint-based delivery with weekly milestones, daily standups, and real-time progress tracking. Predictable timelines with flexibility to adapt.", stat: "Weekly Sprints" },
-              { icon: Cpu, title: "Automation & Scripting", text: "Custom Dynamo scripts, Revit plugins, and Python automations eliminate repetitive tasks — saving 40%+ engineering hours per project.", stat: "40% Time Saved" },
-              { icon: DollarSign, title: "Cost-Effective Solutions", text: "Our offshore delivery model provides top-tier BIM talent at 40-60% lower cost than in-house teams — without compromising quality or timelines.", stat: "60% Cost Savings" },
-              { icon: Target, title: "Scalable Team On-Demand", text: "Need 5 modelers this week and 20 next month? Our elastic workforce scales instantly to match project demands — no hiring delays or overhead.", stat: "Instant Scaling" },
-              { icon: Workflow, title: "CDE & Collaboration", text: "We manage Common Data Environments on ACC, Aconex, and SharePoint with seamless model sharing, version control, and approval workflows.", stat: "Real-Time Sync" },
-              { icon: FileCheck, title: "Transparent Reporting", text: "Weekly progress reports, model audit logs, clash resolution matrices, and live dashboards — you always know exactly where your project stands.", stat: "Full Visibility" },
-              { icon: Handshake, title: "Long-Term Partnerships", text: "85% of our clients are repeat customers. We invest in understanding your standards, templates, and workflows for seamless ongoing collaboration.", stat: "85% Retention" },
-              { icon: Sparkles, title: "Innovation-First Culture", text: "We actively invest in R&D — from generative design experiments to digital twin integrations — ensuring you always have access to next-gen BIM capabilities.", stat: "R&D Focused" },
+              { icon: Shield, titleKey: "why.isoTitle", textKey: "why.isoText", statKey: "why.isoStat" },
+              { icon: Brain, titleKey: "why.aiClashTitle", textKey: "why.aiClashText", statKey: "why.aiClashStat" },
+              { icon: Award, titleKey: "why.certifiedTitle", textKey: "why.certifiedText", statKey: "why.certifiedStat" },
+              { icon: Globe, titleKey: "why.globalTitle", textKey: "why.globalText", statKey: "why.globalStat" },
+              { icon: Zap, titleKey: "why.agileTitle", textKey: "why.agileText", statKey: "why.agileStat" },
+              { icon: Cpu, titleKey: "why.automationTitle", textKey: "why.automationText", statKey: "why.automationStat" },
+              { icon: DollarSign, titleKey: "why.costTitle", textKey: "why.costText", statKey: "why.costStat" },
+              { icon: Target, titleKey: "why.scalableTitle", textKey: "why.scalableText", statKey: "why.scalableStat" },
+              { icon: Workflow, titleKey: "why.cdeTitle", textKey: "why.cdeText", statKey: "why.cdeStat" },
+              { icon: FileCheck, titleKey: "why.reportingTitle", textKey: "why.reportingText", statKey: "why.reportingStat" },
+              { icon: Handshake, titleKey: "why.partnershipsTitle", textKey: "why.partnershipsText", statKey: "why.partnershipsStat" },
+              { icon: Sparkles, titleKey: "why.innovationTitle", textKey: "why.innovationText", statKey: "why.innovationStat" },
             ].map((item, i) => (
               <motion.div key={i} variants={staggerItem} className="glass rounded-xl p-6 hover:border-primary/30 transition-all duration-500 group relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
