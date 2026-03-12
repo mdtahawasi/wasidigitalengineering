@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, Bot, User, Sparkles, Zap } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { useLanguage } from "@/contexts/LanguageContext";
+import aiBotIcon from "@/assets/ai-bot-icon.png";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
