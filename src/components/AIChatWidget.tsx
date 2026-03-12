@@ -151,47 +151,91 @@ export default function AIChatWidget() {
 
   return (
     <>
-      {/* Floating AI Button */}
+      {/* Floating AI Robot Button */}
       <motion.button
         onClick={() => setOpen(!open)}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.6, type: "spring", stiffness: 200, damping: 15 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        whileHover={{ scale: 1.05, y: -2 }}
+        whileTap={{ scale: 0.92 }}
         className="fixed bottom-24 right-6 z-50 group"
         aria-label="AI Chat Support"
       >
-        {/* Glow effect */}
-        <span className="absolute inset-[-3px] rounded-2xl bg-gradient-to-br from-primary to-accent opacity-60 blur-md group-hover:opacity-80 transition-opacity" />
-        
-        <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-accent text-primary-foreground flex items-center justify-center shadow-[0_4px_20px_hsl(var(--primary)/0.35)] transition-all">
+        {/* Animated orbital ring */}
+        <motion.span
+          className="absolute inset-[-6px] rounded-full border-2 border-dashed border-primary/30 group-hover:border-primary/50"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+        />
+        {/* Glow pulse */}
+        <span className="absolute inset-[-4px] rounded-full bg-gradient-to-br from-primary/25 to-accent/25 blur-lg animate-pulse" />
+
+        <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-primary via-primary to-accent text-primary-foreground flex items-center justify-center shadow-[0_4px_25px_hsl(var(--primary)/0.4)] transition-all overflow-hidden">
+          {/* Subtle circuit pattern overlay */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-2 left-3 w-3 h-[1px] bg-primary-foreground" />
+            <div className="absolute top-4 right-2 w-2 h-[1px] bg-primary-foreground" />
+            <div className="absolute bottom-3 left-4 w-4 h-[1px] bg-primary-foreground" />
+            <div className="absolute top-3 left-5 w-[1px] h-3 bg-primary-foreground" />
+            <div className="absolute bottom-4 right-5 w-[1px] h-2 bg-primary-foreground" />
+          </div>
+
           <AnimatePresence mode="wait">
             {open ? (
               <motion.div
                 key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.15 }}
+                initial={{ rotate: -90, scale: 0.5, opacity: 0 }}
+                animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                exit={{ rotate: 90, scale: 0.5, opacity: 0 }}
+                transition={{ duration: 0.2 }}
               >
-                <X size={22} />
+                <X size={22} strokeWidth={2.5} />
               </motion.div>
             ) : (
               <motion.div
-                key="bot"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.15 }}
-                className="relative"
+                key="robot-face"
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.5, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="relative flex flex-col items-center"
               >
-                <Sparkles size={22} />
-                {/* Online indicator */}
-                <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-green-400 border-2 border-white dark:border-gray-900 animate-pulse" />
+                {/* Robot antenna */}
+                <div className="absolute -top-[10px] w-[2px] h-[6px] bg-primary-foreground/80 rounded-full">
+                  <motion.div
+                    className="absolute -top-[3px] left-1/2 -translate-x-1/2 w-[5px] h-[5px] rounded-full bg-primary-foreground"
+                    animate={{ opacity: [1, 0.3, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
+                </div>
+                {/* Robot eyes */}
+                <div className="flex gap-[8px] mt-[2px]">
+                  <motion.div
+                    className="w-[8px] h-[8px] rounded-[3px] bg-primary-foreground"
+                    animate={{ scaleY: [1, 0.15, 1] }}
+                    transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, times: [0, 0.05, 0.1] }}
+                  />
+                  <motion.div
+                    className="w-[8px] h-[8px] rounded-[3px] bg-primary-foreground"
+                    animate={{ scaleY: [1, 0.15, 1] }}
+                    transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, times: [0, 0.05, 0.1] }}
+                  />
+                </div>
+                {/* Robot mouth - animated smile */}
+                <motion.div
+                  className="mt-[3px] w-[12px] h-[4px] border-b-[2px] border-primary-foreground/90 rounded-b-full"
+                  animate={{ width: ["12px", "8px", "12px"] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                />
               </motion.div>
             )}
           </AnimatePresence>
+
+          {/* Online status light */}
+          <span className="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-[2.5px] border-primary shadow-[0_0_6px_rgba(52,211,153,0.6)]">
+            <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-40" />
+          </span>
         </div>
 
         {/* Tooltip */}
@@ -199,9 +243,10 @@ export default function AIChatWidget() {
           <motion.div
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 2 }}
-            className="absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap bg-card border border-border text-foreground text-xs font-medium px-3 py-1.5 rounded-lg shadow-lg pointer-events-none"
+            transition={{ delay: 2.5 }}
+            className="absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap bg-card border border-border text-foreground text-xs font-medium px-3 py-2 rounded-xl shadow-lg pointer-events-none flex items-center gap-1.5"
           >
+            <Sparkles size={12} className="text-primary" />
             {t("chat.askMe")}
             <span className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-0 h-0 border-l-[6px] border-l-card border-y-[5px] border-y-transparent" />
           </motion.div>
