@@ -148,7 +148,7 @@ export default function HomePage() {
                   { icon: Shield, labelKey: "hero.isoCertified" },
                 ].map((item, i) => (
                   <motion.div
-                    key={item.label}
+                    key={item.labelKey}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.4 + i * 0.1, duration: 0.4 }}
