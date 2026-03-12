@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Bot, User } from "lucide-react";
+import { X, Send, Bot, User, Sparkles, Zap } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -87,24 +88,36 @@ async function streamChat({
   onDone();
 }
 
+const quickActions = [
+  { labelKey: "chat.quickBim", icon: Zap },
+  { labelKey: "chat.quickProjects", icon: Sparkles },
+  { labelKey: "chat.quickContact", icon: Send },
+];
+
 export default function AIChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages]);
 
-  const send = async () => {
-    const text = input.trim();
-    if (!text || isLoading) return;
-    const userMsg: Msg = { role: "user", content: text };
+  const sendMessage = async (text: string) => {
+    if (!text.trim() || isLoading) return;
+    const userMsg: Msg = { role: "user", content: text.trim() };
     setInput("");
     setMessages((prev) => [...prev, userMsg]);
     setIsLoading(true);
+
+    // Prepend language instruction so the bot replies in the active language
+    const langInstruction: Msg = {
+      role: "user",
+      content: `[System: Reply in ${language === "ar" ? "Arabic" : language === "hi" ? "Hindi" : language === "fr" ? "French" : language === "de" ? "German" : language === "es" ? "Spanish" : language === "zh" ? "Chinese" : language === "ja" ? "Japanese" : "English"}. Be concise and helpful.]`,
+    };
 
     let assistantSoFar = "";
     const upsert = (chunk: string) => {
@@ -120,7 +133,7 @@ export default function AIChatWidget() {
 
     try {
       await streamChat({
-        messages: [...messages, userMsg],
+        messages: [langInstruction, ...messages, userMsg],
         onDelta: upsert,
         onDone: () => setIsLoading(false),
         onError: (msg) => {
@@ -129,60 +142,158 @@ export default function AIChatWidget() {
         },
       });
     } catch {
-      setMessages((prev) => [...prev, { role: "assistant", content: "Sorry, something went wrong." }]);
+      setMessages((prev) => [...prev, { role: "assistant", content: t("chat.error") }]);
       setIsLoading(false);
     }
   };
 
+  const send = () => sendMessage(input);
+
   return (
     <>
-      {/* Floating button — positioned above WhatsApp button */}
-      <button
+      {/* Floating AI Button */}
+      <motion.button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-24 right-6 z-50 w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.6, type: "spring", stiffness: 200, damping: 15 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="fixed bottom-24 right-6 z-50 group"
         aria-label="AI Chat Support"
       >
-        {open ? <X size={24} /> : <MessageCircle size={24} />}
-      </button>
+        {/* Glow effect */}
+        <span className="absolute inset-[-3px] rounded-2xl bg-gradient-to-br from-primary to-accent opacity-60 blur-md group-hover:opacity-80 transition-opacity" />
+        
+        <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-accent text-primary-foreground flex items-center justify-center shadow-[0_4px_20px_hsl(var(--primary)/0.35)] transition-all">
+          <AnimatePresence mode="wait">
+            {open ? (
+              <motion.div
+                key="close"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.15 }}
+              >
+                <X size={22} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="bot"
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.15 }}
+                className="relative"
+              >
+                <Sparkles size={22} />
+                {/* Online indicator */}
+                <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-green-400 border-2 border-white dark:border-gray-900 animate-pulse" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
+        {/* Tooltip */}
+        {!open && (
+          <motion.div
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 2 }}
+            className="absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap bg-card border border-border text-foreground text-xs font-medium px-3 py-1.5 rounded-lg shadow-lg pointer-events-none"
+          >
+            {t("chat.askMe")}
+            <span className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-0 h-0 border-l-[6px] border-l-card border-y-[5px] border-y-transparent" />
+          </motion.div>
+        )}
+      </motion.button>
+
+      {/* Chat Panel */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="fixed bottom-40 right-6 z-50 w-[340px] sm:w-[380px] h-[480px] rounded-2xl border border-border bg-background shadow-2xl flex flex-col overflow-hidden"
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="fixed bottom-[10.5rem] right-6 z-50 w-[340px] sm:w-[400px] h-[520px] rounded-2xl border border-border/60 bg-background/95 backdrop-blur-xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="px-4 py-3 bg-primary text-primary-foreground flex items-center gap-2">
-              <Bot size={20} />
-              <div>
-                <p className="text-sm font-semibold">WASI BIM Assistant</p>
-                <p className="text-[10px] opacity-80">AI-powered support</p>
+            <div className="relative px-5 py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground overflow-hidden">
+              {/* Decorative circles */}
+              <div className="absolute -top-6 -right-6 w-20 h-20 rounded-full bg-white/10" />
+              <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-white/5" />
+              
+              <div className="relative flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                  <Bot size={20} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-bold tracking-wide">{t("chat.title")}</p>
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-green-300 animate-pulse" />
+                    <p className="text-[11px] opacity-80">{t("chat.online")}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setOpen(false)}
+                  className="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center transition-colors"
+                >
+                  <X size={16} />
+                </button>
               </div>
             </div>
 
             {/* Messages */}
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 space-y-3">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4">
               {messages.length === 0 && (
-                <div className="text-center text-muted-foreground text-xs mt-8 space-y-2">
-                  <Bot size={32} className="mx-auto opacity-40" />
-                  <p>Hi! Ask me anything about our BIM services, projects, or expertise.</p>
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-center mt-4 space-y-4"
+                >
+                  <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
+                    <Sparkles size={28} className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">{t("chat.welcome")}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{t("chat.welcomeSub")}</p>
+                  </div>
+
+                  {/* Quick Actions */}
+                  <div className="space-y-2 pt-2">
+                    {quickActions.map((action) => (
+                      <button
+                        key={action.labelKey}
+                        onClick={() => sendMessage(t(action.labelKey))}
+                        className="w-full flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-muted/50 hover:bg-muted text-left text-sm text-foreground transition-colors border border-border/40 hover:border-border"
+                      >
+                        <action.icon size={14} className="text-primary shrink-0" />
+                        <span>{t(action.labelKey)}</span>
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
               )}
+
               {messages.map((msg, i) => (
-                <div key={i} className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className={`flex gap-2.5 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                >
                   {msg.role === "assistant" && (
-                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1">
+                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary/15 to-accent/15 flex items-center justify-center shrink-0 mt-0.5">
                       <Bot size={14} className="text-primary" />
                     </div>
                   )}
                   <div
-                    className={`max-w-[80%] px-3 py-2 rounded-xl text-sm leading-relaxed ${
+                    className={`max-w-[78%] px-3.5 py-2.5 text-sm leading-relaxed ${
                       msg.role === "user"
-                        ? "bg-primary text-primary-foreground rounded-br-sm"
-                        : "bg-muted text-foreground rounded-bl-sm"
+                        ? "bg-gradient-to-br from-primary to-primary/90 text-primary-foreground rounded-2xl rounded-br-md shadow-sm"
+                        : "bg-muted/70 text-foreground rounded-2xl rounded-bl-md border border-border/30"
                     }`}
                   >
                     {msg.role === "assistant" ? (
@@ -194,26 +305,35 @@ export default function AIChatWidget() {
                     )}
                   </div>
                   {msg.role === "user" && (
-                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1">
+                    <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                       <User size={14} className="text-primary" />
                     </div>
                   )}
-                </div>
+                </motion.div>
               ))}
+
               {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
-                <div className="flex gap-2">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="flex gap-2.5"
+                >
+                  <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary/15 to-accent/15 flex items-center justify-center shrink-0">
                     <Bot size={14} className="text-primary" />
                   </div>
-                  <div className="bg-muted rounded-xl px-3 py-2 text-sm text-muted-foreground">
-                    <span className="animate-pulse">Thinking…</span>
+                  <div className="bg-muted/70 rounded-2xl rounded-bl-md px-4 py-3 border border-border/30">
+                    <div className="flex gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-primary/40 animate-bounce [animation-delay:0ms]" />
+                      <span className="w-2 h-2 rounded-full bg-primary/40 animate-bounce [animation-delay:150ms]" />
+                      <span className="w-2 h-2 rounded-full bg-primary/40 animate-bounce [animation-delay:300ms]" />
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               )}
             </div>
 
             {/* Input */}
-            <div className="p-3 border-t border-border">
+            <div className="p-3 border-t border-border/50 bg-muted/20">
               <form
                 onSubmit={(e) => { e.preventDefault(); send(); }}
                 className="flex gap-2"
@@ -221,18 +341,23 @@ export default function AIChatWidget() {
                 <input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask about our BIM services…"
-                  className="flex-1 bg-muted rounded-lg px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary"
+                  placeholder={t("chat.placeholder")}
+                  className="flex-1 bg-background rounded-xl px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none border border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/10 transition-all"
                   disabled={isLoading}
                 />
-                <button
+                <motion.button
                   type="submit"
                   disabled={isLoading || !input.trim()}
-                  className="w-9 h-9 rounded-lg bg-primary text-primary-foreground flex items-center justify-center disabled:opacity-50 hover:opacity-90 transition-opacity"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent text-primary-foreground flex items-center justify-center disabled:opacity-40 shadow-sm transition-opacity"
                 >
                   <Send size={16} />
-                </button>
+                </motion.button>
               </form>
+              <p className="text-[10px] text-muted-foreground text-center mt-2 opacity-60">
+                {t("chat.poweredBy")}
+              </p>
             </div>
           </motion.div>
         )}
