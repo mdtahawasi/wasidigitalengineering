@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, Bot, User, Sparkles, Zap } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { useLanguage } from "@/contexts/LanguageContext";
+import aiBotIcon from "@/assets/ai-bot-icon.png";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -157,86 +158,55 @@ export default function AIChatWidget() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.6, type: "spring", stiffness: 200, damping: 15 }}
-        whileHover={{ scale: 1.05, y: -2 }}
+        whileHover={{ scale: 1.08, y: -3 }}
         whileTap={{ scale: 0.92 }}
         className="fixed bottom-24 right-6 z-50 group"
         aria-label="AI Chat Support"
       >
-        {/* Animated orbital ring */}
+        {/* Orbiting ring */}
         <motion.span
-          className="absolute inset-[-6px] rounded-full border-2 border-dashed border-primary/30 group-hover:border-primary/50"
+          className="absolute inset-[-5px] rounded-full border-2 border-dashed border-primary/25 group-hover:border-primary/50 transition-colors"
           animate={{ rotate: 360 }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
-        {/* Glow pulse */}
-        <span className="absolute inset-[-4px] rounded-full bg-gradient-to-br from-primary/25 to-accent/25 blur-lg animate-pulse" />
+        {/* Glow */}
+        <span className="absolute inset-[-3px] rounded-full bg-primary/20 blur-md animate-pulse" />
 
-        <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-primary via-primary to-accent text-primary-foreground flex items-center justify-center shadow-[0_4px_25px_hsl(var(--primary)/0.4)] transition-all overflow-hidden">
-          {/* Subtle circuit pattern overlay */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-2 left-3 w-3 h-[1px] bg-primary-foreground" />
-            <div className="absolute top-4 right-2 w-2 h-[1px] bg-primary-foreground" />
-            <div className="absolute bottom-3 left-4 w-4 h-[1px] bg-primary-foreground" />
-            <div className="absolute top-3 left-5 w-[1px] h-3 bg-primary-foreground" />
-            <div className="absolute bottom-4 right-5 w-[1px] h-2 bg-primary-foreground" />
-          </div>
-
-          <AnimatePresence mode="wait">
-            {open ? (
-              <motion.div
-                key="close"
-                initial={{ rotate: -90, scale: 0.5, opacity: 0 }}
-                animate={{ rotate: 0, scale: 1, opacity: 1 }}
-                exit={{ rotate: 90, scale: 0.5, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <X size={22} strokeWidth={2.5} />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="robot-face"
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.5, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="relative flex flex-col items-center"
-              >
-                {/* Robot antenna */}
-                <div className="absolute -top-[10px] w-[2px] h-[6px] bg-primary-foreground/80 rounded-full">
-                  <motion.div
-                    className="absolute -top-[3px] left-1/2 -translate-x-1/2 w-[5px] h-[5px] rounded-full bg-primary-foreground"
-                    animate={{ opacity: [1, 0.3, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                </div>
-                {/* Robot eyes */}
-                <div className="flex gap-[8px] mt-[2px]">
-                  <motion.div
-                    className="w-[8px] h-[8px] rounded-[3px] bg-primary-foreground"
-                    animate={{ scaleY: [1, 0.15, 1] }}
-                    transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, times: [0, 0.05, 0.1] }}
-                  />
-                  <motion.div
-                    className="w-[8px] h-[8px] rounded-[3px] bg-primary-foreground"
-                    animate={{ scaleY: [1, 0.15, 1] }}
-                    transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, times: [0, 0.05, 0.1] }}
-                  />
-                </div>
-                {/* Robot mouth - animated smile */}
-                <motion.div
-                  className="mt-[3px] w-[12px] h-[4px] border-b-[2px] border-primary-foreground/90 rounded-b-full"
-                  animate={{ width: ["12px", "8px", "12px"] }}
-                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Online status light */}
-          <span className="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-[2.5px] border-primary shadow-[0_0_6px_rgba(52,211,153,0.6)]">
-            <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-40" />
-          </span>
-        </div>
+        <AnimatePresence mode="wait">
+          {open ? (
+            <motion.div
+              key="close-btn"
+              initial={{ rotate: -90, scale: 0.5, opacity: 0 }}
+              animate={{ rotate: 0, scale: 1, opacity: 1 }}
+              exit={{ rotate: 90, scale: 0.5, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="relative w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-[0_4px_25px_hsl(var(--primary)/0.4)]"
+            >
+              <X size={24} strokeWidth={2.5} className="text-primary-foreground" />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="bot-icon"
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.5, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="relative w-16 h-16 rounded-full bg-background border-2 border-primary/30 shadow-[0_4px_25px_hsl(var(--primary)/0.3)] overflow-hidden group-hover:border-primary/60 transition-colors"
+            >
+              <motion.img
+                src={aiBotIcon}
+                alt="AI Assistant"
+                className="w-full h-full object-cover scale-[1.15]"
+                animate={{ y: [0, -1, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+              {/* Online indicator */}
+              <span className="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-background shadow-[0_0_8px_rgba(52,211,153,0.6)]">
+                <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-30" />
+              </span>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Tooltip */}
         {!open && (
