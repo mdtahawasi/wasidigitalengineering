@@ -9,6 +9,8 @@ import OrgChart from "@/components/OrgChart";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 import aboutTeam from "@/assets/about-team.jpg";
+import heroTeamCollab from "@/assets/hero-team-collab.jpg";
+import heroConstruction from "@/assets/hero-construction-site.jpg";
 
 const valueKeys = [
   { icon: Target, titleKey: "value.precision", descKey: "value.precisionDesc" },
