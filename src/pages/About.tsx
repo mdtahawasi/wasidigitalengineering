@@ -96,6 +96,26 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Construction Excellence Image Banner */}
+      <section className="py-8">
+        <div className="container mx-auto px-4 md:px-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="relative rounded-2xl overflow-hidden h-64 md:h-80"
+          >
+            <img src={heroConstruction} alt="Construction Excellence" className="w-full h-full object-cover" loading="lazy" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
+            <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8">
+              <p className="text-xs text-primary font-semibold uppercase tracking-wider mb-1">Our Commitment</p>
+              <h3 className="text-xl md:text-2xl font-display font-bold text-foreground">Building the Digital Future of Construction</h3>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Stats */}
       <section className="py-16 bg-card/30">
         <div className="container mx-auto px-4 md:px-8">

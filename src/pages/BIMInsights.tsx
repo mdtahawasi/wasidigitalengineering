@@ -101,6 +101,10 @@ export default function BIMInsightsPage() {
     <Layout>
       {/* ===== HERO ===== */}
       <section className="relative section-padding overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={imgArchitecture} alt="" className="w-full h-full object-cover opacity-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+        </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />
         <div className="container mx-auto px-4 md:px-8 relative">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -114,6 +118,32 @@ export default function BIMInsightsPage() {
               Comprehensive data on BIM adoption worldwide — market size, country-level mandates, growth projections, and industry trends driving the $22B digital construction revolution.
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* BIM Visual Showcase */}
+      <section className="pb-8 -mt-4">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-3 gap-3 rounded-2xl overflow-hidden">
+            {[
+              { img: imgArchitecture, label: "BIM Architecture" },
+              { img: imgMEPF, label: "MEP Coordination" },
+              { img: imgFacilityMgmt, label: "Digital Twin & FM" },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="relative aspect-[16/9] overflow-hidden rounded-xl group"
+              >
+                <img src={item.img} alt={item.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent" />
+                <p className="absolute bottom-2 left-3 text-xs font-semibold text-foreground">{item.label}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
