@@ -11,6 +11,7 @@ import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, staggerContainer, staggerItem } from "@/lib/animations";
+import heroTeamCollab from "@/assets/hero-team-collab.jpg";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
