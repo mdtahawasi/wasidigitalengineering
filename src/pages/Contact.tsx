@@ -6,6 +6,7 @@ import WorldMap from "@/components/WorldMap";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 import { toast } from "sonner";
+import heroConstruction from "@/assets/hero-construction-site.jpg";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
@@ -27,6 +28,10 @@ export default function ContactPage() {
   return (
     <Layout>
       <section className="relative section-padding overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={heroConstruction} alt="" className="w-full h-full object-cover opacity-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+        </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />
         <div className="container mx-auto px-4 md:px-8 relative">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>

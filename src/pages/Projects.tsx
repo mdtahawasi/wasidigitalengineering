@@ -5,6 +5,7 @@ import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { staggerContainer, staggerItem } from "@/lib/animations";
+import heroConstruction from "@/assets/hero-construction-site.jpg";
 import projectHGR from "@/assets/project-hgr.jpg";
 import projectLimeGarden from "@/assets/project-lime-garden.jpg";
 import projectParkField from "@/assets/project-park-field.jpg";
@@ -110,6 +111,10 @@ export default function ProjectsPage() {
   return (
     <Layout>
       <section className="relative section-padding overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={heroConstruction} alt="" className="w-full h-full object-cover opacity-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+        </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />
         <div className="container mx-auto px-4 md:px-8 relative">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>

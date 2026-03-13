@@ -20,14 +20,20 @@ import projectHGR from "@/assets/project-hgr.jpg";
 import projectLimeGarden from "@/assets/project-lime-garden.jpg";
 import projectGodrej from "@/assets/project-godrej.jpg";
 import projectPearlCentre from "@/assets/project-pearl-centre.jpg";
+import imgArchitecture from "@/assets/discipline-architecture.jpg";
+import imgMEPF from "@/assets/discipline-mepf.jpg";
+import imgScanToBIM from "@/assets/discipline-scan-to-bim.jpg";
+import img4D5D from "@/assets/discipline-4d5d.jpg";
+import imgFacilityMgmt from "@/assets/discipline-facility-mgmt.jpg";
+import imgStructural from "@/assets/discipline-structural.jpg";
 
 const serviceKeys = [
-  { icon: Building2, titleKey: "svc.bimModeling", descKey: "svc.bimModelingDesc" },
-  { icon: Layers3, titleKey: "svc.clashDetection", descKey: "svc.clashDetectionDesc" },
-  { icon: ScanLine, titleKey: "svc.scanToBim", descKey: "svc.scanToBimDesc" },
-  { icon: Cpu, titleKey: "svc.4d5dSim", descKey: "svc.4d5dSimDesc" },
-  { icon: BarChart3, titleKey: "svc.bimConsulting", descKey: "svc.bimConsultingDesc" },
-  { icon: Cog, titleKey: "svc.digitalTwin", descKey: "svc.digitalTwinDesc" },
+  { icon: Building2, titleKey: "svc.bimModeling", descKey: "svc.bimModelingDesc", img: imgArchitecture },
+  { icon: Layers3, titleKey: "svc.clashDetection", descKey: "svc.clashDetectionDesc", img: imgMEPF },
+  { icon: ScanLine, titleKey: "svc.scanToBim", descKey: "svc.scanToBimDesc", img: imgScanToBIM },
+  { icon: Cpu, titleKey: "svc.4d5dSim", descKey: "svc.4d5dSimDesc", img: img4D5D },
+  { icon: BarChart3, titleKey: "svc.bimConsulting", descKey: "svc.bimConsultingDesc", img: imgStructural },
+  { icon: Cog, titleKey: "svc.digitalTwin", descKey: "svc.digitalTwinDesc", img: imgFacilityMgmt },
 ];
 
 const stats = [
@@ -209,12 +215,15 @@ export default function HomePage() {
               <motion.div
                 key={i}
                 variants={staggerItem}
-                className="group glass rounded-xl p-6 hover:border-primary/30 transition-all duration-500 relative overflow-hidden"
+                className="group glass rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-500 relative"
               >
-                <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
-                <div className="relative">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-gradient-primary group-hover:text-primary-foreground transition-all duration-500">
-                    <service.icon size={24} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                <div className="relative h-36 overflow-hidden">
+                  <img src={service.img} alt={t(service.titleKey)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                </div>
+                <div className="p-5 relative">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-gradient-primary group-hover:text-primary-foreground transition-all duration-500 -mt-10 relative z-10 border-2 border-background">
+                    <service.icon size={20} className="text-primary group-hover:text-primary-foreground transition-colors" />
                   </div>
                   <h3 className="font-display font-semibold text-lg text-foreground mb-2">{t(service.titleKey)}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{t(service.descKey)}</p>

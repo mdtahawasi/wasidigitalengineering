@@ -11,6 +11,7 @@ import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, staggerContainer, staggerItem } from "@/lib/animations";
+import heroTeamCollab from "@/assets/hero-team-collab.jpg";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -110,6 +111,10 @@ export default function CareersPage() {
     <Layout>
       {/* Hero */}
       <section className="relative section-padding overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={heroTeamCollab} alt="" className="w-full h-full object-cover opacity-12" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+        </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />
         <div className="container mx-auto px-4 md:px-8 relative">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
