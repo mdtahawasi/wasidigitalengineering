@@ -215,12 +215,15 @@ export default function HomePage() {
               <motion.div
                 key={i}
                 variants={staggerItem}
-                className="group glass rounded-xl p-6 hover:border-primary/30 transition-all duration-500 relative overflow-hidden"
+                className="group glass rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-500 relative"
               >
-                <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
-                <div className="relative">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-gradient-primary group-hover:text-primary-foreground transition-all duration-500">
-                    <service.icon size={24} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                <div className="relative h-36 overflow-hidden">
+                  <img src={service.img} alt={t(service.titleKey)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                </div>
+                <div className="p-5 relative">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-gradient-primary group-hover:text-primary-foreground transition-all duration-500 -mt-10 relative z-10 border-2 border-background">
+                    <service.icon size={20} className="text-primary group-hover:text-primary-foreground transition-colors" />
                   </div>
                   <h3 className="font-display font-semibold text-lg text-foreground mb-2">{t(service.titleKey)}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{t(service.descKey)}</p>
