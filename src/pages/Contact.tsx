@@ -6,6 +6,7 @@ import WorldMap from "@/components/WorldMap";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 import { toast } from "sonner";
+import heroConstruction from "@/assets/hero-construction-site.jpg";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
