@@ -5,6 +5,7 @@ import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { staggerContainer, staggerItem } from "@/lib/animations";
+import heroConstruction from "@/assets/hero-construction-site.jpg";
 import projectHGR from "@/assets/project-hgr.jpg";
 import projectLimeGarden from "@/assets/project-lime-garden.jpg";
 import projectParkField from "@/assets/project-park-field.jpg";
