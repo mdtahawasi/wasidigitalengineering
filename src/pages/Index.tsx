@@ -20,6 +20,12 @@ import projectHGR from "@/assets/project-hgr.jpg";
 import projectLimeGarden from "@/assets/project-lime-garden.jpg";
 import projectGodrej from "@/assets/project-godrej.jpg";
 import projectPearlCentre from "@/assets/project-pearl-centre.jpg";
+import imgArchitecture from "@/assets/discipline-architecture.jpg";
+import imgMEPF from "@/assets/discipline-mepf.jpg";
+import imgScanToBIM from "@/assets/discipline-scan-to-bim.jpg";
+import img4D5D from "@/assets/discipline-4d5d.jpg";
+import imgFacilityMgmt from "@/assets/discipline-facility-mgmt.jpg";
+import imgStructural from "@/assets/discipline-structural.jpg";
 
 const serviceKeys = [
   { icon: Building2, titleKey: "svc.bimModeling", descKey: "svc.bimModelingDesc" },
