@@ -28,12 +28,12 @@ import imgFacilityMgmt from "@/assets/discipline-facility-mgmt.jpg";
 import imgStructural from "@/assets/discipline-structural.jpg";
 
 const serviceKeys = [
-  { icon: Building2, titleKey: "svc.bimModeling", descKey: "svc.bimModelingDesc" },
-  { icon: Layers3, titleKey: "svc.clashDetection", descKey: "svc.clashDetectionDesc" },
-  { icon: ScanLine, titleKey: "svc.scanToBim", descKey: "svc.scanToBimDesc" },
-  { icon: Cpu, titleKey: "svc.4d5dSim", descKey: "svc.4d5dSimDesc" },
-  { icon: BarChart3, titleKey: "svc.bimConsulting", descKey: "svc.bimConsultingDesc" },
-  { icon: Cog, titleKey: "svc.digitalTwin", descKey: "svc.digitalTwinDesc" },
+  { icon: Building2, titleKey: "svc.bimModeling", descKey: "svc.bimModelingDesc", img: imgArchitecture },
+  { icon: Layers3, titleKey: "svc.clashDetection", descKey: "svc.clashDetectionDesc", img: imgMEPF },
+  { icon: ScanLine, titleKey: "svc.scanToBim", descKey: "svc.scanToBimDesc", img: imgScanToBIM },
+  { icon: Cpu, titleKey: "svc.4d5dSim", descKey: "svc.4d5dSimDesc", img: img4D5D },
+  { icon: BarChart3, titleKey: "svc.bimConsulting", descKey: "svc.bimConsultingDesc", img: imgStructural },
+  { icon: Cog, titleKey: "svc.digitalTwin", descKey: "svc.digitalTwinDesc", img: imgFacilityMgmt },
 ];
 
 const stats = [
