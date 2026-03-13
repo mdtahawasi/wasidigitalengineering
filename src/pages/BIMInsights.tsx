@@ -8,6 +8,9 @@ import {
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import imgArchitecture from "@/assets/discipline-architecture.jpg";
+import imgMEPF from "@/assets/discipline-mepf.jpg";
+import imgFacilityMgmt from "@/assets/discipline-facility-mgmt.jpg";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
