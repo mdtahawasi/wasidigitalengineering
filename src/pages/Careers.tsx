@@ -118,27 +118,7 @@ export default function CareersPage() {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="relative section-padding overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={heroTeamCollab} alt="" className="w-full h-full object-cover opacity-12" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-        </div>
-        <div className="absolute inset-0 grid-pattern opacity-10" />
-        <div className="container mx-auto px-4 md:px-8 relative">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <motion.span initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.2 }} className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4">
-              {t("careers.badge")}
-            </motion.span>
-            <motion.h1 initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-3xl">
-              {t("careers.title")} <span className="text-gradient">{t("careers.titleHighlight")}</span> {t("careers.titleEnd")}
-            </motion.h1>
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }} className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              {t("careers.desc")}
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHeroSlider slides={careersHeroSlides} />
 
       {/* Why Join Us - Stats */}
       <section className="pb-16">
