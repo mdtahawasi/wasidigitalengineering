@@ -7,6 +7,9 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 import { toast } from "sonner";
 import heroConstruction from "@/assets/hero-construction-site.jpg";
+import heroContact1 from "@/assets/hero-contact-1.jpg";
+import heroServices1 from "@/assets/hero-services-1.jpg";
+import PageHeroSlider from "@/components/PageHeroSlider";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
