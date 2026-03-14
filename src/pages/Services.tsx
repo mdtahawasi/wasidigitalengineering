@@ -26,6 +26,14 @@ import imgScanToBIM from "@/assets/discipline-scan-to-bim.jpg";
 import img4D5D from "@/assets/discipline-4d5d.jpg";
 import imgQTO from "@/assets/discipline-qto.jpg";
 import imgAI from "@/assets/discipline-ai-automation.jpg";
+import heroServices1 from "@/assets/hero-services-1.jpg";
+import heroServices2 from "@/assets/hero-services-2.jpg";
+
+const servicesHeroSlides = [
+  { image: heroServices1, badge: "Our Services", headline: "End-to-End", headlineHighlight: "BIM Solutions", headlineEnd: "for Every Discipline", subtitle: "From architectural concept to facility management — comprehensive digital engineering services across all AEC disciplines." },
+  { image: heroServices2, badge: "14+ Disciplines", headline: "Precision", headlineHighlight: "Engineering", headlineEnd: "at Every Scale", subtitle: "Architecture, Structure, MEPF, Facade, Landscape, Infrastructure — delivering LOD 100 to LOD 500 with ISO 19650 compliance." },
+  { image: imgArchitecture, badge: "Innovation", headline: "AI-Powered", headlineHighlight: "BIM Workflows", headlineEnd: "for the Future", subtitle: "Scan-to-BIM, Digital Twins, 4D/5D Simulation, and automated QTO — transforming traditional construction." },
+];
 
 const disciplines = [
   { icon: Building2, title: "Architecture", img: imgArchitecture, desc: "Comprehensive architectural BIM modeling from concept to construction documentation. We create parametric Revit models at LOD 100 through LOD 500, including 3D visualization, rendering, design development, construction drawings, and as-built documentation.", features: ["Conceptual & Schematic Design (LOD 100-200)", "Design Development & CD Sets (LOD 300-400)", "As-Built Documentation (LOD 500)", "3D Visualization & Rendering", "Code Compliance & Accessibility Analysis", "Space Planning & Area Schedules"] },
