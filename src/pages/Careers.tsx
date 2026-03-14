@@ -51,6 +51,12 @@ const growthPaths = [
 ];
 
 
+const careersHeroSlides = [
+  { image: heroCareers1, badge: "Careers", headline: "Build Your", headlineHighlight: "Future", headlineEnd: "With Us", subtitle: "Join a team of passionate BIM engineers, architects, and technologists shaping the digital future of construction." },
+  { image: heroTeamCollab, badge: "Join Our Team", headline: "Where", headlineHighlight: "Talent Meets", headlineEnd: "Technology", subtitle: "Remote-first culture, continuous learning, cutting-edge tools — grow your career in the world's fastest-growing AEC-tech company." },
+  { image: heroServices2, badge: "We're Hiring", headline: "Shape the", headlineHighlight: "Built Environment", subtitle: "From Junior Modeller to BIM Director — clear career progression paths across 14+ disciplines and global projects." },
+];
+
 export default function CareersPage() {
   const { t } = useLanguage();
   
