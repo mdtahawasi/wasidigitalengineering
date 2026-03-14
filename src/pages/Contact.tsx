@@ -28,6 +28,12 @@ export default function ContactPage() {
     setFormData({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
   };
 
+  const contactHeroSlides = [
+    { image: heroContact1, badge: "Contact Us", headline: "Let's Build", headlineHighlight: "Something Great", headlineEnd: "Together", subtitle: "Ready to transform your projects with BIM? Connect with our team for a consultation." },
+    { image: heroConstruction, badge: "Get in Touch", headline: "Your Vision,", headlineHighlight: "Our Expertise", subtitle: "From initial consultation to project delivery — we're here to support your digital construction journey." },
+    { image: heroServices1, badge: "Start a Project", headline: "Partner with", headlineHighlight: "Industry Leaders", subtitle: "30+ projects delivered across India, UAE & Saudi Arabia. Let's discuss your next breakthrough." },
+  ];
+
   return (
     <Layout>
       <section className="relative section-padding overflow-hidden">
