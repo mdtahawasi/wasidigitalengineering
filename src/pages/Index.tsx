@@ -1,5 +1,5 @@
-import { lazy, Suspense } from "react";
-import { motion } from "framer-motion";
+import { lazy, Suspense, useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useScrollToHash } from "@/hooks/useScrollToHash";
 import { Link } from "react-router-dom";
 import {
