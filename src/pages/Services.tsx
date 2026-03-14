@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
+import PageHeroSlider from "@/components/PageHeroSlider";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem } from "@/lib/animations";
 
