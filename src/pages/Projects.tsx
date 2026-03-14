@@ -6,6 +6,9 @@ import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 import heroConstruction from "@/assets/hero-construction-site.jpg";
+import heroProjects1 from "@/assets/hero-projects-1.jpg";
+import heroProjects2 from "@/assets/hero-projects-2.jpg";
+import PageHeroSlider from "@/components/PageHeroSlider";
 import projectHGR from "@/assets/project-hgr.jpg";
 import projectLimeGarden from "@/assets/project-lime-garden.jpg";
 import projectParkField from "@/assets/project-park-field.jpg";
@@ -98,6 +101,12 @@ const projects = [
   },
 ];
 
+const projectsHeroSlides = [
+  { image: heroProjects1, badge: "Our Projects", headline: "Delivering", headlineHighlight: "Excellence", headlineEnd: "Across Sectors", subtitle: "30+ landmark projects across residential, commercial, industrial, and infrastructure sectors in India, UAE & Saudi Arabia." },
+  { image: heroProjects2, badge: "Portfolio", headline: "From Blueprint", headlineHighlight: "to Reality", subtitle: "Explore our portfolio of BIM-driven projects spanning high-rise towers, industrial campuses, and mega infrastructure." },
+  { image: heroConstruction, badge: "Case Studies", headline: "Building the", headlineHighlight: "Iconic Landmarks", headlineEnd: "of Tomorrow", subtitle: "Every project tells a story of precision engineering, collaborative BIM coordination, and digital construction excellence." },
+];
+
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const { t } = useLanguage();
@@ -110,41 +119,7 @@ export default function ProjectsPage() {
 
   return (
     <Layout>
-      <section className="relative section-padding overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={heroConstruction} alt="" className="w-full h-full object-cover opacity-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-        </div>
-        <div className="absolute inset-0 grid-pattern opacity-10" />
-        <div className="container mx-auto px-4 md:px-8 relative">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4"
-            >
-              {t("projects.badge")}
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-3xl"
-            >
-              {t("projects.title")} <span className="text-gradient">{t("projects.titleHighlight")}</span> {t("projects.titleEnd")}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
-            >
-              {t("projects.desc")}
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHeroSlider slides={projectsHeroSlides} />
 
       <section className="pb-20">
         <div className="container mx-auto px-4 md:px-8">

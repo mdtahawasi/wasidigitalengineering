@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
+import PageHeroSlider from "@/components/PageHeroSlider";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem } from "@/lib/animations";
 
@@ -25,6 +26,14 @@ import imgScanToBIM from "@/assets/discipline-scan-to-bim.jpg";
 import img4D5D from "@/assets/discipline-4d5d.jpg";
 import imgQTO from "@/assets/discipline-qto.jpg";
 import imgAI from "@/assets/discipline-ai-automation.jpg";
+import heroServices1 from "@/assets/hero-services-1.jpg";
+import heroServices2 from "@/assets/hero-services-2.jpg";
+
+const servicesHeroSlides = [
+  { image: heroServices1, badge: "Our Services", headline: "End-to-End", headlineHighlight: "BIM Solutions", headlineEnd: "for Every Discipline", subtitle: "From architectural concept to facility management — comprehensive digital engineering services across all AEC disciplines." },
+  { image: heroServices2, badge: "14+ Disciplines", headline: "Precision", headlineHighlight: "Engineering", headlineEnd: "at Every Scale", subtitle: "Architecture, Structure, MEPF, Facade, Landscape, Infrastructure — delivering LOD 100 to LOD 500 with ISO 19650 compliance." },
+  { image: imgArchitecture, badge: "Innovation", headline: "AI-Powered", headlineHighlight: "BIM Workflows", headlineEnd: "for the Future", subtitle: "Scan-to-BIM, Digital Twins, 4D/5D Simulation, and automated QTO — transforming traditional construction." },
+];
 
 const disciplines = [
   { icon: Building2, title: "Architecture", img: imgArchitecture, desc: "Comprehensive architectural BIM modeling from concept to construction documentation. We create parametric Revit models at LOD 100 through LOD 500, including 3D visualization, rendering, design development, construction drawings, and as-built documentation.", features: ["Conceptual & Schematic Design (LOD 100-200)", "Design Development & CD Sets (LOD 300-400)", "As-Built Documentation (LOD 500)", "3D Visualization & Rendering", "Code Compliance & Accessibility Analysis", "Space Planning & Area Schedules"] },
@@ -60,38 +69,7 @@ export default function ServicesPage() {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section id="services-hero" className="relative section-padding overflow-hidden">
-        <div className="absolute inset-0 grid-pattern opacity-10" />
-        <div className="container mx-auto px-4 md:px-8 relative">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4"
-            >
-              {t("services.badge")}
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-3xl"
-            >
-              {t("services.title")} <span className="text-gradient">{t("services.titleHighlight")}</span> {t("services.titleEnd")}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
-            >
-              {t("services.desc")}
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHeroSlider slides={servicesHeroSlides} />
 
       {/* Discipline-Specific Services */}
       <section id="disciplines" className="pb-20">
