@@ -11,6 +11,8 @@ import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem, st
 import aboutTeam from "@/assets/about-team.jpg";
 import heroTeamCollab from "@/assets/hero-team-collab.jpg";
 import heroConstruction from "@/assets/hero-construction-site.jpg";
+import heroAbout1 from "@/assets/hero-about-1.jpg";
+import PageHeroSlider from "@/components/PageHeroSlider";
 
 const valueKeys = [
   { icon: Target, titleKey: "value.precision", descKey: "value.precisionDesc" },
