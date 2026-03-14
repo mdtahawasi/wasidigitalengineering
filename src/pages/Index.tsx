@@ -103,16 +103,43 @@ const industries = [
 
 export default function HomePage() {
   const { t } = useLanguage();
+  const [heroIndex, setHeroIndex] = useState(0);
 
   useScrollToHash();
+
+  const nextSlide = useCallback(() => {
+    setHeroIndex((prev) => (prev + 1) % heroSlides.length);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000);
+    return () => clearInterval(interval);
+  }, [nextSlide]);
 
   return (
     <Layout>
       {/* ===== HERO ===== */}
       <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden">
-        <Suspense fallback={<div className="absolute inset-0 bg-background" />}>
-          <ConstructionScene />
-        </Suspense>
+        {/* Rotating background images */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={heroIndex}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <img
+              src={heroSlides[heroIndex].image}
+              alt={heroSlides[heroIndex].sub}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/30" />
+          </motion.div>
+        </AnimatePresence>
+
         <div className="absolute inset-0 grid-pattern opacity-10 pointer-events-none" />
         <div className="relative container mx-auto px-4 md:px-8 py-20">
           <motion.div
@@ -129,15 +156,34 @@ export default function HomePage() {
             >
               {t("hero.badge")}
             </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5 }}
-              className="text-4xl md:text-5xl lg:text-7xl font-display font-bold leading-[1.1] text-foreground mb-6"
-            >
-              {t("hero.title")}{" "}
-              <span className="text-gradient">{t("hero.titleHighlight")}</span>
-            </motion.h1>
+
+            {/* Rotating headline */}
+            <AnimatePresence mode="wait">
+              <motion.h1
+                key={heroIndex}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.7 }}
+                className="text-4xl md:text-5xl lg:text-7xl font-display font-bold leading-[1.1] text-foreground mb-4"
+              >
+                <span className="text-gradient">{heroSlides[heroIndex].quote}</span>
+              </motion.h1>
+            </AnimatePresence>
+
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={heroIndex}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-lg md:text-xl text-primary/80 font-semibold mb-4 tracking-wide"
+              >
+                {heroSlides[heroIndex].sub}
+              </motion.p>
+            </AnimatePresence>
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -146,6 +192,20 @@ export default function HomePage() {
             >
               {t("hero.desc")}
             </motion.p>
+
+            {/* Slide indicators */}
+            <div className="flex gap-2 mb-8">
+              {heroSlides.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setHeroIndex(i)}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
+                    i === heroIndex ? "w-10 bg-primary" : "w-4 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  }`}
+                />
+              ))}
+            </div>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
