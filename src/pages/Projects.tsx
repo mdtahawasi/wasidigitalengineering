@@ -101,6 +101,12 @@ const projects = [
   },
 ];
 
+const projectsHeroSlides = [
+  { image: heroProjects1, badge: "Our Projects", headline: "Delivering", headlineHighlight: "Excellence", headlineEnd: "Across Sectors", subtitle: "30+ landmark projects across residential, commercial, industrial, and infrastructure sectors in India, UAE & Saudi Arabia." },
+  { image: heroProjects2, badge: "Portfolio", headline: "From Blueprint", headlineHighlight: "to Reality", subtitle: "Explore our portfolio of BIM-driven projects spanning high-rise towers, industrial campuses, and mega infrastructure." },
+  { image: heroConstruction, badge: "Case Studies", headline: "Building the", headlineHighlight: "Iconic Landmarks", headlineEnd: "of Tomorrow", subtitle: "Every project tells a story of precision engineering, collaborative BIM coordination, and digital construction excellence." },
+];
+
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const { t } = useLanguage();
