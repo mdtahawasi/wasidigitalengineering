@@ -254,10 +254,8 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7 }}
-            className="space-y-16"
           >
-            <OrgChart title="BIM Team" chart={{ name: "Md Taha Wasi", role: "CEO & BIM Director", children: [{ name: "BIM Manager", role: "Overall BIM Coordination", children: [{ name: "Architectural BIM Lead", role: "LOD 100-500 Models" }, { name: "Structural BIM Lead", role: "RCC, Steel & Composite" }, { name: "MEP BIM Lead", role: "HVAC, Plumbing, Electrical, FP" }, { name: "Coordination Lead", role: "Clash Detection & Resolution" }] }, { name: "Information Manager", role: "CDE & Data Standards", children: [{ name: "COBie Specialist", role: "Asset Data & FM Handover" }, { name: "QA/QC Engineer", role: "Model Auditing & Standards" }] }] }} />
-            <OrgChart title="Design Team" chart={{ name: "Md Taha Wasi", role: "CEO & Design Director", children: [{ name: "Architecture Lead", role: "Design & Documentation", children: [{ name: "Interior Fit Out Designer", role: "Interior BIM & Design" }, { name: "Facade Consultant", role: "Facade Engineering" }, { name: "Landscape Designer", role: "Landscape Architecture" }] }, { name: "Engineering Lead", role: "Structural & Infrastructure", children: [{ name: "Structural Engineer", role: "RCC, Steel & Composite" }, { name: "Infrastructure Engineer", role: "Roads, Bridges, Utilities" }, { name: "MEPF Engineer", role: "Mechanical, Electrical, Plumbing, Fire" }] }] }} />
+            <OrgChart teams={orgTeams} />
           </motion.div>
         </div>
       </section>
