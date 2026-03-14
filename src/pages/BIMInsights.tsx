@@ -99,6 +99,12 @@ const regionalData = [
   { region: "Latin America", share: 5, size: "$0.48B", trend: "Emerging, govt. push" },
 ];
 
+const insightsHeroSlides = [
+  { image: heroInsights1, badge: "BIM Industry Insights", headline: "The Global", headlineHighlight: "BIM Market", headlineEnd: "Landscape", subtitle: "Comprehensive data on BIM adoption worldwide — market size, country-level mandates, growth projections, and industry trends driving the $22B digital construction revolution." },
+  { image: heroDigitalTwin, badge: "Market Intelligence", headline: "Data-Driven", headlineHighlight: "Construction", headlineEnd: "Revolution", subtitle: "From $9.6B in 2024 to $22.2B by 2030 — explore the explosive growth of Building Information Modeling across the globe." },
+  { image: imgArchitecture, badge: "Global Trends", headline: "BIM Adoption", headlineHighlight: "Across Nations", subtitle: "Over 20 countries now mandate BIM for public projects. Discover adoption rates, mandates, and growth drivers shaping the AEC industry." },
+];
+
 export default function BIMInsightsPage() {
   return (
     <Layout>
