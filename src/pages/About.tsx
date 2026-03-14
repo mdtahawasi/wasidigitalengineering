@@ -21,6 +21,12 @@ const valueKeys = [
   { icon: Award, titleKey: "value.excellence", descKey: "value.excellenceDesc" },
 ];
 
+const aboutHeroSlides = [
+  { image: heroTeamCollab, badge: "About Us", headline: "Pioneering the", headlineHighlight: "Digital Future", headlineEnd: "of Construction", subtitle: "From concept to completion — we transform how the AEC industry designs, builds, and operates through intelligent BIM solutions." },
+  { image: heroAbout1, badge: "Our Mission", headline: "Engineering", headlineHighlight: "Excellence", headlineEnd: "Through Innovation", subtitle: "6+ years of expertise delivering precision BIM services across Architecture, Structure, MEPF, and Digital Twin technologies." },
+  { image: heroConstruction, badge: "Global Impact", headline: "Building Smarter", headlineHighlight: "Across Borders", subtitle: "30+ projects delivered across India, UAE, and Saudi Arabia — setting new standards in digital construction." },
+];
+
 const timeline = [
   { year: "2019", event: "Founded in India as a BIM consulting startup by Md Taha Wasi" },
   { year: "2020", event: "Expanded services to Architecture, Structure & MEP BIM modeling" },
