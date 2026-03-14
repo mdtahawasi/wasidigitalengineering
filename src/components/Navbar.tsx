@@ -30,7 +30,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close menu on route change
   useEffect(() => { setOpen(false); }, [location.pathname]);
 
   const cycleTheme = () => {
@@ -51,7 +50,7 @@ export default function Navbar() {
     >
       <nav className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4 md:px-8">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3 shrink-0">
           <img
             src={logo}
             alt="WASI Digital Engineering"
@@ -63,8 +62,31 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Right side: Language + Hamburger */}
-        <div className="flex items-center gap-1">
+        {/* Desktop horizontal nav links */}
+        <div className="hidden lg:flex items-center gap-1">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              to={link.href}
+              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                location.pathname === link.href
+                  ? "text-primary bg-primary/10"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+              }`}
+            >
+              {t(link.labelKey)}
+            </Link>
+          ))}
+        </div>
+
+        {/* Right side */}
+        <div className="flex items-center gap-1 shrink-0">
+          <Link
+            to="/contact"
+            className="hidden lg:inline-flex items-center px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm"
+          >
+            {t("nav.getQuote")}
+          </Link>
           <button
             onClick={cycleTheme}
             className="p-2 text-muted-foreground hover:text-foreground transition-colors"
@@ -74,9 +96,10 @@ export default function Navbar() {
             <ThemeIcon size={20} />
           </button>
           <LanguageSwitcher />
+          {/* Hamburger - mobile only */}
           <button
             onClick={() => setOpen(!open)}
-            className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+            className="lg:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
             aria-label="Toggle menu"
           >
             {open ? <X size={24} /> : <Menu size={24} />}
@@ -84,7 +107,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Dropdown Menu */}
+      {/* Mobile Dropdown Menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -92,7 +115,7 @@ export default function Navbar() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute right-4 md:right-8 top-14 md:top-18 w-56 bg-card rounded-xl border border-border shadow-xl overflow-hidden"
+            className="lg:hidden absolute right-4 md:right-8 top-14 md:top-18 w-56 bg-card rounded-xl border border-border shadow-xl overflow-hidden"
           >
             <div className="py-2 flex flex-col">
               {navLinks.map((link) => (
