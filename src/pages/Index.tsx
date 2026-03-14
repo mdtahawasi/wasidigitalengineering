@@ -26,6 +26,33 @@ import imgScanToBIM from "@/assets/discipline-scan-to-bim.jpg";
 import img4D5D from "@/assets/discipline-4d5d.jpg";
 import imgFacilityMgmt from "@/assets/discipline-facility-mgmt.jpg";
 import imgStructural from "@/assets/discipline-structural.jpg";
+import heroBim3D from "@/assets/hero-bim-3d-model.jpg";
+import heroBimClash from "@/assets/hero-bim-clash.jpg";
+import heroDigitalTwin from "@/assets/hero-digital-twin.jpg";
+import heroBimMepf from "@/assets/hero-bim-mepf.jpg";
+
+const heroSlides = [
+  {
+    image: heroBim3D,
+    quote: "Where Vision Meets Precision — Engineering Tomorrow's Landmarks Today",
+    sub: "3D BIM Modeling & Coordination",
+  },
+  {
+    image: heroBimClash,
+    quote: "Building Smarter, Not Harder — Data-Driven Construction Intelligence",
+    sub: "Clash Detection & Resolution",
+  },
+  {
+    image: heroDigitalTwin,
+    quote: "The Future is Digital — Transforming Blueprints into Living Models",
+    sub: "Digital Twin & Smart Infrastructure",
+  },
+  {
+    image: heroBimMepf,
+    quote: "Every Pipe, Every Duct, Every Wire — Perfectly Coordinated in 3D",
+    sub: "MEP/F Systems Integration",
+  },
+];
 
 const serviceKeys = [
   { icon: Building2, titleKey: "svc.bimModeling", descKey: "svc.bimModelingDesc", img: imgArchitecture },
