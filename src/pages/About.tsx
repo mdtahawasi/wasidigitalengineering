@@ -11,20 +11,12 @@ import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem, st
 import aboutTeam from "@/assets/about-team.jpg";
 import heroTeamCollab from "@/assets/hero-team-collab.jpg";
 import heroConstruction from "@/assets/hero-construction-site.jpg";
-import heroAbout1 from "@/assets/hero-about-1.jpg";
-import PageHeroSlider from "@/components/PageHeroSlider";
 
 const valueKeys = [
   { icon: Target, titleKey: "value.precision", descKey: "value.precisionDesc" },
   { icon: Eye, titleKey: "value.innovation", descKey: "value.innovationDesc" },
   { icon: Heart, titleKey: "value.integrity", descKey: "value.integrityDesc" },
   { icon: Award, titleKey: "value.excellence", descKey: "value.excellenceDesc" },
-];
-
-const aboutHeroSlides = [
-  { image: heroTeamCollab, badge: "About Us", headline: "Pioneering the", headlineHighlight: "Digital Future", headlineEnd: "of Construction", subtitle: "From concept to completion — we transform how the AEC industry designs, builds, and operates through intelligent BIM solutions." },
-  { image: heroAbout1, badge: "Our Mission", headline: "Engineering", headlineHighlight: "Excellence", headlineEnd: "Through Innovation", subtitle: "6+ years of expertise delivering precision BIM services across Architecture, Structure, MEPF, and Digital Twin technologies." },
-  { image: heroConstruction, badge: "Global Impact", headline: "Building Smarter", headlineHighlight: "Across Borders", subtitle: "30+ projects delivered across India, UAE, and Saudi Arabia — setting new standards in digital construction." },
 ];
 
 const timeline = [
@@ -41,126 +33,6 @@ const leadershipTeam = [
   { name: "Md Taha Wasi", role: "Founder & CEO", qualifications: "Masters in Construction & Project Management | MBA", initials: "TW", email: "bimengineer11@gmail.com", phone: "+91 81779 97522" },
 ];
 
-const orgTeams = [
-  {
-    id: "bim",
-    label: "BIM Team",
-    chart: {
-      name: "Md Taha Wasi", role: "CEO & BIM Director",
-      children: [
-        {
-          name: "BIM Manager", role: "Overall BIM Coordination", badge: "Management",
-          children: [
-            { name: "Architectural BIM Lead", role: "LOD 100–500 Models", badge: "Architecture", children: [
-              { name: "Sr. Architectural Modeller", role: "Complex Modeling & CD Sets" },
-              { name: "Architectural Modeller", role: "Design Development" },
-              { name: "Jr. Architectural Modeller", role: "Drafting & Support" },
-            ]},
-            { name: "Structural BIM Lead", role: "RCC, Steel & Composite", badge: "Structure", children: [
-              { name: "Sr. Structural Modeller", role: "Detailing & Analysis" },
-              { name: "Structural Modeller", role: "Modeling & Rebar" },
-              { name: "Jr. Structural Modeller", role: "Shop Drawings" },
-            ]},
-            { name: "MEP BIM Lead", role: "HVAC, Plumbing, Elec, FP", badge: "MEPF", children: [
-              { name: "Sr. MEP Modeller", role: "Systems & Coordination" },
-              { name: "MEP Modeller", role: "Duct/Pipe Routing" },
-              { name: "Jr. MEP Modeller", role: "Support & Drafting" },
-            ]},
-            { name: "Coordination Lead", role: "Clash Detection & Resolution", badge: "Coordination", children: [
-              { name: "Sr. Coordinator", role: "Navisworks & BIM 360" },
-              { name: "Coordinator", role: "Issue Tracking & Reports" },
-            ]},
-          ],
-        },
-        {
-          name: "Information Manager", role: "CDE & Data Standards", badge: "Data",
-          children: [
-            { name: "COBie Specialist", role: "Asset Data & FM Handover" },
-            { name: "QA/QC Engineer", role: "Model Auditing & Standards" },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    id: "design",
-    label: "Design Team",
-    chart: {
-      name: "Md Taha Wasi", role: "CEO & Design Director",
-      children: [
-        {
-          name: "Architecture Lead", role: "Design & Documentation", badge: "Architecture",
-          children: [
-            { name: "Sr. Architect", role: "Concept & Schematic Design" },
-            { name: "Interior Fit Out Designer", role: "Interior BIM & Design" },
-            { name: "Facade Consultant", role: "Curtain Wall & Cladding" },
-            { name: "Landscape Designer", role: "Hardscape & Softscape" },
-          ],
-        },
-        {
-          name: "Engineering Lead", role: "Structural & Infrastructure", badge: "Engineering",
-          children: [
-            { name: "Sr. Structural Engineer", role: "RCC, Steel & Composite" },
-            { name: "Infrastructure Engineer", role: "Roads, Bridges, Utilities" },
-            { name: "MEPF Engineer", role: "Mechanical, Electrical, Plumbing, Fire" },
-            { name: "Sustainability Consultant", role: "Green Building & LEED" },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    id: "management",
-    label: "Management Team",
-    chart: {
-      name: "Md Taha Wasi", role: "CEO & Managing Director",
-      children: [
-        {
-          name: "Operations Manager", role: "Project Delivery & Ops", badge: "Operations",
-          children: [
-            { name: "Project Manager", role: "Timeline & Resource Planning" },
-            { name: "Quality Manager", role: "ISO 19650 Compliance" },
-            { name: "Procurement Lead", role: "Vendor & License Mgmt" },
-          ],
-        },
-        {
-          name: "Business Development", role: "Sales & Partnerships", badge: "Growth",
-          children: [
-            { name: "BD Manager – India", role: "Domestic Market" },
-            { name: "BD Manager – UAE/KSA", role: "International Market" },
-            { name: "Marketing Lead", role: "Digital & Brand Strategy" },
-          ],
-        },
-        {
-          name: "Finance & Admin", role: "Accounts & Compliance", badge: "Finance",
-          children: [
-            { name: "Finance Manager", role: "Budgets & Invoicing" },
-            { name: "Admin Coordinator", role: "Office & Logistics" },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    id: "hr",
-    label: "HR Team",
-    chart: {
-      name: "Md Taha Wasi", role: "CEO",
-      children: [
-        {
-          name: "HR Manager", role: "People & Culture", badge: "HR",
-          children: [
-            { name: "Talent Acquisition Lead", role: "Recruitment & Onboarding" },
-            { name: "L&D Specialist", role: "Training & Certifications" },
-            { name: "Employee Relations", role: "Engagement & Retention" },
-            { name: "HR Operations", role: "Payroll, Benefits & Compliance" },
-          ],
-        },
-      ],
-    },
-  },
-];
-
 export default function AboutPage() {
   const { t } = useLanguage();
 
@@ -168,7 +40,42 @@ export default function AboutPage() {
 
   return (
     <Layout>
-      <PageHeroSlider slides={aboutHeroSlides} />
+      {/* Hero with background image */}
+      <section id="about-hero" className="relative section-padding overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={heroTeamCollab} alt="" className="w-full h-full object-cover opacity-15" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+        </div>
+        <div className="absolute inset-0 grid-pattern opacity-10" />
+        <div className="container mx-auto px-4 md:px-8 relative">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4"
+            >
+              {t("about.badge")}
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-3xl"
+            >
+              {t("about.title")} <span className="text-gradient">{t("about.titleHighlight")}</span> {t("about.titleEnd")}
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
+            >
+              {t("about.desc")}
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Image + Story */}
       <section id="our-story" className="pb-20">
@@ -347,8 +254,10 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7 }}
+            className="space-y-16"
           >
-            <OrgChart teams={orgTeams} />
+            <OrgChart title="BIM Team" chart={{ name: "Md Taha Wasi", role: "CEO & BIM Director", children: [{ name: "BIM Manager", role: "Overall BIM Coordination", children: [{ name: "Architectural BIM Lead", role: "LOD 100-500 Models" }, { name: "Structural BIM Lead", role: "RCC, Steel & Composite" }, { name: "MEP BIM Lead", role: "HVAC, Plumbing, Electrical, FP" }, { name: "Coordination Lead", role: "Clash Detection & Resolution" }] }, { name: "Information Manager", role: "CDE & Data Standards", children: [{ name: "COBie Specialist", role: "Asset Data & FM Handover" }, { name: "QA/QC Engineer", role: "Model Auditing & Standards" }] }] }} />
+            <OrgChart title="Design Team" chart={{ name: "Md Taha Wasi", role: "CEO & Design Director", children: [{ name: "Architecture Lead", role: "Design & Documentation", children: [{ name: "Interior Fit Out Designer", role: "Interior BIM & Design" }, { name: "Facade Consultant", role: "Facade Engineering" }, { name: "Landscape Designer", role: "Landscape Architecture" }] }, { name: "Engineering Lead", role: "Structural & Infrastructure", children: [{ name: "Structural Engineer", role: "RCC, Steel & Composite" }, { name: "Infrastructure Engineer", role: "Roads, Bridges, Utilities" }, { name: "MEPF Engineer", role: "Mechanical, Electrical, Plumbing, Fire" }] }] }} />
           </motion.div>
         </div>
       </section>

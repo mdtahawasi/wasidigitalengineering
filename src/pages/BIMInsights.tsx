@@ -8,12 +8,9 @@ import {
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
-import PageHeroSlider from "@/components/PageHeroSlider";
 import imgArchitecture from "@/assets/discipline-architecture.jpg";
 import imgMEPF from "@/assets/discipline-mepf.jpg";
 import imgFacilityMgmt from "@/assets/discipline-facility-mgmt.jpg";
-import heroInsights1 from "@/assets/hero-insights-1.jpg";
-import heroDigitalTwin from "@/assets/hero-digital-twin.jpg";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -99,16 +96,30 @@ const regionalData = [
   { region: "Latin America", share: 5, size: "$0.48B", trend: "Emerging, govt. push" },
 ];
 
-const insightsHeroSlides = [
-  { image: heroInsights1, badge: "BIM Industry Insights", headline: "The Global", headlineHighlight: "BIM Market", headlineEnd: "Landscape", subtitle: "Comprehensive data on BIM adoption worldwide — market size, country-level mandates, growth projections, and industry trends driving the $22B digital construction revolution." },
-  { image: heroDigitalTwin, badge: "Market Intelligence", headline: "Data-Driven", headlineHighlight: "Construction", headlineEnd: "Revolution", subtitle: "From $9.6B in 2024 to $22.2B by 2030 — explore the explosive growth of Building Information Modeling across the globe." },
-  { image: imgArchitecture, badge: "Global Trends", headline: "BIM Adoption", headlineHighlight: "Across Nations", subtitle: "Over 20 countries now mandate BIM for public projects. Discover adoption rates, mandates, and growth drivers shaping the AEC industry." },
-];
-
 export default function BIMInsightsPage() {
   return (
     <Layout>
-      <PageHeroSlider slides={insightsHeroSlides} />
+      {/* ===== HERO ===== */}
+      <section className="relative section-padding overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={imgArchitecture} alt="" className="w-full h-full object-cover opacity-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+        </div>
+        <div className="absolute inset-0 grid-pattern opacity-10" />
+        <div className="container mx-auto px-4 md:px-8 relative">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4">
+              BIM Industry Insights
+            </span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-4xl">
+              The Global <span className="text-gradient">BIM Market</span> Landscape
+            </h1>
+            <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Comprehensive data on BIM adoption worldwide — market size, country-level mandates, growth projections, and industry trends driving the $22B digital construction revolution.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
       {/* BIM Visual Showcase */}
       <section className="pb-8 -mt-4">
