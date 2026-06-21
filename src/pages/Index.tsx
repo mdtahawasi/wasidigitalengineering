@@ -6,7 +6,8 @@ import {
   ArrowRight, Building2, Layers3, ScanLine, Cpu, BarChart3, Cog,
   CheckCircle2, ChevronRight, Globe, Zap, Shield, Brain, Monitor,
   Workflow, Users, Award, TrendingUp, Lock, Clock, Star, HeartHandshake,
-  BadgeCheck, Target, Sparkles, DollarSign, FileCheck, Handshake
+  BadgeCheck, Target, Sparkles, DollarSign, FileCheck, Handshake,
+  HardHat, Truck, Ruler, ClipboardCheck
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
@@ -30,6 +31,8 @@ import heroBim3D from "@/assets/hero-bim-3d-model.jpg";
 import heroBimClash from "@/assets/hero-bim-clash.jpg";
 import heroDigitalTwin from "@/assets/hero-digital-twin.jpg";
 import heroBimMepf from "@/assets/hero-bim-mepf.jpg";
+import heroConstructionSite from "@/assets/hero-construction-site.jpg";
+import imgInfrastructure from "@/assets/discipline-infrastructure.jpg";
 
 const heroSlides = [
   {
