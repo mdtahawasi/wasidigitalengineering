@@ -18,6 +18,12 @@ export default function Footer() {
       { label: t("footer.4d5dSim"), href: "/services#additional-services" },
       { label: t("footer.scanToBim"), href: "/services#additional-services" },
     ],
+    "Construction": [
+      { label: "General Contracting", href: "/#construction" },
+      { label: "Infrastructure Development", href: "/#construction" },
+      { label: "Project Management", href: "/#construction" },
+      { label: "Site Execution & QA/QC", href: "/#construction" },
+    ],
     [t("footer.industries")]: [
       { label: t("footer.commercial"), href: "/services#industry-sectors" },
       { label: t("footer.residential"), href: "/services#industry-sectors" },

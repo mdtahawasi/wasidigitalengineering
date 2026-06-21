@@ -6,7 +6,8 @@ import {
   ArrowRight, Building2, Layers3, ScanLine, Cpu, BarChart3, Cog,
   CheckCircle2, ChevronRight, Globe, Zap, Shield, Brain, Monitor,
   Workflow, Users, Award, TrendingUp, Lock, Clock, Star, HeartHandshake,
-  BadgeCheck, Target, Sparkles, DollarSign, FileCheck, Handshake
+  BadgeCheck, Target, Sparkles, DollarSign, FileCheck, Handshake,
+  HardHat, Truck, Ruler, ClipboardCheck
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
@@ -30,6 +31,8 @@ import heroBim3D from "@/assets/hero-bim-3d-model.jpg";
 import heroBimClash from "@/assets/hero-bim-clash.jpg";
 import heroDigitalTwin from "@/assets/hero-digital-twin.jpg";
 import heroBimMepf from "@/assets/hero-bim-mepf.jpg";
+import heroConstructionSite from "@/assets/hero-construction-site.jpg";
+import imgInfrastructure from "@/assets/discipline-infrastructure.jpg";
 
 const heroSlides = [
   {
@@ -218,6 +221,12 @@ export default function HomePage() {
               >
                 {t("hero.exploreServices")} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
+              <a
+                href="#construction"
+                className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-foreground/90 text-background font-semibold text-sm hover:bg-foreground transition-all"
+              >
+                <HardHat size={16} /> Explore Construction
+              </a>
               <Link
                 to="/projects"
                 className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg border border-border text-foreground font-semibold text-sm hover:bg-muted/50 hover:border-primary/30 transition-all"
@@ -322,6 +331,92 @@ export default function HomePage() {
             <Link to="/services" className="inline-flex items-center gap-2 text-primary text-sm font-medium hover:gap-3 transition-all">
               {t("index.viewAllServices")} <ArrowRight size={16} />
             </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ===== CONSTRUCTION PILLAR ===== */}
+      <section id="construction" className="relative section-padding overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={heroConstructionSite} alt="Construction site" className="w-full h-full object-cover opacity-20" loading="lazy" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
+        </div>
+        <div className="relative container mx-auto px-4 md:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            <motion.div {...fadeRight}>
+              <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-5">
+                Construction Services
+              </span>
+              <h2 className="text-3xl md:text-5xl font-display font-bold mb-5 leading-tight">
+                From <span className="text-gradient">Blueprint</span> to <span className="text-gradient">Built Reality</span>
+              </h2>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+                Beyond digital engineering, WITEC delivers full-scale construction execution — from groundbreaking to handover. Code-compliant, on-time, on-budget, and powered by the same BIM intelligence we bring to design.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {["IS 456 / NBC 2016", "RERA Compliant", "ISO 9001:2015", "10-Year Warranty"].map((badge) => (
+                  <span key={badge} className="px-3 py-1.5 text-xs font-medium rounded-md bg-card border border-border text-foreground">
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+            <motion.div {...fadeLeft} className="relative">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden glass">
+                <img src={imgInfrastructure} alt="WITEC construction" className="w-full h-full object-cover" loading="lazy" />
+              </div>
+              <div className="absolute -bottom-6 -left-6 glass rounded-xl p-4 hidden md:block">
+                <p className="text-2xl font-display font-bold text-gradient">End-to-End</p>
+                <p className="text-xs text-muted-foreground">Engineering · Design · Construction</p>
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {[
+              { icon: HardHat, title: "General Contracting", desc: "Turnkey construction execution across commercial, residential, and industrial builds with single-window accountability." },
+              { icon: Truck, title: "Infrastructure Development", desc: "Highways, bridges, metro, water & utility networks engineered to IRC, MoRTH and NHAI standards." },
+              { icon: ClipboardCheck, title: "Project Management", desc: "PMI-aligned planning, EVM cost control, and live drone-driven site monitoring from kickoff to handover." },
+              { icon: Ruler, title: "Site Execution & QA/QC", desc: "Skilled crews, NABL-tested materials, and ISO-audited processes ensuring zero-defect delivery." },
+            ].map((s, i) => (
+              <motion.div
+                key={i}
+                variants={staggerItem}
+                className="glass rounded-xl p-6 group hover:border-primary/30 transition-all duration-500"
+              >
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-gradient-primary transition-all duration-500">
+                  <s.icon size={22} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                </div>
+                <h3 className="font-display font-semibold text-lg text-foreground mb-2">{s.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Three pillars strip */}
+          <motion.div {...fadeUp} transition={{ delay: 0.2 }} className="mt-16 glass rounded-2xl p-8 md:p-10">
+            <p className="text-center text-xs uppercase tracking-widest text-muted-foreground mb-6">The WITEC Ecosystem</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              {[
+                { icon: Cpu, title: "Engineering", desc: "BIM, MEP, Structural, Digital Twin" },
+                { icon: Sparkles, title: "Design", desc: "Architecture, Interior, Landscape, Facade" },
+                { icon: HardHat, title: "Construction", desc: "Contracting, Infra, PM, Execution" },
+              ].map((p, i) => (
+                <div key={i} className="flex flex-col items-center">
+                  <div className="w-14 h-14 rounded-full bg-gradient-primary flex items-center justify-center mb-3">
+                    <p.icon size={26} className="text-primary-foreground" />
+                  </div>
+                  <h4 className="font-display font-bold text-foreground text-lg">{p.title}</h4>
+                  <p className="text-sm text-muted-foreground mt-1">{p.desc}</p>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
