@@ -221,6 +221,12 @@ export default function HomePage() {
               >
                 {t("hero.exploreServices")} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
+              <a
+                href="#construction"
+                className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-foreground/90 text-background font-semibold text-sm hover:bg-foreground transition-all"
+              >
+                <HardHat size={16} /> Explore Construction
+              </a>
               <Link
                 to="/projects"
                 className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg border border-border text-foreground font-semibold text-sm hover:bg-muted/50 hover:border-primary/30 transition-all"
