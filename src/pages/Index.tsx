@@ -6,7 +6,8 @@ import {
   ArrowRight, Building2, Layers3, ScanLine, Cpu, BarChart3, Cog,
   CheckCircle2, ChevronRight, Globe, Zap, Shield, Brain, Monitor,
   Workflow, Users, Award, TrendingUp, Lock, Clock, Star, HeartHandshake,
-  BadgeCheck, Target, Sparkles, DollarSign, FileCheck, Handshake
+  BadgeCheck, Target, Sparkles, DollarSign, FileCheck, Handshake,
+  HardHat, Ruler, Droplets, Flame, Wind, Truck, TreePine, IndianRupee, Briefcase, ShieldCheck
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
@@ -190,7 +191,10 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.7 }}
               className="text-lg md:text-xl text-muted-foreground max-w-xl mb-8 leading-relaxed"
             >
-              {t("hero.desc")}
+              Empowering the future of infrastructure through{" "}
+              <span className="text-foreground font-semibold">Advanced BIM</span>,{" "}
+              <span className="text-foreground font-semibold">Smart Design</span>, and{" "}
+              <span className="text-foreground font-semibold">End-to-End Construction Services</span>.
             </motion.p>
 
             {/* Slide indicators */}
@@ -217,6 +221,12 @@ export default function HomePage() {
                 className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-all glow-primary"
               >
                 {t("hero.exploreServices")} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                to="/#construction"
+                className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg border border-primary/40 bg-primary/5 text-foreground font-semibold text-sm hover:bg-primary/10 transition-all"
+              >
+                <HardHat size={16} className="text-primary" /> Explore Construction Projects
               </Link>
               <Link
                 to="/projects"
@@ -322,6 +332,146 @@ export default function HomePage() {
             <Link to="/services" className="inline-flex items-center gap-2 text-primary text-sm font-medium hover:gap-3 transition-all">
               {t("index.viewAllServices")} <ArrowRight size={16} />
             </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ===== CONSTRUCTION (WITEC End-to-End) ===== */}
+      <section id="construction" className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5 pointer-events-none" />
+        <div className="absolute inset-0 grid-pattern opacity-[0.04] pointer-events-none" />
+        <div className="container mx-auto px-4 md:px-8 relative">
+          <motion.div {...fadeUp} className="max-w-3xl mx-auto text-center mb-14">
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4">
+              Construction Services
+            </span>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-4">
+              From <span className="text-gradient">Blueprint to Built Reality</span>
+            </h2>
+            <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+              WITEC delivers full-spectrum construction — general contracting, infrastructure development,
+              project management and site execution — engineered to international codes and powered by our
+              in-house BIM and digital engineering backbone.
+            </p>
+          </motion.div>
+
+          {/* Core construction pillars */}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10"
+          >
+            {[
+              { icon: HardHat, title: "General Contracting", desc: "Turnkey execution across commercial, residential, industrial & institutional builds." },
+              { icon: Cog, title: "Infrastructure Development", desc: "Highways, flyovers, bridges and metro works per IRC, MoRTH & NHAI standards." },
+              { icon: Briefcase, title: "Project Management", desc: "PMC, scheduling, cost control and on-site supervision with real-time dashboards." },
+              { icon: Building2, title: "Site Execution", desc: "Disciplined site delivery — safety, quality and progress, monitored end-to-end." },
+            ].map((p, i) => (
+              <motion.div
+                key={i}
+                variants={staggerItemScale}
+                className="glass rounded-xl p-6 group hover:border-primary/40 transition-all duration-500 relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-[0.06] transition-opacity duration-500" />
+                <div className="relative">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-gradient-primary transition-all duration-500">
+                    <p.icon size={22} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <h3 className="font-display font-semibold text-foreground text-lg mb-2">{p.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* All-discipline construction grid */}
+          <motion.div {...fadeUp} className="text-center mb-8">
+            <p className="text-xs tracking-[0.3em] uppercase text-primary font-semibold mb-2">All Disciplines · One Roof</p>
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground">
+              Construction Capabilities
+            </h3>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12"
+          >
+            {[
+              { icon: Building2, title: "Civil Engineering", tags: ["IS 456", "NBC 2016"] },
+              { icon: Ruler, title: "Structural Design", tags: ["IS 800", "IS 1893"] },
+              { icon: Zap, title: "Electrical (MEP)", tags: ["IS 3043", "IE Rules"] },
+              { icon: Droplets, title: "Plumbing", tags: ["IS 2065", "Municipal"] },
+              { icon: Flame, title: "Fire & Safety", tags: ["NBC Part 4", "TAC NOC"] },
+              { icon: Wind, title: "HVAC", tags: ["ASHRAE", "IGBC"] },
+              { icon: Shield, title: "QA / QC", tags: ["NABL", "IS 516"] },
+              { icon: Cog, title: "Infrastructure", tags: ["IRC", "MoRTH"] },
+              { icon: Brain, title: "Smart Buildings", tags: ["IoT", "IBMS"] },
+              { icon: Truck, title: "Equipment & Fleet", tags: ["Own Fleet", "GPS"] },
+              { icon: TreePine, title: "Green Building", tags: ["IGBC", "LEED"] },
+              { icon: HardHat, title: "Project Mgmt", tags: ["PMI", "EVM"] },
+            ].map((s, i) => (
+              <motion.div
+                key={i}
+                variants={staggerItem}
+                className="glass rounded-xl p-4 hover:border-primary/40 transition-all duration-500 group"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-9 h-9 rounded-md bg-primary/10 flex items-center justify-center group-hover:bg-gradient-primary transition-all">
+                    <s.icon size={18} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <h4 className="font-display font-semibold text-foreground text-sm leading-tight">{s.title}</h4>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {s.tags.map((tag) => (
+                    <span key={tag} className="px-1.5 py-0.5 text-[10px] font-medium tracking-wider border border-primary/25 text-primary/80 rounded-sm">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Why WITEC Construction strip */}
+          <motion.div
+            {...scaleIn}
+            className="glass rounded-2xl p-6 md:p-10 max-w-6xl mx-auto"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { icon: CheckCircle2, title: "100% Code Compliant", desc: "IS 456, IS 800, IS 1893 & NBC 2016 — zero compromise." },
+                { icon: Clock, title: "On-Time Delivery", desc: "AI-driven scheduling and live site monitoring." },
+                { icon: IndianRupee, title: "Transparent Pricing", desc: "Detailed BOQ and milestone-based billing." },
+                { icon: ShieldCheck, title: "10-Year Structural Warranty", desc: "Backed by third-party inspection reports." },
+              ].map((w, i) => (
+                <div key={i} className="flex flex-col items-start gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
+                    <w.icon size={20} className="text-primary-foreground" />
+                  </div>
+                  <h4 className="font-display font-semibold text-foreground text-sm">{w.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{w.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-border/50 flex flex-col sm:flex-row gap-4 items-center justify-between">
+              <p className="text-sm text-muted-foreground text-center sm:text-left">
+                Ready to build with a partner that engineers, designs <span className="text-foreground font-semibold">and</span> constructs?
+              </p>
+              <div className="flex gap-3">
+                <Link to="/contact" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-all">
+                  Request a Quote <ArrowRight size={15} />
+                </Link>
+                <Link to="/projects" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border text-foreground font-semibold text-sm hover:bg-muted/50 transition-all">
+                  View Projects
+                </Link>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
