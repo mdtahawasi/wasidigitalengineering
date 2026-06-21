@@ -82,12 +82,12 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeLeft} className="rounded-2xl overflow-hidden">
-              <img src={aboutTeam} alt="WASI Digital Engineering team" className="w-full h-auto object-cover rounded-2xl" />
+              <img src={aboutTeam} alt="Wasi Infratech Engineering & Construction (WITEC) team" className="w-full h-auto object-cover rounded-2xl" />
             </motion.div>
             <motion.div {...fadeRight} transition={{ delay: 0.2, duration: 0.6 }}>
               <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-4">{t("about.ourStory")}</h2>
               <div className="space-y-4 text-muted-foreground text-sm leading-relaxed">
-                <p>Founded in 2019 in India by Md Taha Wasi, WASI Digital Engineering began with a clear mission: to bridge the gap between traditional construction methods and the digital future. What started as a small team of BIM enthusiasts has grown into a consultancy serving ambitious projects across the AEC industry.</p>
+                <p>Founded in 2019 in India by Md Taha Wasi, Wasi Infratech Engineering & Construction (WITEC) began with a clear mission: to bridge the gap between traditional construction methods and the digital future. What started as a small team of BIM enthusiasts has grown into a consultancy serving ambitious projects across the AEC industry.</p>
                 <p>Today, we've successfully delivered 30+ projects across residential, commercial, and industrial sectors. Our team combines deep domain expertise in Architecture, Structural (RCC, Steel & Composite), MEP, Interior Fit Out, Facade, Landscape, Infrastructure, and Civil engineering with cutting-edge technologies like AI, IoT, and digital twin platforms.</p>
                 <p>Our commitment to ISO 19650 standards, continuous innovation, and client-centric delivery has earned us the trust of developers, contractors, and consultants across India and the UAE.</p>
               </div>

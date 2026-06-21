@@ -38,7 +38,7 @@ export default function Footer() {
               </div>
               <div className="flex flex-col leading-none">
                 <span className="font-display font-bold text-foreground text-base">WASI</span>
-                <span className="text-[10px] text-muted-foreground tracking-widest uppercase">Digital Engineering</span>
+                <span className="text-[10px] text-muted-foreground tracking-widest uppercase">Infratech Engineering &amp; Construction</span>
               </div>
             </Link>
             <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
@@ -79,7 +79,7 @@ export default function Footer() {
             <span className="flex items-center gap-2"><MapPin size={14} className="text-primary" /> Dubai, UAE</span>
           </div>
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} WASI Digital Engineering. {t("footer.rights")}
+            © {new Date().getFullYear()} Wasi Infratech Engineering & Construction (WITEC). {t("footer.rights")}
           </p>
         </div>
       </div>

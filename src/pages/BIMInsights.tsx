@@ -479,7 +479,7 @@ export default function BIMInsightsPage() {
                 Ready to Join the BIM Revolution?
               </h2>
               <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-                WASI Digital Engineering helps you leverage BIM to reduce costs, accelerate delivery, and stay ahead of mandates. Let's talk about your next project.
+                Wasi Infratech Engineering & Construction (WITEC) helps you leverage BIM to reduce costs, accelerate delivery, and stay ahead of mandates. Let's talk about your next project.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link
