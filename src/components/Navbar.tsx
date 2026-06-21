@@ -11,7 +11,6 @@ const navLinks = [
   { labelKey: "nav.home", href: "/" },
   { labelKey: "nav.about", href: "/about" },
   { labelKey: "nav.services", href: "/services" },
-  { labelKey: "nav.construction", href: "/#construction", fallback: "Construction" },
   { labelKey: "nav.projects", href: "/projects" },
   { labelKey: "nav.bimInsights", href: "/bim-insights" },
   { labelKey: "nav.careers", href: "/careers" },
@@ -75,7 +74,7 @@ export default function Navbar() {
                   : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
               }`}
             >
-              {link.fallback ? (t(link.labelKey) === link.labelKey ? link.fallback : t(link.labelKey)) : t(link.labelKey)}
+              {t(link.labelKey)}
             </Link>
           ))}
         </div>
@@ -130,7 +129,7 @@ export default function Navbar() {
                       : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                   }`}
                 >
-                  {link.fallback ? (t(link.labelKey) === link.labelKey ? link.fallback : t(link.labelKey)) : t(link.labelKey)}
+                  {t(link.labelKey)}
                 </Link>
               ))}
               <div className="px-3 pt-2 pb-1">

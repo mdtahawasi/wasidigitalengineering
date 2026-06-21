@@ -12,17 +12,11 @@ export default function Footer() {
       { label: t("footer.careers"), href: "/careers" },
       { label: t("footer.contact"), href: "/contact" },
     ],
-    ["BIM & Engineering"]: [
+    [t("footer.services")]: [
       { label: t("footer.bimModeling"), href: "/services#disciplines" },
       { label: t("footer.clashDetection"), href: "/services#disciplines" },
       { label: t("footer.4d5dSim"), href: "/services#additional-services" },
       { label: t("footer.scanToBim"), href: "/services#additional-services" },
-    ],
-    ["Construction"]: [
-      { label: "General Contracting", href: "/#construction" },
-      { label: "Infrastructure", href: "/#construction" },
-      { label: "Project Management", href: "/#construction" },
-      { label: "Site Execution", href: "/#construction" },
     ],
     [t("footer.industries")]: [
       { label: t("footer.commercial"), href: "/services#industry-sectors" },
@@ -35,7 +29,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-border/50 bg-card/50">
       <div className="container mx-auto px-4 md:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2 space-y-4">
             <Link to="/" className="flex items-center gap-2">
