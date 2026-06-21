@@ -6,7 +6,8 @@ import {
   ArrowRight, Building2, Layers3, ScanLine, Cpu, BarChart3, Cog,
   CheckCircle2, ChevronRight, Globe, Zap, Shield, Brain, Monitor,
   Workflow, Users, Award, TrendingUp, Lock, Clock, Star, HeartHandshake,
-  BadgeCheck, Target, Sparkles, DollarSign, FileCheck, Handshake
+  BadgeCheck, Target, Sparkles, DollarSign, FileCheck, Handshake,
+  HardHat, Ruler, Droplets, Flame, Wind, Truck, TreePine, IndianRupee
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
@@ -190,7 +191,10 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.7 }}
               className="text-lg md:text-xl text-muted-foreground max-w-xl mb-8 leading-relaxed"
             >
-              {t("hero.desc")}
+              Empowering the future of infrastructure through{" "}
+              <span className="text-foreground font-semibold">Advanced BIM</span>,{" "}
+              <span className="text-foreground font-semibold">Smart Design</span>, and{" "}
+              <span className="text-foreground font-semibold">End-to-End Construction Services</span>.
             </motion.p>
 
             {/* Slide indicators */}
@@ -217,6 +221,12 @@ export default function HomePage() {
                 className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-all glow-primary"
               >
                 {t("hero.exploreServices")} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                to="/#construction"
+                className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg border border-primary/40 bg-primary/5 text-foreground font-semibold text-sm hover:bg-primary/10 transition-all"
+              >
+                <HardHat size={16} className="text-primary" /> Explore Construction Projects
               </Link>
               <Link
                 to="/projects"
