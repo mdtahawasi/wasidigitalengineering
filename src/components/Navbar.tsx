@@ -53,12 +53,12 @@ export default function Navbar() {
         <Link to="/" className="flex items-center gap-3 shrink-0">
           <img
             src={logo}
-            alt="WASI Digital Engineering"
+            alt="Wasi Infratech Engineering & Construction (WITEC)"
             className="h-9 md:h-11 w-auto rounded-md dark:brightness-110 dark:contrast-110"
           />
           <div className="flex flex-col leading-none">
             <span className="font-display font-bold text-foreground text-lg md:text-xl tracking-tight">WASI</span>
-            <span className="text-[9px] md:text-[10px] text-muted-foreground tracking-[0.2em] uppercase font-medium">Digital Engineering</span>
+            <span className="text-[9px] md:text-[10px] text-muted-foreground tracking-[0.2em] uppercase font-medium">Infratech Engineering &amp; Construction</span>
           </div>
         </Link>
 
