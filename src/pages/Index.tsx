@@ -7,7 +7,7 @@ import {
   CheckCircle2, ChevronRight, Globe, Zap, Shield, Brain, Monitor,
   Workflow, Users, Award, TrendingUp, Lock, Clock, Star, HeartHandshake,
   BadgeCheck, Target, Sparkles, DollarSign, FileCheck, Handshake,
-  HardHat, Ruler, Droplets, Flame, Wind, Truck, TreePine, IndianRupee
+  HardHat, Ruler, Droplets, Flame, Wind, Truck, TreePine, IndianRupee, Briefcase, ShieldCheck
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
@@ -447,7 +447,7 @@ export default function HomePage() {
                 { icon: CheckCircle2, title: "100% Code Compliant", desc: "IS 456, IS 800, IS 1893 & NBC 2016 — zero compromise." },
                 { icon: Clock, title: "On-Time Delivery", desc: "AI-driven scheduling and live site monitoring." },
                 { icon: IndianRupee, title: "Transparent Pricing", desc: "Detailed BOQ and milestone-based billing." },
-                { icon: ShieldCheckIconFallback, title: "10-Year Structural Warranty", desc: "Backed by third-party inspection reports." },
+                { icon: ShieldCheck, title: "10-Year Structural Warranty", desc: "Backed by third-party inspection reports." },
               ].map((w, i) => (
                 <div key={i} className="flex flex-col items-start gap-3">
                   <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
