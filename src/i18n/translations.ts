@@ -9,6 +9,7 @@ const translations: Translations = {
   "nav.services": { en: "Services", hi: "सेवाएँ", ar: "الخدمات", fr: "Services", de: "Dienstleistungen", es: "Servicios", zh: "服务", ja: "サービス" },
   "nav.projects": { en: "Projects", hi: "परियोजनाएँ", ar: "المشاريع", fr: "Projets", de: "Projekte", es: "Proyectos", zh: "项目", ja: "プロジェクト" },
   "nav.bimInsights": { en: "BIM Insights", hi: "BIM जानकारी", ar: "رؤى BIM", fr: "Perspectives BIM", de: "BIM Einblicke", es: "BIM Insights", zh: "BIM 洞察", ja: "BIM インサイト" },
+  "nav.technology": { en: "Technology", hi: "तकनीक", ar: "التقنية", fr: "Technologie", de: "Technologie", es: "Tecnología", zh: "技术", ja: "テクノロジー" },
   "nav.careers": { en: "Careers", hi: "करियर", ar: "الوظائف", fr: "Carrières", de: "Karriere", es: "Carreras", zh: "职业", ja: "採用情報" },
   "nav.contact": { en: "Contact", hi: "संपर्क", ar: "اتصل بنا", fr: "Contact", de: "Kontakt", es: "Contacto", zh: "联系", ja: "お問い合わせ" },
   "nav.getQuote": { en: "Get a Quote", hi: "कोटेशन प्राप्त करें", ar: "احصل على عرض سعر", fr: "Demander un devis", de: "Angebot anfordern", es: "Solicitar cotización", zh: "获取报价", ja: "見積もり依頼" },

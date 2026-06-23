@@ -12,6 +12,7 @@ const navLinks = [
   { labelKey: "nav.about", href: "/about" },
   { labelKey: "nav.services", href: "/services" },
   { labelKey: "nav.projects", href: "/projects" },
+  { labelKey: "nav.technology", href: "/technology" },
   { labelKey: "nav.bimInsights", href: "/bim-insights" },
   { labelKey: "nav.careers", href: "/careers" },
   { labelKey: "nav.contact", href: "/contact" },

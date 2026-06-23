@@ -12,6 +12,9 @@ import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import SoftwareShowcase from "@/components/SoftwareShowcase";
+import BIMDimensionsSection from "@/components/BIMDimensionsSection";
+import BIMLayerViewer from "@/components/BIMLayerViewer";
+import ISCodeComplianceSection from "@/components/ISCodeComplianceSection";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, fadeIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 
@@ -325,6 +328,24 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ===== BIM DIMENSIONS 3D-7D ===== */}
+      <BIMDimensionsSection />
+
+      {/* ===== INTERACTIVE BIM LAYER VIEWER ===== */}
+      <section className="section-padding bg-card/30">
+        <div className="container mx-auto px-4 md:px-8">
+          <SectionHeading
+            label="● Interactive Demo"
+            title="Explore a BIM Model Live"
+            description="Toggle Structural, Architectural, MEP and Interior layers to see how WITEC federates every discipline into one coordinated model."
+          />
+          <BIMLayerViewer />
+        </div>
+      </section>
+
+      {/* ===== IS CODE COMPLIANCE ===== */}
+      <ISCodeComplianceSection />
 
       {/* ===== PROCESS ===== */}
       <section id="process" className="section-padding bg-card/30 overflow-hidden">
