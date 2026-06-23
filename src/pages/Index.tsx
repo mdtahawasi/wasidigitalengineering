@@ -12,6 +12,9 @@ import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import SoftwareShowcase from "@/components/SoftwareShowcase";
+import BIMDimensionsSection from "@/components/BIMDimensionsSection";
+import BIMLayerViewer from "@/components/BIMLayerViewer";
+import ISCodeComplianceSection from "@/components/ISCodeComplianceSection";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, fadeIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 
