@@ -12,6 +12,7 @@ import Projects from "./pages/Projects";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
 import BIMInsights from "./pages/BIMInsights";
+import Technology from "./pages/Technology";
 import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -37,6 +38,7 @@ function AnimatedRoutes() {
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/bim-insights" element={<BIMInsights />} />
+          <Route path="/technology" element={<Technology />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </motion.div>
