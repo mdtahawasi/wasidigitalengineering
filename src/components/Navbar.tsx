@@ -6,6 +6,7 @@ import { Menu, X, Sun, Moon, Monitor } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTheme } from "@/contexts/ThemeContext";
+import DivisionToggle from "./DivisionToggle";
 
 const navLinks = [
   { labelKey: "nav.home", href: "/" },
@@ -82,6 +83,9 @@ export default function Navbar() {
 
         {/* Right side */}
         <div className="flex items-center gap-1 shrink-0">
+          <div className="hidden lg:block mr-2">
+            <DivisionToggle />
+          </div>
           <Link
             to="/contact"
             className="hidden lg:inline-flex items-center px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm"
@@ -107,6 +111,11 @@ export default function Navbar() {
           </button>
         </div>
       </nav>
+
+      {/* Mobile sticky division toggle bar */}
+      <div className="lg:hidden border-t border-border/40 bg-background/80 backdrop-blur-md px-4 py-2 flex justify-center">
+        <DivisionToggle variant="mobile" className="max-w-md" />
+      </div>
 
       {/* Mobile Dropdown Menu */}
       <AnimatePresence>

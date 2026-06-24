@@ -72,11 +72,23 @@ export default function Footer() {
 
         {/* Contact strip */}
         <div className="mt-12 pt-8 border-t border-border/50 flex flex-col md:flex-row gap-6 md:items-center justify-between">
-          <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
-            <span className="flex items-center gap-2"><Mail size={14} className="text-primary" /> info@wasidigital.com</span>
-            <span className="flex items-center gap-2"><Phone size={14} className="text-primary" /> +971 569327490</span>
-            <span className="flex items-center gap-2"><Phone size={14} className="text-primary" /> +91 81779 97522</span>
-            <span className="flex items-center gap-2"><MapPin size={14} className="text-primary" /> Dubai, UAE</span>
+          <div className="grid sm:grid-cols-2 gap-6 text-sm w-full md:w-auto">
+            <div className="space-y-1.5">
+              <div className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "#00d4ff" }}>
+                BIM &amp; Engineering Division
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Dubai, UAE</div>
+              <div className="flex items-center gap-2 text-muted-foreground"><Mail size={14} /> info@wasidigital.com</div>
+              <div className="flex items-center gap-2 text-muted-foreground"><Phone size={14} /> +971 569327490</div>
+            </div>
+            <div className="space-y-1.5">
+              <div className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "#10b981" }}>
+                Construction &amp; Civil Works Division
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Nagpur, India (HQ)</div>
+              <div className="flex items-center gap-2 text-muted-foreground"><Mail size={14} /> bimengineer11@gmail.com</div>
+              <div className="flex items-center gap-2 text-muted-foreground"><Phone size={14} /> +91 81779 97522</div>
+            </div>
           </div>
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} Wasi Infratech Engineering & Construction (WITEC). {t("footer.rights")}
