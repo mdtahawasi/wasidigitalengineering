@@ -16,6 +16,7 @@ import Technology from "./pages/Technology";
 import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { DivisionProvider } from "./contexts/DivisionContext";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
     <ThemeProvider>
+    <DivisionProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -58,6 +60,7 @@ const App = () => (
           <AnimatedRoutes />
         </BrowserRouter>
       </TooltipProvider>
+    </DivisionProvider>
     </ThemeProvider>
     </LanguageProvider>
   </QueryClientProvider>
