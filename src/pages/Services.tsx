@@ -9,6 +9,8 @@ import {
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useDivision } from "@/contexts/DivisionContext";
+import { constructionServices, constructionProcess } from "@/data/constructionContent";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem } from "@/lib/animations";
 
 import imgArchitecture from "@/assets/discipline-architecture.jpg";
@@ -55,6 +57,8 @@ const software = [
 
 export default function ServicesPage() {
   const { t } = useLanguage();
+  const { division } = useDivision();
+  const isConstruction = division === "construction";
 
   useScrollToHash();
 
@@ -71,7 +75,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.4, delay: 0.2 }}
               className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4"
             >
-              {t("services.badge")}
+              {isConstruction ? "Civil & Construction Services" : t("services.badge")}
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 25 }}
@@ -79,7 +83,11 @@ export default function ServicesPage() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-3xl"
             >
-              {t("services.title")} <span className="text-gradient">{t("services.titleHighlight")}</span> {t("services.titleEnd")}
+              {isConstruction ? (
+                <>From Groundbreaking to <span className="text-gradient">Handover</span> — End-to-End Construction</>
+              ) : (
+                <>{t("services.title")} <span className="text-gradient">{t("services.titleHighlight")}</span> {t("services.titleEnd")}</>
+              )}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -87,7 +95,9 @@ export default function ServicesPage() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
             >
-              {t("services.desc")}
+              {isConstruction
+                ? "20+ construction service offerings spanning civil, structural, MEP, finishing and infrastructure — delivered by WITEC's Nagpur-based Construction division."
+                : t("services.desc")}
             </motion.p>
           </motion.div>
         </div>
@@ -96,7 +106,38 @@ export default function ServicesPage() {
       {/* Discipline-Specific Services */}
       <section id="disciplines" className="pb-20">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label={t("services.disciplinesLabel")} title={t("services.disciplinesTitle")} description={t("services.disciplinesDesc")} />
+          <SectionHeading
+            label={isConstruction ? "● Construction Services" : t("services.disciplinesLabel")}
+            title={isConstruction ? "20 Construction Services Under One Roof" : t("services.disciplinesTitle")}
+            description={isConstruction
+              ? "A single-window contractor for civil, structural, MEP, finishing and infrastructure works."
+              : t("services.disciplinesDesc")}
+          />
+
+          {isConstruction ? (
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+            >
+              {constructionServices.map((s, i) => (
+                <motion.div
+                  key={i}
+                  variants={staggerItem}
+                  className="glass rounded-xl p-5 group hover:border-primary/30 transition-all duration-500 relative overflow-hidden"
+                >
+                  <div className="absolute top-3 right-3 text-[10px] font-bold text-primary/40">{String(i + 1).padStart(2, "0")}</div>
+                  <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-gradient-primary transition-all duration-500">
+                    <s.icon size={20} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <h3 className="font-display font-semibold text-foreground text-base mb-1.5">{s.title}</h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
           <div className="space-y-8">
             {disciplines.map((service, i) => (
               <motion.div
@@ -149,8 +190,43 @@ export default function ServicesPage() {
               </motion.div>
             ))}
           </div>
+          )}
         </div>
       </section>
+
+      {/* Construction Process (only construction) */}
+      {isConstruction && (
+        <section className="section-padding bg-card/30">
+          <div className="container mx-auto px-4 md:px-8">
+            <SectionHeading
+              label="● Our Process"
+              title="8-Stage Construction Lifecycle"
+              description="A proven workflow from site survey to defect liability — auditable, transparent, and on schedule."
+            />
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+            >
+              {constructionProcess.map((p, i) => (
+                <motion.div
+                  key={i}
+                  variants={staggerItem}
+                  className="glass rounded-xl p-5 relative group hover:border-primary/30 transition-all duration-500"
+                >
+                  <div className="absolute -top-3 left-5 px-2.5 py-0.5 rounded-full bg-gradient-primary text-primary-foreground text-xs font-bold">
+                    {p.step}
+                  </div>
+                  <h4 className="font-display font-semibold text-foreground text-base mb-1.5 mt-2">{p.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{p.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Additional Services */}
       <section id="additional-services" className="section-padding bg-card/30">
