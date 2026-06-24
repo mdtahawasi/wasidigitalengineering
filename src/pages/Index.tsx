@@ -301,9 +301,11 @@ export default function HomePage() {
       <section id="services" className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading
-            label={t("index.servicesLabel")}
-            title={t("index.servicesTitle")}
-            description={t("index.servicesDesc")}
+            label={isConstruction ? "● Construction Services" : t("index.servicesLabel")}
+            title={isConstruction ? "End-to-End Civil & Construction Solutions" : t("index.servicesTitle")}
+            description={isConstruction
+              ? "From foundations to finishing — WITEC's Construction division builds residential, commercial, industrial and infrastructure projects with safety, quality and on-time delivery."
+              : t("index.servicesDesc")}
           />
           <motion.div
             variants={staggerContainer}
@@ -312,22 +314,33 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-60px" }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {serviceKeys.map((service, i) => (
+            {(isConstruction
+              ? constructionServices.slice(0, 6).map((s) => ({
+                  icon: s.icon,
+                  titleKey: s.title,
+                  descKey: s.desc,
+                  img: null as string | null,
+                  rawText: true,
+                }))
+              : bimServiceKeys.map((s) => ({ ...s, img: s.img as string | null, rawText: false }))
+            ).map((service, i) => (
               <motion.div
                 key={i}
                 variants={staggerItem}
                 className="group glass rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-500 relative"
               >
-                <div className="relative h-36 overflow-hidden">
-                  <img src={service.img} alt={t(service.titleKey)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-                </div>
+                {service.img && (
+                  <div className="relative h-36 overflow-hidden">
+                    <img src={service.img} alt={service.rawText ? service.titleKey : t(service.titleKey)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                  </div>
+                )}
                 <div className="p-5 relative">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-gradient-primary group-hover:text-primary-foreground transition-all duration-500 -mt-10 relative z-10 border-2 border-background">
+                  <div className={`w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-gradient-primary group-hover:text-primary-foreground transition-all duration-500 ${service.img ? "-mt-10 relative z-10 border-2 border-background" : ""}`}>
                     <service.icon size={20} className="text-primary group-hover:text-primary-foreground transition-colors" />
                   </div>
-                  <h3 className="font-display font-semibold text-lg text-foreground mb-2">{t(service.titleKey)}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{t(service.descKey)}</p>
+                  <h3 className="font-display font-semibold text-lg text-foreground mb-2">{service.rawText ? service.titleKey : t(service.titleKey)}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{service.rawText ? service.descKey : t(service.descKey)}</p>
                 </div>
               </motion.div>
             ))}
@@ -339,6 +352,39 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ===== WHAT WE BUILD (Construction only) ===== */}
+      {isConstruction && (
+        <section className="section-padding bg-card/30">
+          <div className="container mx-auto px-4 md:px-8">
+            <SectionHeading
+              label="● What We Build"
+              title="Six Asset Classes. One Trusted Builder."
+              description="WITEC's Construction division delivers across the full spectrum of built infrastructure in India."
+            />
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+            >
+              {whatWeBuild.map((item, i) => (
+                <motion.div
+                  key={i}
+                  variants={staggerItem}
+                  className="glass rounded-xl p-5 text-center group hover:border-primary/30 transition-all duration-500"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 mx-auto flex items-center justify-center mb-3 group-hover:bg-gradient-primary transition-all duration-500">
+                    <item.icon size={22} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <p className="text-sm font-display font-semibold text-foreground">{item.label}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* ===== BIM DIMENSIONS 3D-7D ===== */}
       <BIMDimensionsSection />
