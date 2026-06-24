@@ -16,6 +16,8 @@ import BIMDimensionsSection from "@/components/BIMDimensionsSection";
 import BIMLayerViewer from "@/components/BIMLayerViewer";
 import ISCodeComplianceSection from "@/components/ISCodeComplianceSection";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useDivision } from "@/contexts/DivisionContext";
+import { constructionHeroSlides, constructionServices, whatWeBuild } from "@/data/constructionContent";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, fadeIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 
 const ConstructionScene = lazy(() => import("@/components/ConstructionScene"));
@@ -34,7 +36,7 @@ import heroBimClash from "@/assets/hero-bim-clash.jpg";
 import heroDigitalTwin from "@/assets/hero-digital-twin.jpg";
 import heroBimMepf from "@/assets/hero-bim-mepf.jpg";
 
-const heroSlides = [
+const bimHeroSlides = [
   {
     image: heroBim3D,
     quote: "Where Vision Meets Precision — Engineering Tomorrow's Landmarks Today",
@@ -57,7 +59,7 @@ const heroSlides = [
   },
 ];
 
-const serviceKeys = [
+const bimServiceKeys = [
   { icon: Building2, titleKey: "svc.bimModeling", descKey: "svc.bimModelingDesc", img: imgArchitecture },
   { icon: Layers3, titleKey: "svc.clashDetection", descKey: "svc.clashDetectionDesc", img: imgMEPF },
   { icon: ScanLine, titleKey: "svc.scanToBim", descKey: "svc.scanToBimDesc", img: imgScanToBIM },
@@ -106,13 +108,22 @@ const industries = [
 
 export default function HomePage() {
   const { t } = useLanguage();
+  const { division } = useDivision();
   const [heroIndex, setHeroIndex] = useState(0);
 
   useScrollToHash();
 
+  const heroSlides = division === "construction" ? constructionHeroSlides : bimHeroSlides;
+  const isConstruction = division === "construction";
+
+  // Reset slide index when switching division
+  useEffect(() => {
+    setHeroIndex(0);
+  }, [division]);
+
   const nextSlide = useCallback(() => {
     setHeroIndex((prev) => (prev + 1) % heroSlides.length);
-  }, []);
+  }, [heroSlides.length]);
 
   useEffect(() => {
     const interval = setInterval(nextSlide, 5000);
@@ -157,7 +168,7 @@ export default function HomePage() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-6"
             >
-              {t("hero.badge")}
+              {isConstruction ? "Civil Engineering & Construction" : t("hero.badge")}
             </motion.span>
 
             {/* Rotating headline */}
