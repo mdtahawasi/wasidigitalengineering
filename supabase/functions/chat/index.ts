@@ -11,7 +11,45 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
 
   try {
-    const { messages } = await req.json();
+    const body = await req.json().catch(() => null);
+    if (!body || !Array.isArray(body.messages)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid request: 'messages' must be an array." }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    const rawMessages = body.messages;
+    if (rawMessages.length === 0 || rawMessages.length > 20) {
+      return new Response(
+        JSON.stringify({ error: "Invalid request: message count must be between 1 and 20." }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    const messages: Array<{ role: string; content: string }> = [];
+    for (const m of rawMessages) {
+      if (!m || typeof m !== "object") {
+        return new Response(
+          JSON.stringify({ error: "Invalid message format." }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+      const role = m.role;
+      const content = m.content;
+      if (role !== "user" && role !== "assistant") {
+        return new Response(
+          JSON.stringify({ error: "Invalid role: only 'user' and 'assistant' are allowed." }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+      if (typeof content !== "string" || content.length === 0 || content.length > 2000) {
+        return new Response(
+          JSON.stringify({ error: "Invalid content: each message must be a string of 1-2000 characters." }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+      messages.push({ role, content });
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
@@ -74,7 +112,7 @@ Keep answers concise, professional, and helpful. If asked something outside WASI
   } catch (e) {
     console.error("chat error:", e);
     return new Response(
-      JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }),
+      JSON.stringify({ error: "Internal server error" }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
