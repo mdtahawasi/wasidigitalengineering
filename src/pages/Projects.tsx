@@ -4,6 +4,8 @@ import { MapPin } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useDivision } from "@/contexts/DivisionContext";
+import { constructionProjects } from "@/data/constructionContent";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 import heroConstruction from "@/assets/hero-construction-site.jpg";
 import projectHGR from "@/assets/project-hgr.jpg";
@@ -101,7 +103,24 @@ const projects = [
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const { t } = useLanguage();
-  const filtered = activeCategory === "All" ? projects : projects.filter((p) => p.category === activeCategory);
+  const { division } = useDivision();
+  const isConstruction = division === "construction";
+
+  const activeList = isConstruction
+    ? constructionProjects.map((p) => ({
+        img: p.img,
+        title: p.title,
+        category: p.category,
+        location: p.location,
+        scope: p.desc,
+        gfa: p.area,
+        config: p.disciplines.join(" · "),
+        tags: p.tags,
+        status: p.status,
+      }))
+    : projects.map((p) => ({ ...p, tags: undefined as string[] | undefined, status: undefined as string | undefined }));
+
+  const filtered = activeCategory === "All" ? activeList : activeList.filter((p) => p.category === activeCategory);
 
   const getCategoryTranslation = (cat: string) => {
     const found = categoryKeys.find((c) => c.key === cat);
@@ -188,6 +207,11 @@ export default function ProjectsPage() {
                   <div className="absolute top-3 left-3">
                     <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase bg-primary/90 text-primary-foreground">{getCategoryTranslation(project.category)}</span>
                   </div>
+                  {project.status && (
+                    <div className="absolute top-3 right-3">
+                      <span className={`px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase ${project.status === "Completed" ? "bg-emerald-500/90 text-white" : "bg-amber-500/90 text-white"}`}>{project.status}</span>
+                    </div>
+                  )}
                 </div>
                 <div className="p-5 space-y-2">
                   <h3 className="font-display font-semibold text-foreground text-sm leading-snug line-clamp-2">{project.title}</h3>
@@ -201,9 +225,16 @@ export default function ProjectsPage() {
                       <span className="font-semibold text-primary text-right">{project.gfa}</span>
                     </div>
                     <div className="flex justify-between items-start gap-2">
-                      <span className="text-muted-foreground shrink-0">Config</span>
+                      <span className="text-muted-foreground shrink-0">{isConstruction ? "Scope" : "Config"}</span>
                       <span className="font-semibold text-foreground text-right text-[11px] leading-snug">{project.config}</span>
                     </div>
+                    {project.tags && project.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {project.tags.map((tag) => (
+                          <span key={tag} className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-semibold">{tag}</span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
