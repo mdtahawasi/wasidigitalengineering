@@ -2,11 +2,15 @@ import {
   HardHat, Building2, Hammer, Construction, Truck, Layers, Ruler, ShieldCheck,
   Wrench, Droplets, PaintBucket, Trees, Mountain, Map, Cog, ClipboardList,
   Forklift, Brush, Building, Workflow,
+  Brain, FileCheck, Activity, Award, Clock, DollarSign, Users, Target,
+  Sparkles, HeartHandshake, Lock, Scan, Plane, Printer, Cpu, Zap,
+  Flame, ShieldAlert, LifeBuoy, Wind, Recycle, Volume2,
 } from "lucide-react";
 import heroCrane from "@/assets/hero-construction-crane.jpg";
 import heroBridge from "@/assets/hero-construction-bridge.jpg";
 import heroTower from "@/assets/hero-construction-tower.jpg";
 import heroTeam from "@/assets/hero-construction-team.jpg";
+import heroSite from "@/assets/hero-construction-site.jpg";
 
 export const constructionHeroSlides = [
   {
