@@ -15,23 +15,23 @@ import heroSite from "@/assets/hero-construction-site.jpg";
 export const constructionHeroSlides = [
   {
     image: heroCrane,
-    quote: "Building Tomorrow's Skyline — One Beam, One Slab, One Storey at a Time",
-    sub: "High-Rise & RCC Construction",
+    quote: "ENGINEERING EXCELLENCE — From Foundation to Finish",
+    sub: "Turnkey Construction",
   },
   {
     image: heroBridge,
-    quote: "Bridges that Connect Communities — Infrastructure that Endures Generations",
-    sub: "Bridges, Highways & Infrastructure",
+    quote: "BIM-Powered Construction — Zero Rework, On-Time Delivery",
+    sub: "Smart Construction",
   },
   {
     image: heroTower,
-    quote: "Concrete, Steel & Trust — The Wasi Promise on Every Site in Nagpur",
-    sub: "Residential & Commercial Towers",
+    quote: "IS Code Compliant — Every Column, Every Beam, Every Slab",
+    sub: "Structural Safety",
   },
   {
     image: heroTeam,
-    quote: "Safety First. Quality Always. Delivered On Time, Every Time.",
-    sub: "Civil Engineering & Project Management",
+    quote: "Your Dream Home, Built to Perfection",
+    sub: "Residential Construction",
   },
 ];
 
