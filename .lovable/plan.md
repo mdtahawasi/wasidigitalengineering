@@ -1,69 +1,53 @@
-# WITEC Dual-Division Merge — Phased Plan
 
-This is a very large build (8 pages, new state system, dynamic theming, two full content sets, new 3D scene, dozens of services/projects). To keep quality high and avoid token blowups, I'll ship it in **3 phases**, each ending in a working, verifiable state. Block 1 will be split into 1A and 1B because it alone is bigger than a single safe turn.
+# WITEC Dual-Division Integration — Execution Plan
 
-I'll keep **all existing BIM content untouched** — only add the Construction layer alongside it.
-
----
-
-## Phase 1A — Foundation (this turn)
-
-The plumbing everything else depends on.
-
-- `src/contexts/DivisionContext.tsx` — Context + `useReducer` (`SET_DIVISION`, `TOGGLE_DIVISION`), `useDivision()` hook, localStorage (`witec-division`) + URL `?division=` sync, sets `data-division` on `<html>`.
-- `src/index.css` — Add `[data-division="bim"]` and `[data-division="construction"]` CSS variable blocks (accent primary/secondary/tertiary/glow, gradient-hero). Existing tokens stay.
-- `src/App.tsx` — Wrap tree in `DivisionProvider`.
-- `src/components/DivisionToggle.tsx` — Pill toggle with sliding indicator (Framer Motion spring), icons, `role="tablist"` + `aria-selected`, mobile full-width variant.
-- `src/components/Navbar.tsx` — Mount `<DivisionToggle />` (desktop: between links and CTA; mobile: sticky bar under navbar).
-- `src/components/DivisionContent.tsx` — `{ bim, construction }` wrapper using `AnimatePresence` (500ms fade/slide, stagger 50ms).
-- `src/components/DivisionBadge.tsx` — Small pill badge.
-- `src/components/AnimatedSection.tsx` — IntersectionObserver scroll-reveal wrapper.
-- `src/components/Footer.tsx` — Always show both divisions (Dubai BIM + Nagpur Construction).
-
-**Verify:** toggle switches theme accents live, persists across reload, URL param works, no regressions on existing pages.
+The scope you sent is enormous (8 pages + 3D viewer + SEO + footer + ~30 new content items + 3 new 3D layers). To keep quality high and credits efficient, I'll ship it in 5 focused phases. After each phase you preview, then say "continue" to trigger the next.
 
 ---
 
-## Phase 1B — Homepage + Services (next turn)
+## Phase 1 — Foundation, Hero & Homepage Content
+- Dynamic SEO meta (title + description swap per division) via a small `<DivisionSEO/>` helper using react-helmet-async.
+- Homepage hero: replace current copy with exact BIM / Construction headlines, subheadlines, badges (ISO 19650 / IS 456…), animated KPI counters (150+ BIM Projects vs 50+ Construction Projects), 4 rotating slides per division.
+- Homepage section ordering per division (BIM: Dimensions → Viewer → 6 Services → 6-step BIM workflow → Why WITEC BIM (8 pts) → Featured BIM Projects → Tech Stack → Standards → Testimonials. Construction: What We Build → 6 Services → 8-step Process stepper → Why WITEC Construction (12 pts) → Sectors → Featured Construction Projects → Tech Stack → IS Codes → Testimonials).
+- Footer division-aware: links, phone priority (Dubai vs +91 8177997522), standards row, RERA/PWD/CPWD badges in construction mode.
 
-- `src/pages/Index.tsx` — Wrap hero, "Why WITEC", testimonials, sectors in `<DivisionContent>`. BIM side stays as-is. Construction side adds: new hero (green theme, KPIs, trust bar), construction 3D scene (`ConstructionSiteScene.tsx` — wireframe building + rotating crane via R3F), "What We Build" 6-card grid, construction "Why WITEC" list, 6-step construction process stepper, 6 construction testimonials, updated sector counts.
-- `src/components/ConstructionSiteScene.tsx` — New R3F scene (BoxGeometry floors, CylinderGeometry columns, animated crane arm).
-- `src/pages/Services.tsx` — Top-level tabs (BIM | Construction) bound to division state. BIM tab keeps existing 11 services. Construction tab adds all 20 services as cards (icon, title, description, tags, expandable detail) + 8-step construction process stepper.
+## Phase 2 — Projects, Services, Testimonials Data
+- Add 7 new Construction projects + 4 new BIM projects to `constructionContent.ts` / `projectsContent.ts` (new file).
+- Projects page: division filter pill (All / BIM / Construction) auto-synced to global toggle, category filter inside.
+- Services page: add BIM 6-step workflow section, Construction 8-step process + Materials We Use + Material Testing section, timeline badges on cards.
+- 6 new Construction testimonials wired into homepage testimonial slot, fully separated from BIM ones.
 
-**Verify:** division toggle drives both pages, construction 3D scene renders, no console errors.
+## Phase 3 — Technology, About, Insights, Careers, Contact
+- Technology page Construction mode: Core Tech (6 metric cards), Equipment Fleet (12), Safety (4 red), Environmental (3 green), Future Tech (3), Certifications grid. BIM mode: add Automation + Interoperability sections.
+- About page: BIM Division card vs Construction Division card; full Regulatory Compliance block (IS codes, ISO certs, RERA/PWD/CPWD); team-role emphasis swap.
+- BIM Insights → page heading flips to "Construction Insights" with 6 new construction articles when in construction mode.
+- Careers: 3 new construction roles + division-aware sorting.
+- Contact: Construction office card (Sadar, Nagpur, +91 8177997522), registrations badge row, Division dropdown in form (auto-selects active division).
 
----
+## Phase 4 — 3D BIM Viewer Overhaul
+Rebuild `BIMLayerViewer.tsx` with a believable building:
+- Existing 4 layers detailed (column grid + footings + core for Structural; windows/doors/balconies/parapet for Architectural; trunk+branch HVAC, water risers, drainage, sprinklers for MEP; partitions + bathroom pods + kitchen + false ceiling for Interior).
+- 3 new layers: Facade (curtain wall + mullions + louvers + canopy), Landscape (paving + trees + parking + compound wall + fountain), Infrastructure (UG tank + STP + substation + RWH + road).
+- Layer toggles show name + element count + key elements list + colored ON/OFF state + discipline icon.
+- Keep perf: dpr [1,1.5], antialias off, instanced meshes where possible.
 
-## Phase 2 — Projects + About + Technology
-
-- `src/pages/Projects.tsx` — Division filter pills (All | BIM | Construction) wired to context + existing category filters. Add 8 detailed BIM projects + 7 Construction projects with division/category badges and hover-reveal disciplines.
-- `src/pages/About.tsx` — Add Construction Division section, merged values, dual-color journey timeline (2019-2025 with construction milestones), Regulatory Compliance section (BIM standards | Construction IS codes), unified org chart (BIM team + Construction team under CEO).
-- `src/pages/Technology.tsx` — Wrap in `<DivisionContent>`. BIM side unchanged. Construction side: 6 Core Tech cards (metrics), 3 Future Tech, 4 Safety, 3 Environmental, Equipment Fleet grid, Certifications grid.
-
----
-
-## Phase 3 — Contact + SEO + polish
-
-- `src/pages/Contact.tsx` — Add Nagpur Construction office card, Division select in contact form, Registrations & Certifications section.
-- SEO — `react-helmet-async` (install if missing) for dynamic per-division `<title>`/`<meta>` on Home, Services, Projects, Technology; LocalBusiness JSON-LD for Dubai + Nagpur.
-- `src/i18n/translations.ts` — English keys for all new strings (per earlier decision, English-only for new content).
-- Lazy-load Construction-heavy components with `React.lazy` + `Suspense`.
-- Final pass: a11y (focus-visible per division), `loading="lazy"` on images, accessibility audit of toggle.
+## Phase 5 — Polish & Verification
+- AnimatePresence transitions on every division-swap section.
+- Mobile responsiveness pass for new grids/steppers.
+- Run typecheck + walk every route via Playwright in both divisions, capture screenshots, fix console errors.
+- Tick the checklist from your brief and report any item that can't be auto-completed (e.g. logos for "Materials We Use" needs you to confirm brands).
 
 ---
 
 ## Technical notes
+- New files: `src/components/DivisionSEO.tsx`, `src/data/projectsContent.ts`, `src/data/insightsContent.ts`, `src/data/careersContent.ts`, `src/components/ConstructionProcessStepper.tsx`, `src/components/WhyChooseWITEC.tsx`.
+- Install `react-helmet-async` for per-division `<title>`/`<meta>`.
+- Reuse existing `useDivision()` + `DivisionContent` + `data-division` CSS variables — no architecture changes.
+- All hardcoded English copy goes into `src/i18n/translations.ts` so the 8-language system keeps working (Arabic RTL preserved).
 
-- **State**: React Context + `useReducer`; `useDivision()` returns `{ division, setDivision, toggle }`. URL param wins on first load if present, else localStorage, else `'bim'`.
-- **Theming**: All new components reference `var(--accent-primary)` etc. — never hardcoded hex. Existing shadcn tokens (`--primary`, `--background`) stay intact so light/dark mode still works on top of division accents.
-- **Animations**: `AnimatePresence mode="wait"` with `initial/animate/exit` opacity + y; stagger via `staggerChildren: 0.05`.
-- **R3F**: Reuse the project's pinned versions (`@react-three/fiber@^8.18`, `@react-three/drei@^9.122`).
-- **No backend changes.** No new tables, no edge functions.
+## Open questions before I start
+1. **Phase 1 only first, or batch 1+2 in one go?** Batch 1+2 is ~double the credits but ships the most user-visible content in one shot.
+2. **"Materials We Use" brand logos** (UltraTech, Tata Steel, JSW, Asian Paints, Jaquar, etc.) — OK to use text/badge tiles, or do you want generated logo-style images?
+3. **BIM project images** for the 4 new BIM projects — generate AI renders, or use existing hero BIM assets as placeholders?
 
-## Out of scope (will not touch)
-
-- Existing BIM copy, existing 3D scene, theme system (light/dark stays), i18n for the 7 non-English locales (Construction strings English-only as previously agreed), Supabase, auth.
-
----
-
-**Reply "go" (or "approve") and I'll start Phase 1A immediately.** If you'd rather I batch differently (e.g. do 1A+1B in one turn and risk a partial result), say so.
+Reply with answers (or just "go phase 1") and I'll start.
