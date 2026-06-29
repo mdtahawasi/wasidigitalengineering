@@ -7,6 +7,7 @@ import {
   PenTool, Columns3, TreePine, Route, Wrench, Database, ClipboardCheck, Settings2,
 } from "lucide-react";
 import Layout from "@/components/Layout";
+import DivisionSEO from "@/components/DivisionSEO";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDivision } from "@/contexts/DivisionContext";
@@ -64,6 +65,7 @@ export default function ServicesPage() {
 
   return (
     <Layout>
+      <DivisionSEO />
       {/* Hero */}
       <section id="services-hero" className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-10" />

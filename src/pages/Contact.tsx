@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, Send, Globe, Building2 } from "lucide-react";
 import Layout from "@/components/Layout";
+import DivisionSEO from "@/components/DivisionSEO";
 import WorldMap from "@/components/WorldMap";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
@@ -27,6 +28,7 @@ export default function ContactPage() {
 
   return (
     <Layout>
+      <DivisionSEO />
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">
           <img src={heroConstruction} alt="" className="w-full h-full object-cover opacity-10" />
