@@ -17,7 +17,14 @@ import BIMLayerViewer from "@/components/BIMLayerViewer";
 import ISCodeComplianceSection from "@/components/ISCodeComplianceSection";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDivision } from "@/contexts/DivisionContext";
-import { constructionHeroSlides, constructionServices, whatWeBuild } from "@/data/constructionContent";
+import {
+  constructionHeroSlides,
+  constructionServices,
+  whatWeBuild,
+  constructionHeroKpis,
+  constructionTestimonials,
+} from "@/data/constructionContent";
+import DivisionSEO from "@/components/DivisionSEO";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, fadeIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 
 const ConstructionScene = lazy(() => import("@/components/ConstructionScene"));
@@ -39,23 +46,23 @@ import heroBimMepf from "@/assets/hero-bim-mepf.jpg";
 const bimHeroSlides = [
   {
     image: heroBim3D,
-    quote: "Where Vision Meets Precision — Engineering Tomorrow's Landmarks Today",
-    sub: "3D BIM Modeling & Coordination",
+    quote: "Every Pipe, Every Duct, Every Wire — Perfectly Coordinated in 3D",
+    sub: "MEP/F Systems Integration",
   },
   {
     image: heroBimClash,
-    quote: "Building Smarter, Not Harder — Data-Driven Construction Intelligence",
-    sub: "Clash Detection & Resolution",
+    quote: "From Blueprint to Digital Twin — Engineering the Future",
+    sub: "Complete BIM Lifecycle",
   },
   {
     image: heroDigitalTwin,
-    quote: "The Future is Digital — Transforming Blueprints into Living Models",
-    sub: "Digital Twin & Smart Infrastructure",
+    quote: "Zero Clashes. Zero Rework. Maximum Precision.",
+    sub: "AI-Powered Clash Detection",
   },
   {
     image: heroBimMepf,
-    quote: "Every Pipe, Every Duct, Every Wire — Perfectly Coordinated in 3D",
-    sub: "MEP/F Systems Integration",
+    quote: "See It Before You Build It — Immersive VR/AR",
+    sub: "Virtual Reality Visualization",
   },
 ];
 
@@ -68,12 +75,13 @@ const bimServiceKeys = [
   { icon: Cog, titleKey: "svc.digitalTwin", descKey: "svc.digitalTwinDesc", img: imgFacilityMgmt },
 ];
 
-const stats = [
-  { value: 30, suffix: "+", labelKey: "stat.projectsDelivered" },
-  { value: 6, suffix: "+", labelKey: "stat.yearsExperience" },
-  { value: 10, suffix: "+", labelKey: "stat.disciplinesCovered" },
-  { value: 100, suffix: "%", labelKey: "stat.clientSatisfaction" },
+const bimStats = [
+  { value: 150, suffix: "+", label: "BIM Projects" },
+  { value: 5,   suffix: "+", label: "Countries" },
+  { value: 50,  suffix: "+", label: "BIM Experts" },
+  { value: 10,  suffix: "+", label: "Years BIM" },
 ];
+const constructionStats = constructionHeroKpis.map(k => ({ value: k.value, suffix: k.suffix, label: k.label }));
 
 const projects = [
   { img: projectHGR, title: "Al Habtoor Grand Residency (HGR)", categoryKey: "projects.residential", location: "Dubai, UAE" },
@@ -115,6 +123,16 @@ export default function HomePage() {
 
   const heroSlides = division === "construction" ? constructionHeroSlides : bimHeroSlides;
   const isConstruction = division === "construction";
+  const stats = isConstruction ? constructionStats : bimStats;
+  const heroBadgeText = isConstruction
+    ? "NAGPUR'S PREMIER CONSTRUCTION COMPANY"
+    : "ENGINEERING & BIM CONSULTANCY";
+  const heroSubheadline = isConstruction
+    ? "Civil engineering, structural design, MEP services & turnkey construction. BIM-powered, IS code compliant, delivered on time. 10-year structural warranty on every project."
+    : "AI-integrated BIM solutions powering the AEC industry. From concept to facility management — we digitize every dimension of construction.";
+  const heroTrustBadges = isConstruction
+    ? ["IS 456", "IS 800", "IS 1893", "NBC 2016", "10-Year Warranty"]
+    : ["ISO 19650", "IFC / openBIM", "AI-Integrated", "LOD 100-500"];
 
   // Reset slide index when switching division
   useEffect(() => {
@@ -132,6 +150,7 @@ export default function HomePage() {
 
   return (
     <Layout>
+      <DivisionSEO />
       {/* ===== HERO ===== */}
       <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden">
         {/* Rotating background images */}
@@ -166,9 +185,17 @@ export default function HomePage() {
               initial={{ opacity: 0, scale: 0.9, x: -20 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-6"
+              className={`relative inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border mb-6 ${
+                isConstruction
+                  ? "text-emerald-500 bg-emerald-500/10 border-emerald-500/30"
+                  : "text-primary bg-primary/10 border-primary/20"
+              }`}
             >
-              {isConstruction ? "Civil Engineering & Construction" : t("hero.badge")}
+              <span className={`relative flex h-2 w-2`}>
+                <span className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${isConstruction ? "bg-emerald-500" : "bg-primary"}`} />
+                <span className={`relative inline-flex rounded-full h-2 w-2 ${isConstruction ? "bg-emerald-500" : "bg-primary"}`} />
+              </span>
+              {heroBadgeText}
             </motion.span>
 
             {/* Rotating headline */}
@@ -204,8 +231,20 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.7 }}
               className="text-lg md:text-xl text-muted-foreground max-w-xl mb-8 leading-relaxed"
             >
-              {t("hero.desc")}
+              {heroSubheadline}
             </motion.p>
+
+            {/* Trust badge pills */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {heroTrustBadges.map((b) => (
+                <span
+                  key={b}
+                  className="text-[10px] md:text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-border/60 bg-card/60 backdrop-blur text-foreground/80"
+                >
+                  {b}
+                </span>
+              ))}
+            </div>
 
             {/* Slide indicators */}
             <div className="flex gap-2 mb-8">
@@ -290,7 +329,7 @@ export default function HomePage() {
                 <div className="text-3xl md:text-4xl font-display font-bold text-gradient">
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">{t(stat.labelKey)}</p>
+                <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>

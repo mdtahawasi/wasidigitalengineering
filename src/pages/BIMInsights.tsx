@@ -6,6 +6,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import Layout from "@/components/Layout";
+import DivisionSEO from "@/components/DivisionSEO";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import imgArchitecture from "@/assets/discipline-architecture.jpg";
@@ -99,6 +100,7 @@ const regionalData = [
 export default function BIMInsightsPage() {
   return (
     <Layout>
+      <DivisionSEO />
       {/* ===== HERO ===== */}
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">

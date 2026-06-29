@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import Layout from "@/components/Layout";
+import DivisionSEO from "@/components/DivisionSEO";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDivision } from "@/contexts/DivisionContext";
@@ -129,6 +130,7 @@ export default function ProjectsPage() {
 
   return (
     <Layout>
+      <DivisionSEO />
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">
           <img src={heroConstruction} alt="" className="w-full h-full object-cover opacity-10" />

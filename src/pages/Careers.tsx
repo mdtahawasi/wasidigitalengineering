@@ -8,6 +8,7 @@ import {
   Upload, Send, CheckCircle
 } from "lucide-react";
 import Layout from "@/components/Layout";
+import DivisionSEO from "@/components/DivisionSEO";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { fadeUp, staggerContainer, staggerItem } from "@/lib/animations";
@@ -109,6 +110,7 @@ export default function CareersPage() {
 
   return (
     <Layout>
+      <DivisionSEO />
       {/* Hero */}
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">

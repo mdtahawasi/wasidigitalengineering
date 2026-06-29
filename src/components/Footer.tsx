@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Instagram } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useDivision } from "@/contexts/DivisionContext";
 
 export default function Footer() {
   const { t } = useLanguage();
+  const { division } = useDivision();
+  const isConstruction = division === "construction";
 
   const footerLinks = {
     [t("footer.company")]: [
@@ -25,6 +28,10 @@ export default function Footer() {
       { label: t("footer.healthcare"), href: "/services#industry-sectors" },
     ],
   };
+
+  const standards = isConstruction
+    ? ["IS 456", "IS 800", "IS 1893", "NBC 2016", "RERA", "PWD", "CPWD"]
+    : ["ISO 19650", "IFC / openBIM", "COBie", "BIM Level 2"];
 
   return (
     <footer className="border-t border-border/50 bg-card/50">
@@ -70,22 +77,40 @@ export default function Footer() {
           ))}
         </div>
 
+        {/* Standards / Registrations strip */}
+        <div className="mt-10 pt-6 border-t border-border/40">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
+            {isConstruction ? "Registered & Compliant" : "Standards & Certifications"}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {standards.map((s) => (
+              <span
+                key={s}
+                className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-border bg-card/70 text-foreground/80"
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* Contact strip */}
         <div className="mt-12 pt-8 border-t border-border/50 flex flex-col md:flex-row gap-6 md:items-center justify-between">
           <div className="grid sm:grid-cols-2 gap-6 text-sm w-full md:w-auto">
-            <div className="space-y-1.5">
-              <div className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "#00d4ff" }}>
-                BIM &amp; Engineering Division
+            {/* Primary office swaps based on division */}
+            <div className={`space-y-1.5 ${isConstruction ? "order-2" : "order-1"}`}>
+              <div className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5" style={{ color: "#00d4ff" }}>
+                BIM &amp; Engineering Division {!isConstruction && <span className="text-[9px] font-semibold text-primary/80">• Primary</span>}
               </div>
               <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Dubai, UAE</div>
               <div className="flex items-center gap-2 text-muted-foreground"><Mail size={14} /> info@wasidigital.com</div>
               <div className="flex items-center gap-2 text-muted-foreground"><Phone size={14} /> +971 569327490</div>
             </div>
-            <div className="space-y-1.5">
-              <div className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "#10b981" }}>
-                Construction &amp; Civil Works Division
+            <div className={`space-y-1.5 ${isConstruction ? "order-1" : "order-2"}`}>
+              <div className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5" style={{ color: "#10b981" }}>
+                Construction &amp; Civil Works Division {isConstruction && <span className="text-[9px] font-semibold text-emerald-500/80">• Primary</span>}
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Nagpur, India (HQ)</div>
+              <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Sadar, Nagpur, Maharashtra (HQ)</div>
               <div className="flex items-center gap-2 text-muted-foreground"><Mail size={14} /> bimengineer11@gmail.com</div>
               <div className="flex items-center gap-2 text-muted-foreground"><Phone size={14} /> +91 81779 97522</div>
             </div>

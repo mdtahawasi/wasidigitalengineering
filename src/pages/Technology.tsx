@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
+import DivisionSEO from "@/components/DivisionSEO";
 import SectionHeading from "@/components/SectionHeading";
 import BIMLayerViewer from "@/components/BIMLayerViewer";
 import { staggerContainer, staggerItem, fadeUp } from "@/lib/animations";
@@ -55,6 +56,7 @@ const stack = [
 export default function TechnologyPage() {
   return (
     <Layout>
+      <DivisionSEO />
       {/* HERO */}
       <section className="relative section-padding pt-32 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-10 pointer-events-none" />
