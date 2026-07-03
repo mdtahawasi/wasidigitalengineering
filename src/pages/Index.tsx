@@ -23,6 +23,9 @@ import {
   whatWeBuild,
   constructionHeroKpis,
   constructionTestimonials,
+  constructionHomeProcess,
+  constructionProjects,
+  constructionWhy,
 } from "@/data/constructionContent";
 import DivisionSEO from "@/components/DivisionSEO";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, fadeIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
