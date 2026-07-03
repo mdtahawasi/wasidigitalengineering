@@ -23,6 +23,9 @@ import {
   whatWeBuild,
   constructionHeroKpis,
   constructionTestimonials,
+  constructionHomeProcess,
+  constructionProjects,
+  constructionWhy,
 } from "@/data/constructionContent";
 import DivisionSEO from "@/components/DivisionSEO";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, fadeIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
@@ -425,6 +428,77 @@ export default function HomePage() {
         </section>
       )}
 
+      {/* ===== CONSTRUCTION PROCESS (Construction only) ===== */}
+      {isConstruction && (
+        <section className="section-padding">
+          <div className="container mx-auto px-4 md:px-8">
+            <SectionHeading
+              label="● Our Process"
+              title="From Vision to Handover — In 6 Structured Steps"
+              description="A transparent, milestone-driven construction workflow with BIM coordination at every stage."
+            />
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {constructionHomeProcess.map((step, i) => (
+                <motion.div
+                  key={i}
+                  variants={staggerItemScale}
+                  className="glass rounded-xl p-6 relative group hover:border-primary/30 transition-all duration-500"
+                >
+                  <div className="absolute -top-3 left-6 px-2.5 py-0.5 rounded-full bg-gradient-primary text-primary-foreground text-xs font-bold">
+                    {step.step}
+                  </div>
+                  <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mt-3 mb-3 group-hover:bg-gradient-primary transition-all duration-500">
+                    <step.icon size={22} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <h4 className="font-display font-semibold text-foreground mb-1">{step.title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* ===== WHY WITEC — CONSTRUCTION (Construction only, 12 reasons) ===== */}
+      {isConstruction && (
+        <section className="section-padding bg-card/30">
+          <div className="container mx-auto px-4 md:px-8">
+            <SectionHeading
+              label="● Why WITEC Construction"
+              title="12 Reasons Clients Choose Us"
+              description="Compliance, transparency, and technology built into every square foot we deliver."
+            />
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+            >
+              {constructionWhy.map((item, i) => (
+                <motion.div
+                  key={i}
+                  variants={staggerItem}
+                  className="glass rounded-xl p-5 hover:border-primary/30 transition-all duration-500 group"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-3 group-hover:bg-gradient-primary transition-all duration-500">
+                    <item.icon size={20} className="text-emerald-500 group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <h4 className="font-display font-semibold text-foreground text-sm mb-1.5">{item.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
+
       {/* ===== BIM DIMENSIONS 3D-7D ===== */}
       <BIMDimensionsSection />
 
@@ -485,12 +559,15 @@ export default function HomePage() {
       <section id="projects" className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading
-            label={t("index.projectsLabel")}
-            title={t("index.projectsTitle")}
-            description={t("index.projectsDesc")}
+            label={isConstruction ? "● Featured Construction" : t("index.projectsLabel")}
+            title={isConstruction ? "Recent Construction Projects" : t("index.projectsTitle")}
+            description={isConstruction ? "Bungalows, high-rises, warehouses & industrial plants — delivered on time, IS-code compliant." : t("index.projectsDesc")}
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((project, i) => (
+            {(isConstruction
+              ? constructionProjects.slice(0, 4).map((p) => ({ img: p.img, title: p.title, categoryKey: `projects.${p.category.toLowerCase()}`, location: p.location, rawCategory: p.category }))
+              : projects.map((p) => ({ ...p, rawCategory: undefined as string | undefined }))
+            ).map((project, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
@@ -502,7 +579,8 @@ export default function HomePage() {
                 <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span className="text-xs text-primary font-semibold uppercase tracking-wider">{t(project.categoryKey)}</span>
+                  <span className="text-xs text-primary font-semibold uppercase tracking-wider">{project.rawCategory ?? t(project.categoryKey)}</span>
+                  <h3 className="font-display font-bold text-foreground text-lg mt-1">{project.title}</h3>
                   <p className="text-sm text-muted-foreground mt-1">{project.location}</p>
                 </div>
               </motion.div>
@@ -680,9 +758,15 @@ export default function HomePage() {
       {/* ===== TESTIMONIALS ===== */}
       <section className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label={t("index.testimonialsLabel")} title={t("index.testimonialsTitle")} />
+          <SectionHeading
+            label={isConstruction ? "● Construction Clients" : t("index.testimonialsLabel")}
+            title={isConstruction ? "What Our Construction Clients Say" : t("index.testimonialsTitle")}
+          />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((item, i) => (
+            {(isConstruction
+              ? constructionTestimonials.slice(0, 3).map((c) => ({ quote: c.quote, author: c.author, role: c.role, quoteKey: null as string | null }))
+              : testimonials.map((c) => ({ quote: null as string | null, author: c.author, role: c.role, quoteKey: c.quoteKey }))
+            ).map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30, rotateX: 10 }}
@@ -692,7 +776,7 @@ export default function HomePage() {
                 className="glass rounded-xl p-6 relative"
               >
                 <div className="absolute top-4 right-4 text-4xl text-primary/10 font-display font-bold">"</div>
-                <p className="text-muted-foreground text-sm leading-relaxed italic mb-6 relative z-10">"{t(item.quoteKey)}"</p>
+                <p className="text-muted-foreground text-sm leading-relaxed italic mb-6 relative z-10">"{item.quoteKey ? t(item.quoteKey) : item.quote}"</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
                     {item.author.charAt(0)}

@@ -17,6 +17,10 @@ import projectMayfair from "@/assets/project-mayfair.jpg";
 import projectKGA from "@/assets/project-kga.jpg";
 import projectNupco from "@/assets/project-nupco.jpg";
 import projectPearlCentre from "@/assets/project-pearl-centre.jpg";
+import bimAlHabtoor from "@/assets/hero-bim-3d-model.jpg";
+import bimHealth from "@/assets/hero-digital-twin.jpg";
+import bimMetro from "@/assets/hero-bim-clash.jpg";
+import bimSmartCity from "@/assets/hero-bim-mepf.jpg";
 
 const categoryKeys = [
   { key: "All", tKey: "projects.all" },
@@ -98,6 +102,42 @@ const projects = [
     scope: "Infrastructure, Landscape, MEP Coordination – LOD 300-500",
     gfa: "Large-Scale Industrial",
     config: "Warehousing + Road Networks + Utilities",
+  },
+  {
+    img: bimAlHabtoor,
+    title: "Al Habtoor Tower BIM",
+    category: "Commercial",
+    location: "Dubai, UAE",
+    scope: "Full multi-discipline BIM coordination at LOD 400 — Architecture, Structure, MEP, Facade",
+    gfa: "45 Floors · Mixed-Use",
+    config: "Federated Revit + Navisworks · ISO 19650 workflow",
+  },
+  {
+    img: bimHealth,
+    title: "Healthcare Campus Digital Twin",
+    category: "Commercial",
+    location: "Mumbai, India",
+    scope: "IoT-connected digital twin with AI analytics for 500-bed multi-specialty hospital",
+    gfa: "500-Bed Hospital",
+    config: "7D BIM + Azure Digital Twins + Predictive Maintenance",
+  },
+  {
+    img: bimMetro,
+    title: "Metro Line BIM Coordination",
+    category: "Infrastructure",
+    location: "Hyderabad, India",
+    scope: "12-station metro corridor — 4D scheduling, clash detection, MEP coordination",
+    gfa: "12 Stations · 26 km",
+    config: "4D Navisworks + Synchro Pro + BIM 360",
+  },
+  {
+    img: bimSmartCity,
+    title: "Smart City Infrastructure BIM",
+    category: "Infrastructure",
+    location: "Nagpur, India",
+    scope: "Mixed-use smart-city development — 7D FM-ready federated model with IoT integration",
+    gfa: "Mixed-Use Township",
+    config: "7D BIM · COBie · IoT Sensors · FM Handover",
   },
 ];
 

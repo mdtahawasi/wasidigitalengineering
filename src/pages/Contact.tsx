@@ -5,6 +5,8 @@ import Layout from "@/components/Layout";
 import DivisionSEO from "@/components/DivisionSEO";
 import WorldMap from "@/components/WorldMap";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useDivision } from "@/contexts/DivisionContext";
+import { constructionRegistrations } from "@/data/constructionContent";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 import { toast } from "sonner";
 import heroConstruction from "@/assets/hero-construction-site.jpg";
@@ -12,13 +14,26 @@ import heroConstruction from "@/assets/hero-construction-site.jpg";
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
   const { t } = useLanguage();
+  const { division } = useDivision();
+  const isConstruction = division === "construction";
 
-  const contactInfo = [
+  const contactInfo = isConstruction ? [
+    { icon: Mail, labelKey: "contact.email", value: "bimengineer11@gmail.com" },
+    { icon: Phone, labelKey: "contact.phone", value: "+91 8177997522" },
+    { icon: MapPin, labelKey: "contact.headOffice", value: "Sadar, Nagpur, Maharashtra, India" },
+    { icon: Clock, labelKey: "contact.workingHours", value: "Mon–Sat: 9:00 AM – 7:00 PM · Sun: By appointment" },
+  ] : [
     { icon: Mail, labelKey: "contact.email", value: "info@wasidigital.com" },
     { icon: Phone, labelKey: "contact.phone", value: "+971 569327490" },
     { icon: MapPin, labelKey: "contact.headOffice", value: "Nagpur, Maharashtra, India" },
     { icon: Clock, labelKey: "contact.workingHours", value: "Mon–Sat: 9:00 AM – 6:00 PM" },
   ];
+
+  // Auto-select subject based on active division
+  const defaultSubject = isConstruction ? "construction" : "bim-services";
+  if (formData.subject === "" && defaultSubject) {
+    // set default subject once on render
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,12 +118,28 @@ export default function ContactPage() {
                     <p className="text-xs text-muted-foreground">Main Office — Operations & Delivery Center</p>
                     <p className="text-xs text-muted-foreground">Mon–Sat: 9:00 AM – 6:00 PM IST</p>
                   </div>
+                  <div className="border-l-2 border-emerald-500 pl-3">
+                    <p className="text-foreground text-sm font-semibold">🏗️ Wasi Construction Pvt. Ltd. (Construction Division)</p>
+                    <p className="text-xs text-muted-foreground">Sadar, Nagpur, Maharashtra</p>
+                    <p className="text-xs text-muted-foreground">+91 8177997522 · bimengineer11@gmail.com</p>
+                    <p className="text-xs text-muted-foreground">Mon–Sat 9AM–7PM · Sunday by appointment</p>
+                  </div>
                   <div className="border-l-2 border-primary/50 pl-3">
                     <p className="text-foreground text-sm font-semibold">🇦🇪 Dubai, UAE</p>
                     <p className="text-xs text-muted-foreground">{t("contact.regionalOffice")} — GCC Business Development</p>
                     <p className="text-xs text-muted-foreground">Mon–Sat: 9:00 AM – 6:00 PM GST</p>
                   </div>
                 </div>
+                {isConstruction && (
+                  <div className="mt-4 pt-4 border-t border-border/50">
+                    <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2">Registered & Compliant</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {constructionRegistrations.map((r) => (
+                        <span key={r} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">{r}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </motion.div>
             </motion.div>
 
@@ -137,7 +168,9 @@ export default function ContactPage() {
                   <label className="block text-xs text-muted-foreground uppercase tracking-wider mb-1.5">{t("contact.subject")} *</label>
                   <select required value={formData.subject} onChange={(e) => setFormData({ ...formData, subject: e.target.value })} className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
                     <option value="">{t("contact.selectSubject")}</option>
-                    <option value="bim-services">{t("contact.bimServicesInquiry")}</option>
+                    <option value="bim-services">BIM & Engineering Inquiry</option>
+                    <option value="construction">Construction & Civil Works Inquiry</option>
+                    <option value="both">Both Divisions</option>
                     <option value="consulting">{t("contact.consulting")}</option>
                     <option value="partnership">{t("contact.partnership")}</option>
                     <option value="careers">{t("contact.careerApp")}</option>
