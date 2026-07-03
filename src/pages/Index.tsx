@@ -705,7 +705,7 @@ export default function HomePage() {
                 className="glass rounded-xl p-6 relative"
               >
                 <div className="absolute top-4 right-4 text-4xl text-primary/10 font-display font-bold">"</div>
-                <p className="text-muted-foreground text-sm leading-relaxed italic mb-6 relative z-10">"{t(item.quoteKey)}"</p>
+                <p className="text-muted-foreground text-sm leading-relaxed italic mb-6 relative z-10">"{item.quoteKey ? t(item.quoteKey) : item.quote}"</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
                     {item.author.charAt(0)}
