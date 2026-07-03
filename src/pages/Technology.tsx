@@ -4,6 +4,15 @@ import DivisionSEO from "@/components/DivisionSEO";
 import SectionHeading from "@/components/SectionHeading";
 import BIMLayerViewer from "@/components/BIMLayerViewer";
 import { staggerContainer, staggerItem, fadeUp } from "@/lib/animations";
+import { useDivision } from "@/contexts/DivisionContext";
+import {
+  coreConstructionTech,
+  constructionEquipment,
+  constructionSafety,
+  constructionEnvironment,
+  futureConstructionTech,
+  constructionCertifications,
+} from "@/data/constructionContent";
 import {
   Layers3, Cpu, Brain, Eye, Activity, Zap, Wrench, Users2,
   ShieldCheck, Siren, Building2, BarChart3, Plane, ClipboardCheck,
