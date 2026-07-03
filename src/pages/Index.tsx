@@ -428,6 +428,77 @@ export default function HomePage() {
         </section>
       )}
 
+      {/* ===== CONSTRUCTION PROCESS (Construction only) ===== */}
+      {isConstruction && (
+        <section className="section-padding">
+          <div className="container mx-auto px-4 md:px-8">
+            <SectionHeading
+              label="● Our Process"
+              title="From Vision to Handover — In 6 Structured Steps"
+              description="A transparent, milestone-driven construction workflow with BIM coordination at every stage."
+            />
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {constructionHomeProcess.map((step, i) => (
+                <motion.div
+                  key={i}
+                  variants={staggerItemScale}
+                  className="glass rounded-xl p-6 relative group hover:border-primary/30 transition-all duration-500"
+                >
+                  <div className="absolute -top-3 left-6 px-2.5 py-0.5 rounded-full bg-gradient-primary text-primary-foreground text-xs font-bold">
+                    {step.step}
+                  </div>
+                  <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mt-3 mb-3 group-hover:bg-gradient-primary transition-all duration-500">
+                    <step.icon size={22} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <h4 className="font-display font-semibold text-foreground mb-1">{step.title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* ===== WHY WITEC — CONSTRUCTION (Construction only, 12 reasons) ===== */}
+      {isConstruction && (
+        <section className="section-padding bg-card/30">
+          <div className="container mx-auto px-4 md:px-8">
+            <SectionHeading
+              label="● Why WITEC Construction"
+              title="12 Reasons Clients Choose Us"
+              description="Compliance, transparency, and technology built into every square foot we deliver."
+            />
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+            >
+              {constructionWhy.map((item, i) => (
+                <motion.div
+                  key={i}
+                  variants={staggerItem}
+                  className="glass rounded-xl p-5 hover:border-primary/30 transition-all duration-500 group"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-3 group-hover:bg-gradient-primary transition-all duration-500">
+                    <item.icon size={20} className="text-emerald-500 group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <h4 className="font-display font-semibold text-foreground text-sm mb-1.5">{item.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
+
       {/* ===== BIM DIMENSIONS 3D-7D ===== */}
       <BIMDimensionsSection />
 
