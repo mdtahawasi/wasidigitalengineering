@@ -488,12 +488,15 @@ export default function HomePage() {
       <section id="projects" className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading
-            label={t("index.projectsLabel")}
-            title={t("index.projectsTitle")}
-            description={t("index.projectsDesc")}
+            label={isConstruction ? "● Featured Construction" : t("index.projectsLabel")}
+            title={isConstruction ? "Recent Construction Projects" : t("index.projectsTitle")}
+            description={isConstruction ? "Bungalows, high-rises, warehouses & industrial plants — delivered on time, IS-code compliant." : t("index.projectsDesc")}
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((project, i) => (
+            {(isConstruction
+              ? constructionProjects.slice(0, 4).map((p) => ({ img: p.img, title: p.title, categoryKey: `projects.${p.category.toLowerCase()}`, location: p.location, rawCategory: p.category }))
+              : projects.map((p) => ({ ...p, rawCategory: undefined as string | undefined }))
+            ).map((project, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
@@ -505,7 +508,8 @@ export default function HomePage() {
                 <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span className="text-xs text-primary font-semibold uppercase tracking-wider">{t(project.categoryKey)}</span>
+                  <span className="text-xs text-primary font-semibold uppercase tracking-wider">{project.rawCategory ?? t(project.categoryKey)}</span>
+                  <h3 className="font-display font-bold text-foreground text-lg mt-1">{project.title}</h3>
                   <p className="text-sm text-muted-foreground mt-1">{project.location}</p>
                 </div>
               </motion.div>
@@ -683,9 +687,15 @@ export default function HomePage() {
       {/* ===== TESTIMONIALS ===== */}
       <section className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label={t("index.testimonialsLabel")} title={t("index.testimonialsTitle")} />
+          <SectionHeading
+            label={isConstruction ? "● Construction Clients" : t("index.testimonialsLabel")}
+            title={isConstruction ? "What Our Construction Clients Say" : t("index.testimonialsTitle")}
+          />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((item, i) => (
+            {(isConstruction
+              ? constructionTestimonials.slice(0, 3).map((c) => ({ quote: c.quote, author: c.author, role: c.role, quoteKey: null as string | null }))
+              : testimonials.map((c) => ({ quote: null as string | null, author: c.author, role: c.role, quoteKey: c.quoteKey }))
+            ).map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30, rotateX: 10 }}
