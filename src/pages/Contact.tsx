@@ -5,6 +5,8 @@ import Layout from "@/components/Layout";
 import DivisionSEO from "@/components/DivisionSEO";
 import WorldMap from "@/components/WorldMap";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useDivision } from "@/contexts/DivisionContext";
+import { constructionRegistrations } from "@/data/constructionContent";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 import { toast } from "sonner";
 import heroConstruction from "@/assets/hero-construction-site.jpg";
@@ -12,13 +14,26 @@ import heroConstruction from "@/assets/hero-construction-site.jpg";
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
   const { t } = useLanguage();
+  const { division } = useDivision();
+  const isConstruction = division === "construction";
 
-  const contactInfo = [
+  const contactInfo = isConstruction ? [
+    { icon: Mail, labelKey: "contact.email", value: "bimengineer11@gmail.com" },
+    { icon: Phone, labelKey: "contact.phone", value: "+91 8177997522" },
+    { icon: MapPin, labelKey: "contact.headOffice", value: "Sadar, Nagpur, Maharashtra, India" },
+    { icon: Clock, labelKey: "contact.workingHours", value: "Mon–Sat: 9:00 AM – 7:00 PM · Sun: By appointment" },
+  ] : [
     { icon: Mail, labelKey: "contact.email", value: "info@wasidigital.com" },
     { icon: Phone, labelKey: "contact.phone", value: "+971 569327490" },
     { icon: MapPin, labelKey: "contact.headOffice", value: "Nagpur, Maharashtra, India" },
     { icon: Clock, labelKey: "contact.workingHours", value: "Mon–Sat: 9:00 AM – 6:00 PM" },
   ];
+
+  // Auto-select subject based on active division
+  const defaultSubject = isConstruction ? "construction" : "bim-services";
+  if (formData.subject === "" && defaultSubject) {
+    // set default subject once on render
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
