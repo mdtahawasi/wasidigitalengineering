@@ -63,6 +63,8 @@ const stack = [
 ];
 
 export default function TechnologyPage() {
+  const { division } = useDivision();
+  const isConstruction = division === "construction";
   return (
     <Layout>
       <DivisionSEO />
@@ -72,16 +74,21 @@ export default function TechnologyPage() {
         <div className="container mx-auto px-4 md:px-8 relative">
           <motion.div {...fadeUp} className="max-w-3xl">
             <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-6">
-              ● Technology Stack
+              ● {isConstruction ? "Construction Technology" : "Technology Stack"}
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-5">
-              <span className="text-gradient">Engineering Powered by Intelligence</span>
+              <span className="text-gradient">{isConstruction ? "Construction Powered by Innovation" : "Engineering Powered by Intelligence"}</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              18 industry-leading tools, AI &amp; ML pipelines, and IoT-connected Digital Twins — the technology backbone behind every WITEC project.
+              {isConstruction
+                ? "BIM integration, LiDAR, drones, IoT & AI — the on-site technology stack that makes every WITEC construction project faster, safer and more precise."
+                : "18 industry-leading tools, AI & ML pipelines, and IoT-connected Digital Twins — the technology backbone behind every WITEC project."}
             </p>
             <div className="flex flex-wrap gap-2 mt-6">
-              {["18 Software Tools", "AI / ML Powered", "IoT Integration", "ISO 19650"].map((b) => (
+              {(isConstruction
+                ? ["BIM-Powered", "IoT Sites", "Drone Surveys", "ISO 9001 · 14001 · 45001"]
+                : ["18 Software Tools", "AI / ML Powered", "IoT Integration", "ISO 19650"]
+              ).map((b) => (
                 <span key={b} className="px-3 py-1.5 rounded-full text-xs font-medium bg-card border border-border text-foreground">{b}</span>
               ))}
             </div>
@@ -89,6 +96,92 @@ export default function TechnologyPage() {
         </div>
       </section>
 
+      {/* Construction sections (mode: construction) */}
+      {isConstruction && (
+        <>
+          <section className="section-padding bg-card/30">
+            <div className="container mx-auto px-4 md:px-8">
+              <SectionHeading label="● Core Technologies" title="Six Pillars of Modern Construction" description="Measurable outcomes from technology integrated into every WITEC site." />
+              <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {coreConstructionTech.map((c) => (
+                  <motion.div key={c.title} variants={staggerItem} className="glass rounded-xl p-6 border-t-[3px] border-emerald-500/60">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="w-11 h-11 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center"><c.icon size={22} /></div>
+                      <span className="text-xs font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-1 rounded-full">{c.metric}</span>
+                    </div>
+                    <h4 className="font-display font-semibold text-foreground mb-1">{c.title}</h4>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{c.desc}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+          <section className="section-padding">
+            <div className="container mx-auto px-4 md:px-8">
+              <SectionHeading label="● Equipment Fleet" title="12 Machines. One Efficient Site." description="Owned or long-term leased equipment — no waiting on third-party rentals." />
+              <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                {constructionEquipment.map((e) => (
+                  <motion.div key={e} variants={staggerItem} className="glass rounded-lg px-4 py-3 text-sm font-medium text-foreground hover:border-primary/30 transition-all">{e}</motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+          <section className="section-padding bg-card/30">
+            <div className="container mx-auto px-4 md:px-8">
+              <SectionHeading label="● Safety Systems" title="Zero-Compromise Site Safety" />
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {constructionSafety.map((s) => (
+                  <div key={s.title} className="glass rounded-xl p-5 border-t-[3px] border-rose-500/60">
+                    <div className="w-10 h-10 rounded-lg bg-rose-500/10 text-rose-500 flex items-center justify-center mb-3"><s.icon size={20} /></div>
+                    <h4 className="font-display font-semibold text-foreground mb-1">{s.title}</h4>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+          <section className="section-padding">
+            <div className="container mx-auto px-4 md:px-8">
+              <SectionHeading label="● Environmental Protection" title="Building Green, Not Just Big" />
+              <div className="grid sm:grid-cols-3 gap-5">
+                {constructionEnvironment.map((e) => (
+                  <div key={e.title} className="glass rounded-xl p-5 border-t-[3px] border-emerald-500/60">
+                    <div className="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-3"><e.icon size={20} /></div>
+                    <h4 className="font-display font-semibold text-foreground mb-1">{e.title}</h4>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{e.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+          <section className="section-padding bg-card/30">
+            <div className="container mx-auto px-4 md:px-8">
+              <SectionHeading label="● Future Technologies" title="What's Next in Our Pipeline" />
+              <div className="grid sm:grid-cols-3 gap-5">
+                {futureConstructionTech.map((f) => (
+                  <div key={f.title} className="glass rounded-xl p-6">
+                    <h4 className="font-display font-semibold text-foreground mb-2">{f.title}</h4>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+          <section className="section-padding">
+            <div className="container mx-auto px-4 md:px-8">
+              <SectionHeading label="● Certifications" title="Compliant by Design" />
+              <div className="flex flex-wrap gap-3 justify-center">
+                {constructionCertifications.map((c) => (
+                  <span key={c} className="px-4 py-2 rounded-full text-sm font-semibold bg-primary/10 text-primary border border-primary/20">{c}</span>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+
+      {/* BIM sections (mode: bim) */}
+      {!isConstruction && (<>
       {/* INTERACTIVE BIM LAYER VIEWER */}
       <section className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
@@ -211,6 +304,7 @@ export default function TechnologyPage() {
           </motion.div>
         </div>
       </section>
+      </>)}
     </Layout>
   );
 }
