@@ -18,14 +18,12 @@ export default function ContactPage() {
   const isConstruction = division === "construction";
 
   const contactInfo = isConstruction ? [
-    { icon: Mail, labelKey: "contact.email", value: "bimengineer11@gmail.com" },
-    { icon: Phone, labelKey: "contact.phone", value: "+91 8177997522" },
+    { icon: Mail, labelKey: "contact.email", value: "taha@witecglobal.com" },
     { icon: MapPin, labelKey: "contact.headOffice", value: "Sadar, Nagpur, Maharashtra, India" },
     { icon: Clock, labelKey: "contact.workingHours", value: "Mon–Sat: 9:00 AM – 7:00 PM · Sun: By appointment" },
   ] : [
-    { icon: Mail, labelKey: "contact.email", value: "info@wasidigital.com" },
-    { icon: Phone, labelKey: "contact.phone", value: "+971 569327490" },
-    { icon: MapPin, labelKey: "contact.headOffice", value: "Nagpur, Maharashtra, India" },
+    { icon: Mail, labelKey: "contact.email", value: "info@witecglobal.com" },
+    { icon: MapPin, labelKey: "contact.headOffice", value: "Sadar, Nagpur, Maharashtra, India" },
     { icon: Clock, labelKey: "contact.workingHours", value: "Mon–Sat: 9:00 AM – 6:00 PM" },
   ];
 
@@ -114,20 +112,16 @@ export default function ContactPage() {
                 <h3 className="font-display font-semibold text-foreground text-sm mb-4">{t("contact.globalOffices")}</h3>
                 <div className="space-y-4">
                   <div className="border-l-2 border-primary pl-3">
-                    <p className="text-foreground text-sm font-semibold">🇮🇳 Nagpur, India (HQ)</p>
-                    <p className="text-xs text-muted-foreground">Main Office — Operations & Delivery Center</p>
+                    <p className="text-foreground text-sm font-semibold">🇮🇳 Sadar, Nagpur, India (HQ)</p>
+                    <p className="text-xs text-muted-foreground">BIM &amp; Engineering Division</p>
+                    <p className="text-xs text-muted-foreground">info@witecglobal.com</p>
                     <p className="text-xs text-muted-foreground">Mon–Sat: 9:00 AM – 6:00 PM IST</p>
                   </div>
                   <div className="border-l-2 border-emerald-500 pl-3">
                     <p className="text-foreground text-sm font-semibold">🏗️ Wasi Construction Pvt. Ltd. (Construction Division)</p>
                     <p className="text-xs text-muted-foreground">Sadar, Nagpur, Maharashtra</p>
-                    <p className="text-xs text-muted-foreground">+91 8177997522 · bimengineer11@gmail.com</p>
+                    <p className="text-xs text-muted-foreground">taha@witecglobal.com</p>
                     <p className="text-xs text-muted-foreground">Mon–Sat 9AM–7PM · Sunday by appointment</p>
-                  </div>
-                  <div className="border-l-2 border-primary/50 pl-3">
-                    <p className="text-foreground text-sm font-semibold">🇦🇪 Dubai, UAE</p>
-                    <p className="text-xs text-muted-foreground">{t("contact.regionalOffice")} — GCC Business Development</p>
-                    <p className="text-xs text-muted-foreground">Mon–Sat: 9:00 AM – 6:00 PM GST</p>
                   </div>
                 </div>
                 {isConstruction && (

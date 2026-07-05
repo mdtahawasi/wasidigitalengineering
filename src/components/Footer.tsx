@@ -102,17 +102,15 @@ export default function Footer() {
               <div className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5" style={{ color: "#00d4ff" }}>
                 BIM &amp; Engineering Division {!isConstruction && <span className="text-[9px] font-semibold text-primary/80">• Primary</span>}
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Dubai, UAE</div>
-              <div className="flex items-center gap-2 text-muted-foreground"><Mail size={14} /> info@wasidigital.com</div>
-              <div className="flex items-center gap-2 text-muted-foreground"><Phone size={14} /> +971 569327490</div>
+              <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Sadar, Nagpur, Maharashtra, India</div>
+              <div className="flex items-center gap-2 text-muted-foreground"><Mail size={14} /> info@witecglobal.com</div>
             </div>
             <div className={`space-y-1.5 ${isConstruction ? "order-1" : "order-2"}`}>
               <div className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5" style={{ color: "#10b981" }}>
                 Construction &amp; Civil Works Division {isConstruction && <span className="text-[9px] font-semibold text-emerald-500/80">• Primary</span>}
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Sadar, Nagpur, Maharashtra (HQ)</div>
-              <div className="flex items-center gap-2 text-muted-foreground"><Mail size={14} /> bimengineer11@gmail.com</div>
-              <div className="flex items-center gap-2 text-muted-foreground"><Phone size={14} /> +91 81779 97522</div>
+              <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Sadar, Nagpur, Maharashtra, India (HQ)</div>
+              <div className="flex items-center gap-2 text-muted-foreground"><Mail size={14} /> taha@witecglobal.com</div>
             </div>
           </div>
           <p className="text-xs text-muted-foreground">
