@@ -4,16 +4,20 @@ import { useDivision } from "@/contexts/DivisionContext";
 
 const SITE = "https://witecglobal.lovable.app";
 
-const META: Record<"bim" | "construction", { title: string; description: string }> = {
+const META: Record<"bim" | "construction", { title: string; description: string; keywords: string }> = {
   bim: {
-    title: "WITEC — BIM & Engineering Consultancy | AI-Integrated Digital Construction",
+    title: "BIM Services in India, UAE, USA & UK | Revit BIM Modeling & Clash Detection — WITEC",
     description:
-      "AI-integrated BIM solutions for the AEC industry. 3D-7D modeling, clash detection, digital twins, VR/AR visualization. ISO 19650 compliant.",
+      "WITEC delivers BIM & engineering services across India, UAE, USA and UK — Revit BIM modeling, clash detection, 4D/5D BIM, scan-to-BIM, digital twin & VDC. ISO 19650 compliant.",
+    keywords:
+      "BIM services India, BIM company India, BIM services UAE, BIM company Dubai, BIM services USA, BIM company UK London, Revit BIM modeling, clash detection, 4D BIM, 5D BIM, scan to BIM, digital twin, ISO 19650, WITEC",
   },
   construction: {
-    title: "WITEC — Construction Company Nagpur | Civil Engineering & Turnkey Projects",
+    title: "Construction Company in Nagpur & Kolkata | Civil, Structural & Turnkey Contractors — WITEC",
     description:
-      "Nagpur's premier construction company. Civil engineering, structural design, MEP, turnkey construction. IS code compliant, 10-year warranty.",
+      "WITEC is a leading construction company in Nagpur & Kolkata, India — civil, structural, MEP, RCC, turnkey residential, commercial & industrial construction. IS code compliant.",
+    keywords:
+      "construction company Nagpur, construction company Kolkata, civil contractor Nagpur, civil contractor Kolkata, building contractor Nagpur, RCC contractor Nagpur, turnkey construction India, structural contractor Maharashtra, structural contractor West Bengal, WITEC construction",
   },
 };
 
@@ -34,6 +38,7 @@ export default function DivisionSEO({ title, description }: Props) {
     <Helmet>
       <title>{finalTitle}</title>
       <meta name="description" content={finalDesc} />
+      <meta name="keywords" content={m.keywords} />
       <link rel="canonical" href={url} />
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDesc} />
