@@ -11,6 +11,8 @@ import Layout from "@/components/Layout";
 import DivisionSEO from "@/components/DivisionSEO";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useDivision } from "@/contexts/DivisionContext";
+import { constructionCareers } from "@/data/constructionContent";
 import { fadeUp, staggerContainer, staggerItem } from "@/lib/animations";
 import heroTeamCollab from "@/assets/hero-team-collab.jpg";
 import { Input } from "@/components/ui/input";
@@ -51,6 +53,18 @@ const growthPaths = [
 
 export default function CareersPage() {
   const { t } = useLanguage();
+  const { division } = useDivision();
+  const isConstruction = division === "construction";
+  const perks = isConstruction
+    ? constructionCareers.perks.map((p, i) => ({ ...p, icon: perkKeys[i % perkKeys.length].icon }))
+    : perkKeys;
+  const values = isConstruction
+    ? constructionCareers.values.map((v, i) => ({ ...v, icon: coreValues[i % coreValues.length].icon }))
+    : coreValues;
+  const stats = isConstruction ? constructionCareers.stats : whyJoinUs;
+  const growth = isConstruction
+    ? constructionCareers.growth.map((g, i) => ({ ...g, icon: growthPaths[i % growthPaths.length].icon }))
+    : growthPaths;
   
   const [applyingFor, setApplyingFor] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -124,10 +138,14 @@ export default function CareersPage() {
               {t("careers.badge")}
             </motion.span>
             <motion.h1 initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-3xl">
-              {t("careers.title")} <span className="text-gradient">{t("careers.titleHighlight")}</span> {t("careers.titleEnd")}
+              {isConstruction ? (
+                <>{constructionCareers.hero.title} <span className="text-gradient">{constructionCareers.hero.highlight}</span> {constructionCareers.hero.end}</>
+              ) : (
+                <>{t("careers.title")} <span className="text-gradient">{t("careers.titleHighlight")}</span> {t("careers.titleEnd")}</>
+              )}
             </motion.h1>
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }} className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              {t("careers.desc")}
+              {isConstruction ? constructionCareers.hero.desc : t("careers.desc")}
             </motion.p>
           </motion.div>
         </div>
@@ -136,9 +154,9 @@ export default function CareersPage() {
       {/* Why Join Us - Stats */}
       <section className="pb-16">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label="Why Join Us" title="A Workplace That Inspires" description="We're not just building models — we're building careers, communities, and the future of construction technology." />
+          <SectionHeading label="Why Join Us" title={isConstruction ? "A Site That Builds Careers" : "A Workplace That Inspires"} description={isConstruction ? "500+ engineers, safety officers and skilled trades — building India's skyline together with zero-harm safety and clear growth paths." : "We're not just building models — we're building careers, communities, and the future of construction technology."} />
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {whyJoinUs.map((stat, i) => (
+            {stats.map((stat, i) => (
               <motion.div key={i} variants={staggerItem} className="glass rounded-xl p-6 text-center">
                 <div className="text-3xl md:text-4xl font-display font-bold text-primary mb-2">{stat.number}</div>
                 <div className="font-semibold text-foreground mb-1">{stat.label}</div>
@@ -152,9 +170,9 @@ export default function CareersPage() {
       {/* Perks & Benefits */}
       <section className="pb-20">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label="Perks & Benefits" title="What We Offer" description="Comprehensive benefits designed to support your professional growth, personal wellbeing, and work-life balance." />
+          <SectionHeading label="Perks & Benefits" title="What We Offer" description={isConstruction ? "Statutory + welfare benefits, PPE, transport, accommodation and clear growth from Junior Engineer to Project Manager." : "Comprehensive benefits designed to support your professional growth, personal wellbeing, and work-life balance."} />
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {perkKeys.map((p, i) => (
+            {perks.map((p, i) => (
               <motion.div key={i} variants={staggerItem} className="glass rounded-xl p-6 text-center">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <p.icon size={24} className="text-primary" />
@@ -170,9 +188,9 @@ export default function CareersPage() {
       {/* Ethics & Values */}
       <section className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label="Our Ethics & Values" title="What We Stand For" description="Our culture is built on a foundation of integrity, inclusivity, and innovation. These aren't just words on a wall — they guide every decision we make." />
+          <SectionHeading label="Our Ethics & Values" title="What We Stand For" description={isConstruction ? "Safety, quality, fair wages and on-time delivery — the four pillars that guide every WITEC Construction site." : "Our culture is built on a foundation of integrity, inclusivity, and innovation. These aren't just words on a wall — they guide every decision we make."} />
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {coreValues.map((v, i) => (
+            {values.map((v, i) => (
               <motion.div key={i} variants={staggerItem} className="glass rounded-xl p-6 hover:border-primary/30 transition-all">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
@@ -190,9 +208,9 @@ export default function CareersPage() {
       {/* Career Growth */}
       <section className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label="Growth & Development" title="Your Career Journey" description="We invest heavily in your development with structured programs, certifications, and global opportunities." />
+          <SectionHeading label="Growth & Development" title="Your Career Journey" description={isConstruction ? "Structured induction, sponsored certifications (NEBOSH, IOSH, Primavera) and cross-project mobility across Nagpur, Kolkata & MIDC." : "We invest heavily in your development with structured programs, certifications, and global opportunities."} />
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {growthPaths.map((g, i) => (
+            {growth.map((g, i) => (
               <motion.div key={i} variants={staggerItem} className="glass rounded-xl p-6 flex gap-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                   <g.icon size={22} className="text-primary" />
