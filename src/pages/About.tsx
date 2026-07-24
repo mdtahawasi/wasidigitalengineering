@@ -8,6 +8,8 @@ import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import OrgChart from "@/components/OrgChart";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useDivision } from "@/contexts/DivisionContext";
+import { constructionAboutStory } from "@/data/constructionContent";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem, staggerItemScale } from "@/lib/animations";
 import aboutTeam from "@/assets/about-team.jpg";
 import heroTeamCollab from "@/assets/hero-team-collab.jpg";
@@ -20,7 +22,7 @@ const valueKeys = [
   { icon: Award, titleKey: "value.excellence", descKey: "value.excellenceDesc" },
 ];
 
-const timeline = [
+const bimTimeline = [
   { year: "2019", event: "Founded in India as a BIM consulting startup by Md Taha Wasi" },
   { year: "2020", event: "Expanded services to Architecture, Structure & MEP BIM modeling" },
   { year: "2021", event: "Completed first 10 projects across residential & commercial sectors" },
@@ -36,6 +38,17 @@ const leadershipTeam = [
 
 export default function AboutPage() {
   const { t } = useLanguage();
+  const { division } = useDivision();
+  const isConstruction = division === "construction";
+  const timeline = isConstruction ? constructionAboutStory.timeline : bimTimeline;
+  const statsData = isConstruction
+    ? constructionAboutStory.stats
+    : [
+        { value: 6, suffix: "+", labelKey: "stat.yearsExperience" },
+        { value: 30, suffix: "+", labelKey: "stat.projectsDelivered" },
+        { value: 3, suffix: "", labelKey: "stat.industrySectors" },
+        { value: 2, suffix: "", labelKey: "stat.countries" },
+      ];
 
   useScrollToHash();
 
@@ -87,11 +100,19 @@ export default function AboutPage() {
               <img src={aboutTeam} alt="Wasi Infratech Engineering & Construction (WITEC) team" className="w-full h-auto object-cover rounded-2xl" />
             </motion.div>
             <motion.div {...fadeRight} transition={{ delay: 0.2, duration: 0.6 }}>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-4">{t("about.ourStory")}</h2>
+              <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-4">
+                {isConstruction ? constructionAboutStory.title : t("about.ourStory")}
+              </h2>
               <div className="space-y-4 text-muted-foreground text-sm leading-relaxed">
-                <p>Founded in 2019 in India by Md Taha Wasi, Wasi Infratech Engineering & Construction (WITEC) began with a clear mission: to bridge the gap between traditional construction methods and the digital future. What started as a small team of BIM enthusiasts has grown into a consultancy serving ambitious projects across the AEC industry.</p>
-                <p>Today, we've successfully delivered 30+ projects across residential, commercial, and industrial sectors. Our team combines deep domain expertise in Architecture, Structural (RCC, Steel & Composite), MEP, Interior Fit Out, Facade, Landscape, Infrastructure, and Civil engineering with cutting-edge technologies like AI, IoT, and digital twin platforms.</p>
-                <p>Our commitment to ISO 19650 standards, continuous innovation, and client-centric delivery has earned us the trust of developers, contractors, and consultants across India and the UAE.</p>
+                {isConstruction ? (
+                  constructionAboutStory.paragraphs.map((p, i) => <p key={i}>{p}</p>)
+                ) : (
+                  <>
+                    <p>Founded in 2019 in India by Md Taha Wasi, Wasi Infratech Engineering & Construction (WITEC) began with a clear mission: to bridge the gap between traditional construction methods and the digital future. What started as a small team of BIM enthusiasts has grown into a consultancy serving ambitious projects across the AEC industry.</p>
+                    <p>Today, we've successfully delivered 30+ projects across residential, commercial, and industrial sectors. Our team combines deep domain expertise in Architecture, Structural (RCC, Steel & Composite), MEP, Interior Fit Out, Facade, Landscape, Infrastructure, and Civil engineering with cutting-edge technologies like AI, IoT, and digital twin platforms.</p>
+                    <p>Our commitment to ISO 19650 standards, continuous innovation, and client-centric delivery has earned us the trust of developers, contractors, and consultants across India and the UAE.</p>
+                  </>
+                )}
               </div>
             </motion.div>
           </div>
@@ -128,12 +149,7 @@ export default function AboutPage() {
             viewport={{ once: true, margin: "-60px" }}
             className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
           >
-            {[
-              { value: 6, suffix: "+", labelKey: "stat.yearsExperience" },
-              { value: 30, suffix: "+", labelKey: "stat.projectsDelivered" },
-              { value: 3, suffix: "", labelKey: "stat.industrySectors" },
-              { value: 2, suffix: "", labelKey: "stat.countries" },
-            ].map((s, i) => (
+            {statsData.map((s, i) => (
               <motion.div key={i} variants={staggerItemScale}>
                 <div className="text-3xl md:text-4xl font-display font-bold text-gradient">
                   <AnimatedCounter target={s.value} suffix={s.suffix} />

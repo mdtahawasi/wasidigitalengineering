@@ -272,3 +272,139 @@ export const constructionHeroKpis = [
 export const constructionTrustStats = [
   "500+ Skilled Professionals", "10-Year Warranty", "IS Code Compliant", "ISO 9001 Certified",
 ];
+
+// ============ ABOUT — CONSTRUCTION STORY ============
+export const constructionAboutStory = {
+  title: "Building India's Skyline — One Project at a Time",
+  paragraphs: [
+    "WITEC Construction division was born in Nagpur with one goal: to bring world-class construction execution to the Indian market, powered by BIM, drones and IoT. From residential bungalows to industrial plants, we build with IS-code precision and on-time delivery guarantees.",
+    "With 500+ skilled professionals — engineers, architects, surveyors, safety officers and finishing specialists — every project is delivered under a single roof. No sub-contracted labour, no diluted accountability. Just clean execution, transparent BOQs and third-party inspection reports.",
+    "Our portfolio spans Maharashtra, MP, Chhattisgarh and now Kolkata — luxury villas, RCC high-rises, MIDC industrial sheds, warehouses, hospitals and government schools. Every structure carries a 10-year structural warranty backed by NABL-tested materials and IS 456 / IS 1893 compliance.",
+  ],
+  timeline: [
+    { year: "2018", event: "WITEC Construction founded in Nagpur — residential bungalows & villas" },
+    { year: "2019", event: "First commercial complex delivered in Wardha (IGBC Gold)" },
+    { year: "2020", event: "MIDC industrial warehouse projects — pre-engineered steel structures" },
+    { year: "2021", event: "RERA-registered, ISO 9001:2015 certified, 100+ workforce" },
+    { year: "2022", event: "First high-rise RCC tower (22 floors) completed in Nagpur" },
+    { year: "2023", event: "Expanded to Kolkata; hospital & school PWD projects added" },
+    { year: "2024", event: "500+ team, drone-monitored sites, ₹100 Cr+ project value delivered" },
+    { year: "2025", event: "BIM-integrated 4D/5D workflows, 3D concrete printing pilots launched" },
+  ],
+  stats: [
+    { value: 7,   suffix: "+",   labelKey: "stat.yearsExperience" },
+    { value: 50,  suffix: "+",   labelKey: "stat.projectsDelivered" },
+    { value: 500, suffix: "+",   labelKey: "stat.industrySectors" },
+    { value: 100, suffix: "Cr+", labelKey: "stat.countries" },
+  ],
+};
+
+// ============ CAREERS — CONSTRUCTION ROLES & COPY ============
+export const constructionCareers = {
+  hero: {
+    title: "Build India's Future",
+    highlight: "With Us",
+    end: "",
+    desc: "Join WITEC Construction — a 500-strong team of site engineers, structural specialists, MEP experts and safety officers delivering IS-code compliant projects across Maharashtra & beyond.",
+  },
+  perks: [
+    { title: "Site Growth Path",   desc: "From Junior Engineer to Project Manager in 5 years — clear promotion ladders and quarterly reviews." },
+    { title: "On-Site Training",   desc: "Autodesk Revit, Navisworks, Primavera, drone-piloting, IS-code masterclasses fully sponsored." },
+    { title: "Health & Safety",    desc: "ESI, PF, group medical cover, family insurance and BOCW welfare — full statutory + more." },
+    { title: "PPE & Comfort",      desc: "Company-issued PPE, air-cooled site offices, transport, canteen and accommodation at every project." },
+  ],
+  values: [
+    { title: "Safety First",        desc: "Zero-harm culture. Daily toolbox talks, PPE audits and OHSAS 18001 compliance on every site." },
+    { title: "Quality Never Compromised", desc: "Every pour tested, every rebar checked. NABL-lab material tests and third-party audits." },
+    { title: "On-Time Delivery",    desc: "Milestones over meetings. AI-driven scheduling and drone monitoring keep us honest." },
+    { title: "Fair Wages",          desc: "BOCW-compliant minimum wages, weekly labour payment, and skill-based increments." },
+    { title: "Learning Culture",    desc: "Weekly IS-code sessions, on-site software training and mentorship from senior PMs." },
+    { title: "Family Approach",     desc: "Small enough to know your name, big enough to give ₹100 Cr+ project exposure." },
+  ],
+  stats: [
+    { number: "500+", label: "Team On-Site",     desc: "Engineers, architects, safety officers and skilled trades — all in-house" },
+    { number: "50+",  label: "Projects Delivered", desc: "Residential, commercial, industrial and infrastructure" },
+    { number: "0",    label: "Fatal Incidents",  desc: "7 years of zero-harm safety record across all sites" },
+    { number: "95%",  label: "Team Retention",   desc: "Because we invest in people, not just projects" },
+  ],
+  growth: [
+    { title: "Structured Site Induction", desc: "2-week induction covering IS codes, safety protocols, drawings reading and site hierarchy." },
+    { title: "Career Ladder",             desc: "Junior Engineer → Site Engineer → Sr. Engineer → PM → Sr. PM. Transparent criteria, annual reviews." },
+    { title: "Certifications Sponsored",  desc: "NEBOSH, IOSH, PMP, LEED AP, Primavera P6, Autodesk certifications — company funded." },
+    { title: "Cross-Project Mobility",    desc: "Work across Nagpur, Kolkata, MIDC and highway projects for varied exposure." },
+  ],
+};
+
+// ============ INSIGHTS — CONSTRUCTION INDUSTRY (INDIA FOCUS) ============
+export const constructionInsights = {
+  hero: {
+    label: "Indian Construction Insights",
+    title: "The Indian Construction",
+    highlight: "Boom",
+    desc: "Data-driven view of India's $1.4 trillion construction opportunity — from IS-code compliance, city-wise growth (Nagpur, Kolkata, Mumbai) to Smart City & PMAY-led demand.",
+  },
+  overview: [
+    { value: 1400, prefix: "$", suffix: "B", label: "India Construction Market (2030)" },
+    { value: 11.4, suffix: "%",  label: "CAGR (2024–2030)" },
+    { value: 71,   suffix: "M",  label: "Workforce (2nd largest employer)" },
+    { value: 13,   suffix: "%",  label: "Share of India's GDP" },
+  ],
+  cityMarkets: [
+    { city: "Mumbai",     share: 92, focus: "High-rise & Metro",           status: "Mature",   growth: "9%"  },
+    { city: "Delhi-NCR",  share: 88, focus: "Commercial & Infra",          status: "Mature",   growth: "10%" },
+    { city: "Bengaluru",  share: 85, focus: "IT parks & Metro",            status: "Mature",   growth: "12%" },
+    { city: "Hyderabad",  share: 80, focus: "IT & Pharma City",            status: "Growing",  growth: "14%" },
+    { city: "Pune",       share: 78, focus: "Auto & Residential",          status: "Growing",  growth: "11%" },
+    { city: "Kolkata",    share: 70, focus: "Metro Phase-2 & Housing",     status: "Growing",  growth: "13%" },
+    { city: "Nagpur",     share: 68, focus: "MIHAN, MIDC, Smart City",     status: "Emerging", growth: "16%" },
+    { city: "Ahmedabad",  share: 66, focus: "GIFT City & Industrial",      status: "Growing",  growth: "12%" },
+    { city: "Chennai",    share: 72, focus: "Port & Auto Corridors",       status: "Growing",  growth: "11%" },
+    { city: "Lucknow",    share: 55, focus: "Expressways & Housing",       status: "Emerging", growth: "15%" },
+    { city: "Bhopal",     share: 50, focus: "Smart City Mission",          status: "Emerging", growth: "14%" },
+    { city: "Raipur",     share: 45, focus: "Mining & Industrial",         status: "Emerging", growth: "15%" },
+  ],
+  drivers: [
+    { title: "PMAY Housing Push",     desc: "3+ crore homes sanctioned under PMAY-U & PMAY-G. ₹2 lakh crore committed to affordable housing till 2027." },
+    { title: "Smart Cities Mission",  desc: "100 smart cities including Nagpur, Bhopal, Raipur — ₹2 lakh crore infrastructure spend under execution." },
+    { title: "Metro & Rail Expansion",desc: "27 cities with operational/upcoming metros. Nagpur, Kolkata, Pune Phase-2 driving ₹5 lakh crore contracts." },
+    { title: "Highway & Bharatmala",  desc: "83,000 km of national highways under Bharatmala Pariyojana — largest road-building program in Indian history." },
+    { title: "Industrial Corridors",  desc: "DMIC, CBIC, AKIC corridors driving factory, warehouse and logistics-park construction across 12 states." },
+    { title: "BIM Mandate (2024)",    desc: "Government projects above ₹100 Cr now require BIM Level 2. IS 19650 alignment mandatory by 2026." },
+  ],
+  isCodes: [
+    { code: "IS 456:2000",  title: "Plain & Reinforced Concrete",  desc: "Governs all RCC design, mix ratios, cover, curing and load-bearing capacity." },
+    { code: "IS 800:2007",  title: "Structural Steel",             desc: "General construction in steel — welded, bolted and cold-formed sections." },
+    { code: "IS 875",       title: "Design Loads",                 desc: "Dead, live, wind, snow and other loads for buildings and structures." },
+    { code: "IS 1893:2016", title: "Seismic Design",               desc: "Earthquake-resistant design — zone factors, response spectrum, ductile detailing." },
+    { code: "IS 13920",     title: "Ductile Detailing",            desc: "RCC members subjected to seismic forces — critical for high-rises." },
+    { code: "NBC 2016",     title: "National Building Code",       desc: "Master code — occupancy, fire safety, plumbing, structural, MEP integration." },
+  ],
+  segments: [
+    { segment: "Residential",   share: 41, growth: "12%" },
+    { segment: "Infrastructure",share: 24, growth: "14%" },
+    { segment: "Commercial",    share: 18, growth: "10%" },
+    { segment: "Industrial",    share: 12, growth: "13%" },
+    { segment: "Institutional", share: 5,  growth: "11%" },
+  ],
+  keyStats: [
+    { value: "40%",   label: "cost overrun in non-BIM projects",  source: "NITI Aayog 2023" },
+    { value: "₹111L Cr", label: "National Infrastructure Pipeline (2025)", source: "MoF, Govt of India" },
+  { value: "30%",   label: "faster delivery with drone monitoring", source: "CIDC India" },
+    { value: "50%",   label: "of new demand from Tier-2 cities",     source: "JLL India Outlook" },
+    { value: "₹10L Cr", label: "annual construction spend by 2027",  source: "IBEF Report 2024" },
+    { value: "22%",   label: "workforce shortage — skilled trades",  source: "NSDC Skill Gap" },
+  ],
+  timeline: [
+    { year: "2005", event: "RERA-precursor state laws — first regulation attempts" },
+    { year: "2014", event: "'Housing for All by 2022' PMAY launched" },
+    { year: "2015", event: "Smart Cities Mission launched — 100 cities identified" },
+    { year: "2016", event: "RERA Act enacted — buyer protection & builder accountability" },
+    { year: "2017", event: "GST rollout — construction sector rationalized to 5%/12%" },
+    { year: "2018", event: "Bharatmala Phase-1 approved — ₹5.35 lakh crore highway program" },
+    { year: "2020", event: "Atmanirbhar package — ₹1 lakh crore Agri-Infra fund" },
+    { year: "2022", event: "Gati Shakti Master Plan — integrated infra planning launched" },
+    { year: "2024", event: "BIM mandate for government projects > ₹100 Cr" },
+    { year: "2025", event: "National Infrastructure Pipeline crosses ₹111 lakh crore" },
+    { year: "2030", event: "Projected: $1.4T market — 3rd largest construction economy globally" },
+  ],
+};

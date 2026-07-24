@@ -9,6 +9,8 @@ import Layout from "@/components/Layout";
 import DivisionSEO from "@/components/DivisionSEO";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import { useDivision } from "@/contexts/DivisionContext";
+import { constructionInsights } from "@/data/constructionContent";
 import imgArchitecture from "@/assets/discipline-architecture.jpg";
 import imgMEPF from "@/assets/discipline-mepf.jpg";
 import imgFacilityMgmt from "@/assets/discipline-facility-mgmt.jpg";
@@ -98,6 +100,8 @@ const regionalData = [
 ];
 
 export default function BIMInsightsPage() {
+  const { division } = useDivision();
+  if (division === "construction") return <ConstructionInsightsPage />;
   return (
     <Layout>
       <DivisionSEO />
@@ -495,6 +499,189 @@ export default function BIMInsightsPage() {
                   className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg border border-border text-foreground font-semibold text-sm hover:bg-muted/50 hover:border-primary/30 transition-all"
                 >
                   Explore Services <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </Layout>
+  );
+}
+
+function ConstructionInsightsPage() {
+  const d = constructionInsights;
+  return (
+    <Layout>
+      <DivisionSEO />
+      {/* Hero */}
+      <section className="relative section-padding overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={imgArchitecture} alt="" className="w-full h-full object-cover opacity-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+        </div>
+        <div className="absolute inset-0 grid-pattern opacity-10" />
+        <div className="container mx-auto px-4 md:px-8 relative">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4">
+              {d.hero.label}
+            </span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-4xl">
+              {d.hero.title} <span className="text-gradient">{d.hero.highlight}</span>
+            </h1>
+            <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">{d.hero.desc}</p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Overview KPIs */}
+      <section className="relative -mt-8 z-10 pb-16">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="glass rounded-2xl p-6 md:p-10 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            {d.overview.map((s, i) => (
+              <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.1 }} className="text-center">
+                <div className="text-3xl md:text-4xl font-display font-bold text-gradient">
+                  {s.prefix && <span>{s.prefix}</span>}
+                  <AnimatedCounter target={s.value} suffix={s.suffix} />
+                </div>
+                <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* City Markets */}
+      <section className="section-padding bg-card/30">
+        <div className="container mx-auto px-4 md:px-8">
+          <SectionHeading label="City-Wise Growth" title="India's Top Construction Markets" description="Nagpur & Kolkata are among the fastest-growing Tier-2 markets driven by Smart City, Metro and MIHAN/industrial demand." />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
+            {d.cityMarkets.map((c, i) => (
+              <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.05 }} className="glass rounded-xl p-4 hover:border-primary/30 transition-all">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="font-display font-semibold text-foreground text-sm">{c.city}</span>
+                    <span className="text-[10px] text-muted-foreground">· {c.focus}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] px-2 py-0.5 rounded-full font-medium bg-primary/10 text-primary">{c.status}</span>
+                    <span className="text-sm font-bold text-primary">{c.growth}</span>
+                  </div>
+                </div>
+                <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
+                  <motion.div initial={{ width: 0 }} whileInView={{ width: `${c.share}%` }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.05, duration: 0.8 }} className="h-full rounded-full bg-gradient-to-r from-primary to-primary/60" />
+                </div>
+                <p className="text-[10px] text-muted-foreground mt-1.5">Activity Index · {c.share}/100</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* IS Codes */}
+      <section className="section-padding">
+        <div className="container mx-auto px-4 md:px-8">
+          <SectionHeading label="Compliance" title="IS Codes & National Standards" description="Every WITEC Construction project complies with these mandatory IS codes and the National Building Code (NBC 2016)." />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {d.isCodes.map((c, i) => (
+              <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.08 }} className="glass rounded-xl p-6">
+                <p className="text-xs font-bold text-primary tracking-wider">{c.code}</p>
+                <h3 className="font-display font-semibold text-foreground text-base mt-1 mb-2">{c.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Growth Drivers */}
+      <section className="section-padding bg-card/30">
+        <div className="container mx-auto px-4 md:px-8">
+          <SectionHeading label="Growth Drivers" title="What's Fueling India's Construction Boom" description="Six macro trends driving the ₹111 lakh crore National Infrastructure Pipeline." />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {d.drivers.map((dr, i) => (
+              <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.1 }} className="glass rounded-xl p-6">
+                <h3 className="font-display font-semibold text-foreground text-base mb-2">{dr.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{dr.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Key Stats */}
+      <section className="section-padding">
+        <div className="container mx-auto px-4 md:px-8">
+          <SectionHeading label="Key Statistics" title="Indian Construction by the Numbers" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+            {d.keyStats.map((s, i) => (
+              <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.08 }} className="glass rounded-xl p-5 text-center">
+                <p className="text-3xl md:text-4xl font-display font-bold text-gradient mb-2">{s.value}</p>
+                <p className="text-sm text-foreground font-medium mb-2">{s.label}</p>
+                <p className="text-[10px] text-muted-foreground italic">Source: {s.source}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Segments */}
+      <section className="section-padding bg-card/30">
+        <div className="container mx-auto px-4 md:px-8">
+          <SectionHeading label="Segments" title="Construction Market by Segment" description="Residential leads with 41% share; infrastructure is the fastest-growing segment at 14% CAGR." />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
+            {d.segments.map((seg, i) => (
+              <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.1 }} className="glass rounded-xl p-5 text-center">
+                <p className="font-display font-bold text-foreground text-sm">{seg.segment}</p>
+                <p className="text-2xl font-display font-bold text-gradient mt-1">{seg.share}%</p>
+                <p className="text-[10px] text-muted-foreground">Market Share</p>
+                <div className="mt-2 pt-2 border-t border-border/30">
+                  <p className="text-xs text-primary font-semibold">{seg.growth} CAGR</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline */}
+      <section className="section-padding">
+        <div className="container mx-auto px-4 md:px-8">
+          <SectionHeading label="Policy Timeline" title="Key Milestones in Indian Construction" />
+          <div className="max-w-3xl mx-auto relative">
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border/50 md:-translate-x-px" />
+            {d.timeline.map((item, i) => (
+              <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.06 }} className={`relative flex items-start gap-4 mb-6 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
+                <div className="pl-10 md:pl-0 md:w-1/2">
+                  <div className={`glass rounded-lg p-4 ${i % 2 === 0 ? "md:mr-8" : "md:ml-8"}`}>
+                    <span className="text-xs font-bold text-primary">{item.year}</span>
+                    <p className="text-sm text-muted-foreground mt-1">{item.event}</p>
+                  </div>
+                </div>
+                <div className="absolute left-2.5 md:left-1/2 md:-translate-x-1/2 top-4 w-3 h-3 rounded-full bg-primary border-2 border-background" />
+                <div className="hidden md:block w-1/2" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-padding bg-card/30">
+        <div className="container mx-auto px-4 md:px-8">
+          <motion.div {...fadeUp} className="glass rounded-2xl p-8 md:p-12 text-center max-w-3xl mx-auto relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-primary opacity-5" />
+            <div className="relative">
+              <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-4">Planning a Project in Nagpur, Kolkata or Beyond?</h2>
+              <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+                WITEC Construction delivers IS-code compliant, BIM-coordinated, on-time construction across residential, commercial and industrial segments.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Link to="/contact" className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-all glow-primary">
+                  Get a Free Site Estimate <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link to="/projects" className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg border border-border text-foreground font-semibold text-sm hover:bg-muted/50 hover:border-primary/30 transition-all">
+                  Explore Projects <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </div>
