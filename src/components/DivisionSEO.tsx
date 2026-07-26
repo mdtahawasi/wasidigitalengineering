@@ -6,18 +6,18 @@ const SITE = "https://witecglobal.lovable.app";
 
 const META: Record<"bim" | "construction", { title: string; description: string; keywords: string }> = {
   bim: {
-    title: "BIM Services in India, UAE, USA & UK | Revit BIM Modeling & Clash Detection — WITEC",
+    title: "Best BIM Company in Nagpur, Kolkata, Dubai & UAE | Revit BIM, Clash Detection, 4D/5D — WITEC",
     description:
-      "WITEC delivers BIM & engineering services across India, UAE, USA and UK — Revit BIM modeling, clash detection, 4D/5D BIM, scan-to-BIM, digital twin & VDC. ISO 19650 compliant.",
+      "WITEC — top BIM company in Nagpur, Kolkata, Dubai, Abu Dhabi & Sharjah (UAE), also serving USA & UK. Revit BIM modeling, MEP/structural/architectural BIM, clash detection (Navisworks), 4D/5D BIM, scan-to-BIM & digital twin. ISO 19650 compliant.",
     keywords:
-      "BIM services India, BIM company India, BIM services UAE, BIM company Dubai, BIM services USA, BIM company UK London, Revit BIM modeling, clash detection, 4D BIM, 5D BIM, scan to BIM, digital twin, ISO 19650, WITEC",
+      "BIM company Nagpur, BIM services Nagpur, BIM company Kolkata, BIM services Kolkata, BIM company Dubai, BIM services Dubai, BIM company Abu Dhabi, BIM company Sharjah, BIM consultancy UAE, BIM services UAE, BIM services India, BIM company India, BIM services USA, BIM company UK London, Revit BIM modeling, MEP BIM, structural BIM, architectural BIM, clash detection Navisworks, 4D BIM scheduling, 5D BIM cost, scan to BIM, point cloud to BIM, digital twin, VDC services, ISO 19650, BIM outsourcing India, WITEC, WITEC Global",
   },
   construction: {
-    title: "Construction Company in Nagpur & Kolkata | Civil, Structural & Turnkey Contractors — WITEC",
+    title: "Best Construction Company in Nagpur & Kolkata | Civil, RCC, Structural & Turnkey Contractor — WITEC",
     description:
-      "WITEC is a leading construction company in Nagpur & Kolkata, India — civil, structural, MEP, RCC, turnkey residential, commercial & industrial construction. IS code compliant.",
+      "WITEC Construction — #1 construction company in Nagpur & Kolkata, India. Civil, RCC, structural, MEP, industrial, commercial & residential turnkey contractors. IS 456, IS 800, IS 1893 & NBC 2016 compliant. Serving Maharashtra, West Bengal & pan-India.",
     keywords:
-      "construction company Nagpur, construction company Kolkata, civil contractor Nagpur, civil contractor Kolkata, building contractor Nagpur, RCC contractor Nagpur, turnkey construction India, structural contractor Maharashtra, structural contractor West Bengal, WITEC construction",
+      "construction company Nagpur, best construction company Nagpur, top construction company Nagpur, civil contractor Nagpur, RCC contractor Nagpur, building contractor Nagpur, turnkey contractor Nagpur, industrial construction Nagpur, commercial construction Nagpur, residential builder Nagpur, construction company Kolkata, best construction company Kolkata, civil contractor Kolkata, RCC contractor Kolkata, building contractor Kolkata, turnkey contractor Kolkata, structural contractor Maharashtra, structural contractor West Bengal, MIDC contractor Nagpur, EPC contractor India, IS 456 RCC design, WITEC Construction, Wasi Construction",
   },
 };
 
