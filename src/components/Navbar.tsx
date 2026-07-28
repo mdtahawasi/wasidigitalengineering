@@ -83,9 +83,6 @@ export default function Navbar() {
 
         {/* Right side */}
         <div className="flex items-center gap-1 shrink-0">
-          <div className="hidden xl:block mr-2">
-            <DivisionToggle />
-          </div>
           <Link
             to="/contact"
             className="hidden xl:inline-flex items-center px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm"
@@ -112,9 +109,9 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile sticky division toggle bar */}
-      <div className="xl:hidden border-t border-border/40 bg-background/80 backdrop-blur-md px-4 py-2 flex justify-center">
-        <DivisionToggle variant="mobile" className="max-w-md" />
+      {/* Division toggle bar (always visible, keeps top nav compact) */}
+      <div className="border-t border-border/40 bg-background/80 backdrop-blur-md px-4 py-2 flex justify-center">
+        <DivisionToggle variant="mobile" className="max-w-md xl:max-w-lg" />
       </div>
 
       {/* Mobile Dropdown Menu */}
