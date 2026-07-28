@@ -65,7 +65,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop horizontal nav links */}
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden xl:flex items-center gap-1">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -83,12 +83,12 @@ export default function Navbar() {
 
         {/* Right side */}
         <div className="flex items-center gap-1 shrink-0">
-          <div className="hidden lg:block mr-2">
+          <div className="hidden xl:block mr-2">
             <DivisionToggle />
           </div>
           <Link
             to="/contact"
-            className="hidden lg:inline-flex items-center px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm"
+            className="hidden xl:inline-flex items-center px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm"
           >
             {t("nav.getQuote")}
           </Link>
@@ -104,7 +104,7 @@ export default function Navbar() {
           {/* Hamburger - mobile only */}
           <button
             onClick={() => setOpen(!open)}
-            className="lg:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
+            className="xl:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
             aria-label="Toggle menu"
           >
             {open ? <X size={24} /> : <Menu size={24} />}
@@ -113,7 +113,7 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile sticky division toggle bar */}
-      <div className="lg:hidden border-t border-border/40 bg-background/80 backdrop-blur-md px-4 py-2 flex justify-center">
+      <div className="xl:hidden border-t border-border/40 bg-background/80 backdrop-blur-md px-4 py-2 flex justify-center">
         <DivisionToggle variant="mobile" className="max-w-md" />
       </div>
 
@@ -125,7 +125,7 @@ export default function Navbar() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="lg:hidden absolute right-4 md:right-8 top-14 md:top-18 w-56 bg-card rounded-xl border border-border shadow-xl overflow-hidden"
+            className="xl:hidden absolute right-4 md:right-8 top-14 md:top-18 w-56 bg-card rounded-xl border border-border shadow-xl overflow-hidden"
           >
             <div className="py-2 flex flex-col">
               {navLinks.map((link) => (
