@@ -183,6 +183,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Prevent accidental horizontal overflow on any device */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* Smooth transitions globally */
 *, *::before, *::after {
   scroll-behavior: smooth;
