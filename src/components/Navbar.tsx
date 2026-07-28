@@ -52,20 +52,20 @@ export default function Navbar() {
     >
       <nav className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4 md:px-8">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 shrink-0">
+        <Link to="/" className="flex items-center gap-2 md:gap-3 shrink min-w-0">
           <img
             src={logo}
             alt="Wasi Infratech Engineering & Construction (WITEC)"
-            className="h-9 md:h-11 w-auto rounded-md dark:brightness-110 dark:contrast-110"
+            className="h-8 md:h-11 w-auto rounded-md shrink-0 dark:brightness-110 dark:contrast-110"
           />
-          <div className="flex flex-col leading-none">
-            <span className="font-display font-bold text-foreground text-lg md:text-xl tracking-tight">WASI</span>
-            <span className="text-[9px] md:text-[10px] text-muted-foreground tracking-[0.2em] uppercase font-medium">Infratech Engineering &amp; Construction</span>
+          <div className="flex flex-col leading-none min-w-0">
+            <span className="font-display font-bold text-foreground text-base md:text-xl tracking-tight">WITEC</span>
+            <span className="hidden sm:inline text-[9px] md:text-[10px] text-muted-foreground tracking-[0.2em] uppercase font-medium truncate">Infratech Engineering &amp; Construction</span>
           </div>
         </Link>
 
         {/* Desktop horizontal nav links */}
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden xl:flex items-center gap-1">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -83,12 +83,9 @@ export default function Navbar() {
 
         {/* Right side */}
         <div className="flex items-center gap-1 shrink-0">
-          <div className="hidden lg:block mr-2">
-            <DivisionToggle />
-          </div>
           <Link
             to="/contact"
-            className="hidden lg:inline-flex items-center px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm"
+            className="hidden xl:inline-flex items-center px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm"
           >
             {t("nav.getQuote")}
           </Link>
@@ -104,7 +101,7 @@ export default function Navbar() {
           {/* Hamburger - mobile only */}
           <button
             onClick={() => setOpen(!open)}
-            className="lg:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
+            className="xl:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
             aria-label="Toggle menu"
           >
             {open ? <X size={24} /> : <Menu size={24} />}
@@ -112,9 +109,9 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile sticky division toggle bar */}
-      <div className="lg:hidden border-t border-border/40 bg-background/80 backdrop-blur-md px-4 py-2 flex justify-center">
-        <DivisionToggle variant="mobile" className="max-w-md" />
+      {/* Division toggle bar (always visible, keeps top nav compact) */}
+      <div className="border-t border-border/40 bg-background/80 backdrop-blur-md px-4 py-2 flex justify-center">
+        <DivisionToggle variant="mobile" className="max-w-md xl:max-w-lg" />
       </div>
 
       {/* Mobile Dropdown Menu */}
@@ -125,7 +122,7 @@ export default function Navbar() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="lg:hidden absolute right-4 md:right-8 top-14 md:top-18 w-56 bg-card rounded-xl border border-border shadow-xl overflow-hidden"
+            className="xl:hidden absolute right-4 md:right-8 top-14 md:top-18 w-56 bg-card rounded-xl border border-border shadow-xl overflow-hidden"
           >
             <div className="py-2 flex flex-col">
               {navLinks.map((link) => (
