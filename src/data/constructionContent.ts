@@ -322,9 +322,12 @@ export const constructionSafety = [
 ];
 
 export const constructionEnvironment = [
-  { icon: Wind,    title: "Dust Control",     desc: "Anti-smog guns, water sprinklers, green barriers and covered material storage." },
-  { icon: Recycle, title: "Water Management", desc: "Rainwater harvesting, construction water recycling, STP and zero-discharge sites." },
-  { icon: Volume2, title: "Noise Control",    desc: "Sound barriers, equipment silencers, restricted hours and CPCB monitoring." },
+  { icon: Wind,    title: "Dust Suppression", desc: "Anti-smog guns, sprinkler systems, wind barriers, covered stockpiles, wheel-washing at exits and green netting per CPCB norms." },
+  { icon: Droplets,title: "Water Management", desc: "Rainwater harvesting, STP-based water recycling, sedimentation tanks and a zero-discharge policy with live consumption tracking." },
+  { icon: Volume2, title: "Noise Control",    desc: "Acoustic barriers, silenced DG sets, 7 AM–7 PM equipment hours and boundary decibel monitoring within CPCB's 75 dB daytime limit." },
+  { icon: Recycle, title: "Waste Management", desc: "Segregated bins for concrete, steel, wood and hazardous waste, authorised recyclers, debris crushing for backfill and a zero-landfill target." },
+  { icon: Trees,   title: "Carbon Reduction", desc: "Fly-ash and GGBS low-carbon concrete, electric site equipment, solar site offices and 10 trees planted per 1,000 sq.ft. built." },
+  { icon: Activity,title: "Environmental Monitoring", desc: "IoT stations for PM2.5/PM10, SO₂, NO₂, noise, water and soil quality with monthly SPCB audit reports and corrective tracking." },
 ];
 
 export const constructionEquipment = [
