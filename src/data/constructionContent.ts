@@ -203,18 +203,115 @@ export const constructionWhy = [
 
 // ============ TECHNOLOGY PAGE — CONSTRUCTION TECH ============
 export const coreConstructionTech = [
-  { icon: Layers,    title: "BIM Integration",      metric: "40% fewer RFIs",      desc: "30% less rework via federated Revit + Navisworks coordination." },
-  { icon: Scan,      title: "3D LiDAR Scanning",    metric: "±2 mm accuracy",      desc: "1 million points per second for as-built capture and verification." },
-  { icon: Plane,     title: "Drone Surveying",      metric: "90% faster surveys",  desc: "DJI Matrice 300 photogrammetry for site mapping and progress." },
-  { icon: Printer,   title: "3D Concrete Printing", metric: "60% less formwork",   desc: "COBOD-class printers for complex geometry without traditional shuttering." },
-  { icon: Cpu,       title: "IoT Site Monitoring",  metric: "24/7 real-time",      desc: "Vibration, temperature and tilt sensors streaming to the cloud." },
-  { icon: Brain,     title: "AI Project Management",metric: "25% better schedule", desc: "ML scheduling, risk prediction and automated progress analytics." },
+  { icon: Layers,    title: "BIM Integration",      metric: "40% fewer RFIs · 30% less rework",  desc: "Federated Revit + Navisworks coordination across every trade before a single brick is laid.",
+    features: ["Revit & Navisworks", "Clash Detection", "4D Scheduling", "5D Cost Estimation", "BIM 360 Cloud", "Digital Twin"] },
+  { icon: Scan,      title: "3D LiDAR Scanning",    metric: "±2 mm accuracy · 1M pts/sec",       desc: "Terrestrial and aerial reality capture for as-built verification and deformation analysis.",
+    features: ["Terrestrial Scanning", "Aerial LiDAR", "Point Cloud Processing", "As-Built Models", "Deformation Analysis", "Volume Calculation"] },
+  { icon: Plane,     title: "Drone Surveying",      metric: "90% faster surveying",              desc: "DJI Matrice 300 photogrammetry for site mapping, volumetrics and weekly progress capture.",
+    features: ["DJI Matrice 300", "Orthomosaic Maps", "Volumetric Analysis", "Thermal Imaging", "Progress Monitoring", "3D Site Models"] },
+  { icon: Printer,   title: "3D Concrete Printing", metric: "60% less formwork cost",            desc: "COBOD-class printers for complex geometry without traditional shuttering and with less waste.",
+    features: ["COBOD Printers", "Custom Geometry", "Rapid Prototyping", "Material Optimization", "Complex Facades", "Reduced Waste"] },
+  { icon: Cpu,       title: "IoT Site Monitoring",  metric: "24/7 real-time monitoring",         desc: "Embedded sensors track vibration, curing temperature and structural tilt straight to the cloud.",
+    features: ["Embedded Sensors", "Vibration Monitoring", "Curing Temperature", "Tilt Detection", "Cloud Dashboard", "Auto-Alerts"] },
+  { icon: Brain,     title: "AI Project Management",metric: "25% schedule improvement",          desc: "Machine-learning scheduling, risk prediction and computer-vision progress tracking.",
+    features: ["ML Scheduling", "Risk Prediction", "Computer Vision", "Resource Allocation", "Progress Tracking", "Cost Forecasting"] },
 ];
 
 export const futureConstructionTech = [
   { title: "Modular Construction", desc: "Factory-built modules — 50% faster on-site, weather-independent assembly." },
   { title: "Self-Healing Concrete", desc: "Bacteria-embedded mix auto-repairs micro-cracks for 50+ year service life." },
   { title: "Net-Zero Buildings", desc: "Solar, wind, geothermal and passive design for a zero carbon footprint." },
+  { title: "Blockchain Contracts", desc: "Smart contracts for tamper-proof milestone billing, material provenance and transparent payments." },
+  { title: "AR On-Site Overlay", desc: "HoloLens and tablet AR overlays place the BIM model on the real slab for instant install verification." },
+  { title: "Construction Robotics", desc: "Rebar-tying robots, bricklaying arms and autonomous surveying rovers for repetitive, high-precision work." },
+];
+
+// ============ SAFETY — 8 PROTOCOLS ============
+export const constructionSafetyProtocols = [
+  { icon: HardHat,     title: "Mandatory PPE Compliance", desc: "Hard hats, harnesses, high-visibility vests, steel-toe boots, goggles and ear protection for all personnel, with RFID-enabled PPE tracking at entry gates." },
+  { icon: Flame,       title: "Fire Safety Systems",      desc: "Extinguishers every 15 m, hydrant network, sprinklers, smoke detectors, fire-rated escape routes and weekly drills with trained marshals." },
+  { icon: ShieldAlert, title: "Fall Protection",          desc: "Full-body harnesses above 2 m, guardrails on every open edge, safety nets, covered floor openings and daily certified scaffold inspection." },
+  { icon: LifeBuoy,    title: "Emergency Response Plan",  desc: "Documented ERP with coordinators, illuminated evacuation routes, siren alerts, standby ambulance and a hospital within 15-minute response." },
+  { icon: Activity,    title: "AI-Powered CCTV",          desc: "360° coverage with AI anomaly detection — alerts for unauthorised zone entry, PPE violations and near-misses, with 90-day audit footage." },
+  { icon: FileCheck,   title: "Permit-to-Work System",    desc: "Digital permits for hot work, confined space, electrical work, excavation and work at height — each with hazard assessment and toolbox talk." },
+  { icon: HeartHandshake, title: "First Aid & Medical",   desc: "First aid stations every 500 m², certified first-aiders each shift, AEDs on site and monthly health checkups for all workers." },
+  { icon: Wind,        title: "Air Quality Monitoring",   desc: "IoT PM2.5/PM10 sensors with automatic water misting when dust exceeds thresholds and enclosed material handling zones." },
+];
+
+export const constructionWorkerWelfare = [
+  { icon: ShieldCheck, title: "Comprehensive Insurance", desc: "Group insurance with ₹10L accidental cover, family medical insurance and ESIC registration — claims processed within 48 hours." },
+  { icon: Users,       title: "Regular Safety Training", desc: "Weekly toolbox talks, monthly drills, quarterly certifications and mandatory 8-hour safety induction before site access." },
+  { icon: Activity,    title: "Heat Stress Management",  desc: "Rest breaks during peak heat, shaded rest areas, ORS stations every 100 m and cooling vests for welders." },
+  { icon: LifeBuoy,    title: "On-Site Medical Facility",desc: "Medical room with trained paramedic, oxygen, stretcher, spinal board and a direct ambulance hotline." },
+  { icon: Droplets,    title: "Hygiene & Sanitation",    desc: "Clean drinking water on every floor, portable toilets at 1:25 ratio, changing rooms and covered mess halls with food inspection." },
+  { icon: Lock,        title: "Site Access Control",     desc: "Biometric attendance, visitor escort protocol, RFID zone access, anti-climb perimeter fencing and 24/7 security." },
+];
+
+export const constructionSafetyStats = [
+  { value: "Zero", label: "Fatalities Record" },
+  { value: "100%", label: "Workers Safety Trained" },
+  { value: "24/7", label: "Safety Monitoring" },
+  { value: "100%", label: "PPE Compliance Rate" },
+];
+
+// ============ PROJECT COMPLETION METHODOLOGY ============
+export const constructionCompletion = [
+  { icon: Workflow,   title: "Lean Construction (LPS)",    stat: "35% faster delivery",     desc: "Last Planner System with weekly work planning, constraint analysis and percent-plan-complete tracking across all trades." },
+  { icon: Activity,   title: "Primavera P6 Scheduling",    stat: "99.2% schedule accuracy", desc: "CPM master schedules with 3-week lookaheads, resource leveling, earned value management and S-curve delay alerts." },
+  { icon: Truck,      title: "Just-in-Time Supply Chain",  stat: "Zero material delays",    desc: "ERP-integrated procurement, pre-qualified vendors, buffer stock and GPS-tracked deliveries with automated reorder triggers." },
+  { icon: Target,     title: "6-Stage Quality Gates",      stat: "Zero-defect handover",    desc: "Sign-off gates at foundation, structure, MEP rough-in, finishing, commissioning and handover — each with test certificates." },
+  { icon: Forklift,   title: "In-House Equipment Fleet",   stat: "50+ owned machines",      desc: "Tower cranes, batching plants, pumps and transit mixers owned outright — enabling 24/7 pours on fast-track projects." },
+  { icon: Clock,      title: "Real-Time Client Dashboard", stat: "Daily client updates",    desc: "Live drone feeds, progress photos, milestone tracker, cost burn-down and RFI logs accessible from anywhere." },
+];
+
+// ============ PROJECT TYPES WE TAKE ============
+export const constructionProjectTypes = [
+  { icon: Building,      title: "Residential",    desc: "Bungalows, villas, apartments, townships and gated communities — designed for modern living." },
+  { icon: Building2,     title: "Commercial",     desc: "Office complexes, shopping malls, showrooms and hotels — built for business success." },
+  { icon: Construction,  title: "Industrial",     desc: "Factories, warehouses and processing plants — engineered for efficiency and safety compliance." },
+  { icon: Sparkles,      title: "Private",        desc: "Custom private estates, farmhouses and luxury retreats — tailored to your unique vision." },
+  { icon: ClipboardList, title: "Government",     desc: "Schools, hospitals, public buildings and roads — to PWD/CPWD standards and specifications." },
+  { icon: Award,         title: "Semi-Government",desc: "PSU offices, institutional buildings and R&D centres — reliable, documented and compliant." },
+];
+
+// ============ SIGNATURE BUILDS ============
+export const constructionSignatureBuilds = [
+  { img: heroTeam,   title: "Modern Bungalows",      desc: "Contemporary bungalows with clean lines, open floor plans, smart-home integration and energy-efficient design.",
+    features: ["Open Floor Plan", "Smart Home Ready", "Energy Efficient", "Vastu Compliant"] },
+  { img: heroSite,   title: "Traditional Bungalows", desc: "Classic Indian bungalows with courtyard design, terracotta roofing, carved pillars and natural ventilation.",
+    features: ["Courtyard Design", "Natural Ventilation", "Heritage Craft", "IS 456 Compliant"] },
+  { img: heroTower,  title: "Modern Luxury Villas",  desc: "Ultra-premium villas with infinity pools, home automation, private lifts and bespoke custom finishes.",
+    features: ["Infinity Pool", "Home Automation", "Private Lift", "Custom Interiors"] },
+  { img: heroCrane,  title: "High-Rise Apartments",  desc: "State-of-the-art residential towers with earthquake-resistant design, advanced MEP, smart parking and RERA-compliant documentation.",
+    features: ["Earthquake Resistant", "Smart Parking", "RERA Compliant", "Club Amenities"] },
+];
+
+// ============ GLOBAL LANDMARK INSPIRATION (Construction Projects page) ============
+export const globalLandmarkProjects = [
+  { year: "2010", name: "Burj Khalifa", location: "Dubai, UAE", height: "828 m", floors: 163, type: "Mixed-Use Skyscraper",
+    tech: "Slip-form construction, high-performance C80 concrete, buttressed core structural system",
+    desc: "The tallest structure ever built. The Y-shaped floor plan provides structural stability against extreme wind forces." },
+  { year: "2015", name: "Shanghai Tower", location: "Shanghai, China", height: "632 m", floors: 128, type: "Office / Hotel Tower",
+    tech: "Twisted façade reducing wind loads by 24%, double-skin curtain wall, mega-column system",
+    desc: "China's tallest building featuring a 120° twist that dramatically reduces wind forces on the structure." },
+  { year: "2014", name: "One World Trade Center", location: "New York, USA", height: "541 m", floors: 104, type: "Office Tower",
+    tech: "Reinforced concrete core, blast-resistant base, chemical & biological air filtration",
+    desc: "Rebuilt as a symbol of resilience with a massive concrete core and a steel perimeter structure." },
+  { year: "2017", name: "Lotte World Tower", location: "Seoul, South Korea", height: "555 m", floors: 123, type: "Mixed-Use",
+    tech: "Tapered silhouette, outrigger system, high-strength concrete up to 100 MPa",
+    desc: "South Korea's tallest building — its gently tapered form reduces wind load by around 10%." },
+  { year: "1998", name: "Petronas Twin Towers", location: "Kuala Lumpur, Malaysia", height: "452 m", floors: 88, type: "Office Towers",
+    tech: "High-strength 80 MPa concrete, sky bridge at Level 41–42, Islamic geometric design",
+    desc: "Held the record as the world's tallest buildings for six years." },
+  { year: "2004", name: "Taipei 101", location: "Taipei, Taiwan", height: "508 m", floors: 101, type: "Office Tower",
+    tech: "730-ton tuned mass damper, mega-columns, outrigger trusses, bamboo-inspired form",
+    desc: "Engineered to withstand the typhoons and earthquakes common in Taiwan." },
+  { year: "2012", name: "The Shard", location: "London, UK", height: "310 m", floors: 95, type: "Mixed-Use",
+    tech: "Top-down construction, steel & concrete hybrid core, 11,000 glass panels",
+    desc: "Western Europe's tallest building, built over a live railway station." },
+  { year: "2022", name: "Merdeka 118", location: "Kuala Lumpur, Malaysia", height: "679 m", floors: 118, type: "Mixed-Use",
+    tech: "Mega RC core walls, belt trusses, triangular floor plate reducing wind load",
+    desc: "The world's second-tallest building, completed with advanced core-wall jump-form systems." },
 ];
 
 export const constructionSafety = [
