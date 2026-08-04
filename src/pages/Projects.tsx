@@ -6,7 +6,7 @@ import DivisionSEO from "@/components/DivisionSEO";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDivision } from "@/contexts/DivisionContext";
-import { constructionProjects } from "@/data/constructionContent";
+import { constructionProjects, globalLandmarkProjects } from "@/data/constructionContent";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 import heroConstruction from "@/assets/hero-construction-site.jpg";
 import projectHGR from "@/assets/project-hgr.jpg";
@@ -185,7 +185,7 @@ export default function ProjectsPage() {
               transition={{ duration: 0.4, delay: 0.2 }}
               className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4"
             >
-              {t("projects.badge")}
+              {isConstruction ? "● Built by WITEC Construction" : t("projects.badge")}
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 25 }}
@@ -193,7 +193,11 @@ export default function ProjectsPage() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-3xl"
             >
-              {t("projects.title")} <span className="text-gradient">{t("projects.titleHighlight")}</span> {t("projects.titleEnd")}
+              {isConstruction ? (
+                <>Landmarks We <span className="text-gradient">Build</span> Across India</>
+              ) : (
+                <>{t("projects.title")} <span className="text-gradient">{t("projects.titleHighlight")}</span> {t("projects.titleEnd")}</>
+              )}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -201,7 +205,9 @@ export default function ProjectsPage() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
             >
-              {t("projects.desc")}
+              {isConstruction
+                ? "Residential, commercial and industrial projects executed by WITEC's Nagpur-based Construction division — every structure IS-code compliant, RERA documented and delivered on schedule."
+                : t("projects.desc")}
             </motion.p>
           </motion.div>
         </div>
@@ -284,6 +290,59 @@ export default function ProjectsPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Global landmark inspiration — construction only */}
+      {isConstruction && (
+        <section className="section-padding bg-card/30">
+          <div className="container mx-auto px-4 md:px-8">
+            <SectionHeading
+              label="● Global Inspiration"
+              title="Engineering Marvels That Set Our Benchmark"
+              description="The construction techniques behind the world's most prestigious structures — the standard WITEC engineers study and apply."
+            />
+            <div className="relative">
+              <div className="absolute left-3 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 via-primary/20 to-primary/50" />
+              <div className="space-y-10">
+                {globalLandmarkProjects.map((p, i) => (
+                  <motion.div
+                    key={p.name}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.5 }}
+                    className={`relative flex ${i % 2 === 0 ? "md:justify-start" : "md:justify-end"}`}
+                  >
+                    <div className="ml-10 md:ml-0 md:w-[46%] glass rounded-xl p-5 md:p-6">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="text-xs font-bold text-primary tracking-widest">{p.year}</span>
+                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{p.type}</span>
+                      </div>
+                      <h3 className="font-display text-lg font-bold text-foreground">{p.name}</h3>
+                      <p className="text-xs text-muted-foreground mb-3">{p.location}</p>
+                      <div className="flex gap-6 mb-3">
+                        <div>
+                          <p className="font-display text-base font-bold text-primary">{p.height}</p>
+                          <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Height</p>
+                        </div>
+                        <div>
+                          <p className="font-display text-base font-bold text-foreground">{p.floors}</p>
+                          <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Floors</p>
+                        </div>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-3">{p.desc}</p>
+                      <div className="border-t border-border/50 pt-3">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Construction Technology</p>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{p.tech}</p>
+                      </div>
+                    </div>
+                    <span className="absolute left-1.5 md:left-1/2 md:-translate-x-1/2 top-6 w-3 h-3 rounded-full bg-primary ring-4 ring-primary/20" />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
     </Layout>
   );
 }

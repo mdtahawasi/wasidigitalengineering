@@ -2,15 +2,17 @@ import { useState, useMemo, useRef, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Grid } from "@react-three/drei";
 import * as THREE from "three";
-import { Building2, Layers3, Zap, Palette } from "lucide-react";
+import { Building2, Layers3, Zap, Palette, Droplets, Flame } from "lucide-react";
 
-type LayerKey = "structural" | "architectural" | "mep" | "interior";
+type LayerKey = "structural" | "architectural" | "hvac" | "plumbing" | "electrical" | "interior";
 
 const LAYERS: { key: LayerKey; label: string; sub: string; color: string; icon: any }[] = [
-  { key: "structural",   label: "Structural",   sub: "RCC Frame, Columns, Beams", color: "#10b981", icon: Building2 },
-  { key: "architectural",label: "Architectural",sub: "Walls, Facade, Windows",    color: "#3b82f6", icon: Layers3 },
-  { key: "mep",          label: "MEP Systems",  sub: "HVAC, Plumbing, Electrical",color: "#f59e0b", icon: Zap },
-  { key: "interior",     label: "Interior",     sub: "Partitions, Finishes",      color: "#8b5cf6", icon: Palette },
+  { key: "structural",   label: "STR — Structural",    sub: "RCC columns, beams, slabs & footings",    color: "#10b981", icon: Building2 },
+  { key: "architectural",label: "ARCH — Architectural",sub: "Envelope, glazing, slab edge & parapet",  color: "#3b82f6", icon: Layers3 },
+  { key: "hvac",         label: "MEP — HVAC",          sub: "Ducts, AHU plant & diffusers",            color: "#f59e0b", icon: Zap },
+  { key: "plumbing",     label: "MEP — Plumbing",      sub: "Risers, soil stacks & branch lines",      color: "#06b6d4", icon: Droplets },
+  { key: "electrical",   label: "MEP — Electrical",    sub: "Cable trays, panels & fire sprinklers",   color: "#ef4444", icon: Flame },
+  { key: "interior",     label: "INT — Interior",      sub: "Partitions, core walls & finishes",       color: "#8b5cf6", icon: Palette },
 ];
 
 const FLOORS = 6;
@@ -25,16 +27,40 @@ function StructuralLayer({ visible }: { visible: boolean }) {
   }, []);
   return (
     <group visible={visible}>
+      {/* Footings */}
+      {cols.map(([x, z], i) => (
+        <mesh key={`f${i}`} position={[x, 0.06, z]}>
+          <boxGeometry args={[0.8, 0.12, 0.8]} />
+          <meshStandardMaterial color="#047857" />
+        </mesh>
+      ))}
+      {/* Columns */}
       {cols.map(([x, z], i) => (
         <mesh key={`c${i}`} position={[x, (FLOORS * FLOOR_H) / 2, z]}>
           <boxGeometry args={[0.25, FLOORS * FLOOR_H, 0.25]} />
           <meshStandardMaterial color="#10b981" emissive="#10b981" emissiveIntensity={0.25} />
         </mesh>
       ))}
+      {/* Primary & secondary beams per floor */}
+      {Array.from({ length: FLOORS }).map((_, f) =>
+        [-2, 0, 2].map((p) => (
+          <group key={`b${f}-${p}`}>
+            <mesh position={[0, (f + 1) * FLOOR_H - 0.14, p]}>
+              <boxGeometry args={[FOOTPRINT - 0.6, 0.22, 0.16]} />
+              <meshStandardMaterial color="#059669" />
+            </mesh>
+            <mesh position={[p, (f + 1) * FLOOR_H - 0.14, 0]} rotation={[0, Math.PI / 2, 0]}>
+              <boxGeometry args={[FOOTPRINT - 0.6, 0.22, 0.16]} />
+              <meshStandardMaterial color="#059669" />
+            </mesh>
+          </group>
+        ))
+      )}
+      {/* Slabs */}
       {Array.from({ length: FLOORS + 1 }).map((_, f) => (
         <mesh key={`s${f}`} position={[0, f * FLOOR_H, 0]}>
           <boxGeometry args={[FOOTPRINT, 0.08, FOOTPRINT]} />
-          <meshStandardMaterial color="#059669" transparent opacity={0.55} />
+          <meshStandardMaterial color="#065f46" transparent opacity={0.5} />
         </mesh>
       ))}
     </group>
@@ -49,44 +75,138 @@ function ArchitecturalLayer({ visible }: { visible: boolean }) {
         return (
           <mesh key={i} position={[x, (FLOORS * FLOOR_H) / 2, z]} rotation={rot as any}>
             <planeGeometry args={[FOOTPRINT, FLOORS * FLOOR_H]} />
-            <meshStandardMaterial color="#3b82f6" transparent opacity={0.22} side={THREE.DoubleSide} />
+            <meshStandardMaterial color="#3b82f6" transparent opacity={0.16} side={THREE.DoubleSide} />
           </mesh>
         );
       })}
-      {/* Window grid */}
+      {/* Curtain-wall glazing on all four elevations */}
       {Array.from({ length: FLOORS }).map((_, f) =>
-        [-1.5, 0, 1.5].map((x, i) => (
-          <mesh key={`w${f}-${i}`} position={[x, f * FLOOR_H + FLOOR_H / 2, FOOTPRINT / 2 + 0.01]}>
-            <planeGeometry args={[0.7, 0.5]} />
-            <meshStandardMaterial color="#60a5fa" emissive="#60a5fa" emissiveIntensity={0.6} />
-          </mesh>
-        ))
+        [
+          { p: [0, 0, FOOTPRINT / 2 + 0.02], r: [0, 0, 0] },
+          { p: [0, 0, -FOOTPRINT / 2 - 0.02], r: [0, Math.PI, 0] },
+          { p: [FOOTPRINT / 2 + 0.02, 0, 0], r: [0, Math.PI / 2, 0] },
+          { p: [-FOOTPRINT / 2 - 0.02, 0, 0], r: [0, -Math.PI / 2, 0] },
+        ].map((face, fi) =>
+          [-1.5, 0, 1.5].map((u, ui) => (
+            <mesh
+              key={`g${f}-${fi}-${ui}`}
+              position={[
+                face.p[0] + (fi < 2 ? u : 0),
+                f * FLOOR_H + FLOOR_H / 2,
+                face.p[2] + (fi >= 2 ? u : 0),
+              ]}
+              rotation={face.r as any}
+            >
+              <planeGeometry args={[1.1, 0.66]} />
+              <meshStandardMaterial color="#60a5fa" emissive="#3b82f6" emissiveIntensity={0.45} transparent opacity={0.75} side={THREE.DoubleSide} />
+            </mesh>
+          ))
+        )
       )}
+      {/* Slab-edge bands & parapet */}
+      {Array.from({ length: FLOORS + 1 }).map((_, f) => (
+        <mesh key={`e${f}`} position={[0, f * FLOOR_H, 0]}>
+          <boxGeometry args={[FOOTPRINT + 0.12, 0.16, FOOTPRINT + 0.12]} />
+          <meshStandardMaterial color="#1d4ed8" transparent opacity={0.35} />
+        </mesh>
+      ))}
+      <mesh position={[0, FLOORS * FLOOR_H + 0.3, 0]}>
+        <boxGeometry args={[FOOTPRINT + 0.1, 0.5, FOOTPRINT + 0.1]} />
+        <meshStandardMaterial color="#3b82f6" transparent opacity={0.18} />
+      </mesh>
     </group>
   );
 }
 
-function MEPLayer({ visible }: { visible: boolean }) {
+function HVACLayer({ visible }: { visible: boolean }) {
   return (
     <group visible={visible}>
-      {/* Vertical risers */}
-      {[[-1.8, -1.8], [1.8, 1.8], [-1.8, 1.8]].map(([x, z], i) => (
-        <mesh key={`r${i}`} position={[x, (FLOORS * FLOOR_H) / 2, z]}>
-          <cylinderGeometry args={[0.08, 0.08, FLOORS * FLOOR_H, 12]} />
-          <meshStandardMaterial color="#f59e0b" emissive="#f59e0b" emissiveIntensity={0.4} />
+      {/* Rooftop AHU plant */}
+      <mesh position={[1.2, FLOORS * FLOOR_H + 0.45, -1.2]}>
+        <boxGeometry args={[1.2, 0.7, 0.9]} />
+        <meshStandardMaterial color="#f59e0b" emissive="#f59e0b" emissiveIntensity={0.2} />
+      </mesh>
+      {/* Supply & return duct runs with diffusers */}
+      {Array.from({ length: FLOORS }).map((_, f) => (
+        <group key={`d${f}`} position={[0, (f + 1) * FLOOR_H - 0.38, 0]}>
+          <mesh position={[0, 0, 0.9]}>
+            <boxGeometry args={[FOOTPRINT - 0.7, 0.24, 0.34]} />
+            <meshStandardMaterial color="#fbbf24" metalness={0.4} roughness={0.4} />
+          </mesh>
+          <mesh position={[0, 0, -0.9]}>
+            <boxGeometry args={[FOOTPRINT - 0.7, 0.18, 0.26]} />
+            <meshStandardMaterial color="#d97706" metalness={0.4} roughness={0.4} />
+          </mesh>
+          {[-1.4, 0, 1.4].map((x) => (
+            <mesh key={x} position={[x, -0.18, 0.9]}>
+              <boxGeometry args={[0.3, 0.08, 0.3]} />
+              <meshStandardMaterial color="#fde68a" emissive="#f59e0b" emissiveIntensity={0.3} />
+            </mesh>
+          ))}
+        </group>
+      ))}
+      {/* Main vertical duct shaft */}
+      <mesh position={[1.2, (FLOORS * FLOOR_H) / 2, -1.2]}>
+        <boxGeometry args={[0.4, FLOORS * FLOOR_H, 0.4]} />
+        <meshStandardMaterial color="#f59e0b" transparent opacity={0.7} />
+      </mesh>
+    </group>
+  );
+}
+
+function PlumbingLayer({ visible }: { visible: boolean }) {
+  return (
+    <group visible={visible}>
+      {/* Water & soil risers */}
+      {[[-1.8, -1.8], [-1.8, 1.8]].map(([x, z], i) => (
+        <mesh key={`pr${i}`} position={[x, (FLOORS * FLOOR_H) / 2, z]}>
+          <cylinderGeometry args={[0.09, 0.09, FLOORS * FLOOR_H, 12]} />
+          <meshStandardMaterial color="#06b6d4" emissive="#06b6d4" emissiveIntensity={0.35} />
         </mesh>
       ))}
-      {/* Per-floor ducts */}
+      {/* Branch lines per floor */}
       {Array.from({ length: FLOORS }).map((_, f) => (
-        <group key={`d${f}`} position={[0, f * FLOOR_H + 0.25, 0]}>
-          <mesh>
-            <boxGeometry args={[FOOTPRINT - 0.5, 0.2, 0.25]} />
-            <meshStandardMaterial color="#fbbf24" transparent opacity={0.85} />
+        <mesh key={`pb${f}`} position={[-1.8, f * FLOOR_H + 0.22, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.05, 0.05, 3.4, 10]} />
+          <meshStandardMaterial color="#22d3ee" />
+        </mesh>
+      ))}
+      {/* Overhead water tank */}
+      <mesh position={[-1.8, FLOORS * FLOOR_H + 0.4, 1.8]}>
+        <cylinderGeometry args={[0.45, 0.45, 0.7, 16]} />
+        <meshStandardMaterial color="#0891b2" />
+      </mesh>
+    </group>
+  );
+}
+
+function ElectricalLayer({ visible }: { visible: boolean }) {
+  return (
+    <group visible={visible}>
+      {/* Electrical riser & floor panels */}
+      <mesh position={[1.8, (FLOORS * FLOOR_H) / 2, 1.8]}>
+        <boxGeometry args={[0.22, FLOORS * FLOOR_H, 0.22]} />
+        <meshStandardMaterial color="#ef4444" emissive="#ef4444" emissiveIntensity={0.35} />
+      </mesh>
+      {Array.from({ length: FLOORS }).map((_, f) => (
+        <group key={`el${f}`}>
+          {/* Cable tray */}
+          <mesh position={[0, (f + 1) * FLOOR_H - 0.5, 1.8]}>
+            <boxGeometry args={[FOOTPRINT - 0.9, 0.06, 0.28]} />
+            <meshStandardMaterial color="#f87171" metalness={0.5} roughness={0.3} />
           </mesh>
-          <mesh rotation={[0, Math.PI / 2, 0]}>
-            <boxGeometry args={[FOOTPRINT - 0.5, 0.2, 0.25]} />
-            <meshStandardMaterial color="#fbbf24" transparent opacity={0.85} />
+          {/* Distribution board */}
+          <mesh position={[1.8, f * FLOOR_H + 0.6, 1.5]}>
+            <boxGeometry args={[0.18, 0.4, 0.3]} />
+            <meshStandardMaterial color="#dc2626" />
           </mesh>
+          {/* Fire sprinkler heads */}
+          {[-1.2, 1.2].map((x) => (
+            <mesh key={x} position={[x, (f + 1) * FLOOR_H - 0.32, -1.4]}>
+              <sphereGeometry args={[0.07, 10, 10]} />
+              <meshStandardMaterial color="#fca5a5" emissive="#ef4444" emissiveIntensity={0.5} />
+            </mesh>
+          ))}
         </group>
       ))}
     </group>
@@ -96,6 +216,11 @@ function MEPLayer({ visible }: { visible: boolean }) {
 function InteriorLayer({ visible }: { visible: boolean }) {
   return (
     <group visible={visible}>
+      {/* Service core */}
+      <mesh position={[0, (FLOORS * FLOOR_H) / 2, -1.6]}>
+        <boxGeometry args={[1.6, FLOORS * FLOOR_H, 1.2]} />
+        <meshStandardMaterial color="#8b5cf6" transparent opacity={0.28} />
+      </mesh>
       {Array.from({ length: FLOORS }).map((_, f) => (
         <group key={`i${f}`} position={[0, f * FLOOR_H + FLOOR_H / 2, 0]}>
           <mesh position={[0, 0, 0]}>
@@ -105,6 +230,11 @@ function InteriorLayer({ visible }: { visible: boolean }) {
           <mesh position={[0, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
             <boxGeometry args={[0.05, FLOOR_H * 0.85, FOOTPRINT - 0.6]} />
             <meshStandardMaterial color="#a78bfa" transparent opacity={0.45} />
+          </mesh>
+          {/* Suspended ceiling plane */}
+          <mesh position={[0, FLOOR_H * 0.42, 0]}>
+            <boxGeometry args={[FOOTPRINT - 0.4, 0.03, FOOTPRINT - 0.4]} />
+            <meshStandardMaterial color="#c4b5fd" transparent opacity={0.25} />
           </mesh>
         </group>
       ))}
@@ -120,12 +250,14 @@ function SceneRotator({ children }: { children: React.ReactNode }) {
 
 export default function BIMLayerViewer() {
   const [layers, setLayers] = useState<Record<LayerKey, boolean>>({
-    structural: true, architectural: true, mep: false, interior: false,
+    structural: true, architectural: true, hvac: false, plumbing: false, electrical: false, interior: false,
   });
   const toggle = (k: LayerKey) => setLayers((s) => ({ ...s, [k]: !s[k] }));
+  const allOn = () => setLayers({ structural: true, architectural: true, hvac: true, plumbing: true, electrical: true, interior: true });
+  const onlyStructure = () => setLayers({ structural: true, architectural: false, hvac: false, plumbing: false, electrical: false, interior: false });
 
   return (
-    <div className="grid lg:grid-cols-[1fr_280px] gap-6">
+    <div className="grid lg:grid-cols-[1fr_300px] gap-6">
       <div className="relative rounded-2xl overflow-hidden glass aspect-[4/3] lg:aspect-auto lg:min-h-[520px]">
         <Canvas
           camera={{ position: [9, 7, 9], fov: 42 }}
@@ -140,7 +272,9 @@ export default function BIMLayerViewer() {
             <SceneRotator>
               <StructuralLayer visible={layers.structural} />
               <ArchitecturalLayer visible={layers.architectural} />
-              <MEPLayer visible={layers.mep} />
+              <HVACLayer visible={layers.hvac} />
+              <PlumbingLayer visible={layers.plumbing} />
+              <ElectricalLayer visible={layers.electrical} />
               <InteriorLayer visible={layers.interior} />
             </SceneRotator>
             <OrbitControls enablePan={false} minDistance={8} maxDistance={20} target={[0, 3.5, 0]} />
@@ -152,7 +286,13 @@ export default function BIMLayerViewer() {
       </div>
 
       <div className="flex flex-col gap-3">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">BIM Layers</p>
+        <div className="flex items-center justify-between gap-2 mb-1">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground">Discipline Layers</p>
+          <div className="flex gap-1.5">
+            <button onClick={allOn} className="text-[10px] font-semibold uppercase tracking-wider px-2 py-1 rounded-md border border-border hover:border-primary/40 text-muted-foreground hover:text-foreground transition-colors">All</button>
+            <button onClick={onlyStructure} className="text-[10px] font-semibold uppercase tracking-wider px-2 py-1 rounded-md border border-border hover:border-primary/40 text-muted-foreground hover:text-foreground transition-colors">STR only</button>
+          </div>
+        </div>
         {LAYERS.map((l) => {
           const on = layers[l.key];
           const Icon = l.icon;

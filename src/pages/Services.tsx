@@ -11,7 +11,12 @@ import DivisionSEO from "@/components/DivisionSEO";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDivision } from "@/contexts/DivisionContext";
-import { constructionServices, constructionProcess } from "@/data/constructionContent";
+import {
+  constructionServices,
+  constructionProcess,
+  constructionProjectTypes,
+  constructionSignatureBuilds,
+} from "@/data/constructionContent";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem } from "@/lib/animations";
 
 import imgArchitecture from "@/assets/discipline-architecture.jpg";
@@ -47,6 +52,13 @@ const additionalServices = [
   { icon: Cpu, title: "4D & 5D BIM Simulation", img: img4D5D, desc: "Link your BIM models to construction schedules (4D) and cost estimates (5D) for powerful project visualization and control.", features: ["Construction Sequencing", "Schedule Integration", "Cost Estimation", "What-If Scenarios"] },
   { icon: FileCheck, title: "Quantity Takeoff & BOQ", img: imgQTO, desc: "Automated model-based quantity extraction for accurate bills of quantities, cost planning, and procurement optimization.", features: ["Automated Extraction", "BOQ Generation", "Cost Planning", "Procurement Support"] },
   { icon: Zap, title: "AI & Automation Services", img: imgAI, desc: "Custom AI tools for design optimization, generative design, automated code compliance checking, and intelligent BIM workflows.", features: ["Generative Design", "Code Compliance Checking", "Workflow Automation", "Custom AI Tools"] },
+];
+
+const constructionCapability = [
+  "Tower Cranes", "Batching Plants", "Concrete Pumps", "Piling Rigs", "Excavators",
+  "Transit Mixers", "Total Station Survey", "Bar Bending Machines", "Compactors & Rollers",
+  "IS 456 · RCC", "IS 800 · Steel", "IS 1893 · Seismic", "NBC 2016", "RERA Documentation",
+  "ISO 9001:2015", "ISO 14001:2015", "ISO 45001:2018", "PWD / CPWD Norms",
 ];
 
 const software = [
@@ -230,7 +242,70 @@ export default function ServicesPage() {
         </section>
       )}
 
-      {/* Additional Services */}
+      {/* Project Types We Take (construction only) */}
+      {isConstruction && (
+        <section id="project-types" className="section-padding">
+          <div className="container mx-auto px-4 md:px-8">
+            <SectionHeading
+              label="● What We Take On"
+              title="We Take All Types of Projects"
+              description="From residential homes to large infrastructure — WITEC Construction delivers excellence across every sector."
+            />
+            <motion.div
+              variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+            >
+              {constructionProjectTypes.map((p) => (
+                <motion.div key={p.title} variants={staggerItem} className="glass rounded-xl p-6 hover:border-primary/30 transition-all duration-500">
+                  <div className="w-11 h-11 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-3"><p.icon size={22} /></div>
+                  <h3 className="font-display font-semibold text-foreground text-base mb-1.5">{p.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* Signature Builds (construction only) */}
+      {isConstruction && (
+        <section id="signature-builds" className="section-padding bg-card/30">
+          <div className="container mx-auto px-4 md:px-8">
+            <SectionHeading
+              label="● What We Build"
+              title="Our Signature Constructions"
+              description="From elegant bungalows to high-rise towers — we turn ideas into reality, from concept to finish, all under one roof."
+            />
+            <motion.div
+              variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              {constructionSignatureBuilds.map((b) => (
+                <motion.div key={b.title} variants={staggerItem} className="glass rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-500">
+                  <div className="relative h-52 overflow-hidden">
+                    <img src={b.img} alt={b.title} loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+                    <h3 className="absolute bottom-4 left-4 font-display font-semibold text-lg text-foreground">{b.title}</h3>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">{b.desc}</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {b.features.map((f) => (
+                        <span key={f} className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                          <CheckCircle2 size={12} className="text-primary shrink-0" /> {f}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* Additional Services (BIM only) */}
+      {!isConstruction && (
       <section id="additional-services" className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeading label={t("services.additionalLabel")} title={t("services.additionalTitle")} description={t("services.additionalDesc")} />
@@ -273,11 +348,18 @@ export default function ServicesPage() {
           </motion.div>
         </div>
       </section>
+      )}
 
       {/* Industry Sectors */}
       <section id="industry-sectors" className="section-padding">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label={t("services.industriesLabel")} title={t("services.industriesTitle")} description={t("services.industriesDesc")} />
+          <SectionHeading
+            label={isConstruction ? "● Sectors We Serve" : t("services.industriesLabel")}
+            title={isConstruction ? "Construction Across Every Sector" : t("services.industriesTitle")}
+            description={isConstruction
+              ? "Residential, commercial, industrial, government and infrastructure works delivered across Maharashtra and India."
+              : t("services.industriesDesc")}
+          />
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -285,7 +367,10 @@ export default function ServicesPage() {
             viewport={{ once: true, margin: "-60px" }}
             className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto"
           >
-            {["Residential", "Commercial", "Industrial", "Healthcare", "Education", "Hospitality", "Retail", "Infrastructure", "Mixed-Use", "Data Centers"].map((d, i) => (
+            {(isConstruction
+              ? ["Residential", "Commercial", "Industrial", "Government", "Semi-Government", "Institutional", "Healthcare", "Warehousing", "Roads & Bridges", "Townships"]
+              : ["Residential", "Commercial", "Industrial", "Healthcare", "Education", "Hospitality", "Retail", "Infrastructure", "Mixed-Use", "Data Centers"]
+            ).map((d, i) => (
               <motion.span key={i} variants={staggerItem} className="px-5 py-2.5 rounded-full glass text-sm text-foreground font-medium">
                 {d}
               </motion.span>
@@ -294,10 +379,16 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Software */}
+      {/* Software / Equipment */}
       <section id="software-stack" className="section-padding bg-card/30">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label={t("services.techLabel")} title={t("services.techTitle")} description={t("services.techDesc")} />
+          <SectionHeading
+            label={isConstruction ? "● Site Capability" : t("services.techLabel")}
+            title={isConstruction ? "Equipment & Compliance Backbone" : t("services.techTitle")}
+            description={isConstruction
+              ? "Owned heavy machinery and IS-code compliance capability behind every WITEC Construction site."
+              : t("services.techDesc")}
+          />
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -305,7 +396,7 @@ export default function ServicesPage() {
             viewport={{ once: true, margin: "-60px" }}
             className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto"
           >
-            {software.map((tool, i) => (
+            {(isConstruction ? constructionCapability : software).map((tool, i) => (
               <motion.span key={i} variants={staggerItem} className="px-4 py-2 rounded-lg bg-muted text-sm text-foreground font-medium">
                 {tool}
               </motion.span>
