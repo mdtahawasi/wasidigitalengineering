@@ -8,14 +8,17 @@ import { useDivision } from "@/contexts/DivisionContext";
 import {
   coreConstructionTech,
   constructionEquipment,
-  constructionSafety,
+  constructionSafetyProtocols,
+  constructionWorkerWelfare,
+  constructionSafetyStats,
+  constructionCompletion,
   constructionEnvironment,
   futureConstructionTech,
   constructionCertifications,
 } from "@/data/constructionContent";
 import {
   Layers3, Cpu, Brain, Eye, Activity, Zap, Wrench, Users2,
-  ShieldCheck, Siren, Building2, BarChart3, Plane, ClipboardCheck,
+  ShieldCheck, Siren, Building2, BarChart3, Plane, ClipboardCheck, CheckCircle2,
 } from "lucide-react";
 
 const bimTech = [
@@ -110,7 +113,14 @@ export default function TechnologyPage() {
                       <span className="text-xs font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-1 rounded-full">{c.metric}</span>
                     </div>
                     <h4 className="font-display font-semibold text-foreground mb-1">{c.title}</h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{c.desc}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed mb-4">{c.desc}</p>
+                    <div className="grid grid-cols-2 gap-2 border-t border-border/50 pt-3">
+                      {c.features.map((f) => (
+                        <span key={f} className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                          <CheckCircle2 size={12} className="text-emerald-500 shrink-0" /> {f}
+                        </span>
+                      ))}
+                    </div>
                   </motion.div>
                 ))}
               </motion.div>
@@ -128,9 +138,17 @@ export default function TechnologyPage() {
           </section>
           <section className="section-padding bg-card/30">
             <div className="container mx-auto px-4 md:px-8">
-              <SectionHeading label="● Safety Systems" title="Zero-Compromise Site Safety" />
+              <SectionHeading label="● Safety Systems" title="Zero-Compromise Site Safety" description="Eight mandatory protocols enforced on every WITEC Construction site, backed by BOCW Act and ISO 45001 processes." />
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                {constructionSafetyStats.map((s) => (
+                  <div key={s.label} className="glass rounded-xl p-5 text-center">
+                    <div className="font-display text-2xl md:text-3xl font-extrabold text-rose-500">{s.value}</div>
+                    <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">{s.label}</div>
+                  </div>
+                ))}
+              </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {constructionSafety.map((s) => (
+                {constructionSafetyProtocols.map((s) => (
                   <div key={s.title} className="glass rounded-xl p-5 border-t-[3px] border-rose-500/60">
                     <div className="w-10 h-10 rounded-lg bg-rose-500/10 text-rose-500 flex items-center justify-center mb-3"><s.icon size={20} /></div>
                     <h4 className="font-display font-semibold text-foreground mb-1">{s.title}</h4>
@@ -138,12 +156,24 @@ export default function TechnologyPage() {
                   </div>
                 ))}
               </div>
+              <div className="mt-16">
+                <SectionHeading label="● Worker Welfare" title="People First, Always" description="Insurance, medical care, hygiene and training standards that go beyond statutory minimums." />
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {constructionWorkerWelfare.map((w) => (
+                    <div key={w.title} className="glass rounded-xl p-5 border-t-[3px] border-amber-500/60">
+                      <div className="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center mb-3"><w.icon size={20} /></div>
+                      <h4 className="font-display font-semibold text-foreground mb-1">{w.title}</h4>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{w.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </section>
           <section className="section-padding">
             <div className="container mx-auto px-4 md:px-8">
-              <SectionHeading label="● Environmental Protection" title="Building Green, Not Just Big" />
-              <div className="grid sm:grid-cols-3 gap-5">
+              <SectionHeading label="● Environmental Protection" title="Building Green, Not Just Big" description="MOEF&CC, CPCB and state pollution control board compliance built into every site plan." />
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {constructionEnvironment.map((e) => (
                   <div key={e.title} className="glass rounded-xl p-5 border-t-[3px] border-emerald-500/60">
                     <div className="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-3"><e.icon size={20} /></div>
@@ -156,8 +186,25 @@ export default function TechnologyPage() {
           </section>
           <section className="section-padding bg-card/30">
             <div className="container mx-auto px-4 md:px-8">
-              <SectionHeading label="● Future Technologies" title="What's Next in Our Pipeline" />
-              <div className="grid sm:grid-cols-3 gap-5">
+              <SectionHeading label="● Project Completion" title="Smooth & Fast Project Delivery" description="Lean planning, P6 scheduling and six quality gates that make on-time, zero-defect handover repeatable." />
+              <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {constructionCompletion.map((c) => (
+                  <motion.div key={c.title} variants={staggerItem} className="glass rounded-xl p-6 border-t-[3px] border-primary/60">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="w-11 h-11 rounded-lg bg-primary/10 text-primary flex items-center justify-center"><c.icon size={22} /></div>
+                      <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">{c.stat}</span>
+                    </div>
+                    <h4 className="font-display font-semibold text-foreground mb-1">{c.title}</h4>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{c.desc}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+          <section className="section-padding bg-card/30">
+            <div className="container mx-auto px-4 md:px-8">
+              <SectionHeading label="● Future Technologies" title="What's Next in Our Pipeline" description="Six emerging technologies WITEC Construction is piloting for the next generation of Indian projects." />
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {futureConstructionTech.map((f) => (
                   <div key={f.title} className="glass rounded-xl p-6">
                     <h4 className="font-display font-semibold text-foreground mb-2">{f.title}</h4>
