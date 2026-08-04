@@ -11,7 +11,12 @@ import DivisionSEO from "@/components/DivisionSEO";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDivision } from "@/contexts/DivisionContext";
-import { constructionServices, constructionProcess } from "@/data/constructionContent";
+import {
+  constructionServices,
+  constructionProcess,
+  constructionProjectTypes,
+  constructionSignatureBuilds,
+} from "@/data/constructionContent";
 import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerItem } from "@/lib/animations";
 
 import imgArchitecture from "@/assets/discipline-architecture.jpg";
@@ -47,6 +52,13 @@ const additionalServices = [
   { icon: Cpu, title: "4D & 5D BIM Simulation", img: img4D5D, desc: "Link your BIM models to construction schedules (4D) and cost estimates (5D) for powerful project visualization and control.", features: ["Construction Sequencing", "Schedule Integration", "Cost Estimation", "What-If Scenarios"] },
   { icon: FileCheck, title: "Quantity Takeoff & BOQ", img: imgQTO, desc: "Automated model-based quantity extraction for accurate bills of quantities, cost planning, and procurement optimization.", features: ["Automated Extraction", "BOQ Generation", "Cost Planning", "Procurement Support"] },
   { icon: Zap, title: "AI & Automation Services", img: imgAI, desc: "Custom AI tools for design optimization, generative design, automated code compliance checking, and intelligent BIM workflows.", features: ["Generative Design", "Code Compliance Checking", "Workflow Automation", "Custom AI Tools"] },
+];
+
+const constructionCapability = [
+  "Tower Cranes", "Batching Plants", "Concrete Pumps", "Piling Rigs", "Excavators",
+  "Transit Mixers", "Total Station Survey", "Bar Bending Machines", "Compactors & Rollers",
+  "IS 456 · RCC", "IS 800 · Steel", "IS 1893 · Seismic", "NBC 2016", "RERA Documentation",
+  "ISO 9001:2015", "ISO 14001:2015", "ISO 45001:2018", "PWD / CPWD Norms",
 ];
 
 const software = [
