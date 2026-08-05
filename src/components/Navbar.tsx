@@ -52,10 +52,11 @@ export default function Navbar() {
     >
       <nav className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4 md:px-8">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 md:gap-3 shrink min-w-0">
+        <Link to="/" aria-label="WITEC GLOBAL" className="flex items-center gap-2 md:gap-3 shrink min-w-0">
           <img
             src={logo}
-            alt="Wasi Infratech Engineering & Construction (WITEC)"
+            alt="WITEC GLOBAL — Wasi Infratech Engineering & Construction"
+            aria-label="WITEC GLOBAL"
             className="h-8 md:h-11 w-auto rounded-md shrink-0 dark:brightness-110 dark:contrast-110"
           />
           <div className="flex flex-col leading-none min-w-0">
