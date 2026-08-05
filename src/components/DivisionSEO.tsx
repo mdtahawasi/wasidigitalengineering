@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { useDivision } from "@/contexts/DivisionContext";
 
-const SITE = "https://witecglobal.lovable.app";
+const SITE = "https://witecglobal.com";
 
 const META: Record<"bim" | "construction", { title: string; description: string; keywords: string }> = {
   bim: {
