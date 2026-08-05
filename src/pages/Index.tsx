@@ -201,9 +201,13 @@ export default function HomePage() {
               {heroBadgeText}
             </motion.span>
 
+            <h1 className="text-sm md:text-base font-semibold tracking-[0.18em] uppercase text-muted-foreground mb-3">
+              WITEC GLOBAL - Engineering &amp; BIM Consultancy
+            </h1>
+
             {/* Rotating headline */}
             <AnimatePresence mode="wait">
-              <motion.h1
+              <motion.h2
                 key={heroIndex}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -212,8 +216,15 @@ export default function HomePage() {
                 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold leading-[1.1] text-foreground mb-4"
               >
                 <span className="text-gradient">{heroSlides[heroIndex].quote}</span>
-              </motion.h1>
+              </motion.h2>
             </AnimatePresence>
+
+            <h2 className="text-base md:text-lg font-semibold text-foreground/80 mb-3">
+              Advanced Construction Solutions
+            </h2>
+            <h2 className="text-base md:text-lg font-semibold text-foreground/80 mb-4">
+              Digital Twin &amp; BIM Services
+            </h2>
 
             <AnimatePresence mode="wait">
               <motion.p
