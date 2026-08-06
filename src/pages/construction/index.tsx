@@ -1,18 +1,12 @@
 /**
- * Construction division pages — isolated placeholders.
- * No BIM data is imported or rendered here.
+ * Construction division pages — isolated from all BIM data.
  */
 import ConstructionPlaceholder from "./ConstructionPlaceholder";
 
-export const ConstructionHome = () => (
-  <ConstructionPlaceholder title="WITEC Construction" subtitle="Construction division homepage coming soon." />
-);
-export const ConstructionAbout = () => (
-  <ConstructionPlaceholder title="About WITEC Construction" subtitle="Construction division profile coming soon." />
-);
-export const ConstructionServices = () => (
-  <ConstructionPlaceholder title="Construction Services" subtitle="Service catalogue coming soon." />
-);
+export { default as ConstructionHome } from "./ConstructionHome";
+export { default as ConstructionAbout } from "./ConstructionAbout";
+export { default as ConstructionServices } from "./ConstructionServices";
+
 export const ConstructionProjects = () => (
   <ConstructionPlaceholder title="Construction Projects" subtitle="Project portfolio coming soon." />
 );
