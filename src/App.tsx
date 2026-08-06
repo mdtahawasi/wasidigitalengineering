@@ -5,15 +5,16 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ScrollToTop } from "./components/ScrollToTop";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Projects from "./pages/Projects";
-import Careers from "./pages/Careers";
-import Contact from "./pages/Contact";
-import BIMInsights from "./pages/BIMInsights";
-import Technology from "./pages/Technology";
 import NotFound from "./pages/NotFound";
+import DivisionRoute from "./routes/DivisionRoute";
+import {
+  BimHome, BimAbout, BimServices, BimProjects, BimTechnology,
+  BimInsightsPage, BimCareers, BimContact,
+} from "./pages/bim";
+import {
+  ConstructionHome, ConstructionAbout, ConstructionServices, ConstructionProjects,
+  ConstructionTechnology, ConstructionCareers, ConstructionContact,
+} from "./pages/construction";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { DivisionProvider } from "./contexts/DivisionContext";
@@ -32,14 +33,14 @@ function AnimatedRoutes() {
         transition={{ duration: 0.25, ease: "easeInOut" }}
       >
         <Routes location={location}>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/bim-insights" element={<BIMInsights />} />
-          <Route path="/technology" element={<Technology />} />
+          <Route path="/" element={<DivisionRoute bim={<BimHome />} construction={<ConstructionHome />} />} />
+          <Route path="/about" element={<DivisionRoute bim={<BimAbout />} construction={<ConstructionAbout />} />} />
+          <Route path="/services" element={<DivisionRoute bim={<BimServices />} construction={<ConstructionServices />} />} />
+          <Route path="/projects" element={<DivisionRoute bim={<BimProjects />} construction={<ConstructionProjects />} />} />
+          <Route path="/careers" element={<DivisionRoute bim={<BimCareers />} construction={<ConstructionCareers />} />} />
+          <Route path="/contact" element={<DivisionRoute bim={<BimContact />} construction={<ConstructionContact />} />} />
+          <Route path="/bim-insights" element={<DivisionRoute bim={<BimInsightsPage />} construction={<Navigate to="/" replace />} />} />
+          <Route path="/technology" element={<DivisionRoute bim={<BimTechnology />} construction={<ConstructionTechnology />} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </motion.div>
