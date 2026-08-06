@@ -7,17 +7,8 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import DivisionToggle from "./DivisionToggle";
-
-const navLinks = [
-  { labelKey: "nav.home", href: "/" },
-  { labelKey: "nav.about", href: "/about" },
-  { labelKey: "nav.services", href: "/services" },
-  { labelKey: "nav.projects", href: "/projects" },
-  { labelKey: "nav.technology", href: "/technology" },
-  { labelKey: "nav.bimInsights", href: "/bim-insights" },
-  { labelKey: "nav.careers", href: "/careers" },
-  { labelKey: "nav.contact", href: "/contact" },
-];
+import { useDivision } from "@/contexts/DivisionContext";
+import { getNavItems } from "@/config/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -25,6 +16,8 @@ export default function Navbar() {
   const location = useLocation();
   const { t } = useLanguage();
   const { theme, setTheme } = useTheme();
+  const { division } = useDivision();
+  const navLinks = getNavItems(division);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
