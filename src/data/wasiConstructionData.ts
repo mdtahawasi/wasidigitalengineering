@@ -9,6 +9,29 @@ import {
   Truck, TreePine, Wrench, PaintBucket, Hammer, Sofa, Leaf, Trash2, CircuitBoard,
   Award, Target, Globe, Lightbulb, PenTool, Layers, Eye, Workflow, Box, Castle,
 } from "lucide-react";
+import {
+  FileText, Scan, Printer, Radio, Satellite, BrainCircuit, Siren, Thermometer,
+  BarChart3, Boxes, AlertTriangle, HeartPulse, Gauge, CloudRain, GitBranch,
+  MapPin, Mail,
+} from "lucide-react";
+
+import wcModernBungalow from "@/assets/wc-modern-bungalow.jpg";
+import wcTraditionalBungalow from "@/assets/wc-traditional-bungalow.jpg";
+import wcModernVilla from "@/assets/wc-modern-villa.jpg";
+import wcHighriseApartment from "@/assets/wc-highrise-apartment.jpg";
+import wcWarehouse from "@/assets/wc-warehouse.jpg";
+import wcCommercialOffice from "@/assets/wc-commercial-office.jpg";
+import wcIndustrialFactory from "@/assets/wc-industrial-factory.jpg";
+import wcConstructionProgress from "@/assets/wc-construction-progress.jpg";
+import wcModelRender from "@/assets/wc-3d-model-render.jpg";
+import wcDetailedDocs from "@/assets/wc-detailed-documents.jpg";
+import wcComponents3d from "@/assets/wc-3d-components.jpg";
+import wcProjectsBg from "@/assets/wc-projects-bg.jpg";
+import wcServicesBg from "@/assets/wc-services-bg.jpg";
+
+export {
+  wcProjectsBg, wcServicesBg,
+};
 
 /* ---------------------------------- HOME ---------------------------------- */
 
