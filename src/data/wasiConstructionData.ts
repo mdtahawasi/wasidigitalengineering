@@ -9,6 +9,29 @@ import {
   Truck, TreePine, Wrench, PaintBucket, Hammer, Sofa, Leaf, Trash2, CircuitBoard,
   Award, Target, Globe, Lightbulb, PenTool, Layers, Eye, Workflow, Box, Castle,
 } from "lucide-react";
+import {
+  FileText, Scan, Printer, Radio, Satellite, BrainCircuit, Siren, Thermometer,
+  BarChart3, Boxes, AlertTriangle, HeartPulse, Gauge, CloudRain, GitBranch,
+  MapPin, Mail,
+} from "lucide-react";
+
+import wcModernBungalow from "@/assets/wc-modern-bungalow.jpg";
+import wcTraditionalBungalow from "@/assets/wc-traditional-bungalow.jpg";
+import wcModernVilla from "@/assets/wc-modern-villa.jpg";
+import wcHighriseApartment from "@/assets/wc-highrise-apartment.jpg";
+import wcWarehouse from "@/assets/wc-warehouse.jpg";
+import wcCommercialOffice from "@/assets/wc-commercial-office.jpg";
+import wcIndustrialFactory from "@/assets/wc-industrial-factory.jpg";
+import wcConstructionProgress from "@/assets/wc-construction-progress.jpg";
+import wcModelRender from "@/assets/wc-3d-model-render.jpg";
+import wcDetailedDocs from "@/assets/wc-detailed-documents.jpg";
+import wcComponents3d from "@/assets/wc-3d-components.jpg";
+import wcProjectsBg from "@/assets/wc-projects-bg.jpg";
+import wcServicesBg from "@/assets/wc-services-bg.jpg";
+
+export {
+  wcProjectsBg, wcServicesBg,
+};
 
 /* ---------------------------------- HOME ---------------------------------- */
 
@@ -189,4 +212,276 @@ export const wcAllServices = [
   { icon: Trash2, title: "Demolition & Site Clearance", desc: "Controlled demolition of structures — mechanical demolition, implosion planning, debris removal, asbestos handling, site leveling, and environmental compliance for safe project handover.", tags: ["Controlled", "Environmental", "Safety"], category: "Core" },
   { icon: Hammer, title: "Formwork & Scaffolding", desc: "Mivan aluminum formwork, PERI systems, and conventional formwork for high-rise construction. Certified scaffolding with load calculations, safety nets, and IS 3696 compliance.", tags: ["Mivan", "PERI", "IS 3696"], category: "Core" },
   { icon: CircuitBoard, title: "Building Automation (BAS)", desc: "Integrated Building Automation Systems — HVAC control, lighting automation, access control, CCTV surveillance, energy management, and centralized BMS for operational efficiency.", tags: ["BAS", "IBMS", "Energy"], category: "Smart" },
+];
+
+/* -------------------------------- PROJECTS -------------------------------- */
+
+export type WcSector = "all" | "residential" | "commercial" | "industrial";
+export type WcViewMode = "designs" | "progress" | "3d-models" | "documents" | "components";
+
+export const wcProjectsIntro = {
+  eyebrow: "OUR PORTFOLIO",
+  title1: "Project",
+  title2: "Showcase",
+  desc: "Explore our projects by sector, type, and discipline — with design renders, construction progress, 3D BIM models, and detailed documentation.",
+  bySector:
+    "By Sector: Residential • Commercial • Industrial — By Type: Bungalows • Villas • Apartments • Warehouses • Offices • Factories",
+};
+
+export const wcProjects = [
+  {
+    id: 1, name: "Luxury Modern Bungalow", sector: "residential" as const, type: "Bungalow",
+    image: wcModernBungalow, area: "3,500 sq.ft", status: "Completed",
+    disciplines: ["Civil", "Structural", "Electrical", "Plumbing", "Interior"],
+    desc: "A contemporary bungalow with open floor plans, smart home integration, and vastu-compliant design. IS 456 & NBC 2016 compliant.",
+    tags: ["IS 456", "Vastu", "Smart Home"],
+  },
+  {
+    id: 2, name: "Traditional Heritage Bungalow", sector: "residential" as const, type: "Bungalow",
+    image: wcTraditionalBungalow, area: "4,200 sq.ft", status: "Completed",
+    disciplines: ["Civil", "Structural", "Plumbing", "Landscaping"],
+    desc: "Classic Indian bungalow with courtyard design, terracotta roofing, carved pillars, and natural ventilation systems.",
+    tags: ["Heritage", "Courtyard", "IS 456"],
+  },
+  {
+    id: 3, name: "Premium Luxury Villa", sector: "residential" as const, type: "Villa",
+    image: wcModernVilla, area: "6,800 sq.ft", status: "Completed",
+    disciplines: ["Civil", "Structural", "MEP", "HVAC", "Interior", "Automation"],
+    desc: "Ultra-premium villa with infinity pool, landscaped terraces, home automation, private lifts, and bespoke finishes.",
+    tags: ["Luxury", "Smart Home", "IGBC"],
+  },
+  {
+    id: 4, name: "Skyline Residential Tower", sector: "residential" as const, type: "Apartment",
+    image: wcHighriseApartment, area: "2,50,000 sq.ft", status: "In Progress",
+    disciplines: ["Civil", "Structural", "MEP", "Fire", "HVAC", "Elevator"],
+    desc: "State-of-the-art 22-floor residential tower with earthquake-resistant design (IS 1893), advanced MEP systems, and RERA compliance.",
+    tags: ["IS 1893", "RERA", "High-Rise"],
+  },
+  {
+    id: 5, name: "Corporate Office Complex", sector: "commercial" as const, type: "Office",
+    image: wcCommercialOffice, area: "1,80,000 sq.ft", status: "Completed",
+    disciplines: ["Civil", "Structural", "MEP", "HVAC", "Fire", "BMS"],
+    desc: "Grade-A commercial office with glass curtain wall facade, VRV HVAC system, 100% power backup, and IGBC Gold certification.",
+    tags: ["IGBC Gold", "BMS", "Grade-A"],
+  },
+  {
+    id: 6, name: "Logistics Warehouse Hub", sector: "industrial" as const, type: "Warehouse",
+    image: wcWarehouse, area: "1,20,000 sq.ft", status: "Completed",
+    disciplines: ["Civil", "Structural", "Electrical", "Fire", "MEP"],
+    desc: "Pre-engineered steel warehouse with large-span structure, dock levelers, automated fire suppression, and industrial-grade flooring.",
+    tags: ["PEB", "Fire Safety", "Industrial"],
+  },
+  {
+    id: 7, name: "Manufacturing Plant", sector: "industrial" as const, type: "Factory",
+    image: wcIndustrialFactory, area: "3,00,000 sq.ft", status: "In Progress",
+    disciplines: ["Civil", "Structural", "MEP", "HVAC", "Fire", "Automation"],
+    desc: "Heavy industrial manufacturing facility with crane gantry systems, chemical-resistant flooring, clean room zones, and ETP/STP plants.",
+    tags: ["Heavy Industry", "Clean Room", "ETP"],
+  },
+];
+
+export const wcSectorFilters = [
+  { key: "all" as const, label: "All Projects", icon: Building2 },
+  { key: "residential" as const, label: "Residential", icon: Home },
+  { key: "commercial" as const, label: "Commercial", icon: Store },
+  { key: "industrial" as const, label: "Industrial", icon: Factory },
+];
+
+export const wcViewModes = [
+  { key: "designs" as const, label: "Design Renders", icon: Eye, desc: "Architectural visualization and rendered designs" },
+  { key: "progress" as const, label: "Construction Progress", icon: Hammer, desc: "Live site photos and milestone tracking" },
+  { key: "3d-models" as const, label: "3D BIM Models", icon: Box, desc: "Interactive 3D models and BIM coordination" },
+  { key: "documents" as const, label: "Detailed Documents", icon: FileText, desc: "BOQ, drawings, specifications & reports" },
+  { key: "components" as const, label: "3D Components", icon: Layers, desc: "Exploded views showing structural & MEP systems" },
+];
+
+export const wcViewModeImages: Record<WcViewMode, string> = {
+  designs: wcModernVilla,
+  progress: wcConstructionProgress,
+  "3d-models": wcModelRender,
+  documents: wcDetailedDocs,
+  components: wcComponents3d,
+};
+
+export const wcViewModeDetails: Record<WcViewMode, { title: string; points: string[] }> = {
+  designs: {
+    title: "Photorealistic Design Renders",
+    points: [
+      "3D exterior & interior visualization using V-Ray / Lumion",
+      "Day & night lighting simulation for realistic ambiance",
+      "Material finishes, textures & color palette preview",
+      "Landscape integration with surrounding context",
+      "Client walkthroughs in VR before construction begins",
+    ],
+  },
+  progress: {
+    title: "Real-Time Construction Monitoring",
+    points: [
+      "Drone-captured aerial progress imagery every week",
+      "Milestone-based photo documentation (foundation, RCC, finishing)",
+      "Time-lapse videos from site-installed cameras",
+      "Comparison overlays: planned vs. actual progress",
+      "Digital dashboards accessible 24/7 from anywhere",
+    ],
+  },
+  "3d-models": {
+    title: "BIM Level 2 — 3D Coordination",
+    points: [
+      "Federated Revit models with all disciplines integrated",
+      "Clash detection between Structural, MEP & Architecture",
+      "4D scheduling — linking model to project timeline",
+      "5D costing — real-time budget tracking per element",
+      "Navisworks walkthroughs for stakeholder reviews",
+    ],
+  },
+  documents: {
+    title: "Comprehensive Project Documentation",
+    points: [
+      "Detailed architectural & structural drawings (AutoCAD / Revit)",
+      "Bill of Quantities (BOQ) with item-wise cost breakdowns",
+      "Material specifications & approved vendor lists",
+      "Structural stability certificates & NDT test reports",
+      "RERA documentation & local authority approvals",
+    ],
+  },
+  components: {
+    title: "Exploded 3D Component Views",
+    points: [
+      "Structural frame: columns, beams, slabs, shear walls",
+      "MEP systems: ductwork, piping, cable trays, conduits",
+      "Fire protection: sprinklers, hydrants, smoke detectors",
+      "Facade system: curtain wall, cladding, waterproofing layers",
+      "Foundation: pile caps, grade beams, raft foundations",
+    ],
+  },
+};
+
+export const wcDisciplineScope = [
+  { discipline: "Civil Engineering", scope: "Earthwork, RCC, masonry, plastering, waterproofing, finishing works", codes: "IS 456, NBC 2016, CPWD", pct: "100%" },
+  { discipline: "Structural Design", scope: "RCC & steel design, seismic analysis, wind load analysis, foundation design", codes: "IS 800, IS 1893, IS 875", pct: "100%" },
+  { discipline: "Electrical Systems", scope: "HT/LT distribution, DG sets, UPS, lighting, BMS, fire alarm", codes: "IS 3043, IE Rules, NBC", pct: "100%" },
+  { discipline: "Plumbing & Sanitation", scope: "Water supply, drainage, STP/ETP, RWH, firefighting systems", codes: "IS 2065, NBC 2016", pct: "100%" },
+  { discipline: "HVAC Systems", scope: "Central AC, VRF/VRV, ventilation, clean room HVAC, BMS integration", codes: "ASHRAE, IGBC, IS 3103", pct: "100%" },
+  { discipline: "Fire Protection", scope: "Detection, suppression, sprinklers, hydrants, smoke management", codes: "NBC Part 4, IS 15105", pct: "100%" },
+];
+
+/* --------------------------------- CONTACT -------------------------------- */
+
+export const wcContact = {
+  eyebrow: "GET IN TOUCH",
+  title1: "Let's",
+  title2: "Connect",
+  desc: "Ready to start your project? Reach out to us for a free consultation and detailed project estimate.",
+  formTitle1: "Send Us a",
+  formTitle2: "Message",
+  email: "taha@witecglobal.com",
+  officeLines: ["WITEC Construction Division", "Sadar, Nagpur, Maharashtra, India"],
+  hours: ["Mon–Sat: 9:00 AM – 7:00 PM", "Sunday: By Appointment"],
+};
+
+export const wcContactServices = [
+  "Civil Engineering", "Structural Design", "MEP Services",
+  "Project Management", "Infrastructure", "Smart Building", "Other",
+];
+
+export const wcContactCards = [
+  { icon: MapPin, title: "HEAD OFFICE", lines: wcContact.officeLines },
+  { icon: Mail, title: "EMAIL", lines: [wcContact.email], isEmail: true },
+  { icon: Clock, title: "WORKING HOURS", lines: wcContact.hours },
+];
+
+export const wcRegistrations = [
+  "RERA Registered", "ISO 9001:2015", "ISO 14001", "BIS Certified", "PWD Approved", "CPWD Empaneled",
+];
+
+/* ------------------------------- TECHNOLOGY ------------------------------- */
+
+export const wcTechIntro = {
+  eyebrow: "INNOVATION HUB",
+  title1: "Construction",
+  title2: "Technology",
+  safetyTitle: "Safety",
+  desc: "We integrate cutting-edge technology with proven construction methods to deliver projects that are safer, faster, and more cost-effective. Our commitment to safety protects every life on site.",
+};
+
+export const wcCoreTechs = [
+  { icon: Cpu, title: "BIM Modeling", desc: "Building Information Modeling for complete project lifecycle management — from design to facility management.", stats: "40% fewer RFIs · 30% less rework", features: ["Revit & Navisworks", "Clash Detection", "4D Scheduling", "5D Cost Estimation", "BIM 360 Cloud", "Digital Twin"] },
+  { icon: Scan, title: "3D LiDAR Scanning", desc: "High-precision laser scanning for as-built documentation, deformation analysis, and volumetric calculations.", stats: "±2mm accuracy · 1M pts/sec", features: ["Terrestrial Scanning", "Aerial LiDAR", "Point Cloud Processing", "As-Built Models", "Deformation Analysis", "Volume Calculation"] },
+  { icon: Satellite, title: "Drone Surveying", desc: "Aerial surveying, orthomosaic mapping, volumetric analysis, and real-time construction progress monitoring.", stats: "90% faster surveying", features: ["DJI Matrice 300", "Orthomosaic Maps", "Volumetric Analysis", "Thermal Imaging", "Progress Monitoring", "3D Site Models"] },
+  { icon: Printer, title: "3D Concrete Printing", desc: "Additive manufacturing for complex architectural elements, formwork reduction, and rapid prototyping.", stats: "60% less formwork cost", features: ["COBOD Printers", "Custom Geometry", "Rapid Prototyping", "Material Optimization", "Complex Facades", "Reduced Waste"] },
+  { icon: Radio, title: "IoT Monitoring", desc: "Embedded sensors for real-time structural health monitoring — temperature, vibration, tilt, and curing conditions.", stats: "24/7 real-time monitoring", features: ["Embedded Sensors", "Vibration Monitoring", "Curing Temperature", "Tilt Detection", "Cloud Dashboard", "Auto-Alerts"] },
+  { icon: BrainCircuit, title: "AI Project Management", desc: "Machine learning for schedule optimization, risk prediction, resource allocation, and automated progress tracking.", stats: "25% schedule improvement", features: ["ML Scheduling", "Risk Prediction", "Computer Vision", "Resource Allocation", "Progress Tracking", "Cost Forecasting"] },
+];
+
+export const wcFuturisticTechs = [
+  { icon: Layers, title: "Modular Construction", desc: "Factory-built modules assembled on-site — 50% faster construction, controlled quality, minimal waste, and weather-independent building." },
+  { icon: Building2, title: "Self-Healing Concrete", desc: "Bacteria-embedded concrete that automatically repairs micro-cracks, extending structural life by 50+ years." },
+  { icon: Leaf, title: "Net-Zero Buildings", desc: "Energy-positive buildings with solar, wind, geothermal systems, and passive design strategies for zero carbon footprint." },
+  { icon: GitBranch, title: "Blockchain Contracts", desc: "Smart contracts for transparent milestone payments, supply chain tracking, and immutable project documentation." },
+  { icon: Eye, title: "AR/VR Construction", desc: "Augmented reality for on-site construction guidance, virtual walkthroughs, and real-time design overlay on physical structures." },
+  { icon: Zap, title: "Construction Robotics", desc: "Robotic bricklaying, automated rebar tying, 3D printing, and drone-based inspection for faster, safer construction." },
+];
+
+export const wcTechVision = {
+  title: "Our Vision for 2030",
+  desc: "By 2030, we aim to have 50% of our projects using modular construction, 100% BIM adoption, net-zero energy buildings, and fully automated quality inspection using AI and robotics.",
+};
+
+export const wcSafetyProtocols = [
+  { icon: HardHat, title: "PPE Compliance", desc: "Mandatory helmets, safety shoes, harnesses, gloves, goggles, and high-visibility vests for all site personnel." },
+  { icon: Flame, title: "Fire Safety", desc: "Fire extinguishers at every floor, fire hydrant systems, evacuation drills, and hot work permit procedures." },
+  { icon: AlertTriangle, title: "Fall Protection", desc: "Safety nets, guardrails, personal fall arrest systems, and scaffold inspection for all work above 2 meters." },
+  { icon: Siren, title: "Emergency Response", desc: "Trained emergency response teams, evacuation plans, emergency assembly points, and incident reporting systems." },
+  { icon: Eye, title: "CCTV Surveillance", desc: "24/7 CCTV monitoring of all active construction zones with AI-based unsafe behavior detection." },
+  { icon: FileCheck, title: "Permit to Work", desc: "Formal permit system for hot work, confined space entry, excavation, electrical work, and crane operations." },
+  { icon: HeartPulse, title: "First Aid Stations", desc: "Fully equipped first aid stations on every floor with trained first responders and ambulance on standby." },
+  { icon: Wind, title: "Air Quality Monitoring", desc: "Continuous dust monitoring, water sprinkler systems, anti-smog guns, and green barriers around construction zones." },
+];
+
+export const wcWorkerWelfare = [
+  { icon: Shield, title: "Insurance Coverage", desc: "Comprehensive insurance for all workers — health, accident, and life coverage as per BOCW Act 1996." },
+  { icon: Users, title: "Safety Training", desc: "Monthly safety induction, toolbox talks, hands-on fire drill training, and safety certification programs." },
+  { icon: Thermometer, title: "Heat Stress Prevention", desc: "Mandatory rest breaks, hydration stations, shaded rest areas, and modified work hours during summer months." },
+  { icon: HeartPulse, title: "Medical Checkups", desc: "Pre-employment and periodic health checkups, hearing tests, lung function tests, and vision screening." },
+  { icon: Droplets, title: "Site Hygiene", desc: "Clean drinking water, sanitary toilets, handwash stations, waste segregation, and regular pest control." },
+  { icon: Lock, title: "Site Security", desc: "24/7 security guards, biometric attendance, material gate pass system, and visitor management protocols." },
+];
+
+export const wcSafetyStats = [
+  { value: "0", label: "Fatalities" },
+  { value: "500+", label: "Workers Trained" },
+  { value: "24/7", label: "Site Monitoring" },
+  { value: "100%", label: "Safety Compliance" },
+];
+
+export const wcEnvProtection = [
+  { icon: Leaf, title: "Dust Control", desc: "Anti-smog guns, water sprinklers, green barriers, covered material storage, and wheel washing for all vehicles." },
+  { icon: Droplets, title: "Water Management", desc: "Rainwater harvesting, construction water recycling, STP systems, and zero-discharge sites for water conservation." },
+  { icon: Wind, title: "Noise Control", desc: "Sound barriers, equipment silencers, restricted working hours, and continuous noise level monitoring per CPCB standards." },
+  { icon: CloudRain, title: "Waste Management", desc: "Construction waste segregation, recycling of steel and concrete debris, responsible disposal, and zero-landfill targets." },
+  { icon: Gauge, title: "Carbon Reduction", desc: "Low-carbon concrete mixes, electric equipment fleet, solar-powered site offices, and carbon footprint tracking." },
+  { icon: Wifi, title: "Environmental Monitoring", desc: "IoT-based continuous monitoring of air quality, noise levels, water quality, and soil contamination around sites." },
+];
+
+export const wcProjectCompletion = [
+  { icon: Workflow, title: "Lean Construction", desc: "Lean principles eliminate waste, reduce costs, and accelerate timelines — Last Planner System & value stream mapping.", stat: "35% faster delivery" },
+  { icon: BarChart3, title: "Primavera P6 Scheduling", desc: "CPM-based scheduling with resource leveling, critical path analysis, and earned value management for precise tracking.", stat: "99.2% schedule accuracy" },
+  { icon: Boxes, title: "Supply Chain Management", desc: "Vendor pre-qualification, just-in-time delivery, material tracking, and strategic procurement for zero material delays.", stat: "Zero material delays" },
+  { icon: Target, title: "Quality Control", desc: "Third-party inspection, 100% material testing, non-conformance reporting, and zero-defect handover guarantee.", stat: "Zero-defect handover" },
+  { icon: Truck, title: "Fleet & Logistics", desc: "Own fleet of 50+ machines — tower cranes, batching plants, transit mixers — all GPS-tracked and maintained.", stat: "Own fleet of 50+ machines" },
+  { icon: Clock, title: "Real-Time Dashboards", desc: "Client-facing dashboards with daily progress photos, milestone tracking, budget status, and quality reports.", stat: "Daily client dashboards" },
+];
+
+export const wcEquipment = [
+  "Tower Cranes (Liebherr, Potain)", "Batching Plants (Schwing Stetter)", "Concrete Pumps (Putzmeister)",
+  "Piling Rigs (Bauer, Soilmec)", "Excavators (Komatsu, CAT)", "Transit Mixers (Schwing Stetter)",
+  "Telescopic Handlers (JCB, Manitou)", "Bar Bending Machines (Jaypee)", "Total Station (Leica, Topcon)",
+  "Welding Machines (Lincoln, ESAB)", "Compactors & Rollers (Hamm)", "DG Sets (Cummins, Kirloskar)",
+];
+
+export const wcCertifications = [
+  "ISO 9001:2015 — Quality Management", "ISO 14001:2015 — Environmental Management",
+  "ISO 45001:2018 — Occupational Health & Safety", "OHSAS 18001 Compliant Processes",
+  "NBC 2016 Full Compliance", "IS 456, IS 800, IS 1893 Adherence",
+  "IGBC Green Building Standards", "BOCW Act 1996 Compliance",
 ];
