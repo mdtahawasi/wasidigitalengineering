@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import DivisionSEO from "@/components/DivisionSEO";
 import AnimatedSection from "@/components/AnimatedSection";
+import Hero3D from "@/components/three/Hero3D";
 import servicesBg from "@/assets/hero-construction-site.jpg";
 import { wcServicesIntro, wcServiceCategories, wcAllServices } from "@/data/wasiConstructionData";
 
@@ -16,6 +17,7 @@ export default function ConstructionServices() {
       <section className="relative py-28 overflow-hidden">
         <img src={servicesBg} alt="Active construction site works" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-background/80" />
+        <Hero3D variant="construction" parallax={0.08} />
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
             className="text-xs tracking-[0.4em] uppercase text-primary font-semibold mb-4">{wcServicesIntro.eyebrow}</motion.p>
