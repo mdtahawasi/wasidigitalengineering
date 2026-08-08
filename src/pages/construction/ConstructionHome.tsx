@@ -5,6 +5,7 @@ import Layout from "@/components/Layout";
 import DivisionSEO from "@/components/DivisionSEO";
 import AnimatedSection from "@/components/AnimatedSection";
 import SectionHeading from "@/components/SectionHeading";
+import Hero3D from "@/components/three/Hero3D";
 import heroCrane from "@/assets/hero-construction-crane.jpg";
 import {
   wcHero, wcStats, wcHomeServices, wcWhyReasons, wcProjectTypes, wcPropertyTypes,
@@ -23,6 +24,7 @@ export default function ConstructionHome() {
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         <img src={heroCrane} alt="Construction site with tower crane at sunrise" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-background/70" />
+        <Hero3D variant="construction" parallax={0.12} />
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center py-24">
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
             className="text-xs sm:text-sm tracking-[0.3em] uppercase text-primary font-semibold mb-4">
