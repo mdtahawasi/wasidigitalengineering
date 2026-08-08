@@ -15,6 +15,7 @@ import SoftwareShowcase from "@/components/SoftwareShowcase";
 import BIMDimensionsSection from "@/components/BIMDimensionsSection";
 import BIMLayerViewer from "@/components/BIMLayerViewer";
 import ISCodeComplianceSection from "@/components/ISCodeComplianceSection";
+import Hero3D from "@/components/three/Hero3D";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDivision } from "@/contexts/DivisionContext";
 import {
