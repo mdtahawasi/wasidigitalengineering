@@ -184,11 +184,11 @@ export const wcServicesIntro = {
 };
 
 export const wcServiceCategories = [
-  { key: "Core", label: "CORE SERVICES", desc: "Foundational construction disciplines delivered end-to-end by our in-house engineering teams." },
-  { key: "MEP", label: "MEP SERVICES", desc: "Mechanical, electrical, plumbing and fire systems engineered and installed to code." },
-  { key: "Smart", label: "SMART SERVICES", desc: "Technology-led building systems — automation, IoT, and sustainable green building solutions." },
-  { key: "Maintenance", label: "MAINTENANCE SERVICES", desc: "Keeping buildings performing at their peak long after handover." },
-  { key: "Finishing", label: "FINISHING SERVICES", desc: "The final layer of craftsmanship — interiors, landscape, waterproofing and detailing." },
+  { key: "Core", label: "CORE SERVICES", desc: "Foundation construction services — civil, structural, project management, and infrastructure development." },
+  { key: "MEP", label: "MEP SERVICES", desc: "Mechanical, Electrical, Plumbing & Fire protection systems — all integrated with BIM coordination." },
+  { key: "Smart", label: "SMART SERVICES", desc: "Intelligent building technologies — automation, IoT, green building certifications & sustainability." },
+  { key: "Maintenance", label: "MAINTENANCE SERVICES", desc: "Post-construction support — AMC, renovation, retrofitting & system upgrades." },
+  { key: "Finishing", label: "FINISHING SERVICES", desc: "Final touches — interiors, landscaping, waterproofing & specialized finishing works." },
 ];
 
 export const wcAllServices = [
