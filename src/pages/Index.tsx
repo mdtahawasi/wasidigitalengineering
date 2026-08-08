@@ -177,6 +177,7 @@ export default function HomePage() {
         </AnimatePresence>
 
         <div className="absolute inset-0 grid-pattern opacity-10 pointer-events-none" />
+        <Hero3D variant={isConstruction ? "construction" : "bim"} parallax={0.12} />
         <div className="relative container mx-auto px-4 md:px-8 py-20">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
