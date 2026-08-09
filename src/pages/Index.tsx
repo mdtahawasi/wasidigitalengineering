@@ -180,6 +180,12 @@ export default function HomePage() {
         </AnimatePresence>
 
         <div className="absolute inset-0 grid-pattern opacity-10 pointer-events-none" />
+        {/* 3D animated particle background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <Suspense fallback={null}>
+            <ParticleField />
+          </Suspense>
+        </div>
         <Hero3D variant={isConstruction ? "construction" : "bim"} parallax={0.12} />
         <div className="relative container mx-auto px-4 md:px-8 py-20">
           <motion.div
@@ -205,8 +211,12 @@ export default function HomePage() {
               {heroBadgeText}
             </motion.span>
 
-            <h1 className="text-sm md:text-base font-semibold tracking-[0.18em] uppercase text-muted-foreground mb-3">
+            <p className="text-sm md:text-base font-semibold tracking-[0.18em] uppercase text-muted-foreground mb-3">
               WITEC GLOBAL - Engineering &amp; BIM Consultancy
+            </p>
+
+            <h1 className="font-display font-black leading-[0.95] tracking-tight text-5xl md:text-6xl lg:text-8xl mb-5">
+              <span className="text-neon-gradient">Building The Future With Precision</span>
             </h1>
 
             {/* Rotating headline */}
@@ -217,7 +227,7 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.7 }}
-                className="text-4xl md:text-5xl lg:text-7xl font-display font-bold leading-[1.1] text-foreground mb-4"
+                className="text-2xl md:text-3xl lg:text-4xl font-display font-bold leading-[1.2] text-foreground mb-4"
               >
                 <span className="text-gradient">{heroSlides[heroIndex].quote}</span>
               </motion.h2>
@@ -325,6 +335,11 @@ export default function HomePage() {
               </div>
             </motion.div>
           </motion.div>
+        </div>
+
+        {/* Scroll down cue */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
+          <ScrollDownLottie />
         </div>
       </section>
 
