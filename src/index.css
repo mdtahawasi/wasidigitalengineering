@@ -170,24 +170,24 @@
   }
 
   .glass {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--glass-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 245, 212, 0.15);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
   }
 
   .glass-subtle {
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--glass-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 245, 212, 0.1);
+    border: 1px solid var(--glass-border);
   }
 
   .text-neon-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(100deg, #00f5d4 0%, #22d3ee 45%, #2563eb 100%);
-    filter: drop-shadow(0 0 28px rgba(0, 245, 212, 0.35));
+    background-image: linear-gradient(100deg, hsl(var(--gradient-start)) 0%, #22d3ee 45%, hsl(var(--gradient-end)) 100%);
+    filter: drop-shadow(0 0 28px hsl(var(--glow) / 0.35));
   }
 
   .section-padding {
