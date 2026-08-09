@@ -117,6 +117,11 @@
     --gradient-start: 169 100% 48%;
     --gradient-end: 212 100% 56%;
 
+    /* Glassmorphism (dark) */
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(0, 245, 212, 0.15);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+
     --sidebar-background: 216 58% 6%;
     --sidebar-foreground: 195 30% 96%;
     --sidebar-primary: 169 100% 48%;
