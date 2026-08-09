@@ -28,52 +28,57 @@
 
 @layer base {
   :root {
-    /* Futuristic Dark 3D — Deep Navy Black #050A14 */
-    --background: 216 60% 5%;
-    --foreground: 195 30% 96%;
+    /* Light mode — clean tech light, same cyan/blue brand accents */
+    --background: 0 0% 100%;
+    --foreground: 216 45% 10%;
 
-    --card: 216 55% 8%;
-    --card-foreground: 195 30% 96%;
+    --card: 210 30% 98%;
+    --card-foreground: 216 45% 10%;
 
-    --popover: 216 55% 8%;
-    --popover-foreground: 195 30% 96%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 45% 10%;
 
-    --primary: 169 100% 48%;
-    --primary-foreground: 216 60% 5%;
+    --primary: 176 95% 30%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 216 40% 12%;
-    --secondary-foreground: 195 30% 92%;
+    --secondary: 210 25% 94%;
+    --secondary-foreground: 216 45% 14%;
 
-    --muted: 216 40% 12%;
-    --muted-foreground: 205 20% 66%;
+    --muted: 210 25% 95%;
+    --muted-foreground: 215 16% 42%;
 
-    --accent: 212 100% 56%;
-    --accent-foreground: 216 60% 5%;
+    --accent: 212 95% 45%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 169 60% 18%;
-    --input: 216 40% 14%;
-    --ring: 169 100% 48%;
+    --border: 210 22% 88%;
+    --input: 210 22% 88%;
+    --ring: 176 95% 30%;
 
     --radius: 0.75rem;
 
     /* Custom tokens */
-    --glow: 169 100% 48%;
-    --surface: 216 58% 6%;
-    --surface-elevated: 216 50% 10%;
-    --gradient-start: 169 100% 48%;
-    --gradient-end: 212 100% 56%;
+    --glow: 176 95% 30%;
+    --surface: 210 30% 98%;
+    --surface-elevated: 0 0% 100%;
+    --gradient-start: 176 95% 30%;
+    --gradient-end: 212 95% 45%;
 
-    --sidebar-background: 216 58% 6%;
-    --sidebar-foreground: 195 30% 96%;
-    --sidebar-primary: 169 100% 48%;
-    --sidebar-primary-foreground: 216 60% 5%;
-    --sidebar-accent: 216 40% 12%;
-    --sidebar-accent-foreground: 195 30% 96%;
-    --sidebar-border: 169 60% 18%;
-    --sidebar-ring: 169 100% 48%;
+    /* Glassmorphism (light) */
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(0, 150, 136, 0.18);
+    --glass-shadow: 0 8px 32px rgba(15, 40, 70, 0.08);
+
+    --sidebar-background: 210 30% 98%;
+    --sidebar-foreground: 216 45% 10%;
+    --sidebar-primary: 176 95% 30%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 25% 94%;
+    --sidebar-accent-foreground: 216 45% 10%;
+    --sidebar-border: 210 22% 88%;
+    --sidebar-ring: 176 95% 30%;
   }
 
   .dark {
