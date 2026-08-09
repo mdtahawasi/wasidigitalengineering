@@ -16,6 +16,8 @@ import BIMDimensionsSection from "@/components/BIMDimensionsSection";
 import BIMLayerViewer from "@/components/BIMLayerViewer";
 import ISCodeComplianceSection from "@/components/ISCodeComplianceSection";
 import Hero3D from "@/components/three/Hero3D";
+import ScrollDownLottie from "@/components/ScrollDownLottie";
+const ParticleField = lazy(() => import("@/components/three/ParticleField"));
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDivision } from "@/contexts/DivisionContext";
 import {
