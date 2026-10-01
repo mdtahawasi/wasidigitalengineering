@@ -160,7 +160,7 @@ export default function AIChatWidget() {
         transition={{ delay: 0.6, type: "spring", stiffness: 200, damping: 15 }}
         whileHover={{ scale: 1.08, y: -3 }}
         whileTap={{ scale: 0.92 }}
-        className="fixed bottom-24 right-6 z-50 group"
+        className="group fixed bottom-20 right-3 z-50 sm:bottom-24 sm:right-6"
         aria-label="AI Chat Support"
       >
         {/* Orbiting ring */}
@@ -180,7 +180,7 @@ export default function AIChatWidget() {
               animate={{ rotate: 0, scale: 1, opacity: 1 }}
               exit={{ rotate: 90, scale: 0.5, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="relative w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-[0_4px_25px_hsl(var(--primary)/0.4)]"
+               className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent shadow-[0_4px_25px_hsl(var(--primary)/0.4)] sm:h-16 sm:w-16"
             >
               <X size={24} strokeWidth={2.5} className="text-primary-foreground" />
             </motion.div>
@@ -191,7 +191,7 @@ export default function AIChatWidget() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.5, opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="relative w-16 h-16 rounded-full bg-background border-2 border-primary/30 shadow-[0_4px_25px_hsl(var(--primary)/0.3)] overflow-hidden group-hover:border-primary/60 transition-colors"
+               className="relative h-14 w-14 overflow-hidden rounded-full border-2 border-primary/30 bg-background shadow-[0_4px_25px_hsl(var(--primary)/0.3)] transition-colors group-hover:border-primary/60 sm:h-16 sm:w-16"
             >
               <motion.img
                 src={aiBotIcon}
@@ -231,7 +231,7 @@ export default function AIChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed bottom-[10.5rem] right-6 z-50 w-[340px] sm:w-[400px] h-[520px] rounded-2xl border border-border/60 bg-background/95 backdrop-blur-xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden"
+            className="fixed inset-x-3 bottom-36 z-50 flex h-[min(68vh,520px)] flex-col overflow-hidden rounded-lg border border-border/60 bg-background/95 shadow-xl backdrop-blur-xl sm:inset-x-auto sm:bottom-[10.5rem] sm:right-6 sm:w-[400px]"
           >
             {/* Header */}
             <div className="relative px-5 py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground overflow-hidden">
@@ -252,7 +252,8 @@ export default function AIChatWidget() {
                 </div>
                 <button
                   onClick={() => setOpen(false)}
-                  className="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center transition-colors"
+                   className="flex min-h-11 min-w-11 items-center justify-center rounded-lg bg-primary-foreground/15 transition-colors hover:bg-primary-foreground/25"
+                   aria-label="Close AI assistant"
                 >
                   <X size={16} />
                 </button>

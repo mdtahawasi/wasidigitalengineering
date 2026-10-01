@@ -1,0 +1,16 @@
+# WITEC Global
+
+> Wasi Infratech Engineering & Construction provides BIM and engineering services globally and construction services in Nagpur and Kolkata.
+
+WITEC operates two distinct divisions. BIM & Engineering delivers architectural, structural and MEP coordination, clash detection, scan-to-BIM, 4D/5D BIM and digital twins. WITEC Construction delivers civil, RCC, structural, MEP and turnkey construction.
+
+## Pages
+
+- [Home](/): WITEC Global overview and division selector.
+- [About](/about): Company profile, leadership and capabilities.
+- [Services](/services): BIM, engineering and construction services by active division.
+- [Projects](/projects): Selected BIM and construction project experience.
+- [Technology](/technology): BIM platforms, delivery technology, safety and construction systems.
+- [BIM Insights](/bim-insights): BIM dimensions, workflows and industry insights.
+- [Careers](/careers): Career opportunities and general applications.
+- [Contact](/contact): Enquiry forms and division contact details.

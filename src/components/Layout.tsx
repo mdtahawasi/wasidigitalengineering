@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-28">{children}</main>
+      <main className="min-w-0 flex-1">{children}</main>
       <Footer />
       <AIChatWidget />
       <WhatsAppButton />

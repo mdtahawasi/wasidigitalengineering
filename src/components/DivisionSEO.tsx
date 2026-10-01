@@ -33,16 +33,18 @@ export default function DivisionSEO({ title, description }: Props) {
   const m = META[division];
   const finalTitle = title ?? m.title;
   const finalDesc = description ?? m.description;
-  const url = `${SITE}${pathname}`;
+  const normalizedPath = pathname === "/" ? "" : pathname;
+  const url = `${SITE}${normalizedPath}?division=${division}`;
   return (
     <Helmet>
       <title>{finalTitle}</title>
       <meta name="description" content={finalDesc} />
-      <meta name="keywords" content={m.keywords} />
       <link rel="canonical" href={url} />
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDesc} />
       <meta property="og:url" content={url} />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDesc} />
     </Helmet>

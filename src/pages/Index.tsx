@@ -215,8 +215,8 @@ export default function HomePage() {
               WITEC GLOBAL - Engineering &amp; BIM Consultancy
             </p>
 
-            <h1 className="font-display font-black leading-[0.95] tracking-tight text-5xl md:text-6xl lg:text-8xl mb-5">
-              <span className="text-neon-gradient">Building The Future With Precision</span>
+            <h1 className="mb-5 font-display text-4xl font-black leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
+              <span className="text-neon-gradient">Global BIM &amp; Engineering Services</span>
             </h1>
 
             {/* Rotating headline */}
@@ -233,12 +233,12 @@ export default function HomePage() {
               </motion.h2>
             </AnimatePresence>
 
-            <h2 className="text-base md:text-lg font-semibold text-foreground/80 mb-3">
+            <p className="text-base md:text-lg font-semibold text-foreground/80 mb-3">
               Advanced Construction Solutions
-            </h2>
-            <h2 className="text-base md:text-lg font-semibold text-foreground/80 mb-4">
+            </p>
+            <p className="text-base md:text-lg font-semibold text-foreground/80 mb-4">
               Digital Twin &amp; BIM Services
-            </h2>
+            </p>
 
             <AnimatePresence mode="wait">
               <motion.p

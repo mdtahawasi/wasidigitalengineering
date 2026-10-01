@@ -2,17 +2,18 @@ import { useState, useMemo, useRef, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Grid } from "@react-three/drei";
 import * as THREE from "three";
-import { Building2, Layers3, Zap, Palette, Droplets, Flame } from "lucide-react";
+import { Building2, Layers3, Zap, Palette, Droplets, Flame, Eye, EyeOff, Focus, RotateCcw } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type LayerKey = "structural" | "architectural" | "hvac" | "plumbing" | "electrical" | "interior";
 
-const LAYERS: { key: LayerKey; label: string; sub: string; color: string; icon: any }[] = [
-  { key: "structural",   label: "STR — Structural",    sub: "RCC columns, beams, slabs & footings",    color: "#10b981", icon: Building2 },
-  { key: "architectural",label: "ARCH — Architectural",sub: "Envelope, glazing, slab edge & parapet",  color: "#3b82f6", icon: Layers3 },
-  { key: "hvac",         label: "MEP — HVAC",          sub: "Ducts, AHU plant & diffusers",            color: "#f59e0b", icon: Zap },
-  { key: "plumbing",     label: "MEP — Plumbing",      sub: "Risers, soil stacks & branch lines",      color: "#06b6d4", icon: Droplets },
-  { key: "electrical",   label: "MEP — Electrical",    sub: "Cable trays, panels & fire sprinklers",   color: "#ef4444", icon: Flame },
-  { key: "interior",     label: "INT — Interior",      sub: "Partitions, core walls & finishes",       color: "#8b5cf6", icon: Palette },
+const LAYERS: { key: LayerKey; code: string; label: string; sub: string; detail: string; count: number; color: string; icon: any }[] = [
+  { key: "structural", code: "STR", label: "Structural", sub: "RCC frame & foundations", detail: "9 footings • 9 columns • 36 beams • 7 slabs", count: 61, color: "#10b981", icon: Building2 },
+  { key: "architectural", code: "ARC", label: "Architecture", sub: "Façade, glazing & parapets", detail: "72 glazing panels • 4 envelope faces • 7 slab edges", count: 83, color: "#3b82f6", icon: Layers3 },
+  { key: "hvac", code: "HVAC", label: "HVAC", sub: "Supply and return air systems", detail: "1 AHU • 12 ducts • 18 ceiling diffusers • 1 shaft", count: 32, color: "#f59e0b", icon: Zap },
+  { key: "plumbing", code: "PLB", label: "Plumbing", sub: "Water and drainage network", detail: "2 risers • 6 branch lines • 1 roof tank", count: 9, color: "#06b6d4", icon: Droplets },
+  { key: "electrical", code: "ELF", label: "Electrical & Fire", sub: "Power distribution and sprinklers", detail: "1 riser • 6 trays • 6 panels • 12 sprinkler heads", count: 25, color: "#ef4444", icon: Flame },
+  { key: "interior", code: "INT", label: "Interiors", sub: "Partitions, service core & ceilings", detail: "1 core • 12 partitions • 6 ceiling zones", count: 19, color: "#8b5cf6", icon: Palette },
 ];
 
 const FLOORS = 6;
@@ -242,9 +243,12 @@ function InteriorLayer({ visible }: { visible: boolean }) {
   );
 }
 
-function SceneRotator({ children }: { children: React.ReactNode }) {
+function SceneRotator({ children, paused }: { children: React.ReactNode; paused: boolean }) {
   const ref = useRef<THREE.Group>(null);
-  useFrame((_, dt) => { if (ref.current) ref.current.rotation.y += dt * 0.08; });
+  useFrame((_, rawDelta) => {
+    if (!ref.current || paused) return;
+    ref.current.rotation.y += Math.min(rawDelta, 0.05) * 0.08;
+  });
   return <group ref={ref}>{children}</group>;
 }
 
@@ -252,13 +256,21 @@ export default function BIMLayerViewer() {
   const [layers, setLayers] = useState<Record<LayerKey, boolean>>({
     structural: true, architectural: true, hvac: false, plumbing: false, electrical: false, interior: false,
   });
+  const [selected, setSelected] = useState<LayerKey>("structural");
+  const [paused, setPaused] = useState(false);
   const toggle = (k: LayerKey) => setLayers((s) => ({ ...s, [k]: !s[k] }));
   const allOn = () => setLayers({ structural: true, architectural: true, hvac: true, plumbing: true, electrical: true, interior: true });
   const onlyStructure = () => setLayers({ structural: true, architectural: false, hvac: false, plumbing: false, electrical: false, interior: false });
+  const focusLayer = (key: LayerKey) => {
+    setSelected(key);
+    setLayers({ structural: false, architectural: false, hvac: false, plumbing: false, electrical: false, interior: false, [key]: true });
+  };
+  const activeCount = LAYERS.filter((layer) => layers[layer.key]).length;
+  const selectedLayer = LAYERS.find((layer) => layer.key === selected) ?? LAYERS[0];
 
   return (
-    <div className="grid lg:grid-cols-[1fr_300px] gap-6">
-      <div className="relative rounded-2xl overflow-hidden glass aspect-[4/3] lg:aspect-auto lg:min-h-[520px]">
+    <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="relative min-h-[360px] overflow-hidden rounded-lg glass sm:min-h-[500px] xl:min-h-[620px]">
         <Canvas
           camera={{ position: [9, 7, 9], fov: 42 }}
           dpr={[1, 1.5]}
@@ -269,7 +281,7 @@ export default function BIMLayerViewer() {
             <directionalLight position={[8, 12, 6]} intensity={0.9} />
             <pointLight position={[-6, 4, -6]} intensity={0.4} color="#3b82f6" />
             <Grid args={[20, 20]} cellColor="#94a3b8" sectionColor="#3b82f6" fadeDistance={25} infiniteGrid position={[0, -0.01, 0]} />
-            <SceneRotator>
+            <SceneRotator paused={paused}>
               <StructuralLayer visible={layers.structural} />
               <ArchitecturalLayer visible={layers.architectural} />
               <HVACLayer visible={layers.hvac} />
@@ -277,7 +289,7 @@ export default function BIMLayerViewer() {
               <ElectricalLayer visible={layers.electrical} />
               <InteriorLayer visible={layers.interior} />
             </SceneRotator>
-            <OrbitControls enablePan={false} minDistance={8} maxDistance={20} target={[0, 3.5, 0]} />
+            <OrbitControls enablePan={false} enableDamping dampingFactor={0.08} minDistance={8} maxDistance={18} target={[0, 3.5, 0]} />
           </Suspense>
         </Canvas>
         <div className="pointer-events-none absolute top-3 left-3 text-[10px] uppercase tracking-widest text-muted-foreground bg-background/70 backdrop-blur px-2 py-1 rounded">
