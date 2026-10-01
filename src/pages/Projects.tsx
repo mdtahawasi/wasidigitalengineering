@@ -173,7 +173,7 @@ export default function ProjectsPage() {
       <DivisionSEO />
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroConstruction} alt="" className="w-full h-full object-cover opacity-10" />
+          <img src={heroConstruction} alt="WITEC construction and BIM project delivery" className="w-full h-full object-cover opacity-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
         </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />

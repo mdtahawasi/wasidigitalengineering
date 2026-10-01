@@ -58,7 +58,7 @@ export default function AboutPage() {
       {/* Hero with background image */}
       <section id="about-hero" className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroTeamCollab} alt="" className="w-full h-full object-cover opacity-15" />
+          <img src={heroTeamCollab} alt="WITEC engineering team coordinating a digital building model" className="w-full h-full object-cover opacity-15" />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
         </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />

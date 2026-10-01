@@ -12,18 +12,11 @@ import { getNavItems } from "@/config/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const { t } = useLanguage();
   const { theme, setTheme } = useTheme();
   const { division } = useDivision();
   const navLinks = getNavItems(division);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => { setOpen(false); }, [location.pathname]);
 
@@ -39,13 +32,9 @@ export default function Navbar() {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/95 backdrop-blur-xl border-b border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.55)]"
-          : "glass border-x-0 border-t-0"
-      }`}
+      className="relative z-50 w-full glass border-x-0 border-t-0"
     >
-      <nav className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4 md:px-8">
+      <nav className="container mx-auto flex min-h-16 items-center justify-between gap-2 px-3 py-2 sm:px-4 md:min-h-20 md:px-8">
         {/* Logo */}
         <Link to="/" aria-label="WITEC GLOBAL" className="flex items-center gap-2 md:gap-3 shrink min-w-0">
           <img
@@ -54,7 +43,7 @@ export default function Navbar() {
             aria-label="WITEC GLOBAL"
             className="h-8 md:h-11 w-auto rounded-md shrink-0 dark:brightness-110 dark:contrast-110"
           />
-          <div className="flex flex-col leading-none min-w-0">
+          <div className="hidden min-w-0 flex-col leading-none sm:flex">
             <span className="font-display font-bold text-foreground text-base md:text-xl tracking-tight">WITEC</span>
             <span className="hidden sm:inline text-[9px] md:text-[10px] text-muted-foreground tracking-[0.2em] uppercase font-medium truncate">Infratech Engineering &amp; Construction</span>
           </div>
@@ -87,7 +76,7 @@ export default function Navbar() {
           </Link>
           <button
             onClick={cycleTheme}
-            className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+            className="flex min-h-11 min-w-11 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
             aria-label={`Theme: ${theme}`}
             title={`Theme: ${theme}`}
           >
@@ -97,7 +86,7 @@ export default function Navbar() {
           {/* Hamburger - mobile only */}
           <button
             onClick={() => setOpen(!open)}
-            className="xl:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
+            className="flex min-h-11 min-w-11 items-center justify-center text-muted-foreground transition-colors hover:text-foreground xl:hidden"
             aria-label="Toggle menu"
           >
             {open ? <X size={24} /> : <Menu size={24} />}
@@ -106,7 +95,7 @@ export default function Navbar() {
       </nav>
 
       {/* Division toggle bar (always visible, keeps top nav compact) */}
-      <div className="border-t border-border/40 bg-background/80 backdrop-blur-md px-4 py-2 flex justify-center">
+      <div className="flex justify-center border-t border-border/40 bg-background/80 px-3 py-2 backdrop-blur-md sm:px-4">
         <DivisionToggle variant="mobile" className="max-w-md xl:max-w-lg" />
       </div>
 
@@ -118,7 +107,7 @@ export default function Navbar() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="xl:hidden absolute right-4 md:right-8 top-14 md:top-18 w-56 bg-card rounded-xl border border-border shadow-xl overflow-hidden"
+            className="absolute inset-x-3 top-full max-h-[min(70vh,32rem)] overflow-y-auto rounded-lg border border-border bg-card shadow-xl sm:left-auto sm:right-4 sm:w-64 md:right-8 xl:hidden"
           >
             <div className="py-2 flex flex-col">
               {navLinks.map((link) => (
