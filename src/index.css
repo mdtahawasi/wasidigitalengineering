@@ -10,6 +10,15 @@
 /* Default: BIM (cyan/blue/violet) */
 :root,
 [data-division="bim"] {
+  --bim-structural: #34d399;
+  --bim-architectural: #60a5fa;
+  --bim-hvac: #fbbf24;
+  --bim-plumbing: #22d3ee;
+  --bim-electrical: #c084fc;
+  --bim-fire: #fb7185;
+  --bim-interior: #f0abfc;
+  --bim-grid: #64748b;
+  --bim-selected: #ffffff;
   --accent-primary: #00d4ff;
   --accent-secondary: #3b82f6;
   --accent-tertiary: #8b5cf6;
