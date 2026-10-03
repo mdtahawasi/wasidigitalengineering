@@ -292,30 +292,44 @@ export default function BIMLayerViewer() {
             <OrbitControls enablePan={false} enableDamping dampingFactor={0.08} minDistance={8} maxDistance={18} target={[0, 3.5, 0]} />
           </Suspense>
         </Canvas>
-        <div className="pointer-events-none absolute top-3 left-3 text-[10px] uppercase tracking-widest text-muted-foreground bg-background/70 backdrop-blur px-2 py-1 rounded">
-          Drag to rotate • Scroll to zoom
+        <div className="pointer-events-none absolute left-3 top-3 max-w-[calc(100%-1.5rem)] rounded-md border border-border/60 bg-background/85 px-3 py-2 backdrop-blur">
+          <p className="text-[10px] font-bold uppercase text-primary">Federated coordination model</p>
+          <p className="mt-0.5 text-[10px] text-muted-foreground sm:text-xs">Drag to orbit • Pinch or scroll to zoom</p>
+        </div>
+        <div className="pointer-events-none absolute bottom-3 left-3 right-3 grid grid-cols-3 gap-1 rounded-md border border-border/60 bg-background/85 p-2 text-center backdrop-blur sm:left-auto sm:grid-cols-1 sm:text-left">
+          <span className="text-[10px] text-muted-foreground"><strong className="block text-sm text-foreground">LOD 350</strong>Coordination</span>
+          <span className="text-[10px] text-muted-foreground"><strong className="block text-sm text-foreground">06</strong>Levels</span>
+          <span className="text-[10px] text-muted-foreground"><strong className="block text-sm text-foreground">{activeCount}/6</strong>Visible</span>
         </div>
       </div>
 
-      <div className="flex flex-col gap-3">
-        <div className="flex items-center justify-between gap-2 mb-1">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground">Discipline Layers</p>
-          <div className="flex gap-1.5">
-            <button onClick={allOn} className="text-[10px] font-semibold uppercase tracking-wider px-2 py-1 rounded-md border border-border hover:border-primary/40 text-muted-foreground hover:text-foreground transition-colors">All</button>
-            <button onClick={onlyStructure} className="text-[10px] font-semibold uppercase tracking-wider px-2 py-1 rounded-md border border-border hover:border-primary/40 text-muted-foreground hover:text-foreground transition-colors">STR only</button>
+      <div className="flex min-w-0 flex-col gap-3">
+        <div className="rounded-lg border border-border bg-card/70 p-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="min-w-0">
+              <p className="text-xs font-bold uppercase text-primary">Selected discipline</p>
+              <p className="truncate font-display text-lg font-semibold text-foreground">{selectedLayer.code} — {selectedLayer.label}</p>
+            </div>
+            <Button variant="outline" size="icon" onClick={() => setPaused((value) => !value)} aria-label={paused ? "Resume model rotation" : "Pause model rotation"} title={paused ? "Resume rotation" : "Pause rotation"}>
+              <RotateCcw className={paused ? "" : "motion-safe:animate-spin [animation-duration:8s]"} />
+            </Button>
+          </div>
+          <p className="mt-2 text-sm text-muted-foreground">{selectedLayer.detail}</p>
+        </div>
+        <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
+          <p className="text-xs font-bold uppercase text-muted-foreground">Discipline layers</p>
+          <div className="flex flex-wrap gap-1.5">
+            <Button onClick={allOn} variant="outline" size="sm"><Eye />All layers</Button>
+            <Button onClick={onlyStructure} variant="outline" size="sm"><Focus />Structure</Button>
           </div>
         </div>
         {LAYERS.map((l) => {
           const on = layers[l.key];
           const Icon = l.icon;
           return (
-            <button
+            <div
               key={l.key}
-              onClick={() => toggle(l.key)}
-              className={`text-left w-full rounded-xl border p-4 transition-all flex items-start gap-3 ${
-                on ? "bg-card border-transparent shadow-md" : "bg-card/40 border-border hover:border-primary/30"
-              }`}
-              style={on ? { boxShadow: `0 0 0 1px ${l.color}55, 0 8px 24px -10px ${l.color}66` } : undefined}
+              className={`flex w-full min-w-0 items-start gap-3 rounded-lg border p-3 text-left transition-all ${on ? "border-primary/40 bg-card shadow-sm" : "border-border bg-card/40"}`}
             >
               <span
                 className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
@@ -324,16 +338,21 @@ export default function BIMLayerViewer() {
                 <Icon size={18} />
               </span>
               <span className="flex-1 min-w-0">
-                <span className="flex items-center justify-between gap-2">
-                  <span className="font-display font-semibold text-foreground text-sm">{l.label}</span>
-                  <span className={`text-[10px] font-bold uppercase tracking-wider ${on ? "" : "text-muted-foreground"}`}
-                        style={on ? { color: l.color } : undefined}>
-                    {on ? "ON" : "OFF"}
-                  </span>
+                <span className="flex min-w-0 items-center justify-between gap-2">
+                  <span className="min-w-0 truncate font-display text-sm font-semibold text-foreground">{l.code} — {l.label}</span>
+                  <span className="shrink-0 text-[10px] font-bold uppercase text-muted-foreground">{l.count} items</span>
                 </span>
                 <span className="block text-xs text-muted-foreground mt-0.5">{l.sub}</span>
+                <span className="mt-2 flex flex-wrap gap-2">
+                  <Button size="sm" variant={selected === l.key ? "default" : "outline"} onClick={() => focusLayer(l.key)} aria-label={`Focus ${l.label} discipline`}>
+                    <Focus /> Focus
+                  </Button>
+                  <Button size="sm" variant="ghost" onClick={() => toggle(l.key)} aria-pressed={on} aria-label={`${on ? "Hide" : "Show"} ${l.label} discipline`}>
+                    {on ? <Eye /> : <EyeOff />} {on ? "Hide" : "Show"}
+                  </Button>
+                </span>
               </span>
-            </button>
+            </div>
           );
         })}
       </div>

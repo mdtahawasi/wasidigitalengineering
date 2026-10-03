@@ -160,7 +160,7 @@ export default function AIChatWidget() {
         transition={{ delay: 0.6, type: "spring", stiffness: 200, damping: 15 }}
         whileHover={{ scale: 1.08, y: -3 }}
         whileTap={{ scale: 0.92 }}
-        className="group fixed bottom-20 right-3 z-50 sm:bottom-24 sm:right-6"
+        className="group fixed bottom-16 right-2 z-50 sm:bottom-24 sm:right-6"
         aria-label="AI Chat Support"
       >
         {/* Orbiting ring */}
@@ -180,7 +180,7 @@ export default function AIChatWidget() {
               animate={{ rotate: 0, scale: 1, opacity: 1 }}
               exit={{ rotate: 90, scale: 0.5, opacity: 0 }}
               transition={{ duration: 0.2 }}
-               className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent shadow-[0_4px_25px_hsl(var(--primary)/0.4)] sm:h-16 sm:w-16"
+               className="relative flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent shadow-[0_4px_25px_hsl(var(--primary)/0.4)] sm:h-16 sm:w-16"
             >
               <X size={24} strokeWidth={2.5} className="text-primary-foreground" />
             </motion.div>
@@ -191,7 +191,7 @@ export default function AIChatWidget() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.5, opacity: 0 }}
               transition={{ duration: 0.25 }}
-               className="relative h-14 w-14 overflow-hidden rounded-full border-2 border-primary/30 bg-background shadow-[0_4px_25px_hsl(var(--primary)/0.3)] transition-colors group-hover:border-primary/60 sm:h-16 sm:w-16"
+               className="relative h-11 w-11 overflow-hidden rounded-full border-2 border-primary/30 bg-background shadow-[0_4px_25px_hsl(var(--primary)/0.3)] transition-colors group-hover:border-primary/60 sm:h-16 sm:w-16"
             >
               <motion.img
                 src={aiBotIcon}
@@ -214,7 +214,7 @@ export default function AIChatWidget() {
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 2.5 }}
-            className="absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap bg-card border border-border text-foreground text-xs font-medium px-3 py-2 rounded-xl shadow-lg pointer-events-none flex items-center gap-1.5"
+            className="absolute right-full mr-3 top-1/2 hidden -translate-y-1/2 items-center gap-1.5 whitespace-nowrap rounded-lg border border-border bg-card px-3 py-2 text-xs font-medium text-foreground shadow-lg pointer-events-none sm:flex"
           >
             <Sparkles size={12} className="text-primary" />
             {t("chat.askMe")}
