@@ -5,5 +5,5 @@
 - [x] Make floating controls and key layouts fit mobile and desktop viewports
 - [x] Upgrade the BIM model viewer with clear discipline focus and detailed element identification
 - [x] Verify BIM and Construction pages on mobile and desktop, including overflow and interactions
-- [ ] Expand the BIM viewer with identifiable individual elements, separate MEP disciplines, floor sections, and element inspection
-- [ ] Verify the detailed viewer interactions and mobile fit
+- [x] Expand the BIM viewer with identifiable individual elements, separate MEP disciplines, floor sections, and element inspection
+- [x] Verify the detailed viewer interactions and mobile fit
