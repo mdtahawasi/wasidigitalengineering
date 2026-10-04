@@ -253,3 +253,14 @@ html, body {
 img {
   transition: opacity 0.3s ease;
 }
+
+/* BIM discipline identity shared by the scene and its controls. */
+.bim-structural { --bim-color: var(--bim-structural); }
+.bim-architectural { --bim-color: var(--bim-architectural); }
+.bim-hvac { --bim-color: var(--bim-hvac); }
+.bim-plumbing { --bim-color: var(--bim-plumbing); }
+.bim-electrical { --bim-color: var(--bim-electrical); }
+.bim-fire { --bim-color: var(--bim-fire); }
+.bim-interior { --bim-color: var(--bim-interior); }
+.bim-swatch { width: 0.55rem; height: 0.55rem; border-radius: 2px; background: var(--bim-color); }
+.bim-icon { display: flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; flex-shrink: 0; color: var(--bim-color); }

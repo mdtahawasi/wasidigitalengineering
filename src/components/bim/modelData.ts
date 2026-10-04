@@ -24,6 +24,7 @@ export const LEVELS = 6;
 export function createModelElements(floor: number | null): ModelElement[] {
   const elements: ModelElement[] = [];
   const single = floor !== null;
+  const floorIndex = floor ?? 0;
   const height = single ? LEVEL_HEIGHT : LEVELS * LEVEL_HEIGHT;
   const add = (discipline: Discipline, family: string, name: string, level: number, position: Vector3, size: Vector3, material: string, system: string, purpose: string, shape: ModelElement["shape"] = "box", rotation?: Vector3) => {
     elements.push({ id: `${DISCIPLINES.find(d => d.key === discipline)?.code}-${String(elements.length + 1).padStart(3, "0")}`, discipline, family, name, level, position, size, material, system, purpose, shape, rotation });
@@ -31,11 +32,11 @@ export function createModelElements(floor: number | null): ModelElement[] {
   const grid = [-2, 0, 2];
   for (const x of grid) for (const z of grid) {
     if (!single) add("structural", "Pad footings", "Isolated pad footing", -1, [x, -0.14, z], [0.85, 0.28, 0.85], "Reinforced concrete", "Foundation", "Transfers column loads to the supporting ground.");
-    add("structural", "Columns", "RCC column", single ? floor : -1, [x, height / 2, z], [0.22, height, 0.22], "Reinforced concrete", "Gravity frame", "Carries vertical loads from beams and floor slabs to foundations.");
+    add("structural", "Columns", "RCC column", single ? floorIndex : -1, [x, height / 2, z], [0.22, height, 0.22], "Reinforced concrete", "Gravity frame", "Carries vertical loads from beams and floor slabs to foundations.");
   }
-  add("structural", "Shear walls", "Lift-core shear wall", single ? floor : -1, [-0.65, height / 2, -1.6], [0.15, height, 1.4], "Reinforced concrete", "Lateral stability", "Resists lateral loads around the service core.");
-  add("structural", "Shear walls", "Lift-core rear shear wall", single ? floor : -1, [0, height / 2, -2.2], [1.4, height, 0.15], "Reinforced concrete", "Lateral stability", "Works with the side core wall to stabilize the frame.");
-  const floors = single ? [floor] : Array.from({ length: LEVELS }, (_, i) => i);
+  add("structural", "Shear walls", "Lift-core shear wall", single ? floorIndex : -1, [-0.65, height / 2, -1.6], [0.15, height, 1.4], "Reinforced concrete", "Lateral stability", "Resists lateral loads around the service core.");
+  add("structural", "Shear walls", "Lift-core rear shear wall", single ? floorIndex : -1, [0, height / 2, -2.2], [1.4, height, 0.15], "Reinforced concrete", "Lateral stability", "Works with the side core wall to stabilize the frame.");
+  const floors = single ? [floorIndex] : Array.from({ length: LEVELS }, (_, i) => i);
   for (const f of floors) {
     const y = single ? 0 : f * LEVEL_HEIGHT;
     add("structural", "Floor slabs", "Floor plate", f, [0, y, 0], [5, 0.08, 5], "Reinforced concrete", "Floor structure", "Distributes occupancy loads to the supporting beams.");
@@ -92,7 +93,7 @@ export function createModelElements(floor: number | null): ModelElement[] {
     ["plumbing", "Soil stacks", -1.92, -1.8, 0.12, "uPVC", "Gravity drainage"],
     ["electrical", "Electrical risers", 2.2, 1.9, 0.12, "Cable containment", "Low-voltage distribution"],
     ["fire", "Fire risers", 2.2, -1.1, 0.09, "Painted steel", "Wet sprinkler system"],
-  ] as const) add(discipline, family, family.slice(0, -1), single ? floor : -1, [x, height / 2, z], [size, height, size], material, system, "Connects the floor branches through the vertical service shaft.", discipline === "plumbing" || discipline === "fire" ? "cylinder" : "box");
+  ] as const) add(discipline, family, family.slice(0, -1), single ? floorIndex : -1, [x, height / 2, z], [size, height, size], material, system, "Connects the floor branches through the vertical service shaft.", discipline === "plumbing" || discipline === "fire" ? "cylinder" : "box");
   if (!single) {
     add("structural", "Floor slabs", "Roof slab", LEVELS, [0, height, 0], [5, 0.08, 5], "Reinforced concrete", "Roof structure", "Supports the roof enclosure and rooftop plant.");
     add("hvac", "Air handling units", "Rooftop air handling unit", LEVELS, [1.2, height + 0.4, -1.2], [1.25, 0.65, 0.8], "Insulated sheet metal", "Mechanical plant", "Conditions air before supplying the building duct network.");
