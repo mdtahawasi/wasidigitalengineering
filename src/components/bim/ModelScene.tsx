@@ -33,7 +33,7 @@ export default function ModelScene({ elements, visible, colors, selected, onSele
           </mesh>;
         })}
         {(selectedElement ? [selectedElement] : featured).map(e => <Html key={`label-${e.id}`} position={[e.position[0], e.position[1] + e.size[1] / 2 + 0.12, e.position[2]]} center zIndexRange={[8, 0]} style={{ pointerEvents: "none" }}>
-          <div className="max-w-40 rounded border border-primary/50 bg-background/95 px-2 py-1 text-[10px] font-semibold text-foreground shadow-sm">{e.id} · {e.name}</div>
+          <div className="w-max max-w-44 rounded border border-primary/50 bg-background/95 px-2 py-1 text-[10px] font-semibold text-foreground shadow-sm">{e.id} · {e.name}</div>
         </Html>)}
         <OrbitControls makeDefault enablePan={false} enableDamping autoRotate={rotation} autoRotateSpeed={0.35} target={[0, singleFloor ? 0.5 : 4, 0]} minDistance={singleFloor ? 5 : 9} maxDistance={22} maxPolarAngle={Math.PI / 2.05} />
       </Suspense>
