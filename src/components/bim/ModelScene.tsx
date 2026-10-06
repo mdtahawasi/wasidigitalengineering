@@ -10,15 +10,19 @@ type Props = {
   onSelect: (element: ModelElement) => void; labels: boolean;
   singleFloor: boolean; rotation: boolean; xray: boolean; resetKey: number;
   gridColor: string; selectionColor: string;
+  view: "perspective" | "front" | "side" | "top";
 };
 
-export default function ModelScene({ elements, visible, colors, selected, onSelect, labels, singleFloor, rotation, xray, resetKey, gridColor, selectionColor }: Props) {
+export default function ModelScene({ elements, visible, colors, selected, onSelect, labels, singleFloor, rotation, xray, resetKey, gridColor, selectionColor, view }: Props) {
   const shown = elements.filter(e => visible[e.discipline]);
   const selectedElement = shown.find(e => e.id === selected);
   const featured = labels && new Set(shown.map(e => e.discipline)).size === 1 ? shown.slice(0, 1) : [];
   const pick = (event: ThreeEvent<MouseEvent>, element: ModelElement) => { event.stopPropagation(); onSelect(element); };
+  const center = singleFloor ? 0.5 : 4;
+  const distance = singleFloor ? 9 : 17;
+  const cameraPosition: [number, number, number] = view === "top" ? [0, center + distance, 0.01] : view === "front" ? [0, center, distance] : view === "side" ? [distance, center, 0] : singleFloor ? [7, 6, 8] : [11, 8, 12];
   return (
-    <Canvas key={`${singleFloor}-${resetKey}`} frameloop={rotation ? "always" : "demand"} camera={{ position: singleFloor ? [7, 6, 8] : [11, 8, 12], fov: 42 }} dpr={[1, 1.5]} gl={{ antialias: false, alpha: true }}>
+    <Canvas key={`${singleFloor}-${resetKey}-${view}`} frameloop={rotation ? "always" : "demand"} camera={{ position: cameraPosition, fov: 42 }} dpr={[1, 1.5]} gl={{ antialias: false, alpha: true }}>
       <Suspense fallback={null}>
         <ambientLight intensity={1.15} />
         <directionalLight position={[5, 12, 8]} intensity={1.8} />
@@ -33,7 +37,7 @@ export default function ModelScene({ elements, visible, colors, selected, onSele
           </mesh>;
         })}
         {(labels && selectedElement ? [selectedElement] : featured).map(e => <Html key={`label-${e.id}`} position={[e.position[0], e.position[1] + e.size[1] / 2 + 0.12, e.position[2]]} center zIndexRange={[8, 0]} style={{ pointerEvents: "none" }}>
-          <div className="w-max max-w-44 rounded border border-primary/50 bg-background/95 px-2 py-1 text-[10px] font-semibold text-foreground shadow-sm">{e.id} · {e.name}</div>
+          <div className="w-40 break-words rounded border border-primary/50 bg-background/95 px-2 py-1 text-[10px] font-semibold text-foreground shadow-sm"><span className="block break-all text-muted-foreground">{e.id}</span>{e.name}</div>
         </Html>)}
         <OrbitControls makeDefault enablePan={false} enableDamping autoRotate={rotation} autoRotateSpeed={0.35} target={[0, singleFloor ? 0.5 : 4, 0]} minDistance={singleFloor ? 5 : 9} maxDistance={22} maxPolarAngle={Math.PI / 2.05} />
       </Suspense>
