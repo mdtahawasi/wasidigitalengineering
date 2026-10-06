@@ -7,3 +7,6 @@
 - [x] Verify BIM and Construction pages on mobile and desktop, including overflow and interactions
 - [x] Expand the BIM viewer with identifiable individual elements, separate MEP disciplines, floor sections, and element inspection
 - [x] Verify the detailed viewer interactions and mobile fit
+- [ ] Add detailed BIM systems, stable element identifiers, searchable schedules and camera views
+- [ ] Improve route-specific SEO and evidence-based structured data
+- [ ] Verify upgraded model controls, SEO and mobile fit
