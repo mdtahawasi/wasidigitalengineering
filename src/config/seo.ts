@@ -17,7 +17,7 @@ export const PAGE_SEO: Record<"bim" | "construction", Record<string, PageMeta>> 
     "/services": { title: "Civil, RCC & Turnkey Construction Services | WITEC", description: "Explore WITEC's civil works, RCC structures, steel construction, MEP execution and turnkey services for residential, commercial and industrial projects.", label: "Services" },
     "/projects": { title: "Construction Project Portfolio | WITEC Global", description: "Browse WITEC Construction's residential, commercial and industrial portfolio, with project details, construction images and sector-specific experience.", label: "Projects" },
     "/technology": { title: "Construction Technology & Site Safety | WITEC Global", description: "Explore WITEC's construction technology, site equipment, quality control, safety practices and environmental measures for civil project delivery.", label: "Technology" },
-    "/careers": { title: "Construction Careers & Applications | WITEC Global", description: "Explore opportunities with WITEC Construction and submit your application to join our civil engineering and construction project delivery team.", label: "Careers" },
+    "/careers": { title: "Construction Careers | WITEC Global", description: "Careers at WITEC Construction. New civil engineering and construction openings will be announced here when positions become available.", label: "Careers" },
     "/contact": { title: "Contact WITEC Construction | Project Enquiries", description: "Discuss civil, RCC or turnkey construction in Nagpur and Kolkata with WITEC. Send project enquiries and requirements to taha@witecglobal.com.", label: "Contact" },
   },
 };
