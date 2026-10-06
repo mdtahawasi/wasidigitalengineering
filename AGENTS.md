@@ -5,3 +5,5 @@
 - Generate the illustrative BIM viewer from element metadata shared by geometry and inspection controls; this keeps displayed quantities and element identification consistent.
 - Treat the site header as normal document flow rather than fixed or sticky; this prevents page content and controls from being obscured.
 - Use `DivisionSEO` for route-aware canonical and social metadata while `index.html` provides one clean sitewide fallback; this avoids duplicate metadata ownership.
+- Keep concise route metadata in the shared SEO configuration and derive page schemas from the active division; this prevents duplicate titles and cross-division service claims.
+- Identify illustrative BIM elements by discipline, level, family and local sequence; this keeps floor-cutaway identifiers stable without treating diagram units as engineering dimensions.

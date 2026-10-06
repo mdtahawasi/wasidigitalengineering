@@ -1,4 +1,6 @@
 import Layout from "@/components/Layout";
+import DivisionSEO from "@/components/DivisionSEO";
+import { Helmet } from "react-helmet-async";
 import { HardHat } from "lucide-react";
 
 interface Props {
@@ -13,6 +15,8 @@ interface Props {
 export default function ConstructionPlaceholder({ title, subtitle }: Props) {
   return (
     <Layout>
+      <DivisionSEO />
+      <Helmet><meta name="robots" content="noindex, follow" /></Helmet>
       <section className="container mx-auto px-4 md:px-8 py-24 min-h-[60vh] flex items-center justify-center">
         <div className="glass rounded-2xl p-10 md:p-16 text-center max-w-2xl w-full">
           <div

@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { useDivision } from "@/contexts/DivisionContext";
+import { PAGE_SEO, SEO_SITE } from "@/config/seo";
 
 const SITE = "https://witecglobal.com";
 
@@ -31,14 +32,28 @@ export default function DivisionSEO({ title, description }: Props) {
   const { division } = useDivision();
   const { pathname } = useLocation();
   const m = META[division];
-  const finalTitle = title ?? m.title;
-  const finalDesc = description ?? m.description;
+  const page = PAGE_SEO[division][pathname] ?? PAGE_SEO[division]["/"];
+  const finalTitle = title && title.length <= 60 ? title : page.title;
+  const finalDesc = description && description.length >= 50 && description.length <= 160 ? description : page.description;
   const normalizedPath = pathname === "/" ? "" : pathname;
   const url = `${SITE}${normalizedPath}?division=${division}`;
+  const home = `${SEO_SITE}/?division=${division}`;
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": pathname === "/projects" ? "CollectionPage" : pathname === "/about" ? "AboutPage" : pathname === "/contact" ? "ContactPage" : "WebPage", "@id": `${url}#webpage`, url, name: finalTitle, description: finalDesc, isPartOf: { "@id": `${SITE}/#website` }, about: { "@id": `${SITE}/#${division === "bim" ? "bim" : "construction"}-division` }, breadcrumb: { "@id": `${url}#breadcrumb` } },
+      { "@type": "BreadcrumbList", "@id": `${url}#breadcrumb`, itemListElement: [
+        { "@type": "ListItem", position: 1, name: division === "bim" ? "BIM & Engineering" : "Construction", item: home },
+        ...(pathname === "/" ? [] : [{ "@type": "ListItem", position: 2, name: page.label, item: url }]),
+      ] },
+      ...(pathname === "/services" ? [{ "@type": "ItemList", "@id": `${url}#services`, name: page.title, itemListElement: (division === "bim" ? ["Architectural BIM", "Structural BIM", "MEP coordination", "Clash detection", "Scan-to-BIM", "4D/5D BIM"] : ["Civil construction", "RCC construction", "Structural steel construction", "MEP execution", "Turnkey construction"]).map((name, index) => ({ "@type": "ListItem", position: index + 1, item: { "@type": "Service", name, provider: { "@id": `${SITE}/#${division === "bim" ? "bim" : "construction"}-division` }, url } })) }] : []),
+    ],
+  };
   return (
     <Helmet>
       <title>{finalTitle}</title>
       <meta name="description" content={finalDesc} />
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
       <link rel="canonical" href={url} />
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDesc} />

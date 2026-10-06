@@ -112,7 +112,7 @@ export default function TechnologyPage() {
                       <div className="w-11 h-11 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center"><c.icon size={22} /></div>
                       <span className="text-xs font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-1 rounded-full">{c.metric}</span>
                     </div>
-                    <h4 className="font-display font-semibold text-foreground mb-1">{c.title}</h4>
+                    <h3 className="font-display font-semibold text-foreground mb-1">{c.title}</h3>
                     <p className="text-xs text-muted-foreground leading-relaxed mb-4">{c.desc}</p>
                     <div className="grid grid-cols-2 gap-2 border-t border-border/50 pt-3">
                       {c.features.map((f) => (
@@ -151,7 +151,7 @@ export default function TechnologyPage() {
                 {constructionSafetyProtocols.map((s) => (
                   <div key={s.title} className="glass rounded-xl p-5 border-t-[3px] border-rose-500/60">
                     <div className="w-10 h-10 rounded-lg bg-rose-500/10 text-rose-500 flex items-center justify-center mb-3"><s.icon size={20} /></div>
-                    <h4 className="font-display font-semibold text-foreground mb-1">{s.title}</h4>
+                    <h3 className="font-display font-semibold text-foreground mb-1">{s.title}</h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
                   </div>
                 ))}
@@ -162,7 +162,7 @@ export default function TechnologyPage() {
                   {constructionWorkerWelfare.map((w) => (
                     <div key={w.title} className="glass rounded-xl p-5 border-t-[3px] border-amber-500/60">
                       <div className="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center mb-3"><w.icon size={20} /></div>
-                      <h4 className="font-display font-semibold text-foreground mb-1">{w.title}</h4>
+                      <h3 className="font-display font-semibold text-foreground mb-1">{w.title}</h3>
                       <p className="text-xs text-muted-foreground leading-relaxed">{w.desc}</p>
                     </div>
                   ))}
@@ -177,7 +177,7 @@ export default function TechnologyPage() {
                 {constructionEnvironment.map((e) => (
                   <div key={e.title} className="glass rounded-xl p-5 border-t-[3px] border-emerald-500/60">
                     <div className="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-3"><e.icon size={20} /></div>
-                    <h4 className="font-display font-semibold text-foreground mb-1">{e.title}</h4>
+                    <h3 className="font-display font-semibold text-foreground mb-1">{e.title}</h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">{e.desc}</p>
                   </div>
                 ))}
@@ -194,7 +194,7 @@ export default function TechnologyPage() {
                       <div className="w-11 h-11 rounded-lg bg-primary/10 text-primary flex items-center justify-center"><c.icon size={22} /></div>
                       <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">{c.stat}</span>
                     </div>
-                    <h4 className="font-display font-semibold text-foreground mb-1">{c.title}</h4>
+                    <h3 className="font-display font-semibold text-foreground mb-1">{c.title}</h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">{c.desc}</p>
                   </motion.div>
                 ))}
@@ -207,7 +207,7 @@ export default function TechnologyPage() {
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {futureConstructionTech.map((f) => (
                   <div key={f.title} className="glass rounded-xl p-6">
-                    <h4 className="font-display font-semibold text-foreground mb-2">{f.title}</h4>
+                    <h3 className="font-display font-semibold text-foreground mb-2">{f.title}</h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
                   </div>
                 ))}
@@ -291,7 +291,7 @@ export default function TechnologyPage() {
                   </div>
                   <span className="font-display text-2xl font-extrabold" style={{ color: m.color }}>{m.value}</span>
                 </div>
-                <h4 className="font-display font-semibold text-foreground mb-1">{m.label}</h4>
+                <h3 className="font-display font-semibold text-foreground mb-1">{m.label}</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">{m.desc}</p>
               </motion.div>
             ))}
@@ -340,7 +340,7 @@ export default function TechnologyPage() {
                 className="glass rounded-xl p-5 hover:border-primary/30 hover:translate-y-[-2px] transition-all"
               >
                 <div className="flex items-center justify-between mb-2 gap-2">
-                  <h4 className="font-display font-semibold text-foreground">{s.name}</h4>
+                  <h3 className="font-display font-semibold text-foreground">{s.name}</h3>
                   <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary">
                     {s.cat}
                   </span>

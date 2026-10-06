@@ -279,6 +279,8 @@ export default function HomePage() {
               {heroSlides.map((_, i) => (
                 <button
                   key={i}
+                  aria-label={`Go to slide ${i + 1}`}
+                  aria-pressed={i === heroIndex}
                   onClick={() => setHeroIndex(i)}
                   className={`h-1.5 rounded-full transition-all duration-500 ${
                     i === heroIndex ? "w-10 bg-primary" : "w-4 bg-muted-foreground/30 hover:bg-muted-foreground/50"

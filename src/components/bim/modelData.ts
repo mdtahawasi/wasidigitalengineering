@@ -26,8 +26,13 @@ export function createModelElements(floor: number | null): ModelElement[] {
   const single = floor !== null;
   const floorIndex = floor ?? 0;
   const height = single ? LEVEL_HEIGHT : LEVELS * LEVEL_HEIGHT;
+  const counts = new Map<string, number>();
   const add = (discipline: Discipline, family: string, name: string, level: number, position: Vector3, size: Vector3, material: string, system: string, purpose: string, shape: ModelElement["shape"] = "box", rotation?: Vector3) => {
-    elements.push({ id: `${DISCIPLINES.find(d => d.key === discipline)?.code}-${String(elements.length + 1).padStart(3, "0")}`, discipline, family, name, level, position, size, material, system, purpose, shape, rotation });
+    const familyCode = family.toUpperCase().replace(/[^A-Z0-9]+/g, "-");
+    const key = `${DISCIPLINES.find(d => d.key === discipline)?.code}-${level < 0 ? "CORE" : `L${level}`}-${familyCode}`;
+    const sequence = (counts.get(key) ?? 0) + 1;
+    counts.set(key, sequence);
+    elements.push({ id: `${key}-${String(sequence).padStart(2, "0")}`, discipline, family, name, level, position, size, material, system, purpose, shape, rotation });
   };
   const grid = [-2, 0, 2];
   for (const x of grid) for (const z of grid) {
@@ -86,6 +91,26 @@ export function createModelElements(floor: number | null): ModelElement[] {
       add("interior", "Seating", "Task chair", f, [x, y + 0.25, 0.63], [0.3, 0.42, 0.3], "Upholstery / steel", "Furniture", "Provides seating at the adjacent workstation.");
     }
     add("interior", "Ceiling zones", "Suspended ceiling zone", f, [0.6, y + 0.93, 0.55], [2.8, 0.025, 2.6], "Acoustic ceiling tile", "Ceiling coordination", "Defines the ceiling plane below the coordinated services.");
+    // Connected terminal details remain simple primitives for mobile inspection.
+    add("hvac", "VAV boxes", "Variable-air-volume terminal", f, [-1.35, y + 1.05, 1.06], [0.3, 0.21, 0.28], "Insulated steel", "Supply air", "Regulates the supply airflow to the adjacent branch and diffuser.");
+    add("hvac", "Return grilles", "Ceiling return-air grille", f, [0.1, y + 0.95, -0.55], [0.4, 0.06, 0.3], "Aluminium", "Return air", "Collects air from the occupied zone into the return duct.");
+    add("hvac", "Fire dampers", "Duct fire damper", f, [1.6, y + 1.05, 0.65], [0.08, 0.22, 0.32], "Galvanized steel", "Supply air", "Illustrates a fire-compartment damper in the supply duct; final positions require a fire strategy.");
+    for (const [x, system] of [[-1.55, "Domestic cold water"], [-1.65, "Gravity drainage"]] as const) {
+      add("plumbing", "Fixture connections", "Sanitary fixture connection", f, [x, y + 0.28, -1.4], [0.045, 0.4, 0.045], "PPR / uPVC", system, "Illustrates the local connection between a fixture and its floor branch.", "cylinder");
+    }
+    add("plumbing", "Isolation valves", "Cold-water isolation valve", f, [-2.25, y + 0.3, -1.2], [0.12, 0.12, 0.12], "Brass", "Domestic cold water", "Allows a floor water branch to be isolated for maintenance.", "sphere");
+    add("plumbing", "Floor drains", "Wet-area floor drain", f, [-1.55, y + 0.07, -0.2], [0.16, 0.035, 0.16], "Stainless steel", "Gravity drainage", "Collects water at the wet-area floor surface.");
+    for (const x of [-1.2, 1.2]) {
+      add("electrical", "Lighting conduits", "Lighting circuit conduit", f, [x, y + 0.98, 1.01], [0.025, 0.025, 1.82], "PVC conduit", "Lighting", "Routes a lighting circuit from containment toward the luminaire.");
+      add("fire", "Smoke detectors", "Ceiling smoke detector", f, [x, y + 0.89, -0.3], [0.14, 0.05, 0.14], "Polymer enclosure", "Fire detection", "Illustrates detection coverage within the occupied space.", "cylinder");
+      for (const legX of [-0.32, 0.32]) add("interior", "Desk frames", "Workstation support leg", f, [x + legX, y + 0.22, 1.1], [0.04, 0.4, 0.4], "Powder-coated steel", "Furniture", "Supports the workstation desktop at its edges.");
+    }
+    add("electrical", "Data outlets", "Data / communications outlet", f, [1.2, y + 0.3, 2.2], [0.1, 0.1, 0.04], "Electrical accessory", "Communications", "Provides a local communications connection beside small-power outlets.");
+    add("electrical", "Emergency lighting", "Core emergency luminaire", f, [0.35, y + 1.02, -0.82], [0.26, 0.07, 0.08], "LED / aluminium", "Emergency lighting", "Illuminates the protected circulation route during a power failure.");
+    add("fire", "Alarm call points", "Manual fire alarm call point", f, [1.4, y + 0.65, -1.86], [0.12, 0.13, 0.055], "Polymer enclosure", "Fire detection", "Allows occupants to manually raise a fire alarm near the core.");
+    add("architectural", "Door frames", "Core door head frame", f, [0.35, y + 0.89, -0.85], [0.53, 0.05, 0.09], "Steel", "Circulation", "Defines the head of the access-door opening.");
+    add("architectural", "Lift doors", "Passenger lift landing door", f, [-0.28, y + 0.45, -0.9], [0.48, 0.9, 0.06], "Stainless steel", "Vertical circulation", "Identifies the lift entrance within the protected service core.");
+    add("interior", "Meeting tables", "Meeting-room table", f, [0, y + 0.42, -0.55], [0.85, 0.08, 0.4], "Laminate", "Furniture", "Locates the shared meeting area within the partitioned office.");
   }
   for (const [discipline, family, x, z, size, material, system] of [
     ["hvac", "Duct risers", 1.6, -1.6, 0.3, "Galvanized steel", "Vertical air distribution"],
@@ -95,6 +120,10 @@ export function createModelElements(floor: number | null): ModelElement[] {
     ["fire", "Fire risers", 2.2, -1.1, 0.09, "Painted steel", "Wet sprinkler system"],
   ] as const) add(discipline, family, family.slice(0, -1), single ? floorIndex : -1, [x, height / 2, z], [size, height, size], material, system, "Connects the floor branches through the vertical service shaft.", discipline === "plumbing" || discipline === "fire" ? "cylinder" : "box");
   if (!single) {
+    for (const p of grid) {
+      add("structural", "Ground beams", "Foundation tie beam · X", -1, [0, -0.08, p], [4.4, 0.18, 0.18], "Reinforced concrete", "Foundation", "Connects individual footings across the foundation grid.");
+      add("structural", "Ground beams", "Foundation tie beam · Z", -1, [p, -0.08, 0], [0.18, 0.18, 4.4], "Reinforced concrete", "Foundation", "Ties the perpendicular rows of pad footings together.");
+    }
     add("structural", "Floor slabs", "Roof slab", LEVELS, [0, height, 0], [5, 0.08, 5], "Reinforced concrete", "Roof structure", "Supports the roof enclosure and rooftop plant.");
     add("hvac", "Air handling units", "Rooftop air handling unit", LEVELS, [1.2, height + 0.4, -1.2], [1.25, 0.65, 0.8], "Insulated sheet metal", "Mechanical plant", "Conditions air before supplying the building duct network.");
     add("hvac", "Fans", "AHU fan housing", LEVELS, [1.2, height + 0.75, -1.2], [0.35, 0.16, 0.35], "Steel", "Mechanical plant", "Moves air through the air handling unit.", "cylinder");
