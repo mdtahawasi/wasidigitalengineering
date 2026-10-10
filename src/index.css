@@ -17,6 +17,7 @@
   --bim-electrical: #c084fc;
   --bim-fire: #fb7185;
   --bim-interior: #f0abfc;
+  --bim-facade: #94a3b8;
   --bim-grid: #64748b;
   --bim-selected: #ffffff;
   --accent-primary: #00d4ff;
@@ -262,5 +263,6 @@ img {
 .bim-electrical { --bim-color: var(--bim-electrical); }
 .bim-fire { --bim-color: var(--bim-fire); }
 .bim-interior { --bim-color: var(--bim-interior); }
+.bim-facade { --bim-color: var(--bim-facade); }
 .bim-swatch { width: 0.55rem; height: 0.55rem; border-radius: 2px; background: var(--bim-color); }
 .bim-icon { display: flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; flex-shrink: 0; color: var(--bim-color); }

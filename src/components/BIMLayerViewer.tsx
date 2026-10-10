@@ -1,13 +1,13 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from "react";
-import { Building2, Layers3, Wind, Droplets, Zap, Flame, Palette, Eye, EyeOff, Focus, RotateCcw, Pause, Play, Tags, ScanLine } from "lucide-react";
+import { Building2, Layers3, Wind, Droplets, Zap, Flame, Palette, PanelsTopLeft, Eye, EyeOff, Focus, RotateCcw, Pause, Play, Tags, ScanLine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { createModelElements, DISCIPLINES, Discipline, LEVELS, ModelElement } from "./bim/modelData";
 
 const ModelScene = lazy(() => import("./bim/ModelScene"));
-const ICONS = { structural: Building2, architectural: Layers3, hvac: Wind, plumbing: Droplets, electrical: Zap, fire: Flame, interior: Palette };
-const ALL: Record<Discipline, boolean> = { structural: true, architectural: true, hvac: true, plumbing: true, electrical: true, fire: true, interior: true };
+const ICONS = { structural: Building2, architectural: Layers3, hvac: Wind, plumbing: Droplets, electrical: Zap, fire: Flame, facade: PanelsTopLeft, interior: Palette };
+const ALL: Record<Discipline, boolean> = { structural: true, architectural: true, hvac: true, plumbing: true, electrical: true, fire: true, facade: true, interior: true };
 
 export default function BIMLayerViewer() {
   const [visible, setVisible] = useState(ALL);

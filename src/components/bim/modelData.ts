@@ -1,4 +1,4 @@
-export type Discipline = "structural" | "architectural" | "hvac" | "plumbing" | "electrical" | "fire" | "interior";
+export type Discipline = "structural" | "architectural" | "hvac" | "plumbing" | "electrical" | "fire" | "facade" | "interior";
 export type Vector3 = [number, number, number];
 export type ModelElement = {
   id: string; discipline: Discipline; family: string; name: string;
@@ -8,12 +8,13 @@ export type ModelElement = {
 };
 
 export const DISCIPLINES: { key: Discipline; code: string; name: string; subtitle: string }[] = [
-  { key: "structural", code: "STR", name: "Structure", subtitle: "Foundations, frame & floor plates" },
-  { key: "architectural", code: "ARC", name: "Architecture", subtitle: "Envelope, entrance & circulation" },
-  { key: "hvac", code: "HVAC", name: "Mechanical / HVAC", subtitle: "Air handling, ducts & terminals" },
-  { key: "plumbing", code: "PLB", name: "Plumbing", subtitle: "Cold water, soil & sanitary fixtures" },
-  { key: "electrical", code: "ELE", name: "Electrical", subtitle: "Distribution, trays & luminaires" },
-  { key: "fire", code: "FIR", name: "Fire Protection", subtitle: "Sprinklers, risers & hose cabinets" },
+  { key: "architectural", code: "ARC", name: "Architecture", subtitle: "Walls, doors, stairs, lift & toilet cores" },
+  { key: "structural", code: "STR", name: "Structure", subtitle: "Piles, footings, grids, beams, slabs & shear walls" },
+  { key: "hvac", code: "MEC", name: "Mechanical / HVAC", subtitle: "Chillers, AHUs, FCUs, ducts & diffusers" },
+  { key: "electrical", code: "ELE", name: "Electrical", subtitle: "LT panel, DBs, trays, luminaires & earthing" },
+  { key: "plumbing", code: "PLB", name: "Plumbing", subtitle: "Tanks, pumps, risers, stacks & fixtures" },
+  { key: "fire", code: "FFS", name: "Fire Fighting", subtitle: "Sprinklers, hydrants, hose reels & fire pumps" },
+  { key: "facade", code: "FAC", name: "Facade", subtitle: "Curtain wall, ACP fins, louvres & canopy" },
   { key: "interior", code: "INT", name: "Interiors", subtitle: "Partitions, workstations & ceilings" },
 ];
 
@@ -52,11 +53,11 @@ export function createModelElements(floor: number | null): ModelElement[] {
     for (let side = 0; side < 4; side++) for (const u of [-1.6, -0.55, 0.55, 1.6]) {
       const pos: Vector3 = side < 2 ? [u, y + 0.73, side === 0 ? 2.52 : -2.52] : [side === 2 ? 2.52 : -2.52, y + 0.73, u];
       const size: Vector3 = side < 2 ? [0.92, 0.94, 0.035] : [0.035, 0.94, 0.92];
-      add("architectural", "Curtain-wall glazing", "Curtain-wall glass panel", f, pos, size, "Insulated glazing", "Building envelope", "Provides daylight and encloses the occupied floor.");
+      add("facade", "Curtain-wall glazing", "Curtain-wall glass panel", f, pos, size, "Insulated glazing", "Building envelope", "Provides daylight and encloses the occupied floor.");
       const framePos: Vector3 = side < 2 ? [u - 0.49, y + 0.73, pos[2]] : [pos[0], y + 0.73, u - 0.49];
-      add("architectural", "Mullions", "Vertical façade mullion", f, framePos, side < 2 ? [0.045, 1.25, 0.06] : [0.06, 1.25, 0.045], "Aluminium", "Curtain wall framing", "Supports and separates adjacent glazing panels.");
+      add("facade", "Mullions", "Vertical façade mullion", f, framePos, side < 2 ? [0.045, 1.25, 0.06] : [0.06, 1.25, 0.045], "Aluminium", "Curtain wall framing", "Supports and separates adjacent glazing panels.");
     }
-    for (const z of [-2.52, 2.52]) add("architectural", "Spandrel bands", "Façade spandrel band", f, [0, y + 0.12, z], [5.1, 0.2, 0.06], "Metal cladding", "Building envelope", "Conceals the edge of the floor slab.");
+    for (const z of [-2.52, 2.52]) add("facade", "Spandrel bands", "Façade spandrel band", f, [0, y + 0.12, z], [5.1, 0.2, 0.06], "Metal cladding", "Building envelope", "Conceals the edge of the floor slab.");
     add("architectural", "Doors", "Core access door", f, [0.35, y + 0.43, -0.85], [0.45, 0.86, 0.065], "Solid-core door", "Circulation", "Connects the occupied floor to the stair and lift lobby.");
     for (let step = 0; step < 8; step++) add("architectural", "Stairs", "Stair tread", f, [0.65, y + step * 0.15 + 0.07, -2 + step * 0.13], [0.7, 0.12, 0.18], "Precast concrete", "Vertical circulation", "Forms the stepped flight between adjacent levels.");
     add("architectural", "Handrails", "Stair handrail", f, [1.02, y + 0.99, -1.55], [0.045, 0.045, 1.55], "Stainless steel", "Stair safety", "Provides support along the stair flight.", "box", [-0.85, 0, 0]);
@@ -111,6 +112,24 @@ export function createModelElements(floor: number | null): ModelElement[] {
     add("architectural", "Door frames", "Core door head frame", f, [0.35, y + 0.89, -0.85], [0.53, 0.05, 0.09], "Steel", "Circulation", "Defines the head of the access-door opening.");
     add("architectural", "Lift doors", "Passenger lift landing door", f, [-0.28, y + 0.45, -0.9], [0.48, 0.9, 0.06], "Stainless steel", "Vertical circulation", "Identifies the lift entrance within the protected service core.");
     add("interior", "Meeting tables", "Meeting-room table", f, [0, y + 0.42, -0.55], [0.85, 0.08, 0.4], "Laminate", "Furniture", "Locates the shared meeting area within the partitioned office.");
+    for (const z of [-2.52, 2.52]) add("facade", "Transoms", "Horizontal curtain-wall transom", f, [0, y + 1.2, z], [5.05, 0.045, 0.06], "Aluminium", "Curtain wall framing", "Divides glazing horizontally and carries wind load to mullions.");
+    for (const x of [-2.52, 2.52]) add("facade", "Transoms", "Side curtain-wall transom", f, [x, y + 1.2, 0], [0.06, 0.045, 5.05], "Aluminium", "Curtain wall framing", "Divides side glazing horizontally.");
+    for (const u of [-2.1, -1.05, 0, 1.05, 2.1]) add("facade", "ACP fins", "Vertical ACP fin", f, [u, y + 0.7, 2.66], [0.05, 1.3, 0.22], "Aluminium composite panel", "Solar shading", "Shades the glazing and articulates the elevation.");
+    add("facade", "Louvres", "Horizontal sunshade louvre", f, [2.68, y + 1.1, 0], [0.3, 0.04, 4.8], "Extruded aluminium", "Solar shading", "Cuts direct sun on the east elevation.");
+    for (const u of [-1.6, 1.6]) add("facade", "Brackets & anchors", "Curtain-wall slab anchor", f, [u, y + 0.04, -2.45], [0.12, 0.06, 0.12], "Stainless steel", "Facade fixing", "Fixes the curtain-wall stack joint to the slab edge.");
+    add("architectural", "Masonry walls", "Core blockwork wall", f, [-1.95, y + 0.6, -1.0], [0.1, 1.2, 1.6], "AAC block", "Internal walls", "Encloses the toilet core.");
+    add("architectural", "Lift shaft", "Lift shaft enclosure", f, [-0.28, y + 0.65, -1.55], [0.6, 1.3, 0.04], "RCC / finish", "Vertical circulation", "Encloses the passenger lift car path.");
+    add("architectural", "Toilet core", "Toilet cubicle partition", f, [-1.4, y + 0.4, -0.9], [0.03, 0.8, 0.6], "HPL panel", "Wet areas", "Separates WC cubicles in the toilet core.");
+    add("architectural", "Floor finishes", "Vitrified tile finish", f, [0.6, y + 0.05, 0.6], [3.6, 0.015, 3.4], "Vitrified tile", "Finishes", "Wearing surface for the occupied floor.");
+    for (const z of [-1, 1]) add("structural", "Edge beams", "Perimeter edge beam", f, [z * 2.45, y + LEVEL_HEIGHT - 0.12, 0], [0.18, 0.22, 4.9], "Reinforced concrete", "Gravity frame", "Supports the slab edge and facade anchors.");
+    add("hvac", "FCUs", "Ceiling fan coil unit", f, [-0.6, y + 1.1, -1.5], [0.55, 0.2, 0.4], "Galvanized casing", "Chilled water", "Conditions the core and meeting zone locally.");
+    add("hvac", "Chilled-water pipes", "CHW supply & return pipe", f, [0, y + 1.22, -1.5], [0.05, 4, 0.05], "Insulated MS pipe", "Chilled water", "Carries chilled water from the plant to FCUs.", "cylinder", [0, 0, Math.PI / 2]);
+    add("electrical", "Earthing", "Floor earth bar", f, [2.25, y + 0.2, 1.3], [0.04, 0.06, 0.35], "Copper", "Earthing & bonding", "Bonds floor equipment to the earthing system.");
+    add("electrical", "Busbar trunking", "Rising busbar tap-off box", f, [2.2, y + 0.8, 1.95], [0.18, 0.22, 0.14], "Sheet steel", "LV distribution", "Taps power from the rising busbar to the floor DB.");
+    add("plumbing", "Hot-water pipes", "Hot-water branch", f, [-2.05, y + 0.36, 0], [0.04, 3.6, 0.04], "CPVC", "Domestic hot water", "Supplies hot water to washbasins.", "cylinder", [Math.PI / 2, 0, 0]);
+    add("plumbing", "Urinals", "Wall-hung urinal", f, [-1.9, y + 0.5, -0.2], [0.18, 0.35, 0.2], "Vitreous ceramic", "Sanitary fixtures", "Wall-hung fixture connected to the soil branch.");
+    add("fire", "Hydrant landing valves", "Landing valve", f, [2.0, y + 0.55, -1.1], [0.12, 0.12, 0.12], "Gunmetal", "Wet riser / hydrant", "Fire-brigade connection point on each floor.", "sphere");
+    add("fire", "Hose reels", "Swinging hose reel drum", f, [1.65, y + 0.58, -1.8], [0.3, 0.06, 0.3], "Painted steel", "First-aid firefighting", "Occupant first-aid firefighting hose.", "cylinder", [Math.PI / 2, 0, 0]);
   }
   for (const [discipline, family, x, z, size, material, system] of [
     ["hvac", "Duct risers", 1.6, -1.6, 0.3, "Galvanized steel", "Vertical air distribution"],
@@ -128,6 +147,15 @@ export function createModelElements(floor: number | null): ModelElement[] {
     add("hvac", "Air handling units", "Rooftop air handling unit", LEVELS, [1.2, height + 0.4, -1.2], [1.25, 0.65, 0.8], "Insulated sheet metal", "Mechanical plant", "Conditions air before supplying the building duct network.");
     add("hvac", "Fans", "AHU fan housing", LEVELS, [1.2, height + 0.75, -1.2], [0.35, 0.16, 0.35], "Steel", "Mechanical plant", "Moves air through the air handling unit.", "cylinder");
     add("plumbing", "Water tanks", "Rooftop domestic water tank", LEVELS, [-1.7, height + 0.4, 1.6], [0.85, 0.7, 0.85], "Polyethylene", "Domestic water storage", "Stores water for the domestic distribution riser.", "cylinder");
+    for (const x of grid) for (const z of grid) for (const d of [-0.2, 0.2]) add("structural", "Piles", "Bored cast-in-situ pile", -1, [x + d, -0.75, z], [0.12, 0.9, 0.12], "Reinforced concrete", "Deep foundation", "Transfers footing load to competent strata.", "cylinder");
+    add("hvac", "Chillers", "Air-cooled chiller", LEVELS, [-0.3, height + 0.35, -1.4], [1.1, 0.6, 0.6], "Steel casing", "Chilled-water plant", "Produces chilled water for AHUs and FCUs.");
+    add("electrical", "LT panels", "Main LT panel", -1, [2.0, 0.45, 2.0], [0.6, 0.9, 0.25], "Sheet steel", "LV distribution", "Receives transformer supply and feeds rising mains.");
+    add("electrical", "Lightning protection", "Roof air terminal", LEVELS, [2.3, height + 0.4, 2.3], [0.03, 0.8, 0.03], "Copper", "Lightning protection", "Intercepts lightning strikes at roof level.", "cylinder");
+    add("plumbing", "Pumps", "Domestic transfer pump", -1, [-2.0, 0.2, 2.0], [0.35, 0.3, 0.25], "Cast iron", "Domestic water", "Lifts water from the sump to the roof tank.", "cylinder");
+    add("fire", "Fire pumps", "Main electric fire pump", -1, [1.2, 0.2, 2.0], [0.5, 0.35, 0.3], "Cast iron", "Fire pump room", "Pressurizes sprinkler and hydrant networks.");
+    add("fire", "Fire pumps", "Diesel standby fire pump", -1, [0.5, 0.2, 2.0], [0.5, 0.35, 0.3], "Cast iron", "Fire pump room", "Standby pump during power failure.");
+    add("facade", "Canopy", "Entrance glass canopy", 0, [0, 1.3, 3.0], [1.6, 0.04, 0.9], "Laminated glass / steel", "Entrance", "Weather protection over the main entrance.");
+    for (const z of [-2.55, 2.55]) add("facade", "Parapet coping", "Aluminium coping", LEVELS, [0, height + 0.42, z], [5.15, 0.04, 0.16], "Aluminium", "Roof perimeter", "Caps and waterproofs the parapet.");
     for (const z of [-2.5, 2.5]) add("architectural", "Parapets", "Roof parapet", LEVELS, [0, height + 0.2, z], [5.1, 0.4, 0.1], "Masonry / coping", "Roof perimeter", "Forms the protective edge at roof level.");
   }
   return elements;
