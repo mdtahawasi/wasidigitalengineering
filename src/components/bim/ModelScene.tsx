@@ -29,7 +29,7 @@ export default function ModelScene({ elements, visible, colors, selected, onSele
         <Grid args={[16, 16]} position={[0, -0.31, 0]} cellColor={gridColor} sectionColor={gridColor} fadeDistance={22} />
         {shown.map(e => {
           const active = e.id === selected;
-          const faded = xray && (e.family === "Floor slabs" || e.discipline === "architectural" || e.family === "Ceiling zones" || e.family === "Partitions");
+          const faded = xray && (e.family === "Floor slabs" || e.discipline === "architectural" || e.discipline === "facade" || e.family === "Ceiling zones" || e.family === "Partitions");
           return <mesh key={e.id} position={e.position} rotation={e.rotation} onClick={event => pick(event, e)}>
             {e.shape === "box" ? <boxGeometry args={e.size} /> : e.shape === "cylinder" ? <cylinderGeometry args={[e.size[0] / 2, e.size[2] / 2, e.size[1], 8]} /> : <sphereGeometry args={[e.size[0] / 2, 8, 6]} />}
             <meshStandardMaterial color={colors[e.discipline]} emissive={colors[e.discipline]} emissiveIntensity={active ? 0.65 : 0.07} transparent={faded} opacity={faded ? 0.15 : 1} depthWrite={!faded} roughness={0.7} side={DoubleSide} />
