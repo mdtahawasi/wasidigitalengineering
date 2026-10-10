@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from "react";
-import { Building2, Layers3, Wind, Droplets, Zap, Flame, Palette, Eye, EyeOff, Focus, RotateCcw, Pause, Play, Tags, ScanLine } from "lucide-react";
+import { Building2, Layers3, Wind, Droplets, Zap, Flame, Palette, PanelsTopLeft, Eye, EyeOff, Focus, RotateCcw, Pause, Play, Tags, ScanLine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
