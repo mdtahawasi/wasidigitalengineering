@@ -114,6 +114,11 @@ export default function Footer() {
             </div>
           </div>
           <p className="text-xs text-muted-foreground">
+            {isConstruction
+              ? "Areas we serve: Nagpur, Amravati, Akola, Chandrapur, Wardha, Yavatmal, Gondia, Bhandara, Washim (Vidarbha) and Kolkata."
+              : "Areas we serve: BIM & engineering from Nagpur, Vidarbha to India, USA, UK, UAE, Saudi Arabia, Qatar, Europe and Australia."}
+          </p>
+          <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} Wasi Infratech Engineering & Construction (WITEC). {t("footer.rights")}
           </p>
         </div>
