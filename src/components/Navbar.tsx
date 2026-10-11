@@ -9,6 +9,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import DivisionToggle from "./DivisionToggle";
 import { useDivision } from "@/contexts/DivisionContext";
 import { getNavItems } from "@/config/navigation";
+import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -18,7 +19,13 @@ export default function Navbar() {
   const { division } = useDivision();
   const navLinks = getNavItems(division);
 
-  useEffect(() => { setOpen(false); }, [location.pathname]);
+  useEffect(() => { setOpen(false); }, [location.pathname, division]);
+
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setOpen(false); };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, []);
 
   const cycleTheme = () => {
     const next = theme === "system" ? "light" : theme === "light" ? "dark" : "system";
@@ -36,7 +43,7 @@ export default function Navbar() {
     >
       <nav className="container mx-auto flex min-h-16 items-center justify-between gap-2 px-3 py-2 sm:px-4 md:min-h-20 md:px-8">
         {/* Logo */}
-        <Link to="/" aria-label="WITEC GLOBAL" className="flex items-center gap-2 md:gap-3 shrink min-w-0">
+        <Link to="/" aria-label="WITEC GLOBAL" className="flex items-center gap-2 md:gap-3 shrink min-w-0 2xl:max-w-56">
           <img
             src={logo}
             alt="WITEC GLOBAL — Wasi Infratech Engineering & Construction"
@@ -50,11 +57,12 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop horizontal nav links */}
-        <div className="hidden xl:flex items-center gap-1">
+        <div className="hidden 2xl:flex items-center gap-1 whitespace-nowrap">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               to={link.href}
+              aria-current={location.pathname === link.href ? "page" : undefined}
               className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
                 location.pathname === link.href
                   ? "text-primary bg-primary/10"
@@ -70,27 +78,29 @@ export default function Navbar() {
         <div className="flex items-center gap-1 shrink-0">
           <Link
             to="/contact"
-            className="hidden xl:inline-flex items-center px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm"
+            className="hidden 2xl:inline-flex items-center px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground font-semibold text-sm"
           >
             {t("nav.getQuote")}
           </Link>
-          <button
+          <Button variant="ghost" size="icon"
             onClick={cycleTheme}
             className="flex min-h-11 min-w-11 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
             aria-label={`Theme: ${theme}`}
             title={`Theme: ${theme}`}
           >
             <ThemeIcon size={20} />
-          </button>
+          </Button>
           <LanguageSwitcher />
           {/* Hamburger - mobile only */}
-          <button
+          <Button variant="ghost" size="icon"
             onClick={() => setOpen(!open)}
-            className="flex min-h-11 min-w-11 items-center justify-center text-muted-foreground transition-colors hover:text-foreground xl:hidden"
+            className="flex min-h-11 min-w-11 items-center justify-center text-muted-foreground transition-colors hover:text-foreground 2xl:hidden"
             aria-label="Toggle menu"
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
           >
             {open ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          </Button>
         </div>
       </nav>
 
@@ -107,7 +117,8 @@ export default function Navbar() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute inset-x-3 top-full max-h-[min(70vh,32rem)] overflow-y-auto rounded-lg border border-border bg-card shadow-xl sm:left-auto sm:right-4 sm:w-64 md:right-8 xl:hidden"
+            id="mobile-navigation"
+            className="absolute inset-x-3 top-full max-h-[min(70vh,32rem)] overflow-y-auto rounded-lg border border-border bg-card shadow-xl sm:left-auto sm:right-4 sm:w-64 md:right-8 2xl:hidden"
           >
             <div className="py-2 flex flex-col">
               {navLinks.map((link) => (

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from "react";
 import translations from "@/i18n/translations";
 
 export type Language = "en" | "hi" | "ar" | "fr" | "de" | "es" | "zh" | "ja";
@@ -34,6 +34,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("wasi-lang", lang);
     document.documentElement.dir = languages.find((l) => l.code === lang)?.dir || "ltr";
   }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.documentElement.dir = languages.find((l) => l.code === language)?.dir ?? "ltr";
+  }, [language]);
 
   const t = useCallback(
     (key: string) => {
