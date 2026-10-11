@@ -10,3 +10,6 @@
 - [x] Add detailed BIM systems, stable element identifiers, searchable schedules and camera views
 - [x] Improve route-specific SEO and evidence-based structured data
 - [x] Verify upgraded model controls, SEO and mobile fit
+- [ ] Refine professional typography, homepage imagery and navigation fit
+- [ ] Correct shared footer division details and language-picker accessibility
+- [ ] Review SEO accuracy and verify both divisions across routes and themes

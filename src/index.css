@@ -25,6 +25,8 @@
   --accent-tertiary: #8b5cf6;
   --accent-glow: rgba(0, 212, 255, 0.3);
   --gradient-hero: linear-gradient(135deg, #00d4ff, #3b82f6, #8b5cf6);
+  --shadow-division: 0 6px 24px -12px var(--accent-glow);
+  --shadow-division-active: 0 4px 20px -4px var(--accent-glow);
 }
 [data-division="construction"] {
   --accent-primary: #10b981;
@@ -152,6 +154,9 @@
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    letter-spacing: 0;
   }
 }
 
@@ -254,6 +259,10 @@ html, body {
 img {
   transition: opacity 0.3s ease;
 }
+
+.hero-backdrop { opacity: 0.16; }
+.division-switch { box-shadow: var(--shadow-division); }
+.division-switch-active { background: var(--gradient-hero); box-shadow: var(--shadow-division-active); }
 
 /* BIM discipline identity shared by the scene and its controls. */
 .bim-structural { --bim-color: var(--bim-structural); }

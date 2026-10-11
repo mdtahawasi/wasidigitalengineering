@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Boxes, HardHat } from "lucide-react";
 import { useDivision, Division } from "@/contexts/DivisionContext";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   variant?: "desktop" | "mobile";
@@ -29,8 +30,7 @@ export default function DivisionToggle({ variant = "desktop", className = "" }: 
       role="tablist"
       aria-label="Select WITEC division"
       title="Switch between our BIM & Construction divisions"
-       className={`relative inline-flex min-w-0 items-center rounded-full border border-border bg-card/70 p-1 shadow-sm backdrop-blur-md ${sizeClasses} ${className}`}
-      style={{ boxShadow: "0 0 0 1px rgba(0,0,0,0.02), 0 6px 24px -12px var(--accent-glow)" }}
+       className={`division-switch relative inline-flex min-w-0 items-center rounded-full border border-border bg-card/70 p-1 backdrop-blur-md ${sizeClasses} ${className}`}
     >
       <span aria-live="polite" className="sr-only">
         {division === "bim" ? "BIM & Engineering division active" : "Construction division active"}
@@ -38,7 +38,7 @@ export default function DivisionToggle({ variant = "desktop", className = "" }: 
       {OPTIONS.map(({ id, label, Icon }) => {
         const active = division === id;
         return (
-          <button
+          <Button variant="ghost"
             key={id}
             role="tab"
             aria-selected={active}
@@ -53,16 +53,12 @@ export default function DivisionToggle({ variant = "desktop", className = "" }: 
               <motion.span
                 layoutId={`division-pill-${variant}`}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                className="absolute inset-0 rounded-full -z-10"
-                style={{
-                  background: "var(--gradient-hero)",
-                  boxShadow: "0 4px 20px -4px var(--accent-glow)",
-                }}
+                className="division-switch-active absolute inset-0 rounded-full -z-10"
               />
             )}
             <Icon size={14} className="shrink-0" />
              <span className="truncate">{label}</span>
-          </button>
+          </Button>
         );
       })}
     </div>
