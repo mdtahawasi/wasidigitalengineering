@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
+import logo from "@/assets/logo.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDivision } from "@/contexts/DivisionContext";
 
@@ -10,22 +11,27 @@ export default function Footer() {
 
   const footerLinks = {
     [t("footer.company")]: [
-      { label: t("footer.aboutUs"), href: "/about#our-story" },
-      { label: t("footer.ourTeam"), href: "/about#leadership" },
+      { label: t("footer.aboutUs"), href: isConstruction ? "/about" : "/about#our-story" },
+      { label: t("footer.ourTeam"), href: isConstruction ? "/about" : "/about#leadership" },
       { label: t("footer.careers"), href: "/careers" },
       { label: t("footer.contact"), href: "/contact" },
     ],
-    [t("footer.services")]: [
+    [t("footer.services")]: isConstruction ? [
+      { label: "Civil Construction", href: "/services" },
+      { label: "RCC & Structural Works", href: "/services" },
+      { label: "MEP Execution", href: "/services" },
+      { label: "Turnkey Construction", href: "/services" },
+    ] : [
       { label: t("footer.bimModeling"), href: "/services#disciplines" },
       { label: t("footer.clashDetection"), href: "/services#disciplines" },
       { label: t("footer.4d5dSim"), href: "/services#additional-services" },
       { label: t("footer.scanToBim"), href: "/services#additional-services" },
     ],
     [t("footer.industries")]: [
-      { label: t("footer.commercial"), href: "/services#industry-sectors" },
-      { label: t("footer.residential"), href: "/services#industry-sectors" },
-      { label: t("footer.infrastructure"), href: "/services#industry-sectors" },
-      { label: t("footer.healthcare"), href: "/services#industry-sectors" },
+      { label: t("footer.commercial"), href: isConstruction ? "/projects" : "/services#industry-sectors" },
+      { label: t("footer.residential"), href: isConstruction ? "/projects" : "/services#industry-sectors" },
+      { label: t("footer.infrastructure"), href: isConstruction ? "/projects" : "/services#industry-sectors" },
+      { label: t("footer.healthcare"), href: isConstruction ? "/projects" : "/services#industry-sectors" },
     ],
   };
 
@@ -40,30 +46,21 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2 space-y-4">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded bg-gradient-primary flex items-center justify-center font-display font-bold text-primary-foreground text-sm">
-                W
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-display font-bold text-foreground text-base">WASI</span>
+              <img src={logo} alt="WITEC Global" className="h-10 w-auto rounded-md" loading="lazy" />
+              <div className="flex min-w-0 flex-col leading-none">
+                <span className="font-display font-bold text-foreground text-base">WITEC</span>
                 <span className="text-[10px] text-muted-foreground tracking-widest uppercase">Infratech Engineering &amp; Construction</span>
               </div>
             </Link>
             <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
-              {t("footer.description")}
+              {isConstruction ? "Civil, structural and turnkey construction from Nagpur, serving Vidarbha and Kolkata." : t("footer.description")}
             </p>
-            <div className="flex gap-3">
-              {[Linkedin, Twitter, Instagram].map((Icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all">
-                  <Icon size={16} />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h4 className="font-display font-semibold text-foreground text-sm mb-4">{title}</h4>
+              <h2 className="font-display font-semibold text-foreground text-sm mb-4">{title}</h2>
               <ul className="space-y-2.5">
                 {links.map((link) => (
                   <li key={link.label}>
@@ -98,20 +95,20 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-border/50 flex flex-col md:flex-row gap-6 md:items-center justify-between">
           <div className="grid sm:grid-cols-2 gap-6 text-sm w-full md:w-auto">
             {/* Primary office swaps based on division */}
-            <div className={`space-y-1.5 ${isConstruction ? "order-2" : "order-1"}`}>
-              <div className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5" style={{ color: "#00d4ff" }}>
+            {!isConstruction && <div className="space-y-1.5">
+              <div className="text-[10px] text-primary font-bold uppercase tracking-widest flex items-center gap-1.5">
                 BIM &amp; Engineering Division {!isConstruction && <span className="text-[9px] font-semibold text-primary/80">• Primary</span>}
               </div>
               <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Sadar, Nagpur, Maharashtra, India</div>
-              <div className="flex items-center gap-2 text-muted-foreground"><Mail size={14} /> info@witecglobal.com</div>
-            </div>
-            <div className={`space-y-1.5 ${isConstruction ? "order-1" : "order-2"}`}>
-              <div className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5" style={{ color: "#10b981" }}>
+               <a href="mailto:info@witecglobal.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary"><Mail size={14} /> info@witecglobal.com</a>
+            </div>}
+            {isConstruction && <div className="space-y-1.5">
+              <div className="text-[10px] text-primary font-bold uppercase tracking-widest flex items-center gap-1.5">
                 Construction &amp; Civil Works Division {isConstruction && <span className="text-[9px] font-semibold text-emerald-500/80">• Primary</span>}
               </div>
               <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Sadar, Nagpur, Maharashtra, India (HQ)</div>
-              <div className="flex items-center gap-2 text-muted-foreground"><Mail size={14} /> taha@witecglobal.com</div>
-            </div>
+               <a href="mailto:taha@witecglobal.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary"><Mail size={14} /> taha@witecglobal.com</a>
+            </div>}
           </div>
           <p className="text-xs text-muted-foreground">
             {isConstruction
