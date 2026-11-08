@@ -17,7 +17,7 @@ export default function Hero3D({ variant = "bim", className = "", parallax = 0.1
     <div
       aria-hidden="true"
       data-parallax={parallax * 2}
-      className={`pointer-events-none absolute inset-y-0 right-0 hidden w-[34%] items-center justify-center xl:flex ${className}`}
+      className={`pointer-events-none absolute inset-y-0 right-0 hidden w-[24%] items-center justify-center 2xl:flex ${className}`}
     >
       <div className="opacity-40">
         <IsoWireframe variant={variant} />
