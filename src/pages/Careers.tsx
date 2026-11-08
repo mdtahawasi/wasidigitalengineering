@@ -133,18 +133,18 @@ export default function CareersPage() {
         </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />
         <div className="container mx-auto px-4 md:px-8 relative">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <motion.span initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.2 }} className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4">
+          <motion.div initial={{ y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <motion.span initial={{ x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.2 }} className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4">
               {t("careers.badge")}
             </motion.span>
-            <motion.h1 initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-3xl">
+            <motion.h1 initial={{ y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-3xl">
               {isConstruction ? (
                 <>{constructionCareers.hero.title} <span className="text-gradient">{constructionCareers.hero.highlight}</span> {constructionCareers.hero.end}</>
               ) : (
                 <>{t("careers.title")} <span className="text-gradient">{t("careers.titleHighlight")}</span> {t("careers.titleEnd")}</>
               )}
             </motion.h1>
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }} className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
+            <motion.p initial={{ y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }} className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
               {isConstruction ? constructionCareers.hero.desc : t("careers.desc")}
             </motion.p>
           </motion.div>
@@ -234,7 +234,7 @@ export default function CareersPage() {
             description="Fill in all relevant details below. Our HR team reviews every application personally and responds within 5 business days."
           />
           {submitted ? (
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="max-w-2xl mx-auto glass rounded-xl p-10 text-center">
+            <motion.div initial={{ scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="max-w-2xl mx-auto glass rounded-xl p-10 text-center">
               <CheckCircle size={64} className="text-primary mx-auto mb-4" />
               <h3 className="text-2xl font-display font-bold text-foreground mb-2">Application Received!</h3>
               <p className="text-muted-foreground mb-2">Thank you for applying{applyingFor ? ` for ${applyingFor}` : ""}.</p>

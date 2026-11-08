@@ -275,3 +275,76 @@ img {
 .bim-facade { --bim-color: var(--bim-facade); }
 .bim-swatch { width: 0.55rem; height: 0.55rem; border-radius: 2px; background: var(--bim-color); }
 .bim-icon { display: flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; flex-shrink: 0; color: var(--bim-color); }
+
+/* ===== Premium AEC motion & interaction layer ===== */
+.iso-scene { perspective: 900px; display: flex; align-items: center; justify-content: center; }
+.iso-rotor { position: relative; transform-style: preserve-3d; transform: rotateX(-24deg) rotateY(45deg); animation: iso-spin 36s linear infinite; }
+.iso-floor { position: absolute; left: 0; transform-style: preserve-3d; }
+.iso-face, .iso-slab { position: absolute; left: 0; top: 0; border: 1px solid hsl(var(--primary) / 0.7); background: hsl(var(--primary) / 0.04); backface-visibility: visible; }
+.iso-slab { top: 50%; margin-top: calc(-50% ); border-color: hsl(var(--primary) / 0.35); }
+@keyframes iso-spin { to { transform: rotateX(-24deg) rotateY(405deg); } }
+
+/* Division surfaces: BIM = blueprint grid, Construction = concrete grain */
+[data-division="bim"] .division-surface {
+  background-image: linear-gradient(hsl(var(--primary) / 0.035) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary) / 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+[data-division="construction"] .division-surface {
+  background-image: radial-gradient(hsl(var(--foreground) / 0.03) 1px, transparent 1px);
+  background-size: 6px 6px;
+}
+[data-division="construction"] {
+  --accent-tertiary: #f59e0b;
+  --gradient-hero: linear-gradient(135deg, #10b981, #0d9488, #0f766e);
+}
+:root, [data-division="bim"] {
+  --accent-tertiary: #1e3a8a;
+  --gradient-hero: linear-gradient(135deg, #14b8a6, #06b6d4, #1d4ed8);
+}
+
+/* Section rhythm & typography hierarchy */
+main h1 { text-wrap: balance; letter-spacing: -0.02em; }
+main h2 { text-wrap: balance; letter-spacing: -0.01em; }
+main p { text-wrap: pretty; }
+
+/* Micro-interactions: buttons & CTAs */
+main a[class*="rounded"][class*="px-"], main button[class*="rounded"], footer a[class*="rounded"][class*="px-"] {
+  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease;
+}
+@media (hover: hover) {
+  main a[class*="rounded"][class*="px-"]:hover, main button[class*="rounded"][class*="px-"]:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -12px hsl(var(--primary) / 0.55); }
+}
+main a[class*="rounded"][class*="px-"]:active, main button[class*="rounded"]:active { transform: translateY(0) scale(0.97); }
+a .lucide-arrow-right, button .lucide-arrow-right, a .lucide-chevron-right { transition: transform .2s ease; }
+a:hover .lucide-arrow-right, button:hover .lucide-arrow-right, a:hover .lucide-chevron-right { transform: translateX(4px); }
+a:focus-visible, button:focus-visible, [role="tab"]:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid hsl(var(--primary)); outline-offset: 3px; border-radius: 0.5rem;
+}
+
+/* 3D tilt + lift on cards (desktop only) */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  main .glass.rounded-xl, main .glass.rounded-2xl, main .tilt-card {
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease;
+    transform-style: preserve-3d;
+  }
+  main .glass.rounded-xl:hover, main .glass.rounded-2xl:hover, main .tilt-card:hover {
+    transform: perspective(1000px) rotateX(2.5deg) rotateY(-2deg) translateY(-6px);
+    box-shadow: 0 24px 48px -24px hsl(var(--primary) / 0.45);
+    border-color: hsl(var(--primary) / 0.35);
+  }
+}
+
+/* Project gallery overlay */
+.project-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 1rem; background: linear-gradient(to top, hsl(var(--background) / 0.92), hsl(var(--background) / 0.2) 60%, transparent); opacity: 0; transition: opacity .3s ease; }
+.group:hover .project-overlay, .group:focus-within .project-overlay { opacity: 1; }
+@media (hover: none) { .project-overlay { display: none; } }
+
+/* Hero media never blank */
+.hero-media { background-color: hsl(var(--muted)); }
+
+@media (max-width: 767px) {
+  .iso-rotor { animation: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .iso-rotor { animation: none !important; }
+}
