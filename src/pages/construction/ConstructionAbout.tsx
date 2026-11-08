@@ -20,13 +20,13 @@ export default function ConstructionAbout() {
         <img src={aboutBg} alt="Construction engineering team on site" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-background/80" />
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+          <motion.p initial={{ y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
             className="text-xs tracking-[0.4em] uppercase text-primary font-semibold mb-4">{wcAbout.eyebrow}</motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15 }}
+          <motion.h1 initial={{ y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15 }}
             className="font-display text-4xl md:text-6xl font-bold mb-6 text-foreground">
             {wcAbout.title1} <span className="text-primary">{wcAbout.title2}</span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
+          <motion.p initial={{ y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
             className="text-muted-foreground text-lg max-w-2xl mx-auto">{wcAbout.desc}</motion.p>
         </div>
       </section>

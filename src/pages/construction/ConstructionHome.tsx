@@ -22,20 +22,20 @@ export default function ConstructionHome() {
 
       {/* Hero */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-        <img src={heroCrane} alt="Construction site with tower crane at sunrise" fetchPriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={heroCrane} alt="Construction site with tower crane at sunrise" fetchPriority="high" loading="eager" decoding="async" data-parallax="0.25" className="hero-media absolute inset-0 w-full h-[115%] object-cover" />
         <div className="absolute inset-0 bg-background/70" />
         <Hero3D variant="construction" parallax={0.12} className="hero-backdrop" />
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center py-24">
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+          <motion.p initial={{ y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
             className="text-xs sm:text-sm tracking-[0.3em] uppercase text-primary font-semibold mb-4">
             {wcHero.subtitle}
           </motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15 }}
+          <motion.h1 initial={{ y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15 }}
             className="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 leading-tight text-foreground">
             <span className="block">{wcHero.title1}</span>
             <span className="block text-primary">{wcHero.title2}</span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
+          <motion.p initial={{ y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
             className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
             {wcHero.desc}
           </motion.p>

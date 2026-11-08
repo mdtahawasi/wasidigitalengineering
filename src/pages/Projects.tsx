@@ -178,9 +178,9 @@ export default function ProjectsPage() {
         </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />
         <div className="container mx-auto px-4 md:px-8 relative">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div initial={{ y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <motion.span
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
               className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 mb-4"
@@ -188,7 +188,7 @@ export default function ProjectsPage() {
               {isConstruction ? "● Built by WITEC Construction" : t("projects.badge")}
             </motion.span>
             <motion.h1
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight max-w-3xl"
@@ -200,7 +200,7 @@ export default function ProjectsPage() {
               )}
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
@@ -251,7 +251,7 @@ export default function ProjectsPage() {
             {filtered.map((project) => (
               <motion.div key={project.title} layout variants={staggerItem} className="group glass rounded-xl overflow-hidden">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <img src={project.img} alt={project.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" /><div className="project-overlay" aria-hidden="true"><span className="text-sm font-semibold text-foreground">{project.title}</span></div>
                   <div className="absolute top-3 left-3">
                     <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase bg-primary/90 text-primary-foreground">{getCategoryTranslation(project.category)}</span>
                   </div>

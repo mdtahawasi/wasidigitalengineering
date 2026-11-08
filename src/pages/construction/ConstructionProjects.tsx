@@ -30,13 +30,13 @@ export default function ConstructionProjects() {
         <img src={wcProjectsBg} alt="Construction projects portfolio" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-background/80" />
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+          <motion.p initial={{ y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
             className="text-xs tracking-[0.4em] uppercase text-primary font-semibold mb-4">{wcProjectsIntro.eyebrow}</motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15 }}
+          <motion.h1 initial={{ y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15 }}
             className="font-display text-4xl md:text-6xl font-bold mb-6 text-foreground">
             {wcProjectsIntro.title1} <span className="text-primary">{wcProjectsIntro.title2}</span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
+          <motion.p initial={{ y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
             className="text-muted-foreground text-lg max-w-2xl mx-auto">{wcProjectsIntro.desc}</motion.p>
         </div>
       </section>
@@ -69,7 +69,7 @@ export default function ConstructionProjects() {
                 <button key={p.id} onClick={() => setSelectedProject(p.id)}
                   className="glass rounded-2xl overflow-hidden group text-left transition-all hover:-translate-y-1">
                   <div className="relative h-52 overflow-hidden">
-                    <img src={p.image} alt={p.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <img src={p.image} alt={p.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /><div className="project-overlay" aria-hidden="true"><span className="text-sm font-semibold text-foreground">{p.name}</span></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
                     <div className="absolute top-3 left-3 flex gap-2">
                       <span className="px-2 py-1 text-[10px] font-semibold tracking-wider bg-primary/90 text-primary-foreground rounded-md">{p.sector.toUpperCase()}</span>

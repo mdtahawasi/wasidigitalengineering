@@ -160,7 +160,7 @@ export default function HomePage() {
       {/* ===== HERO ===== */}
       <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden">
         {/* Rotating background images */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={heroIndex}
             initial={{ opacity: 0, scale: 1.1 }}
@@ -173,31 +173,33 @@ export default function HomePage() {
               src={heroSlides[heroIndex].image}
               alt={heroSlides[heroIndex].sub}
               fetchPriority="high"
+              loading="eager"
               decoding="async"
-              className="w-full h-full object-cover"
+              data-parallax="0.25"
+              className="hero-media w-full h-[115%] object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/40" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/30" />
           </motion.div>
         </AnimatePresence>
 
-        <div className="absolute inset-0 grid-pattern opacity-10 pointer-events-none" />
-        {/* 3D animated particle background */}
-        <div aria-hidden="true" className="absolute inset-0 pointer-events-none opacity-20">
+        <div data-parallax="0.12" className="absolute inset-0 grid-pattern opacity-10 pointer-events-none" />
+        {/* 3D animated particle background (desktop only) */}
+        <div aria-hidden="true" className="absolute inset-0 pointer-events-none opacity-20 hidden lg:block">
           <Suspense fallback={null}>
             <ParticleField />
           </Suspense>
         </div>
         <Hero3D variant={isConstruction ? "construction" : "bim"} parallax={0.12} className="hero-backdrop" />
-        <div className="relative container mx-auto px-4 md:px-8 py-20">
+        <div data-parallax="-0.06" className="relative container mx-auto px-4 md:px-8 py-20">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-3xl"
           >
             <motion.span
-              initial={{ opacity: 0, scale: 0.9, x: -20 }}
+              initial={{ scale: 0.9, x: -20 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               className={`relative inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border mb-6 ${
@@ -253,7 +255,7 @@ export default function HomePage() {
             </AnimatePresence>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
               className="text-lg md:text-xl text-muted-foreground max-w-xl mb-8 leading-relaxed"
@@ -289,7 +291,7 @@ export default function HomePage() {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.9 }}
               className="flex flex-wrap gap-4"
@@ -309,7 +311,7 @@ export default function HomePage() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={false}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.8 }}
               className="mt-12 pt-8 border-t border-border/30"
@@ -324,7 +326,7 @@ export default function HomePage() {
                 ].map((item, i) => (
                   <motion.div
                     key={item.labelKey}
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.4 + i * 0.1, duration: 0.4 }}
                     className="flex items-center gap-1.5 text-muted-foreground/60 hover:text-primary/70 transition-colors"
