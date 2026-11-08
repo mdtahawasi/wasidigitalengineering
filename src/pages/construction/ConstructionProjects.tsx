@@ -69,7 +69,7 @@ export default function ConstructionProjects() {
                 <button key={p.id} onClick={() => setSelectedProject(p.id)}
                   className="glass rounded-2xl overflow-hidden group text-left transition-all hover:-translate-y-1">
                   <div className="relative h-52 overflow-hidden">
-                    <img src={p.image} alt={p.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <img src={p.image} alt={p.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /><div className="project-overlay" aria-hidden="true"><span className="text-sm font-semibold text-foreground">{p.name}</span></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
                     <div className="absolute top-3 left-3 flex gap-2">
                       <span className="px-2 py-1 text-[10px] font-semibold tracking-wider bg-primary/90 text-primary-foreground rounded-md">{p.sector.toUpperCase()}</span>

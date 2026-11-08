@@ -39,7 +39,7 @@ export default function Navbar() {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative z-50 w-full glass border-x-0 border-t-0"
+      className="sticky top-0 z-50 w-full glass border-x-0 border-t-0"
     >
       <nav className="container mx-auto flex min-h-16 items-center justify-between gap-2 px-3 py-2 sm:px-4 md:min-h-20 md:px-8">
         {/* Logo */}

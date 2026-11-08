@@ -251,7 +251,7 @@ export default function ProjectsPage() {
             {filtered.map((project) => (
               <motion.div key={project.title} layout variants={staggerItem} className="group glass rounded-xl overflow-hidden">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <img src={project.img} alt={project.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" /><div className="project-overlay" aria-hidden="true"><span className="text-sm font-semibold text-foreground">{project.title}</span></div>
                   <div className="absolute top-3 left-3">
                     <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase bg-primary/90 text-primary-foreground">{getCategoryTranslation(project.category)}</span>
                   </div>
