@@ -160,7 +160,7 @@ export default function HomePage() {
       {/* ===== HERO ===== */}
       <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden">
         {/* Rotating background images */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={heroIndex}
             initial={{ opacity: 0, scale: 1.1 }}
@@ -173,23 +173,25 @@ export default function HomePage() {
               src={heroSlides[heroIndex].image}
               alt={heroSlides[heroIndex].sub}
               fetchPriority="high"
+              loading="eager"
               decoding="async"
-              className="w-full h-full object-cover"
+              data-parallax="0.25"
+              className="hero-media w-full h-[115%] object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/40" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/30" />
           </motion.div>
         </AnimatePresence>
 
-        <div className="absolute inset-0 grid-pattern opacity-10 pointer-events-none" />
-        {/* 3D animated particle background */}
-        <div aria-hidden="true" className="absolute inset-0 pointer-events-none opacity-20">
+        <div data-parallax="0.12" className="absolute inset-0 grid-pattern opacity-10 pointer-events-none" />
+        {/* 3D animated particle background (desktop only) */}
+        <div aria-hidden="true" className="absolute inset-0 pointer-events-none opacity-20 hidden lg:block">
           <Suspense fallback={null}>
             <ParticleField />
           </Suspense>
         </div>
         <Hero3D variant={isConstruction ? "construction" : "bim"} parallax={0.12} className="hero-backdrop" />
-        <div className="relative container mx-auto px-4 md:px-8 py-20">
+        <div data-parallax="-0.06" className="relative container mx-auto px-4 md:px-8 py-20">
           <motion.div
             initial={{ y: 40 }}
             animate={{ opacity: 1, y: 0 }}

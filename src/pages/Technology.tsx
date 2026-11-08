@@ -72,7 +72,7 @@ export default function TechnologyPage() {
     <Layout>
       <DivisionSEO />
       {/* HERO */}
-      <section className="relative section-padding pt-32 overflow-hidden">
+      <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-10 pointer-events-none" />
         <div className="container mx-auto px-4 md:px-8 relative">
           <motion.div {...fadeUp} className="max-w-3xl">
