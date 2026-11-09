@@ -1,5 +1,9 @@
 # Roadmap
 
+- [ ] Sitewide SEO: unique division metadata, semantic headings, descriptive image alternatives and safe loading
+- [ ] Complete truthful service/FAQ structured data, internal links and crawler files
+- [ ] Verify every public division page on desktop and mobile; preserve contact details and numeric claims
+
 - [x] Clean advanced SEO metadata, structured data, favicon, sitemap, and AI-readable site summary
 - [x] Unlock the header and prevent navigation collisions at narrow widths
 - [x] Make floating controls and key layouts fit mobile and desktop viewports
