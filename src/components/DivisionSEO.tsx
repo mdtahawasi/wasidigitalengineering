@@ -2,8 +2,10 @@ import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { useDivision } from "@/contexts/DivisionContext";
 import { PAGE_SEO, SEO_SITE } from "@/config/seo";
+import { SERVICE_FAQ } from "@/config/serviceFaq";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const SITE = "https://witecglobal.com";
+const SITE = SEO_SITE;
 
 const META: Record<"bim" | "construction", { title: string; description: string; keywords: string }> = {
   bim: {
@@ -26,16 +28,17 @@ interface Props {
   /** Optional per-page override; default uses the division copy. */
   title?: string;
   description?: string;
+  services?: { title: string; desc: string }[];
 }
 
-export default function DivisionSEO({ title, description }: Props) {
+export default function DivisionSEO({ services = [] }: Props) {
   const { division } = useDivision();
+  const { language } = useLanguage();
   const { pathname } = useLocation();
-  const m = META[division];
   const page = PAGE_SEO[division][pathname] ?? PAGE_SEO[division]["/"];
-  const finalTitle = title && title.length <= 60 ? title : page.title;
-  const finalDesc = description && description.length >= 50 && description.length <= 160 ? description : page.description;
-  const normalizedPath = pathname === "/" ? "" : pathname;
+  const finalTitle = page.title;
+  const finalDesc = page.description;
+  const normalizedPath = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
   const url = `${SITE}${normalizedPath}?division=${division}`;
   const home = `${SEO_SITE}/?division=${division}`;
   const schema = {
@@ -46,7 +49,10 @@ export default function DivisionSEO({ title, description }: Props) {
         { "@type": "ListItem", position: 1, name: division === "bim" ? "BIM & Engineering" : "Construction", item: home },
         ...(pathname === "/" ? [] : [{ "@type": "ListItem", position: 2, name: page.label, item: url }]),
       ] },
-      ...(pathname === "/services" ? [{ "@type": "ItemList", "@id": `${url}#services`, name: page.title, itemListElement: (division === "bim" ? ["Architectural BIM", "Structural BIM", "MEP coordination", "Clash detection", "Scan-to-BIM", "4D/5D BIM"] : ["Civil construction", "RCC construction", "Structural steel construction", "MEP execution", "Turnkey construction"]).map((name, index) => ({ "@type": "ListItem", position: index + 1, item: { "@type": "Service", name, provider: { "@id": `${SITE}/#${division === "bim" ? "bim" : "construction"}-division` }, url } })) }] : []),
+      ...(pathname === "/services" ? [
+        { "@type": "OfferCatalog", "@id": `${url}#services`, name: finalTitle, itemListElement: services.map((service) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: service.title, description: service.desc, serviceType: service.title, provider: { "@id": `${SITE}/#${division}-division` }, areaServed: division === "bim" ? ["Nagpur", "Vidarbha", "India", "Worldwide"] : ["Nagpur", "Maharashtra", "India"], url } })) },
+        { "@type": "FAQPage", "@id": `${url}#faq`, inLanguage: language, mainEntity: SERVICE_FAQ[division][language].map(({ question, answer }) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
+      ] : []),
     ],
   };
   return (
@@ -59,6 +65,7 @@ export default function DivisionSEO({ title, description }: Props) {
       <meta property="og:description" content={finalDesc} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="WITEC Global" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDesc} />

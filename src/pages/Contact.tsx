@@ -44,7 +44,7 @@ export default function ContactPage() {
       <DivisionSEO />
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroConstruction} alt="" className="w-full h-full object-cover opacity-10" />
+          <img loading="eager" decoding="async" width={1280} height={672} src={heroConstruction} alt="Tower cranes and structural works at a building construction site" className="w-full h-full object-cover opacity-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
         </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />
@@ -109,7 +109,7 @@ export default function ContactPage() {
                 transition={{ delay: 0.4, duration: 0.5 }}
                 className="glass rounded-xl p-5"
               >
-                <h3 className="font-display font-semibold text-foreground text-sm mb-4">{t("contact.globalOffices")}</h3>
+                <h2 className="font-display font-semibold text-foreground text-sm mb-4">{t("contact.globalOffices")}</h2>
                 <div className="space-y-4">
                   <div className="border-l-2 border-primary pl-3">
                     <p className="text-foreground text-sm font-semibold">🇮🇳 Sadar, Nagpur, India (HQ)</p>
@@ -253,7 +253,7 @@ export default function ContactPage() {
             ].map((r, i) => (
               <motion.div key={i} variants={staggerItem} className={`rounded-xl p-5 border transition-all duration-300 ${r.highlight ? "border-primary/40 bg-primary/5" : "border-border/50 bg-card/30"}`}>
                 <div className="flex items-center justify-between mb-3">
-                  <h4 className="font-display font-bold text-foreground text-base">{r.region}</h4>
+                  <h3 className="font-display font-bold text-foreground text-base">{r.region}</h3>
                   <span className="text-sm font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full">{r.projects}</span>
                 </div>
                 <p className="text-xs text-muted-foreground mb-1"><span className="text-foreground font-medium">Cities:</span> {r.cities}</p>

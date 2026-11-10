@@ -169,7 +169,7 @@ export default function HomePage() {
             transition={{ duration: 1.2, ease: "easeInOut" }}
             className="absolute inset-0"
           >
-            <img
+            <img width={1200} height={800}
               src={heroSlides[heroIndex].image}
               alt={heroSlides[heroIndex].sub}
               fetchPriority="high"
@@ -406,7 +406,7 @@ export default function HomePage() {
               >
                 {service.img && (
                   <div className="relative h-36 overflow-hidden">
-                    <img src={service.img} alt={service.rawText ? service.titleKey : t(service.titleKey)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                    <img decoding="async" width={1200} height={800} src={service.img} alt={service.rawText ? service.titleKey : t(service.titleKey)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                   </div>
                 )}
@@ -489,7 +489,7 @@ export default function HomePage() {
                   <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mt-3 mb-3 group-hover:bg-gradient-primary transition-all duration-500">
                     <step.icon size={22} className="text-primary group-hover:text-primary-foreground transition-colors" />
                   </div>
-                  <h4 className="font-display font-semibold text-foreground mb-1">{step.title}</h4>
+                  <h3 className="font-display font-semibold text-foreground mb-1">{step.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
                 </motion.div>
               ))}
@@ -523,7 +523,7 @@ export default function HomePage() {
                   <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-3 group-hover:bg-gradient-primary transition-all duration-500">
                     <item.icon size={20} className="text-emerald-500 group-hover:text-primary-foreground transition-colors" />
                   </div>
-                  <h4 className="font-display font-semibold text-foreground text-sm mb-1.5">{item.title}</h4>
+                  <h3 className="font-display font-semibold text-foreground text-sm mb-1.5">{item.title}</h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                 </motion.div>
               ))}
@@ -579,7 +579,7 @@ export default function HomePage() {
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mt-3 mb-3 group-hover:bg-gradient-primary transition-all duration-500">
                     <step.icon size={20} className="text-primary group-hover:text-primary-foreground transition-colors" />
                   </div>
-                  <h4 className="font-display font-semibold text-foreground text-sm mb-1">{t(step.titleKey)}</h4>
+                  <h3 className="font-display font-semibold text-foreground text-sm mb-1">{t(step.titleKey)}</h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">{t(step.descKey)}</p>
                 </motion.div>
               ))}
@@ -609,7 +609,7 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="group relative overflow-hidden rounded-xl aspect-[4/3]"
               >
-                <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <img loading="lazy" decoding="async" width={1200} height={800} src={project.img} alt={`${project.title} — ${project.location} project visualization`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <span className="text-xs text-primary font-semibold uppercase tracking-wider">{project.rawCategory ?? t(project.categoryKey)}</span>
@@ -656,9 +656,9 @@ export default function HomePage() {
                     </div>
                     <span className="text-2xl font-display font-bold text-gradient">{ind.count}</span>
                   </div>
-                  <h4 className="font-display font-semibold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="font-display font-semibold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">
                     {t(ind.nameKey)}
-                  </h4>
+                  </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{ind.descKey ? t(ind.descKey) : ""}</p>
                   <div className="mt-4 h-1.5 rounded-full bg-muted overflow-hidden">
                     <motion.div
@@ -713,7 +713,7 @@ export default function HomePage() {
                     </div>
                     <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">{t(item.statKey)}</span>
                   </div>
-                  <h4 className="font-display font-bold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">{t(item.titleKey)}</h4>
+                  <h3 className="font-display font-bold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">{t(item.titleKey)}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{t(item.textKey)}</p>
                 </div>
               </motion.div>
@@ -751,7 +751,7 @@ export default function HomePage() {
                     </div>
                     <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">{t(item.statKey)}</span>
                   </div>
-                  <h4 className="font-display font-semibold text-foreground text-base mb-2 group-hover:text-primary transition-colors">{t(item.titleKey)}</h4>
+                  <h3 className="font-display font-semibold text-foreground text-base mb-2 group-hover:text-primary transition-colors">{t(item.titleKey)}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{t(item.textKey)}</p>
                 </div>
               </motion.div>

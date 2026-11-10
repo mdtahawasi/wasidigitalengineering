@@ -191,7 +191,7 @@ export default function SoftwareShowcase() {
               <div className="flex items-start gap-4">
                 {/* Logo */}
                 <div className="w-14 h-14 rounded-lg bg-muted flex items-center justify-center shrink-0 overflow-hidden p-2">
-                  <img
+                  <img decoding="async" width={1200} height={800}
                     src={sw.logo}
                     alt={`${sw.name} logo`}
                     className="w-full h-full object-contain"

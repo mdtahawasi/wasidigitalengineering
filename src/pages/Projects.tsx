@@ -173,7 +173,7 @@ export default function ProjectsPage() {
       <DivisionSEO />
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroConstruction} alt="WITEC construction and BIM project delivery" className="w-full h-full object-cover opacity-10" />
+          <img loading="eager" decoding="async" width={1280} height={672} src={heroConstruction} alt="WITEC construction and BIM project delivery" className="w-full h-full object-cover opacity-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
         </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />
@@ -251,7 +251,7 @@ export default function ProjectsPage() {
             {filtered.map((project) => (
               <motion.div key={project.title} layout variants={staggerItem} className="group glass rounded-xl overflow-hidden">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={project.img} alt={project.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" /><div className="project-overlay" aria-hidden="true"><span className="text-sm font-semibold text-foreground">{project.title}</span></div>
+                  <img decoding="async" width={1200} height={800} src={project.img} alt={`${project.title} — ${project.location} project visualization`} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" /><div className="project-overlay" aria-hidden="true"><span className="text-sm font-semibold text-foreground">{project.title}</span></div>
                   <div className="absolute top-3 left-3">
                     <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase bg-primary/90 text-primary-foreground">{getCategoryTranslation(project.category)}</span>
                   </div>
@@ -262,7 +262,7 @@ export default function ProjectsPage() {
                   )}
                 </div>
                 <div className="p-5 space-y-2">
-                  <h3 className="font-display font-semibold text-foreground text-sm leading-snug line-clamp-2">{project.title}</h3>
+                  <h2 className="font-display font-semibold text-foreground text-sm leading-snug line-clamp-2">{project.title}</h2>
                   <p className="flex items-center gap-1 text-xs text-muted-foreground">
                     <MapPin size={12} className="shrink-0" /> {project.location}
                   </p>
