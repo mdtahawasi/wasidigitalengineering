@@ -58,7 +58,7 @@ export default function AboutPage() {
       {/* Hero with background image */}
       <section id="about-hero" className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroTeamCollab} alt="WITEC engineering team coordinating a digital building model" className="w-full h-full object-cover opacity-15" />
+          <img loading="eager" decoding="async" width={1280} height={672} src={heroTeamCollab} alt="WITEC engineering team coordinating a digital building model" className="w-full h-full object-cover opacity-15" />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
         </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />
@@ -97,7 +97,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeLeft} className="rounded-2xl overflow-hidden">
-              <img src={aboutTeam} alt="Wasi Infratech Engineering & Construction (WITEC) team" className="w-full h-auto object-cover rounded-2xl" />
+              <img loading="lazy" decoding="async" width={1920} height={1080} src={aboutTeam} alt="Wasi Infratech Engineering & Construction (WITEC) team" className="w-full h-auto object-cover rounded-2xl" />
             </motion.div>
             <motion.div {...fadeRight} transition={{ delay: 0.2, duration: 0.6 }}>
               <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-4">
@@ -129,11 +129,11 @@ export default function AboutPage() {
             transition={{ duration: 0.7 }}
             className="relative rounded-2xl overflow-hidden h-64 md:h-80"
           >
-            <img src={heroConstruction} alt="Construction Excellence" className="w-full h-full object-cover" loading="lazy" />
+            <img decoding="async" width={1280} height={672} src={heroConstruction} alt="Tower cranes and structural works illustrating construction coordination" className="w-full h-full object-cover" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
             <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8">
               <p className="text-xs text-primary font-semibold uppercase tracking-wider mb-1">Our Commitment</p>
-              <h3 className="text-xl md:text-2xl font-display font-bold text-foreground">Building the Digital Future of Construction</h3>
+              <h2 className="text-xl md:text-2xl font-display font-bold text-foreground">Building the Digital Future of Construction</h2>
             </div>
           </motion.div>
         </div>

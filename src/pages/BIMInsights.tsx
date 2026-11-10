@@ -108,7 +108,7 @@ export default function BIMInsightsPage() {
       {/* ===== HERO ===== */}
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">
-          <img src={imgArchitecture} alt="" className="w-full h-full object-cover opacity-10" />
+          <img loading="eager" decoding="async" width={1024} height={672} src={imgArchitecture} alt="Architectural building model illustrating BIM design" className="w-full h-full object-cover opacity-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
         </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />
@@ -144,7 +144,7 @@ export default function BIMInsightsPage() {
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="relative aspect-[16/9] overflow-hidden rounded-xl group"
               >
-                <img src={item.img} alt={item.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                <img decoding="async" width={1200} height={800} src={item.img} alt={item.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent" />
                 <p className="absolute bottom-2 left-3 text-xs font-semibold text-foreground">{item.label}</p>
               </motion.div>
@@ -517,7 +517,7 @@ function ConstructionInsightsPage() {
       {/* Hero */}
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">
-          <img src={imgArchitecture} alt="" className="w-full h-full object-cover opacity-10" />
+          <img loading="eager" decoding="async" width={1024} height={672} src={imgArchitecture} alt="Architectural building model illustrating BIM design" className="w-full h-full object-cover opacity-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
         </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />

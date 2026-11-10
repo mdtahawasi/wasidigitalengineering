@@ -9,13 +9,13 @@ import { wcServicesIntro, wcServiceCategories, wcAllServices } from "@/data/wasi
 export default function ConstructionServices() {
   return (
     <Layout>
-      <DivisionSEO
+      <DivisionSEO services={wcAllServices}
         title="Construction Services in Nagpur | Civil Work, Site Work, MEP, Structural Design — WITEC Construction"
         description="Complete construction services in Nagpur — civil engineering, site work, structural design, MEP, plumbing, HVAC, fire protection, project management and turnkey construction."
       />
 
       <section className="relative py-28 overflow-hidden">
-        <img src={servicesBg} alt="Active construction site works" className="absolute inset-0 w-full h-full object-cover" />
+        <img loading="eager" decoding="async" width={1280} height={672} src={servicesBg} alt="Active construction site works" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-background/80" />
         <Hero3D variant="construction" parallax={0.08} />
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
@@ -37,7 +37,7 @@ export default function ConstructionServices() {
             <div className="container mx-auto px-4 md:px-8 py-16">
               <div className="flex items-center gap-3 mb-2">
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
-                <p className="font-display text-xs tracking-[0.3em] text-primary">{cat.label}</p>
+                <h2 className="font-display text-xs tracking-[0.3em] text-primary">{cat.label}</h2>
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
               </div>
               <p className="text-sm text-muted-foreground text-center max-w-xl mx-auto mb-10">{cat.desc}</p>

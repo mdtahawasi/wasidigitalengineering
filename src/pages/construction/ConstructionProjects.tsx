@@ -27,7 +27,7 @@ export default function ConstructionProjects() {
 
       {/* Hero */}
       <section className="relative py-28 overflow-hidden">
-        <img src={wcProjectsBg} alt="Construction projects portfolio" className="absolute inset-0 w-full h-full object-cover" />
+        <img loading="eager" decoding="async" width={1200} height={800} src={wcProjectsBg} alt="Construction projects portfolio" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-background/80" />
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
           <motion.p initial={{ y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
@@ -69,7 +69,7 @@ export default function ConstructionProjects() {
                 <button key={p.id} onClick={() => setSelectedProject(p.id)}
                   className="glass rounded-2xl overflow-hidden group text-left transition-all hover:-translate-y-1">
                   <div className="relative h-52 overflow-hidden">
-                    <img src={p.image} alt={p.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /><div className="project-overlay" aria-hidden="true"><span className="text-sm font-semibold text-foreground">{p.name}</span></div>
+                    <img decoding="async" width={1200} height={800} src={p.image} alt={`${p.name} — ${p.type} construction visualization`} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /><div className="project-overlay" aria-hidden="true"><span className="text-sm font-semibold text-foreground">{p.name}</span></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
                     <div className="absolute top-3 left-3 flex gap-2">
                       <span className="px-2 py-1 text-[10px] font-semibold tracking-wider bg-primary/90 text-primary-foreground rounded-md">{p.sector.toUpperCase()}</span>
@@ -77,7 +77,7 @@ export default function ConstructionProjects() {
                     </div>
                     <span className="absolute top-3 right-3 px-2 py-1 text-[10px] font-semibold tracking-wider rounded-md bg-secondary text-secondary-foreground">{p.status}</span>
                     <div className="absolute bottom-3 left-3 right-3">
-                      <h3 className="font-display text-lg font-bold text-foreground">{p.name}</h3>
+                      <h2 className="font-display text-lg font-bold text-foreground">{p.name}</h2>
                       <p className="text-xs text-muted-foreground">{p.area}</p>
                     </div>
                   </div>
@@ -118,7 +118,7 @@ export default function ConstructionProjects() {
                 className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-background/80 border border-border/60 flex items-center justify-center text-foreground">
                 <X size={16} />
               </button>
-              <img src={detail.image} alt={detail.name} className="w-full h-60 object-cover" />
+              <img loading="eager" decoding="async" width={1200} height={800} src={detail.image} alt={`${detail.name} — ${detail.type} project detail`} className="w-full h-60 object-cover" />
               <div className="p-8">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="px-2 py-1 text-[10px] font-semibold tracking-wider bg-primary/90 text-primary-foreground rounded-md">{detail.sector.toUpperCase()}</span>
@@ -175,7 +175,7 @@ export default function ConstructionProjects() {
             <motion.div key={activeView} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }} className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="relative rounded-2xl overflow-hidden">
-                <img src={wcViewModeImages[activeView]} alt={wcViewModeDetails[activeView].title} className="w-full h-[300px] sm:h-[400px] object-cover" />
+                <img loading="lazy" decoding="async" width={1200} height={800} src={wcViewModeImages[activeView]} alt={wcViewModeDetails[activeView].title} className="w-full h-[300px] sm:h-[400px] object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
               </div>
               <div className="glass rounded-2xl p-8">

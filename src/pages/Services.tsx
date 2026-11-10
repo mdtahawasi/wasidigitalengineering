@@ -77,7 +77,7 @@ export default function ServicesPage() {
 
   return (
     <Layout>
-      <DivisionSEO />
+      <DivisionSEO services={[...disciplines, ...additionalServices]} />
       {/* Hero */}
       <section id="services-hero" className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-10" />
@@ -171,9 +171,9 @@ export default function ServicesPage() {
                     transition={{ delay: i * 0.05 + 0.2, duration: 0.7 }}
                     className="lg:w-2/5 relative overflow-hidden"
                   >
-                    <img
+                    <img decoding="async" width={1200} height={800}
                       src={service.img}
-                      alt={service.title}
+                      alt={`${service.title} BIM workflow illustration`}
                       className="w-full h-48 lg:h-full object-cover hover:scale-105 transition-transform duration-700"
                       loading="lazy"
                     />
@@ -283,7 +283,7 @@ export default function ServicesPage() {
               {constructionSignatureBuilds.map((b) => (
                 <motion.div key={b.title} variants={staggerItem} className="glass rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-500">
                   <div className="relative h-52 overflow-hidden">
-                    <img src={b.img} alt={b.title} loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                    <img decoding="async" width={1200} height={800} src={b.img} alt={b.title} loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                     <h3 className="absolute bottom-4 left-4 font-display font-semibold text-lg text-foreground">{b.title}</h3>
                   </div>
@@ -319,9 +319,9 @@ export default function ServicesPage() {
             {additionalServices.map((service, i) => (
               <motion.div key={i} variants={staggerItem} className="glass rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-500">
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <img decoding="async" width={1200} height={800}
                     src={service.img}
-                    alt={service.title}
+                    alt={`${service.title} BIM workflow illustration`}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />

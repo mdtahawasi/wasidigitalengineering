@@ -46,7 +46,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2 space-y-4">
             <Link to="/" className="flex items-center gap-2">
-              <img src={logo} alt="WITEC Global" className="h-10 w-auto rounded-md" loading="lazy" />
+              <img decoding="async" width={1920} height={1047} src={logo} alt="WITEC Global" className="h-10 w-auto rounded-md" loading="lazy" />
               <div className="flex min-w-0 flex-col leading-none">
                 <span className="font-display font-bold text-foreground text-base">WITEC</span>
                 <span className="text-[10px] text-muted-foreground tracking-widest uppercase">Infratech Engineering &amp; Construction</span>

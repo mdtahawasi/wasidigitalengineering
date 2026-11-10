@@ -34,7 +34,7 @@ export default function BIMDimensionsSection() {
               style={{ borderTop: `3px solid ${d.color}` }}
             >
               <div className="font-display text-3xl font-extrabold mb-1" style={{ color: d.color }}>{d.d}</div>
-              <h4 className="font-display font-semibold text-foreground text-sm mb-2">{d.title}</h4>
+              <h3 className="font-display font-semibold text-foreground text-sm mb-2">{d.title}</h3>
               <p className="text-xs text-muted-foreground leading-relaxed">{d.desc}</p>
               <div className="absolute -bottom-8 -right-8 w-24 h-24 rounded-full opacity-10 blur-2xl" style={{ background: d.color }} />
             </motion.div>
