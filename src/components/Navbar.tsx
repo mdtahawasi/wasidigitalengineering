@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-optimized.webp";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon, Monitor } from "lucide-react";
@@ -46,6 +46,7 @@ export default function Navbar() {
         <Link to="/" aria-label="WITEC GLOBAL" className="flex items-center gap-2 md:gap-3 shrink min-w-0 2xl:max-w-56">
           <img
             src={logo}
+            width={384} height={209} decoding="async"
             alt="WITEC GLOBAL — Wasi Infratech Engineering & Construction"
             aria-label="WITEC GLOBAL"
             className="h-8 md:h-11 w-auto rounded-md shrink-0 dark:brightness-110 dark:contrast-110"

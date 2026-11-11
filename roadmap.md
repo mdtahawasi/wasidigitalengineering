@@ -1,8 +1,8 @@
 # Roadmap
 
-- [ ] Sitewide SEO: unique division metadata, semantic headings, descriptive image alternatives and safe loading
-- [ ] Complete truthful service/FAQ structured data, internal links and crawler files
-- [ ] Verify every public division page on desktop and mobile; preserve contact details and numeric claims
+- [x] Sitewide SEO: unique division metadata, semantic headings, descriptive image alternatives and safe loading
+- [x] Complete truthful service/FAQ structured data, internal links and crawler files
+- [x] Verify every public division page on desktop and mobile; preserve contact details and numeric claims
 
 - [x] Clean advanced SEO metadata, structured data, favicon, sitemap, and AI-readable site summary
 - [x] Unlock the header and prevent navigation collisions at narrow widths
@@ -17,3 +17,5 @@
 - [ ] Refine professional typography, homepage imagery and navigation fit
 - [ ] Correct shared footer division details and language-picker accessibility
 - [ ] Review SEO accuracy and verify both divisions across routes and themes
+
+- [ ] Existing BIM cutaway test fails for facade canopy — outside SEO-only scope; requires permission to change model logic

@@ -1,3 +1,4 @@
+import { heroImageSrcSet } from "@/lib/heroImages";
 import { Link } from "react-router-dom";
 import { ArrowRight, Star, Quote } from "lucide-react";
 import { motion } from "framer-motion";
@@ -22,7 +23,7 @@ export default function ConstructionHome() {
 
       {/* Hero */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-        <img width={1024} height={1024} src={heroCrane} alt="Construction site with tower crane at sunrise" fetchPriority="high" loading="eager" decoding="async" data-parallax="0.25" className="hero-media absolute inset-0 w-full h-[115%] object-cover" />
+        <img srcSet={heroImageSrcSet(heroCrane)} sizes="100vw" width={1024} height={1024} src={heroCrane} alt="Construction site with tower crane at sunrise" fetchPriority="high" loading="eager" decoding="async" data-parallax="0.25" className="hero-media absolute inset-0 w-full h-[115%] object-cover" />
         <div className="absolute inset-0 bg-background/70" />
         <Hero3D variant="construction" parallax={0.12} className="hero-backdrop" />
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center py-24">

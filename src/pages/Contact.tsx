@@ -1,3 +1,4 @@
+import { heroImageSrcSet } from "@/lib/heroImages";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, Send, Globe, Building2 } from "lucide-react";
@@ -44,7 +45,7 @@ export default function ContactPage() {
       <DivisionSEO />
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">
-          <img loading="eager" decoding="async" width={1280} height={672} src={heroConstruction} alt="Tower cranes and structural works at a building construction site" className="w-full h-full object-cover opacity-10" />
+          <img srcSet={heroImageSrcSet(heroConstruction)} sizes="100vw" loading="eager" decoding="async" width={1280} height={672} src={heroConstruction} alt="Tower cranes and structural works at a building construction site" className="w-full h-full object-cover opacity-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
         </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />
