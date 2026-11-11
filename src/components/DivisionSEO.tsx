@@ -35,10 +35,10 @@ export default function DivisionSEO({ services = [] }: Props) {
   const { division } = useDivision();
   const { language } = useLanguage();
   const { pathname } = useLocation();
-  const page = PAGE_SEO[division][pathname] ?? PAGE_SEO[division]["/"];
+  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+  const page = PAGE_SEO[division][normalizedPath] ?? PAGE_SEO[division]["/"];
   const finalTitle = page.title;
   const finalDesc = page.description;
-  const normalizedPath = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
   const url = `${SITE}${normalizedPath}?division=${division}`;
   const home = `${SEO_SITE}/?division=${division}`;
   const schema = {
