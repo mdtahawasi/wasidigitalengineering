@@ -1,3 +1,4 @@
+import { heroImageSrcSet } from "@/lib/heroImages";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
@@ -31,7 +32,7 @@ export default function ConstructionTechnology() {
       />
 
       <section className="relative py-28 overflow-hidden">
-        <img loading="eager" decoding="async" width={1200} height={800} src={wcServicesBg} alt="Construction technology and site safety" className="absolute inset-0 w-full h-full object-cover" />
+        <img srcSet={heroImageSrcSet(wcServicesBg)} sizes="100vw" loading="eager" decoding="async" width={1200} height={800} src={wcServicesBg} alt="Construction technology and site safety" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-background/85" />
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
           <motion.p initial={{ y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}

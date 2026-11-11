@@ -1,3 +1,4 @@
+import { heroImageSrcSet } from "@/lib/heroImages";
 import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import DivisionSEO from "@/components/DivisionSEO";
@@ -15,7 +16,7 @@ export default function ConstructionServices() {
       />
 
       <section className="relative py-28 overflow-hidden">
-        <img loading="eager" decoding="async" width={1280} height={672} src={servicesBg} alt="Active construction site works" className="absolute inset-0 w-full h-full object-cover" />
+        <img srcSet={heroImageSrcSet(servicesBg)} sizes="100vw" loading="eager" decoding="async" width={1280} height={672} src={servicesBg} alt="Active construction site works" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-background/80" />
         <Hero3D variant="construction" parallax={0.08} />
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">

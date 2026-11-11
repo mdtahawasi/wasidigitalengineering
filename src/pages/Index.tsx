@@ -1,3 +1,4 @@
+import { heroImageSrcSet } from "@/lib/heroImages";
 import { lazy, Suspense, useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useScrollToHash } from "@/hooks/useScrollToHash";
@@ -169,7 +170,7 @@ export default function HomePage() {
             transition={{ duration: 1.2, ease: "easeInOut" }}
             className="absolute inset-0"
           >
-            <img width={1200} height={800}
+            <img srcSet={heroImageSrcSet(heroSlides[heroIndex].image)} sizes="100vw" width={1200} height={800}
               src={heroSlides[heroIndex].image}
               alt={heroSlides[heroIndex].sub}
               fetchPriority="high"

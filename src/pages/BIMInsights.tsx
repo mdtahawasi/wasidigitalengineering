@@ -1,3 +1,4 @@
+import { heroImageSrcSet } from "@/lib/heroImages";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -108,7 +109,7 @@ export default function BIMInsightsPage() {
       {/* ===== HERO ===== */}
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">
-          <img loading="eager" decoding="async" width={1024} height={672} src={imgArchitecture} alt="Architectural building model illustrating BIM design" className="w-full h-full object-cover opacity-10" />
+          <img srcSet={heroImageSrcSet(imgArchitecture)} sizes="100vw" loading="eager" decoding="async" width={1024} height={672} src={imgArchitecture} alt="Architectural building model illustrating BIM design" className="w-full h-full object-cover opacity-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
         </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />
@@ -517,7 +518,7 @@ function ConstructionInsightsPage() {
       {/* Hero */}
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">
-          <img loading="eager" decoding="async" width={1024} height={672} src={imgArchitecture} alt="Architectural building model illustrating BIM design" className="w-full h-full object-cover opacity-10" />
+          <img srcSet={heroImageSrcSet(imgArchitecture)} sizes="100vw" loading="eager" decoding="async" width={1024} height={672} src={imgArchitecture} alt="Architectural building model illustrating BIM design" className="w-full h-full object-cover opacity-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
         </div>
         <div className="absolute inset-0 grid-pattern opacity-10" />
