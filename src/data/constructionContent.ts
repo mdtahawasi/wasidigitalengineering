@@ -405,7 +405,7 @@ export const constructionCareers = {
     title: "Build India's Future",
     highlight: "With Us",
     end: "",
-    desc: "Join WITEC Construction — a team of 2–10 people of site engineers, structural specialists, MEP experts and safety officers delivering IS-code compliant projects across Maharashtra & beyond.",
+    desc: "Join WITEC Construction — a team of 2–10 people — site engineers, structural specialists, MEP experts and safety officers delivering IS-code compliant projects across Maharashtra & beyond.",
   },
   perks: [
     { title: "Site Growth Path",   desc: "From Junior Engineer to Project Manager in 5 years — clear promotion ladders and quarterly reviews." },

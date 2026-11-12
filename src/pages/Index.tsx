@@ -364,7 +364,7 @@ export default function HomePage() {
                 className="text-center"
               >
                 <div className="text-3xl md:text-4xl font-display font-bold text-gradient">
-                  {stat.label === "Founded" ? stat.value : <>{"prefix" in stat ? stat.prefix : ""}<AnimatedCounter target={stat.value} suffix={stat.suffix} /></>}
+                  {stat.label === "Founded" ? stat.value : "prefix" in stat && stat.prefix ? `${stat.prefix}${stat.value}` : <>{"prefix" in stat ? stat.prefix : ""}<AnimatedCounter target={stat.value} suffix={stat.suffix} /></>}
                 </div>
                 <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
               </motion.div>

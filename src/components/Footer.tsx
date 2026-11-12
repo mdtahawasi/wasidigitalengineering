@@ -119,7 +119,7 @@ export default function Footer() {
               : "Areas we serve: BIM & engineering from Nagpur, Vidarbha to India, USA, UK, UAE, Saudi Arabia, Qatar, Europe and Australia."}
           </p>
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Wasi Infratech Engineering & Construction (WITEC). {t("footer.rights")}
+            © {new Date().getFullYear()} Wasi Infratech Engineering & Construction. {t("footer.rights")}
           </p>
         </div>
       </div>
