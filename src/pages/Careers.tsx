@@ -38,7 +38,7 @@ const coreValues = [
 ];
 
 const whyJoinUs = [
-  { number: "150+", label: "Team Members", desc: "Engineers, architects, and technologists across 12 countries" },
+  { number: "2–10", label: "Team Members", desc: "Engineers, architects, and technologists across 12 countries" },
   { number: "500+", label: "Projects Delivered", desc: "Across commercial, residential, healthcare, and infrastructure" },
   { number: "98%", label: "Employee Retention", desc: "Our team stays because they love what they do" },
   { number: "4.8/5", label: "Glassdoor Rating", desc: "Rated as a top workplace in the AEC-tech industry" },
@@ -48,7 +48,7 @@ const growthPaths = [
   { icon: BookOpen, title: "Structured Onboarding", desc: "30-60-90 day plan with dedicated mentors, tool training, and project shadowing to set you up for success from day one." },
   { icon: Award, title: "Career Progression", desc: "Clear promotion pathways from Junior to Lead to Director. Annual reviews with transparent criteria and skill-based advancement." },
   { icon: GraduationCap, title: "Certifications Sponsored", desc: "Autodesk Certified Professional, PMP, LEED AP, and more — fully funded by the company with paid study leave." },
-  { icon: Globe, title: "Global Mobility", desc: "Opportunities to work across our offices in Dubai, Riyadh, London, Cairo, and more. International project exposure guaranteed." },
+  { icon: Globe, title: "Global Mobility", desc: "Opportunities to work across our offices in India (Nagpur HQ) and UAE. International project exposure guaranteed." },
 ];
 
 
@@ -155,7 +155,7 @@ export default function CareersPage() {
       {/* Why Join Us - Stats */}
       <section className="pb-16">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeading label="Why Join Us" title={isConstruction ? "A Site That Builds Careers" : "A Workplace That Inspires"} description={isConstruction ? "500+ engineers, safety officers and skilled trades — building India's skyline together with zero-harm safety and clear growth paths." : "We're not just building models — we're building careers, communities, and the future of construction technology."} />
+          <SectionHeading label="Why Join Us" title={isConstruction ? "A Site That Builds Careers" : "A Workplace That Inspires"} description={isConstruction ? "2–10 people — engineers, safety officers and skilled trades — building India's skyline together with zero-harm safety and clear growth paths." : "We're not just building models — we're building careers, communities, and the future of construction technology."} />
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, i) => (
               <motion.div key={i} variants={staggerItem} className="glass rounded-xl p-6 text-center">
@@ -269,7 +269,7 @@ export default function CareersPage() {
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground mb-1.5 block">Phone Number *</label>
-                    <Input type="tel" placeholder="+971 50 123 4567" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} required />
+                    <Input type="tel" placeholder="+971 56 932 7490" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} required />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground mb-1.5 block">LinkedIn Profile</label>

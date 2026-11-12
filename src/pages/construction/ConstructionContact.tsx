@@ -84,7 +84,7 @@ export default function ConstructionContact() {
                   <h3 className="font-display text-sm tracking-wider mb-1 text-foreground">{c.title}</h3>
                   {c.lines.map((l) =>
                     "isEmail" in c && c.isEmail ? (
-                      <a key={l} href={`mailto:${wcContact.email}`} className="block text-sm text-muted-foreground hover:text-primary transition-colors">{l}</a>
+                      <a key={l} href={`mailto:${l}`} className="block text-sm text-muted-foreground hover:text-primary transition-colors">{l}</a>
                     ) : (
                       <p key={l} className="text-sm text-muted-foreground">{l}</p>
                     )

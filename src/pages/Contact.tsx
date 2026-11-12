@@ -20,10 +20,12 @@ export default function ContactPage() {
 
   const contactInfo = isConstruction ? [
     { icon: Mail, labelKey: "contact.email", value: "taha@witecglobal.com" },
+    { icon: Mail, labelKey: "contact.email", value: "info@witecglobal.com" },
     { icon: MapPin, labelKey: "contact.headOffice", value: "Sadar, Nagpur, Maharashtra, India" },
     { icon: Clock, labelKey: "contact.workingHours", value: "Mon–Sat: 9:00 AM – 7:00 PM · Sun: By appointment" },
   ] : [
     { icon: Mail, labelKey: "contact.email", value: "info@witecglobal.com" },
+    { icon: Mail, labelKey: "contact.email", value: "taha@witecglobal.com" },
     { icon: MapPin, labelKey: "contact.headOffice", value: "Sadar, Nagpur, Maharashtra, India" },
     { icon: Clock, labelKey: "contact.workingHours", value: "Mon–Sat: 9:00 AM – 6:00 PM" },
   ];
@@ -152,7 +154,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <label className="block text-xs text-muted-foreground uppercase tracking-wider mb-1.5">{t("contact.phone")}</label>
-                    <input type="tel" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="+971 ..." />
+                    <input type="tel" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="+971 56 932 7490" />
                   </div>
                   <div>
                     <label className="block text-xs text-muted-foreground uppercase tracking-wider mb-1.5">{t("contact.company")}</label>

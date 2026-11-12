@@ -85,10 +85,10 @@ const bimServiceKeys = [
 const bimStats = [
   { value: 150, suffix: "+", label: "BIM Projects" },
   { value: 5,   suffix: "+", label: "Countries" },
-  { value: 50,  suffix: "+", label: "BIM Experts" },
-  { value: 10,  suffix: "+", label: "Years BIM" },
+  { value: 10, suffix: "", prefix: "2–", label: "BIM Experts" },
+  { value: 2019, suffix: "", label: "Founded" },
 ];
-const constructionStats = constructionHeroKpis.map(k => ({ value: k.value, suffix: k.suffix, label: k.label }));
+const constructionStats = constructionHeroKpis.map(k => ({ value: k.value, suffix: k.suffix, prefix: "prefix" in k ? k.prefix : undefined, label: k.label }));
 
 const projects = [
   { img: projectHGR, title: "Al Habtoor Grand Residency (HGR)", categoryKey: "projects.residential", location: "Dubai, UAE" },
@@ -364,7 +364,7 @@ export default function HomePage() {
                 className="text-center"
               >
                 <div className="text-3xl md:text-4xl font-display font-bold text-gradient">
-                  <AnimatedCounter target={stat.value} suffix={stat.suffix} />
+                  {stat.label === "Founded" ? stat.value : "prefix" in stat && stat.prefix ? `${stat.prefix}${stat.value}` : <>{"prefix" in stat ? stat.prefix : ""}<AnimatedCounter target={stat.value} suffix={stat.suffix} /></>}
                 </div>
                 <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
               </motion.div>

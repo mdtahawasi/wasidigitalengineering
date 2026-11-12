@@ -27,7 +27,7 @@ const bimTimeline = [
   { year: "2019", event: "Founded in India as a BIM consulting startup by Md Taha Wasi" },
   { year: "2020", event: "Expanded services to Architecture, Structure & MEP BIM modeling" },
   { year: "2021", event: "Completed first 10 projects across residential & commercial sectors" },
-  { year: "2022", event: "Launched coordination & clash detection services, grew to 15+ professionals" },
+  { year: "2022", event: "Launched coordination & clash detection services, grew to 2–10 people" },
   { year: "2023", event: "Entered UAE market, expanded to industrial & infrastructure projects" },
   { year: "2024", event: "30+ projects completed across all AEC industry sectors" },
   { year: "2025", event: "AI-integrated BIM workflows, Digital Twin & FM solutions launched" },
@@ -45,7 +45,7 @@ export default function AboutPage() {
   const statsData = isConstruction
     ? constructionAboutStory.stats
     : [
-        { value: 6, suffix: "+", labelKey: "stat.yearsExperience" },
+        { value: 2019, suffix: "", labelKey: "stat.founded" },
         { value: 30, suffix: "+", labelKey: "stat.projectsDelivered" },
         { value: 3, suffix: "", labelKey: "stat.industrySectors" },
         { value: 2, suffix: "", labelKey: "stat.countries" },
@@ -98,7 +98,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeLeft} className="rounded-2xl overflow-hidden">
-              <img loading="lazy" decoding="async" width={1920} height={1080} src={aboutTeam} alt="Wasi Infratech Engineering & Construction (WITEC) team" className="w-full h-auto object-cover rounded-2xl" />
+              <img loading="lazy" decoding="async" width={1920} height={1080} src={aboutTeam} alt="Wasi Infratech Engineering & Construction team" className="w-full h-auto object-cover rounded-2xl" />
             </motion.div>
             <motion.div {...fadeRight} transition={{ delay: 0.2, duration: 0.6 }}>
               <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-4">
@@ -109,7 +109,7 @@ export default function AboutPage() {
                   constructionAboutStory.paragraphs.map((p, i) => <p key={i}>{p}</p>)
                 ) : (
                   <>
-                    <p>Founded in 2019 in India by Md Taha Wasi, Wasi Infratech Engineering & Construction (WITEC) began with a clear mission: to bridge the gap between traditional construction methods and the digital future. What started as a small team of BIM enthusiasts has grown into a consultancy serving ambitious projects across the AEC industry.</p>
+                    <p>Founded in 2019 in India by Md Taha Wasi, Wasi Infratech Engineering & Construction began with a clear mission: to bridge the gap between traditional construction methods and the digital future. What started as a small team of BIM enthusiasts has grown into a consultancy serving ambitious projects across the AEC industry.</p>
                     <p>Today, we've successfully delivered 30+ projects across residential, commercial, and industrial sectors. Our team combines deep domain expertise in Architecture, Structural (RCC, Steel & Composite), MEP, Interior Fit Out, Facade, Landscape, Infrastructure, and Civil engineering with cutting-edge technologies like AI, IoT, and digital twin platforms.</p>
                     <p>Our commitment to ISO 19650 standards, continuous innovation, and client-centric delivery has earned us the trust of developers, contractors, and consultants across India and the UAE.</p>
                   </>
@@ -153,7 +153,7 @@ export default function AboutPage() {
             {statsData.map((s, i) => (
               <motion.div key={i} variants={staggerItemScale}>
                 <div className="text-3xl md:text-4xl font-display font-bold text-gradient">
-                  <AnimatedCounter target={s.value} suffix={s.suffix} />
+                  {s.labelKey === "stat.founded" ? s.value : "prefix" in s && s.prefix ? `${s.prefix}${s.value}` : <>{"prefix" in s ? s.prefix : ""}<AnimatedCounter target={s.value} suffix={s.suffix} /></>}
                 </div>
                 <p className="text-sm text-muted-foreground mt-1">{t(s.labelKey)}</p>
               </motion.div>

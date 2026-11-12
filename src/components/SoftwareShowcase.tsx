@@ -162,7 +162,7 @@ export default function SoftwareShowcase() {
         <motion.div {...scaleIn} className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto">
           {[
             { icon: Globe, label: "Software Platforms", value: "16+" },
-            { icon: TrendingUp, label: "Certified Experts", value: "25+" },
+            { icon: TrendingUp, label: "Certified Experts", value: "2–10" },
             { icon: Zap, label: "Automated Workflows", value: "50+" },
             { icon: CheckCircle2, label: "Plugin Integrations", value: "100+" },
           ].map((s, i) => (

@@ -195,7 +195,7 @@ export const constructionWhy = [
   { icon: Layers,      title: "All Disciplines Under One Roof", desc: "Civil, structural, MEP, interior and landscape — one team, one accountability." },
   { icon: Sparkles,    title: "Future-Ready Construction", desc: "BIM, 3D printing, IoT and green-building tech embedded in every project." },
   { icon: Award,       title: "10-Year Structural Warranty", desc: "Backed by third-party inspection reports and material test certificates." },
-  { icon: HardHat,     title: "500+ Skilled Professionals", desc: "Engineers, architects and surveyors — all in-house, no subcontracted labour." },
+  { icon: HardHat,     title: "2–10 Skilled Professionals", desc: "Engineers, architects and surveyors — all in-house, no subcontracted labour." },
   { icon: HeartHandshake, title: "Client-First Philosophy", desc: "Weekly meetings, change-order flexibility and lifelong post-completion support." },
   { icon: Activity,    title: "Smart Building Integration", desc: "Home automation and energy management reducing operating costs by up to 40%." },
   { icon: Lock,        title: "ISO 9001 & BIS Certified",   desc: "Every material tested in NABL labs, every process documented." },
@@ -364,13 +364,13 @@ export const constructionRegistrations = [
 // ============ HERO — CONSTRUCTION KPIs & TRUST STATS ============
 export const constructionHeroKpis = [
   { value: 50,  suffix: "+",     label: "Projects" },
-  { value: 7,   suffix: "+",     label: "Years" },
-  { value: 500, suffix: "+",     label: "Team" },
+  { value: 2019, suffix: "", label: "Founded" },
+  { value: 10, suffix: "", prefix: "2–", label: "Team" },
   { value: 100, suffix: "Cr+ ₹", label: "Project Value" },
 ];
 
 export const constructionTrustStats = [
-  "500+ Skilled Professionals", "10-Year Warranty", "IS Code Compliant", "ISO 9001 Certified",
+  "2–10 Skilled Professionals", "10-Year Warranty", "IS Code Compliant", "ISO 9001 Certified",
 ];
 
 // ============ ABOUT — CONSTRUCTION STORY ============
@@ -378,23 +378,23 @@ export const constructionAboutStory = {
   title: "Building India's Skyline — One Project at a Time",
   paragraphs: [
     "WITEC Construction division was born in Nagpur with one goal: to bring world-class construction execution to the Indian market, powered by BIM, drones and IoT. From residential bungalows to industrial plants, we build with IS-code precision and on-time delivery guarantees.",
-    "With 500+ skilled professionals — engineers, architects, surveyors, safety officers and finishing specialists — every project is delivered under a single roof. No sub-contracted labour, no diluted accountability. Just clean execution, transparent BOQs and third-party inspection reports.",
+    "With 2–10 skilled professionals — engineers, architects, surveyors, safety officers and finishing specialists — every project is delivered under a single roof. No sub-contracted labour, no diluted accountability. Just clean execution, transparent BOQs and third-party inspection reports.",
     "Our portfolio spans Maharashtra, MP, Chhattisgarh and now Kolkata — luxury villas, RCC high-rises, MIDC industrial sheds, warehouses, hospitals and government schools. Every structure carries a 10-year structural warranty backed by NABL-tested materials and IS 456 / IS 1893 compliance.",
   ],
   timeline: [
-    { year: "2018", event: "WITEC Construction founded in Nagpur — residential bungalows & villas" },
+    { year: "2019", event: "WITEC Construction founded in January 2019 in Nagpur — residential bungalows & villas" },
     { year: "2019", event: "First commercial complex delivered in Wardha (IGBC Gold)" },
     { year: "2020", event: "MIDC industrial warehouse projects — pre-engineered steel structures" },
-    { year: "2021", event: "RERA-registered, ISO 9001:2015 certified, 100+ workforce" },
+    { year: "2021", event: "RERA-registered, ISO 9001:2015 certified, 2–10 people" },
     { year: "2022", event: "First high-rise RCC tower (22 floors) completed in Nagpur" },
     { year: "2023", event: "Expanded to Kolkata; hospital & school PWD projects added" },
-    { year: "2024", event: "500+ team, drone-monitored sites, ₹100 Cr+ project value delivered" },
+    { year: "2024", event: "2–10 people, drone-monitored sites, ₹100 Cr+ project value delivered" },
     { year: "2025", event: "BIM-integrated 4D/5D workflows, 3D concrete printing pilots launched" },
   ],
   stats: [
-    { value: 7,   suffix: "+",   labelKey: "stat.yearsExperience" },
+    { value: 2019, suffix: "", labelKey: "stat.founded" },
     { value: 50,  suffix: "+",   labelKey: "stat.projectsDelivered" },
-    { value: 500, suffix: "+",   labelKey: "stat.industrySectors" },
+    { value: 10, suffix: "", prefix: "2–", labelKey: "stat.teamSize" },
     { value: 100, suffix: "Cr+", labelKey: "stat.countries" },
   ],
 };
@@ -405,7 +405,7 @@ export const constructionCareers = {
     title: "Build India's Future",
     highlight: "With Us",
     end: "",
-    desc: "Join WITEC Construction — a 500-strong team of site engineers, structural specialists, MEP experts and safety officers delivering IS-code compliant projects across Maharashtra & beyond.",
+    desc: "Join WITEC Construction — a team of 2–10 people — site engineers, structural specialists, MEP experts and safety officers delivering IS-code compliant projects across Maharashtra & beyond.",
   },
   perks: [
     { title: "Site Growth Path",   desc: "From Junior Engineer to Project Manager in 5 years — clear promotion ladders and quarterly reviews." },
@@ -422,7 +422,7 @@ export const constructionCareers = {
     { title: "Family Approach",     desc: "Small enough to know your name, big enough to give ₹100 Cr+ project exposure." },
   ],
   stats: [
-    { number: "500+", label: "Team On-Site",     desc: "Engineers, architects, safety officers and skilled trades — all in-house" },
+    { number: "2–10", label: "Team On-Site",     desc: "Engineers, architects, safety officers and skilled trades — all in-house" },
     { number: "50+",  label: "Projects Delivered", desc: "Residential, commercial, industrial and infrastructure" },
     { number: "0",    label: "Fatal Incidents",  desc: "7 years of zero-harm safety record across all sites" },
     { number: "95%",  label: "Team Retention",   desc: "Because we invest in people, not just projects" },
