@@ -2,6 +2,7 @@
  * Content migrated verbatim from the Wasi Construction codebase.
  * CONSTRUCTION DIVISION ONLY — never import this from any BIM page.
  */
+import { COMPANY } from "@/config/company";
 import {
   Building2, HardHat, Ruler, Zap, Shield, Cog, CheckCircle2, Clock, IndianRupee,
   FileCheck, HeadphonesIcon, Landmark, TrendingUp, ShieldCheck, Users, Handshake,
@@ -44,8 +45,8 @@ export const wcHero = {
 
 export const wcStats = [
   { value: "Multitude", label: "Projects Completed" },
-  { value: "Decade+", label: "Years Experience" },
-  { value: "Large-Scale", label: "Team Strength" },
+  { value: "2019", label: "Founded" },
+  { value: COMPANY.teamSize, label: "Team Strength" },
   { value: "Multi-Crore", label: "Project Value" },
 ];
 
@@ -67,7 +68,7 @@ export const wcWhyReasons = [
   { icon: Landmark, title: "All Disciplines Under One Roof", desc: "Civil, structural, MEP, interior, landscaping — no need to coordinate multiple contractors. We deliver end-to-end." },
   { icon: TrendingUp, title: "Future-Ready Construction", desc: "BIM modeling, 3D concrete printing, IoT sensors, and green building tech ensure your structure is built for decades ahead." },
   { icon: ShieldCheck, title: "10-Year Structural Warranty", desc: "We stand behind our work with a comprehensive structural warranty, backed by third-party inspection reports." },
-  { icon: Users, title: "500+ Skilled Professionals", desc: "Our team includes certified engineers, architects, quantity surveyors, and site supervisors — all in-house, no outsourcing." },
+  { icon: Users, title: "2–10 Skilled Professionals", desc: "Our team includes certified engineers, architects, quantity surveyors, and site supervisors — all in-house, no outsourcing." },
   { icon: Handshake, title: "Client-First Philosophy", desc: "Weekly progress meetings, change-order flexibility, and post-completion support — because our relationship doesn't end at handover." },
   { icon: Cpu, title: "Smart Building Integration", desc: "Home automation, energy management, security systems — we deliver intelligent buildings that reduce operating costs by up to 40%." },
   { icon: Shield, title: "ISO 9001 & BIS Certified", desc: "Quality management systems certified to international standards. Every material tested, every process documented." },
@@ -386,7 +387,7 @@ export const wcContactServices = [
 
 export const wcContactCards = [
   { icon: MapPin, title: "HEAD OFFICE", lines: wcContact.officeLines },
-  { icon: Mail, title: "EMAIL", lines: [wcContact.email], isEmail: true },
+  { icon: Mail, title: "EMAIL", lines: [...COMPANY.emails], isEmail: true },
   { icon: Clock, title: "WORKING HOURS", lines: wcContact.hours },
 ];
 
