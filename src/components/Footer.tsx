@@ -100,7 +100,7 @@ export default function Footer() {
               <div className="text-[10px] text-primary font-bold uppercase tracking-widest flex items-center gap-1.5">
                 BIM &amp; Engineering Division {!isConstruction && <span className="text-[9px] font-semibold text-primary/80">• Primary</span>}
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Sadar, Nagpur, Maharashtra, India</div>
+              <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Sadar, Nagpur, Maharashtra, India (HQ) · UAE</div>
                <a href="mailto:info@witecglobal.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary"><Mail size={14} /> info@witecglobal.com</a>
                <a href="mailto:taha@witecglobal.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary"><Mail size={14} /> taha@witecglobal.com</a>
             </div>}
@@ -108,7 +108,7 @@ export default function Footer() {
               <div className="text-[10px] text-primary font-bold uppercase tracking-widest flex items-center gap-1.5">
                 Construction &amp; Civil Works Division {isConstruction && <span className="text-[9px] font-semibold text-emerald-500/80">• Primary</span>}
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Sadar, Nagpur, Maharashtra, India (HQ)</div>
+              <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Sadar, Nagpur, Maharashtra, India (HQ) · UAE</div>
                <a href="mailto:taha@witecglobal.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary"><Mail size={14} /> taha@witecglobal.com</a>
                <a href="mailto:info@witecglobal.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary"><Mail size={14} /> info@witecglobal.com</a>
             </div>}

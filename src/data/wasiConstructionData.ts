@@ -376,7 +376,7 @@ export const wcContact = {
   formTitle1: "Send Us a",
   formTitle2: "Message",
   email: "taha@witecglobal.com",
-  officeLines: ["WITEC Construction Division", "Sadar, Nagpur, Maharashtra, India"],
+  officeLines: ["WITEC Construction Division", "Sadar, Nagpur, Maharashtra, India (HQ)", "UAE"],
   hours: ["Mon–Sat: 9:00 AM – 7:00 PM", "Sunday: By Appointment"],
 };
 
