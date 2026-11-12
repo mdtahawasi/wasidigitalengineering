@@ -3,6 +3,7 @@ import { Mail, MapPin } from "lucide-react";
 import logo from "@/assets/logo-optimized.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDivision } from "@/contexts/DivisionContext";
+import { COMPANY } from "@/config/company";
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -49,7 +50,7 @@ export default function Footer() {
               <img decoding="async" width={1920} height={1047} src={logo} alt="WITEC Global" className="h-10 w-auto rounded-md" loading="lazy" />
               <div className="flex min-w-0 flex-col leading-none">
                 <span className="font-display font-bold text-foreground text-base">WITEC</span>
-                <span className="text-[10px] text-muted-foreground tracking-widest uppercase">Infratech Engineering &amp; Construction</span>
+                <span className="text-[10px] text-muted-foreground">{COMPANY.fullName}</span>
               </div>
             </Link>
             <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
@@ -101,6 +102,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Sadar, Nagpur, Maharashtra, India</div>
                <a href="mailto:info@witecglobal.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary"><Mail size={14} /> info@witecglobal.com</a>
+               <a href="mailto:taha@witecglobal.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary"><Mail size={14} /> taha@witecglobal.com</a>
             </div>}
             {isConstruction && <div className="space-y-1.5">
               <div className="text-[10px] text-primary font-bold uppercase tracking-widest flex items-center gap-1.5">
@@ -108,6 +110,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2 text-muted-foreground"><MapPin size={14} /> Sadar, Nagpur, Maharashtra, India (HQ)</div>
                <a href="mailto:taha@witecglobal.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary"><Mail size={14} /> taha@witecglobal.com</a>
+               <a href="mailto:info@witecglobal.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary"><Mail size={14} /> info@witecglobal.com</a>
             </div>}
           </div>
           <p className="text-xs text-muted-foreground">

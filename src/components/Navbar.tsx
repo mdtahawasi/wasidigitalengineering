@@ -10,6 +10,7 @@ import DivisionToggle from "./DivisionToggle";
 import { useDivision } from "@/contexts/DivisionContext";
 import { getNavItems } from "@/config/navigation";
 import { Button } from "@/components/ui/button";
+import { COMPANY } from "@/config/company";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -51,9 +52,9 @@ export default function Navbar() {
             aria-label="WITEC GLOBAL"
             className="h-8 md:h-11 w-auto rounded-md shrink-0 dark:brightness-110 dark:contrast-110"
           />
-          <div className="hidden min-w-0 flex-col leading-none sm:flex">
-            <span className="font-display font-bold text-foreground text-base md:text-xl tracking-tight">WITEC</span>
-            <span className="hidden sm:inline text-[9px] md:text-[10px] text-muted-foreground tracking-[0.2em] uppercase font-medium truncate">Infratech Engineering &amp; Construction</span>
+          <div className="flex min-w-0 flex-col leading-tight">
+            <span className="font-display font-bold text-foreground text-base md:text-xl">{COMPANY.name}</span>
+            <span className="text-[7px] sm:text-[9px] md:text-[10px] text-muted-foreground font-medium">{COMPANY.fullName}</span>
           </div>
         </Link>
 

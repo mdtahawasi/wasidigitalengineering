@@ -20,10 +20,12 @@ export default function ContactPage() {
 
   const contactInfo = isConstruction ? [
     { icon: Mail, labelKey: "contact.email", value: "taha@witecglobal.com" },
+    { icon: Mail, labelKey: "contact.email", value: "info@witecglobal.com" },
     { icon: MapPin, labelKey: "contact.headOffice", value: "Sadar, Nagpur, Maharashtra, India" },
     { icon: Clock, labelKey: "contact.workingHours", value: "Mon–Sat: 9:00 AM – 7:00 PM · Sun: By appointment" },
   ] : [
     { icon: Mail, labelKey: "contact.email", value: "info@witecglobal.com" },
+    { icon: Mail, labelKey: "contact.email", value: "taha@witecglobal.com" },
     { icon: MapPin, labelKey: "contact.headOffice", value: "Sadar, Nagpur, Maharashtra, India" },
     { icon: Clock, labelKey: "contact.workingHours", value: "Mon–Sat: 9:00 AM – 6:00 PM" },
   ];
