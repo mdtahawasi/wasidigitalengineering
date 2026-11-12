@@ -1,7 +1,7 @@
 # Roadmap
 
-- [ ] Apply only owner-confirmed emails, phone, brand lockup, founding date, offices and team size in both divisions
-- [ ] Verify approved details across pages and preserve projects, certifications, clashes, savings and response times; do not publish
+- [x] Apply only owner-confirmed emails, phone, brand lockup, founding date, offices and team size in both divisions
+- [x] Verify approved details across pages and preserve projects, certifications, clashes, savings and response times; do not publish
 
 - [x] Sitewide SEO: unique division metadata, semantic headings, descriptive image alternatives and safe loading
 - [x] Complete truthful service/FAQ structured data, internal links and crawler files
