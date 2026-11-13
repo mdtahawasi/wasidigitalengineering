@@ -357,6 +357,13 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible, input:focus-v
 .section-navigation { scrollbar-width: none; }
 .section-navigation::-webkit-scrollbar { display: none; }
 .section-link-active { color: hsl(var(--primary)); background: hsl(var(--primary) / .12); box-shadow: inset 0 -2px hsl(var(--primary)); }
+.section-navigation a:hover, .section-navigation .section-link-active:hover { color: hsl(var(--primary)); background: hsl(var(--primary) / .12); }
+main button.tilt-card:hover, main button.tilt-card:focus-visible { background: var(--glass-bg); color: hsl(var(--foreground)); }
+.services-hero-media { isolation: isolate; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  main .tilt-card { transition: translate .35s ease, rotate .35s ease, box-shadow .35s ease; }
+  main .tilt-card:hover { translate: 0 -6px; rotate: 1 1 0 2deg; }
+}
 .services-hero { padding-block: 4rem; }
 [data-division="construction"] .aec-section-reveal { opacity: 1; transform: none; }
 [data-division="construction"] main .glass { border-top-color: hsl(var(--accent) / .45); }
