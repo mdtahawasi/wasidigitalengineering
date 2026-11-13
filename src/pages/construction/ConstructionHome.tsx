@@ -52,7 +52,7 @@ export default function ConstructionHome() {
       </section>
 
       {/* Stats */}
-      <AnimatedSection className="border-y border-border/50 bg-card/40">
+      <section data-immediate className="border-y border-border/50 bg-card/40">
         <div className="container mx-auto px-4 md:px-8 py-12 grid grid-cols-2 md:grid-cols-4 gap-6">
           {wcStats.map((s) => (
             <div key={s.label} className="text-center">
@@ -61,7 +61,7 @@ export default function ConstructionHome() {
             </div>
           ))}
         </div>
-      </AnimatedSection>
+      </section>
 
       {/* We take all projects */}
       <AnimatedSection className="container mx-auto px-4 md:px-8 py-20">

@@ -11,6 +11,7 @@ import { useDivision } from "@/contexts/DivisionContext";
 import { getNavItems } from "@/config/navigation";
 import { Button } from "@/components/ui/button";
 import { COMPANY } from "@/config/company";
+import { useSectionNavigation } from "@/hooks/useSectionNavigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -19,6 +20,13 @@ export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const { division } = useDivision();
   const navLinks = getNavItems(division);
+  const { sections, active } = useSectionNavigation(`${location.pathname}:${division}`);
+
+  useEffect(() => {
+    const rail = document.querySelector<HTMLElement>(".section-navigation");
+    const item = rail?.querySelector<HTMLElement>('[aria-current="location"]');
+    if (rail && item) rail.scrollTo({ left: item.offsetLeft - rail.clientWidth / 2 + item.clientWidth / 2, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }, [active]);
 
   useEffect(() => { setOpen(false); }, [location.pathname, division]);
 
@@ -110,6 +118,18 @@ export default function Navbar() {
       <div className="flex justify-center border-t border-border/40 bg-background/80 px-3 py-2 backdrop-blur-md sm:px-4">
         <DivisionToggle variant="mobile" className="max-w-md xl:max-w-lg" />
       </div>
+
+      {sections.length > 0 && (
+        <nav aria-label={t("nav.home")} className="section-navigation relative flex h-11 items-center gap-1 overflow-x-auto border-t border-border/40 bg-background/95 px-3">
+          {sections.map(section => (
+            <Button key={section.id} asChild variant="ghost" className={`h-11 shrink-0 max-w-60 px-3 text-xs ${active === section.id ? "section-link-active" : "text-muted-foreground"}`}>
+              <a href={`#${section.id}`} aria-current={active === section.id ? "location" : undefined} title={section.label}>
+                <span className="truncate">{section.label}</span>
+              </a>
+            </Button>
+          ))}
+        </nav>
+      )}
 
       {/* Mobile Dropdown Menu */}
       <AnimatePresence>

@@ -79,9 +79,9 @@ export default function ServicesPage() {
     <Layout>
       <DivisionSEO services={[...disciplines, ...additionalServices]} />
       {/* Hero */}
-      <section id="services-hero" className="relative section-padding overflow-hidden">
+      <section id="services-hero" className="relative section-padding overflow-hidden services-hero">
         <div className="absolute inset-0 grid-pattern opacity-10" />
-        <div className="container mx-auto px-4 md:px-8 relative">
+        <div className="container mx-auto px-4 md:px-8 relative grid gap-10 lg:grid-cols-[1.2fr_1fr] items-center">
           <motion.div initial={{ y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <motion.span
               initial={{ x: -20 }}
@@ -114,6 +114,10 @@ export default function ServicesPage() {
                 : t("services.desc")}
             </motion.p>
           </motion.div>
+          <div className="services-hero-media relative aspect-[4/3] overflow-hidden rounded-lg">
+            <img src={imgMEPF} width={1200} height={800} fetchPriority="high" decoding="async" alt="Coordinated mechanical, electrical, plumbing and fire protection BIM systems" className="h-full w-full object-cover" />
+            <div aria-hidden="true" className="absolute inset-0 border border-primary/20 rounded-lg pointer-events-none" />
+          </div>
         </div>
       </section>
 

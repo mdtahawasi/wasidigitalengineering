@@ -14,24 +14,29 @@ export default function AnimatedSection({ children, className = "", as = "sectio
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+    let timer: ReturnType<typeof setTimeout> | undefined;
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => setVisible(true), delay);
+          timer = setTimeout(() => setVisible(true), delay);
           obs.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "-40px" },
+      { threshold: 0, rootMargin: "0px 0px -24px 0px" },
     );
     obs.observe(el);
-    return () => obs.disconnect();
+    return () => { obs.disconnect(); if (timer) clearTimeout(timer); };
   }, [delay]);
 
   const Tag = as as any;
   return (
     <Tag
       ref={ref as any}
-      className={`transition-all duration-700 ease-out ${
+      className={`aec-section-reveal transition-[opacity,transform] duration-700 ease-out ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       } ${className}`}
     >

@@ -2,6 +2,7 @@ import { heroImageSrcSet } from "@/lib/heroImages";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import DivisionSEO from "@/components/DivisionSEO";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -46,15 +47,15 @@ export default function ConstructionProjects() {
       <section className="py-8 border-b border-border/40">
         <div className="container mx-auto px-4 md:px-8 flex flex-wrap justify-center gap-3">
           {wcSectorFilters.map((s) => (
-            <button key={s.key} onClick={() => setActiveSector(s.key)}
-              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold tracking-widest border transition-all ${
+            <Button variant="ghost" key={s.key} aria-pressed={activeSector === s.key} onClick={() => setActiveSector(s.key)}
+              className={`min-h-11 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold tracking-widest border transition-all ${
                 activeSector === s.key
                   ? "bg-primary text-primary-foreground border-primary"
                   : "border-border/60 text-muted-foreground hover:border-primary/50 hover:text-foreground"
               }`}>
               <s.icon size={14} />
               {s.label.toUpperCase()}
-            </button>
+            </Button>
           ))}
         </div>
       </section>
@@ -67,8 +68,8 @@ export default function ConstructionProjects() {
             <motion.div key={activeSector} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filtered.map((p) => (
-                <button key={p.id} onClick={() => setSelectedProject(p.id)}
-                  className="glass rounded-2xl overflow-hidden group text-left transition-all hover:-translate-y-1">
+                <Button variant="ghost" key={p.id} onClick={() => setSelectedProject(p.id)}
+                  className="glass rounded-2xl overflow-hidden group text-left transition-all tilt-card h-auto p-0 block whitespace-normal">
                   <div className="relative h-52 overflow-hidden">
                     <img decoding="async" width={1200} height={800} src={p.image} alt={`${p.name} — ${p.type} construction visualization`} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /><div className="project-overlay" aria-hidden="true"><span className="text-sm font-semibold text-foreground">{p.name}</span></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
@@ -99,7 +100,7 @@ export default function ConstructionProjects() {
                       View Details <ChevronRight size={12} />
                     </span>
                   </div>
-                </button>
+                </Button>
               ))}
             </motion.div>
           </AnimatePresence>
@@ -115,10 +116,10 @@ export default function ConstructionProjects() {
             <motion.div initial={{ opacity: 0, y: 30, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.97 }}
               onClick={(e) => e.stopPropagation()}
               className="glass rounded-2xl max-w-3xl w-full max-h-[85vh] overflow-y-auto relative">
-              <button onClick={() => setSelectedProject(null)} aria-label="Close project details"
-                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-background/80 border border-border/60 flex items-center justify-center text-foreground">
+              <Button variant="ghost" size="icon" onClick={() => setSelectedProject(null)} aria-label="Close project details"
+                className="absolute top-4 right-4 z-10 min-w-11 min-h-11 rounded-full bg-background/80 border border-border/60 flex items-center justify-center text-foreground">
                 <X size={16} />
-              </button>
+              </Button>
               <img loading="eager" decoding="async" width={1200} height={800} src={detail.image} alt={`${detail.name} — ${detail.type} project detail`} className="w-full h-60 object-cover" />
               <div className="p-8">
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -160,15 +161,15 @@ export default function ConstructionProjects() {
 
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             {wcViewModes.map((v) => (
-              <button key={v.key} onClick={() => setActiveView(v.key)}
-                className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-[10px] sm:text-xs font-semibold tracking-widest border transition-all ${
+              <Button variant="ghost" key={v.key} aria-pressed={activeView === v.key} onClick={() => setActiveView(v.key)}
+                className={`min-h-11 inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-[10px] sm:text-xs font-semibold tracking-widest border transition-all ${
                   activeView === v.key
                     ? "bg-primary text-primary-foreground border-primary"
                     : "border-border/60 text-muted-foreground hover:border-primary/50 hover:text-foreground"
                 }`}>
                 <v.icon size={14} />
                 {v.label.toUpperCase()}
-              </button>
+              </Button>
             ))}
           </div>
 

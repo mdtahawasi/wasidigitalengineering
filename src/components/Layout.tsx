@@ -9,9 +9,11 @@ import { Link, useLocation } from "react-router-dom";
 import { useDivision } from "@/contexts/DivisionContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ServiceFAQ from "./ServiceFAQ";
+import { useConstructionReveals } from "@/hooks/useConstructionReveals";
 
 export default function Layout({ children }: { children: ReactNode }) {
   useGlobalParallax();
+  useConstructionReveals();
   const { pathname } = useLocation();
   const { division } = useDivision();
   const { t } = useLanguage();

@@ -225,7 +225,7 @@ export default function HomePage() {
             </h1>
 
             {/* Rotating headline */}
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.h2
                 key={heroIndex}
                 initial={{ opacity: 0, y: 30 }}
@@ -234,7 +234,7 @@ export default function HomePage() {
                 transition={{ duration: 0.7 }}
                 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold leading-[1.2] text-foreground mb-4"
               >
-                <span className="text-gradient">{heroSlides[heroIndex].quote}</span>
+                <span className="hero-quote">{heroSlides[heroIndex].quote}</span>
               </motion.h2>
             </AnimatePresence>
 
@@ -242,14 +242,14 @@ export default function HomePage() {
               Digital Twin &amp; BIM Services
             </p>
 
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.p
                 key={heroIndex}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-lg md:text-xl text-primary/80 font-semibold mb-4 tracking-wide"
+                className="hero-caption text-lg md:text-xl font-semibold mb-4 tracking-wide"
               >
                 {heroSlides[heroIndex].sub}
               </motion.p>
@@ -348,17 +348,16 @@ export default function HomePage() {
       </section>
 
       {/* ===== STATS ===== */}
-      <section className="relative -mt-16 z-10">
+      <section data-immediate className="relative -mt-16 z-10">
         <div className="container mx-auto px-4 md:px-8">
           <motion.div
-            {...scaleIn}
+            initial={false}
             className="glass rounded-2xl p-6 md:p-10 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
           >
             {stats.map((stat, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={false}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="text-center"
