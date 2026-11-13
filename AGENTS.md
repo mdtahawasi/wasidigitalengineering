@@ -12,3 +12,4 @@
 - Use the shared company facts configuration for owner-confirmed contacts and identity; this keeps both divisions consistent without mixing their service data.
 - Keep counters at their supplied values from first paint; animate their presentation, not factual figures.
 - Reveal Construction cards individually with intersection-driven transform/opacity animations and reduced-motion guards; tall sections must not depend on a percentage visibility threshold.
+- Derive sticky-header section links from rendered headings and track their positions with one animation-frame scroll listener; labels stay consistent with page content.

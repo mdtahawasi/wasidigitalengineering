@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 [id] {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 12rem;
 }
 
 /* ===== WITEC Division accent tokens ===== */
@@ -108,7 +108,7 @@
     --secondary-foreground: 195 30% 92%;
 
     --muted: 216 40% 12%;
-    --muted-foreground: 205 20% 66%;
+    --muted-foreground: 205 20% 78%;
 
     --accent: 212 100% 56%;
     --accent-foreground: 216 60% 5%;
@@ -303,8 +303,8 @@ img {
 }
 
 /* Section rhythm & typography hierarchy */
-main h1 { text-wrap: balance; letter-spacing: -0.02em; }
-main h2 { text-wrap: balance; letter-spacing: -0.01em; }
+main h1 { text-wrap: balance; letter-spacing: 0; }
+main h2 { text-wrap: balance; letter-spacing: 0; }
 main p { text-wrap: pretty; }
 
 /* Micro-interactions: buttons & CTAs */
@@ -341,6 +341,30 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible, input:focus-v
 
 /* Hero media never blank */
 .hero-media { background-color: hsl(var(--muted)); }
+
+/* Legible image-backed text and distinct, accessible Construction detail accents. */
+:root { --hero-quote: 216 45% 10%; --hero-caption: 176 95% 27%; }
+.dark { --hero-quote: 195 30% 96%; --hero-caption: 169 85% 72%; }
+[data-division="construction"] { --accent: 36 90% 34%; --accent-foreground: 0 0% 100%; }
+.dark[data-division="construction"] { --accent: 40 96% 66%; --accent-foreground: 216 60% 5%; }
+.hero-quote { color: hsl(var(--hero-quote)); }
+.hero-caption { color: hsl(var(--hero-caption)); }
+.dark main [class*="text-muted-foreground/"] { color: hsl(var(--muted-foreground)); }
+.dark main [class*="text-foreground/"] { color: hsl(var(--foreground)); }
+.dark main .text-gradient { background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--hero-caption))); }
+.dark main .text-neon-gradient { background-image: linear-gradient(100deg, hsl(var(--primary)), hsl(var(--hero-caption))); }
+.dark main section:has(> img) > [class*="bg-background/"] { background-color: hsl(var(--background) / .9); }
+.section-navigation { scrollbar-width: none; }
+.section-navigation::-webkit-scrollbar { display: none; }
+.section-link-active { color: hsl(var(--primary)); background: hsl(var(--primary) / .12); box-shadow: inset 0 -2px hsl(var(--primary)); }
+.services-hero { padding-block: 4rem; }
+[data-division="construction"] .aec-section-reveal { opacity: 1; transform: none; }
+[data-division="construction"] main .glass { border-top-color: hsl(var(--accent) / .45); }
+[data-division="construction"] main section > div > h2 .text-accent { color: hsl(var(--accent)); }
+.project-overlay { z-index: 1; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+  .aec-section-reveal { opacity: 1 !important; transform: none !important; }
+}
 
 @media (max-width: 767px) {
   .iso-rotor { animation: none; }
