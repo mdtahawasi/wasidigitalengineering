@@ -2,6 +2,7 @@ import { heroImageSrcSet } from "@/lib/heroImages";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import DivisionSEO from "@/components/DivisionSEO";
 import SectionHeading from "@/components/SectionHeading";
@@ -224,25 +225,24 @@ export default function ProjectsPage() {
             className="flex flex-wrap gap-2 mb-10"
           >
             {categoryKeys.map((cat, i) => (
-              <motion.button
+              <Button
                 key={cat.key}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05, duration: 0.3 }}
+                variant="ghost"
+                aria-pressed={activeCategory === cat.key}
                 onClick={() => setActiveCategory(cat.key)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                className={`min-h-11 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                   activeCategory === cat.key
                     ? "bg-gradient-primary text-primary-foreground"
                     : "glass text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {t(cat.tKey)}
-              </motion.button>
+              </Button>
             ))}
           </motion.div>
 
           <motion.div
+            key={activeCategory}
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -250,7 +250,7 @@ export default function ProjectsPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {filtered.map((project) => (
-              <motion.div key={project.title} layout variants={staggerItem} className="group glass rounded-xl overflow-hidden">
+              <motion.div key={project.title} layout variants={staggerItem} className="group glass rounded-xl overflow-hidden tilt-card">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img decoding="async" width={1200} height={800} src={project.img} alt={`${project.title} — ${project.location} project visualization`} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" /><div className="project-overlay" aria-hidden="true"><span className="text-sm font-semibold text-foreground">{project.title}</span></div>
                   <div className="absolute top-3 left-3">
