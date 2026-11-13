@@ -1,5 +1,10 @@
 # Roadmap
 
+- [ ] Complete Construction reveals and visible-on-load homepage counters
+- [ ] Fix dark-text contrast, balance the BIM Services hero and verify Construction amber accents
+- [ ] Add sticky-header section tracking and repair project-filter/hover interactions
+- [ ] Verify all visual fixes on desktop/mobile; preserve details and figures; do not publish
+
 - [x] Apply only owner-confirmed emails, phone, brand lockup, founding date, offices and team size in both divisions
 - [x] Verify approved details across pages and preserve projects, certifications, clashes, savings and response times; do not publish
 

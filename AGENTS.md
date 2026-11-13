@@ -10,3 +10,5 @@
 - Keep original hero assets and serve responsive WebP renditions through the shared image source map; this reduces mobile transfer without changing the depicted content.
 - Identify illustrative BIM elements by discipline, level, family and local sequence; this keeps floor-cutaway identifiers stable without treating diagram units as engineering dimensions.
 - Use the shared company facts configuration for owner-confirmed contacts and identity; this keeps both divisions consistent without mixing their service data.
+- Keep counters at their supplied values from first paint; animate their presentation, not factual figures.
+- Reveal Construction cards individually with intersection-driven transform/opacity animations and reduced-motion guards; tall sections must not depend on a percentage visibility threshold.
