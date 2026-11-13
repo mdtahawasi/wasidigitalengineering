@@ -222,7 +222,7 @@ html {
 
 /* Prevent accidental horizontal overflow on any device */
 html, body {
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
 }
 
